@@ -9,34 +9,35 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Hope Leong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hoperawr.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/hoperawr)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Scheduling and Tracking
 
-### Johnny Doe
+### Chan Wa Wai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wayne987.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/wayne987)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Testing
+
+### Phoon Jun Hui
+
+<img src="images/junhui-phoon.png" width="200px">
+
+[[github](http://github.com/junhui-phoon)] 
+[[portfolio](team/junhui.md)]
+
+* Role: Developer
+* Responsibilities: Integration
 
 ### Ethan So
 
@@ -48,12 +49,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Code Quality
 
-### James Doe
+### Ng Jia Xin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jiaax.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/jiaax)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation
