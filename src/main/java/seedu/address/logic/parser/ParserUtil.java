@@ -13,7 +13,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -121,14 +120,5 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Remark}.
-     */
-    public static Remark parseRemark(String remark) {
-        requireNonNull(remark);
-        String trimmedRemark = remark.trim();
-        return new Remark(trimmedRemark);
     }
 }
