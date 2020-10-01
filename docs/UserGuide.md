@@ -19,7 +19,7 @@ by managing their daily calorie intake/output and weight changes during Basic Mi
 3. Copy the file to the folder you want to use as the home folder for My Fitness Buddy.   
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.    					
 5. If the app doesn’t start right away, try opening a command terminal in the folder and enter   
-`java -jar eva.jar  `
+`java -jar MyFitnessBuddy.jar`
 1. Refer to the [Features](#features) below for details of each command.  
 
 --------------------------------------------------------------------------------------------------------------------
