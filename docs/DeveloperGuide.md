@@ -236,13 +236,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage their calorie intake and weight loss
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manages weight loss/gain and calorie input/output faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -251,41 +251,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | new user                                   | create a new profile         | set up the application |
+| `* * *`  | user                                       | record my daily weight         | keep track of them   |
+| `* * *`  | user                                       | record meals and the amount of calorie eaten  | keep track of them |
+| `* * *`  | user                                       | record exercises and the amount of calories lost | keep track of them |
+| `* * *`  | user                                       | view my calorie history   | see if I am hitting my calorie targets |
+| `* * *`  | user                                       | view all my daily weights | see if I am hitting my weight targets | 
+| `* * *`  | user                                       | delete a specified calorie output | remove a wrong input |
+|  `* * *` | user                                       | delete a specified calorie input | remove a wrong output |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MyFitnessBuddy` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a calorie intake**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add calorie intake
+2.  User selects the date that he/she wants to add a calorie intake
+3.  User inputs the calorie intake
+4.  User sees the newly updated calorie intake of the day
+
+    Use case ends.
+    
+**Use case: View calorie history**
+
+**MSS**
+
+1.  User requests to view calorie history
+2.  User sees his/her calorie history
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The history is empty.
 
   Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
 
 *{More to be added}*
 
