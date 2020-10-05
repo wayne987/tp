@@ -4,7 +4,7 @@ public class Output extends Calorie{
 
     private Exercise exercise;
 
-    public Output(CalorieCount calorieCount, Time time, Exercise exercise) {
+    public Output(Time time, Exercise exercise, CalorieCount calorieCount) {
         super(calorieCount, time);
         this.exercise = exercise;
     }
@@ -27,6 +27,6 @@ public class Output extends Calorie{
     }
 
     public static void main(String[] args) {
-        System.out.println(new Output(new CalorieCount("100"),new Time("18:00"),new Exercise("running")));
+        System.out.println(new Output(new Time("18:00"),new Exercise("running"),new CalorieCount("100")));
     }
 }

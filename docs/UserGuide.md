@@ -50,17 +50,17 @@ Add calorie input to the calorie tracker.
 Format: `calorie in t/TIME f/FOOD c/CALORIE COUNT`
 
 Examples:  
-`calorie /in t/1200 f/Laksa c/290`  
-`calorie /in t/1800 f/Drumstick c/76`
+`calorie tp/in t/1200 f/Laksa c/290`  
+`calorie tp/in t/1800 f/Drumstick c/76`
 
 ### Adding a calorie output : `calorie /out`
 Add calorie output to the calorie tracker.
 
-Format: `calorie out t/TIME d/DURATION (MINUTES) c/CALORIE_BURNT`
+Format: `calorie out t/TIME e/EXERCISE c/CALORIE_BURNT`
 
 Examples:  
-`calorie /out t/1200 d/60 c/500`  
-`calorie /out t/1800 d/30 c/250`
+`calorie tp/out t/1200 e/running c/500`  
+`calorie tp/out t/1800 e/swimming c/250`
 
 
 ### Listing past entries: `view`
