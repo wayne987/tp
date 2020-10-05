@@ -23,15 +23,24 @@ public class CalorieCommandParser  implements Parser<CalorieCommand>{
         }
 
         String type = ParserUtil.parseCalorieType(argMultimap.getValue(PREFIX_CALORIE_TYPE).get());
-        System.out.println(type);
+//      System.out.println(type);
         Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
-        System.out.println(time);
-        Exercise exercise = ParserUtil.parseExercise(argMultimap.getValue(PREFIX_EXERCISE).get());
-        System.out.println(exercise);
+//      System.out.println(time);
         CalorieCount calorieCount = ParserUtil.parseCalorieCount(argMultimap.getValue(PREFIX_CALORIE_COUNT).get());
-        System.out.println(calorieCount);
+//      System.out.println(calorieCount);
 
-        Calorie calorie = new Output(time,exercise,calorieCount);
+        Calorie calorie;
+        if(type.equals("in")){
+            //add food?
+            calorie = new Calorie(calorieCount,time);
+        }else{
+            Exercise exercise = ParserUtil.parseExercise(argMultimap.getValue(PREFIX_EXERCISE).get());
+            calorie = new Output(time,exercise,calorieCount);
+        }
+//        System.out.println(exercise);
+
+
+
         return new CalorieCommand(calorie);
     }
 

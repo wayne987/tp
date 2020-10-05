@@ -20,8 +20,10 @@ public class Time {
     public static boolean isValidTime(String test) {
 
         if(test.matches(VALIDATION_REGEX)){
-            int hour = Integer.parseInt(test.substring(0,1));
-            int min = Integer.parseInt(test.substring(2,3));
+            System.out.println(test);
+            int hour = Integer.parseInt(test.substring(0,2));
+            System.out.println(hour);
+            int min = Integer.parseInt(test.substring(2,4));
             return hour <= 23 && min < 59;
         }else{
             return false;
