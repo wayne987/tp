@@ -10,12 +10,17 @@ public class CalorieCount {
 
     public static final String VALIDATION_REGEX = "[1-9][\\p{Digit}]*";
 
-    public final String CALORIE_COUNT;
+    public final String calorieCount;
 
+    /**
+     * Constructs a {@code CalorieCount}.
+     *
+     * @param calorieCount A valid calorieCount.
+     */
     public CalorieCount(String calorieCount) {
         requireNonNull(calorieCount);
         checkArgument(isValidCalorieCount(calorieCount), MESSAGE_CONSTRAINTS);
-        CALORIE_COUNT = calorieCount;
+        this.calorieCount = calorieCount;
     }
 
     public static boolean isValidCalorieCount(String test) {
@@ -24,7 +29,7 @@ public class CalorieCount {
 
     @Override
     public String toString() {
-        return CALORIE_COUNT;
+        return calorieCount;
     }
 
 

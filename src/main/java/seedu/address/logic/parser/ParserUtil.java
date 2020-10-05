@@ -125,17 +125,25 @@ public class ParserUtil {
         return tagSet;
     }
 
-    public static String parseCalorieType(String type) throws ParseException{
+    /**
+     * Parses a {@code String CalorieType} into an different type.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static String parseCalorieType(String type) throws ParseException {
         requireNonNull(type);
         String trimmedType = type.trim();
-        if(trimmedType.equals("in") || trimmedType.equals("out")){
+        if (trimmedType.equals("in") || trimmedType.equals("out")) {
             return trimmedType;
-        }else{
+        } else {
             throw new ParseException("wrong calorie direction");
         }
     }
 
-    public static Time parseTime(String time) throws ParseException{
+    /**
+     * Parses a {@code String time} into @code Time.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Time parseTime(String time) throws ParseException {
         requireNonNull(time);
         String trimmedTime = time.trim();
         if (!Time.isValidTime(trimmedTime)) {
@@ -144,7 +152,11 @@ public class ParserUtil {
         return new Time(trimmedTime);
     }
 
-    public static Exercise parseExercise(String exercise) throws ParseException{
+    /**
+     * Parses a {@code String exercise} into @code Exercise.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Exercise parseExercise(String exercise) throws ParseException {
         requireNonNull(exercise);
         String trimmedExercise = exercise.trim();
         if (!Exercise.isValidExercise(trimmedExercise)) {
@@ -153,7 +165,11 @@ public class ParserUtil {
         return new Exercise(trimmedExercise);
     }
 
-    public static CalorieCount parseCalorieCount(String calorieCount) throws ParseException{
+    /**
+     * Parses a {@code String calorieCount} into @code CalorieCount.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static CalorieCount parseCalorieCount(String calorieCount) throws ParseException {
         requireNonNull(calorieCount);
         String trimmedCalorieCount = calorieCount.trim();
         if (!CalorieCount.isValidCalorieCount(trimmedCalorieCount)) {

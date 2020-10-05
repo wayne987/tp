@@ -1,15 +1,18 @@
 package seedu.address.model.person.calorie;
 
-public class Output extends Calorie{
+public class Output extends Calorie {
 
     private Exercise exercise;
 
+    /**
+     * Every field must be present and not null.
+     */
     public Output(Time time, Exercise exercise, CalorieCount calorieCount) {
         super(calorieCount, time);
         this.exercise = exercise;
     }
 
-    public Exercise getExercise(){
+    public Exercise getExercise() {
         return exercise;
     }
 
@@ -27,6 +30,6 @@ public class Output extends Calorie{
     }
 
     public static void main(String[] args) {
-        System.out.println(new Output(new Time("18:00"),new Exercise("running"),new CalorieCount("100")));
+        System.out.println(new Output(new Time("18:00"), new Exercise("running"), new CalorieCount("100")));
     }
 }

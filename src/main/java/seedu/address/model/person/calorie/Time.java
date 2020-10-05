@@ -9,30 +9,38 @@ public class Time {
 
     public static final String VALIDATION_REGEX = "[0-9][0-9][0-9][0-9]";
 
-    public final String TIME;
+    public final String time;
 
+    /**
+     * Constructs a {@code Time}.
+     *
+     * @param time A valid Time.
+     */
     public Time(String time) {
         requireNonNull(time);
         checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
-        TIME = time;
+        this.time = time;
     }
 
+    /**
+     * Returns if a given string is a valid Time.
+     */
     public static boolean isValidTime(String test) {
 
-        if(test.matches(VALIDATION_REGEX)){
+        if (test.matches(VALIDATION_REGEX)) {
             System.out.println(test);
-            int hour = Integer.parseInt(test.substring(0,2));
+            int hour = Integer.parseInt(test.substring(0, 2));
             System.out.println(hour);
-            int min = Integer.parseInt(test.substring(2,4));
+            int min = Integer.parseInt(test.substring(2, 4));
             return hour <= 23 && min < 59;
-        }else{
+        } else {
             return false;
         }
     }
 
     @Override
     public String toString() {
-        return TIME;
+        return time;
     }
 
 

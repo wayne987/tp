@@ -9,12 +9,17 @@ public class Exercise {
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String EXERCISE;
+    public final String exercise;
 
+    /**
+     * Constructs a {@code Exercise}.
+     *
+     * @param exercise A valid exercise.
+     */
     public Exercise(String exercise) {
         requireNonNull(exercise);
         checkArgument(isValidExercise(exercise), MESSAGE_CONSTRAINTS);
-        EXERCISE = exercise;
+        this.exercise = exercise;
     }
 
     public static boolean isValidExercise(String test) {
@@ -23,7 +28,7 @@ public class Exercise {
 
     @Override
     public String toString() {
-        return EXERCISE;
+        return exercise;
     }
 
 }
