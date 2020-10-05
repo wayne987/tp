@@ -12,4 +12,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
+    public static final Prefix PREFIX_CALORIE_TYPE = new Prefix("tp/");
+    public static final Prefix PREFIX_CALORIE_COUNT = new Prefix("c/");
+    public static final Prefix PREFIX_TIME = new Prefix("t/");
+    public static final Prefix PREFIX_EXERCISE = new Prefix("e/");
+
+
 }

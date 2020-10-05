@@ -13,6 +13,9 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.calorie.CalorieCount;
+import seedu.address.model.person.calorie.Exercise;
+import seedu.address.model.person.calorie.Time;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +123,58 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String CalorieType} into an different type.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static String parseCalorieType(String type) throws ParseException {
+        requireNonNull(type);
+        String trimmedType = type.trim();
+        if (trimmedType.equals("in") || trimmedType.equals("out")) {
+            return trimmedType;
+        } else {
+            throw new ParseException("wrong calorie direction");
+        }
+    }
+
+    /**
+     * Parses a {@code String time} into @code Time.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Time parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        if (!Time.isValidTime(trimmedTime)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new Time(trimmedTime);
+    }
+
+    /**
+     * Parses a {@code String exercise} into @code Exercise.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Exercise parseExercise(String exercise) throws ParseException {
+        requireNonNull(exercise);
+        String trimmedExercise = exercise.trim();
+        if (!Exercise.isValidExercise(trimmedExercise)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new Exercise(trimmedExercise);
+    }
+
+    /**
+     * Parses a {@code String calorieCount} into @code CalorieCount.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static CalorieCount parseCalorieCount(String calorieCount) throws ParseException {
+        requireNonNull(calorieCount);
+        String trimmedCalorieCount = calorieCount.trim();
+        if (!CalorieCount.isValidCalorieCount(trimmedCalorieCount)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new CalorieCount(trimmedCalorieCount);
     }
 }
