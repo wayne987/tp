@@ -1,4 +1,4 @@
-package seedu.address.model.person.calorie;
+package seedu.address.model.day.calorie;
 
 public class Output extends Calorie {
 

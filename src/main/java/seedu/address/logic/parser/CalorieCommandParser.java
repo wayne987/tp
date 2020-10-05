@@ -11,11 +11,11 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CalorieCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.calorie.Calorie;
-import seedu.address.model.person.calorie.CalorieCount;
-import seedu.address.model.person.calorie.Exercise;
-import seedu.address.model.person.calorie.Output;
-import seedu.address.model.person.calorie.Time;
+import seedu.address.model.day.calorie.Calorie;
+import seedu.address.model.day.calorie.CalorieCount;
+import seedu.address.model.day.calorie.Exercise;
+import seedu.address.model.day.calorie.Output;
+import seedu.address.model.day.calorie.Time;
 
 
 
