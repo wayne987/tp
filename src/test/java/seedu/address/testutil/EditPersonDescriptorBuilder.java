@@ -6,9 +6,9 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.day.Address;
+import seedu.address.model.day.Day;
 import seedu.address.model.day.Email;
 import seedu.address.model.day.Name;
-import seedu.address.model.day.Day;
 import seedu.address.model.day.Phone;
 import seedu.address.model.tag.Tag;
 
