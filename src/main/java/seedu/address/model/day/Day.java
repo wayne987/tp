@@ -20,7 +20,7 @@ import seedu.address.model.tag.Tag;
 public class Day {
 
     private LocalDate date;
-    private List<Input> calorieInputList;
+//    private List<Input> calorieInputList;
     private List<Output> calorieOutputList;
 
     // Identity fields
@@ -43,7 +43,7 @@ public class Day {
         this.tags.addAll(tags);
         this.date = LocalDate.now();
         this.calorieOutputList = new ArrayList<Output>();
-        this.calorieInputList = new ArrayList<Input>();
+//        this.calorieInputList = new ArrayList<Input>();
     }
 
     public LocalDate getDate() {
@@ -54,13 +54,13 @@ public class Day {
         return calorieOutputList;
     }
 
-    public List<Input> getCalorieInputList() {
-        return calorieInputList;
-    }
-
-    public void addCalorieInput(Input calorieInput) {
-        calorieInputList.add(calorieInput);
-    }
+//    public List<Input> getCalorieInputList() {
+//        return calorieInputList;
+//    }
+//
+//    public void addCalorieInput(Input calorieInput) {
+//        calorieInputList.add(calorieInput);
+//    }
 
     public void addCalorieOutput(Output calorieOutput) {
         calorieOutputList.add(calorieOutput);
