@@ -15,6 +15,7 @@ import seedu.address.model.day.Name;
 import seedu.address.model.day.Phone;
 import seedu.address.model.day.calorie.CalorieCount;
 import seedu.address.model.day.calorie.Exercise;
+import seedu.address.model.day.calorie.Food;
 import seedu.address.model.day.calorie.Time;
 import seedu.address.model.tag.Tag;
 
@@ -176,5 +177,18 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new CalorieCount(trimmedCalorieCount);
+    }
+
+    /**
+     * Parses a {@code String food} into @code Food.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Food parseFood(String food) throws ParseException {
+        requireNonNull(food);
+        String trimmedFood = food.trim();
+        if (!Food.isValidFood(trimmedFood)) {
+            throw new ParseException(Food.MESSAGE_CONSTRAINTS);
+        }
+        return new Food(trimmedFood);
     }
 }
