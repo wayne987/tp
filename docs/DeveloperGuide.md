@@ -266,6 +266,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `MyFitnessBuddy` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a daily weight record**
+
+**MSS**
+1.  User requests to add a weight record
+2.  User inputs the date and weight
+3.  User sees the newly added weight record of the day.
+    
+    Use case ends.
+    
+**Use case: Edit a daily weight record**
+
+**MSS**
+1.  User requests to edit a weight record
+2.  User inputs the index of the record and weight
+3.  User sees the newly edited weight record of the day.
+    
+    Use case ends.
+
 **Use case: Add a calorie intake**
 
 **MSS**

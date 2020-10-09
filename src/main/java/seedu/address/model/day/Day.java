@@ -25,7 +25,7 @@ public class Day {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Weight weight;
     private final Email email;
 
     // Data fields
@@ -35,10 +35,10 @@ public class Day {
     /**
      * Class constructor
      */
-    public Day(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Day(Name name, Weight weight, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, weight, email, address, tags);
         this.name = name;
-        this.phone = phone;
+        this.weight = weight;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -71,8 +71,8 @@ public class Day {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Weight getWeight() {
+        return weight;
     }
 
     public Email getEmail() {
@@ -102,7 +102,7 @@ public class Day {
 
         return otherDay != null
                 && otherDay.getName().equals(getName())
-                && (otherDay.getPhone().equals(getPhone()) || otherDay.getEmail().equals(getEmail()));
+                && (otherDay.getEmail().equals(getEmail()) || otherDay.getWeight().equals(getWeight()));
     }
 
     /**
@@ -121,7 +121,7 @@ public class Day {
 
         Day otherDay = (Day) other;
         return otherDay.getName().equals(getName())
-                && otherDay.getPhone().equals(getPhone())
+                && otherDay.getWeight().equals(getWeight())
                 && otherDay.getEmail().equals(getEmail())
                 && otherDay.getAddress().equals(getAddress())
                 && otherDay.getTags().equals(getTags());
@@ -130,15 +130,15 @@ public class Day {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, weight, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
+                .append(" Weight: ")
+                .append(getWeight())
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Address: ")
