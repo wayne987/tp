@@ -49,7 +49,7 @@ public class PersonCard extends UiPart<Region> {
         this.day = day;
         id.setText(displayedIndex + ". ");
         name.setText(day.getName().fullName);
-        weight.setText(day.getWeight().value);
+        weight.setText(day.getWeight().value + " kg");
         address.setText(day.getAddress().value);
         email.setText(day.getEmail().value);
         day.getTags().stream()
