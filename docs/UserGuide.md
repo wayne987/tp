@@ -51,10 +51,10 @@ Format: `add d/DATE w/WEIGHT`
 Examples:  
 `add d/02/11/20 w/70`  
 
-### Editing a daily weight record : `edit i/INDEX w/WEIGHT`
+### Editing a daily weight record : `edit INDEX w/WEIGHT`
 Edit a new daily weight record.
 
-Format: `edit i/INDEX w/WEIGHT`
+Format: `edit INDEX w/WEIGHT`
 
 Examples:  
 `edit 1 w/65`
@@ -127,7 +127,7 @@ My Fitness Buddy data are saved in the hard disk automatically after any command
 Action | Format
 --------|------------------
 **Add a new weight record** | `add d/DATE w/WEIGHT`
-**Edit a weight record** | `edit i/INDEX w/WEIGHT`
+**Edit a weight record** | `edit INDEX w/WEIGHT`
 **Add input** | `calorie in t/TIME f/FOOD c/CALORIE_COUNT`
 **Add output** | `calorie out t/TIME d/DURATION (MINUTES) c/CALORIE_BURNT`
 **Delete input** | `delete /in i/INDEX`
