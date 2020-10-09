@@ -102,7 +102,7 @@ public class Day {
 
         return otherDay != null
                 && otherDay.getName().equals(getName())
-                && otherDay.getEmail().equals(getEmail());
+                && (otherDay.getEmail().equals(getEmail()) || otherDay.getWeight().equals(getWeight()));
     }
 
     /**
@@ -121,6 +121,7 @@ public class Day {
 
         Day otherDay = (Day) other;
         return otherDay.getName().equals(getName())
+                && otherDay.getWeight().equals(getWeight())
                 && otherDay.getEmail().equals(getEmail())
                 && otherDay.getAddress().equals(getAddress())
                 && otherDay.getTags().equals(getTags());

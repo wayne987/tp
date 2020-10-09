@@ -218,6 +218,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getEmail().equals(e.getEmail())
+                    && getWeight().equals(e.getWeight())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }

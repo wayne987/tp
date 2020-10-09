@@ -76,7 +76,8 @@ public class ParserUtilTest {
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
         Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+        Name actualName = ParserUtil.parseName(nameWithWhitespace);
+        assertEquals(expectedName, actualName);
     }
 
     @Test
@@ -99,7 +100,8 @@ public class ParserUtilTest {
     public void parseWeight_validValueWithWhitespace_returnsTrimmedWeight() throws Exception {
         String weightWithWhitespace = WHITESPACE + VALID_WEIGHT + WHITESPACE;
         Weight expectedWeight = new Weight(VALID_WEIGHT);
-        assertEquals(expectedWeight, ParserUtil.parseWeight(weightWithWhitespace));
+        Weight actualWeight = ParserUtil.parseWeight(weightWithWhitespace);
+        assertEquals(expectedWeight, actualWeight);
     }
 
     @Test
