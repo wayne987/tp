@@ -4,23 +4,23 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's phone number in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
+ * Represents a Person's weight in the record.
+ * Guarantees: immutable; is valid as declared in {@link #isValidWeight(String)}
  */
-public class Phone {
+public class Weight {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Weight should only contain numbers, and it should be at least 2 digits long";
+    public static final String VALIDATION_REGEX = "\\d{2,}";
     public final String value;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code Weight}.
      *
-     * @param phone A valid phone number.
+     * @param phone A valid weight in kilograms.
      */
-    public Phone(String phone) {
+    public Weight(String phone) {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
