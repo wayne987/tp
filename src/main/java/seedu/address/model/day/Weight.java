@@ -11,8 +11,8 @@ public class Weight {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Weight should only contain numbers, and it should be at least 2 digits long";
-    public static final String VALIDATION_REGEX = "\\d{2,}";
+            "Weight should only contain numbers, and it should be at least 2 digits long and maximum 3 digits long. ";
+    public static final String VALIDATION_REGEX = "\\d{2,3}";
     public final String value;
 
     /**

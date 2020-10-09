@@ -7,7 +7,7 @@ import seedu.address.model.day.Address;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Email;
 import seedu.address.model.day.Name;
-import seedu.address.model.day.Phone;
+import seedu.address.model.day.Weight;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -17,12 +17,12 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_WEIGHT = "42";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private Phone phone;
+    private Weight weight;
     private Email email;
     private Address address;
     private Set<Tag> tags;
@@ -32,7 +32,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        weight = new Weight(DEFAULT_WEIGHT);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -43,7 +43,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Day dayToCopy) {
         name = dayToCopy.getName();
-        phone = dayToCopy.getPhone();
+        weight = dayToCopy.getWeight();
         email = dayToCopy.getEmail();
         address = dayToCopy.getAddress();
         tags = new HashSet<>(dayToCopy.getTags());
@@ -74,10 +74,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Weight} of the {@code Day} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public PersonBuilder withWeight(String weight) {
+        this.weight = new Weight(weight);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class PersonBuilder {
     }
 
     public Day build() {
-        return new Day(name, phone, email, address, tags);
+        return new Day(name, weight, email, address, tags);
     }
 
 }

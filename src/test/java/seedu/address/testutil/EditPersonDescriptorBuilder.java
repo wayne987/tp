@@ -9,7 +9,7 @@ import seedu.address.model.day.Address;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Email;
 import seedu.address.model.day.Name;
-import seedu.address.model.day.Phone;
+import seedu.address.model.day.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,7 +33,7 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Day day) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(day.getName());
-        descriptor.setPhone(day.getPhone());
+        descriptor.setWeight(day.getWeight());
         descriptor.setEmail(day.getEmail());
         descriptor.setAddress(day.getAddress());
         descriptor.setTags(day.getTags());
@@ -48,10 +48,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Weight} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditPersonDescriptorBuilder withWeight(String weight) {
+        descriptor.setWeight(new Weight(weight));
         return this;
     }
 
