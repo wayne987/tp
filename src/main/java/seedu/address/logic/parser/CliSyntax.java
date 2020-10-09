@@ -17,5 +17,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TIME = new Prefix("t/");
     public static final Prefix PREFIX_EXERCISE = new Prefix("e/");
 
+    public static final Prefix PREFIX_WEIGHT = new Prefix("w/");
+
 
 }

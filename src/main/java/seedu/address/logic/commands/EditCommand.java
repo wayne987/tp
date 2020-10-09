@@ -23,7 +23,7 @@ import seedu.address.model.day.Address;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Email;
 import seedu.address.model.day.Name;
-import seedu.address.model.day.Phone;
+import seedu.address.model.day.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -94,12 +94,12 @@ public class EditCommand extends Command {
         assert dayToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(dayToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(dayToEdit.getPhone());
+        Weight updatedWeight = editPersonDescriptor.getWeight().orElse(dayToEdit.getWeight());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(dayToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(dayToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(dayToEdit.getTags());
 
-        return new Day(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Day(updatedName, updatedWeight, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Phone phone;
+        private Weight weight;
         private Email email;
         private Address address;
         private Set<Tag> tags;
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
+            setWeight(toCopy.weight);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
@@ -149,7 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, weight, email, address, tags);
         }
 
         public void setName(Name name) {
@@ -160,12 +160,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setWeight(Weight weight) {
+            this.weight = weight;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Weight> getWeight() {
+            return Optional.ofNullable(weight);
         }
 
         public void setEmail(Email email) {
@@ -217,7 +217,6 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
