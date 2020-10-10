@@ -51,27 +51,27 @@ Format: `add d/DATE w/WEIGHT`
 Examples:  
 `add d/02/11/20 w/70`  
 
-### Editing a daily weight record : `edit i/INDEX w/WEIGHT`
+### Editing a daily weight record : `edit INDEX w/WEIGHT`
 Edit a new daily weight record.
 
-Format: `edit i/INDEX w/WEIGHT`
+Format: `edit INDEX w/WEIGHT`
 
 Examples:  
 `edit 1 w/65`
 
-### Adding a calorie intake : `calorie /in`
+### Adding a calorie intake : `calorie tp/in`
 Add calorie input to the calorie tracker.
 
-Format: `calorie in t/TIME f/FOOD c/CALORIE COUNT`
+Format: `calorie tp/in t/TIME f/FOOD c/CALORIE COUNT`
 
 Examples:  
 `calorie tp/in t/1200 f/Laksa c/290`  
 `calorie tp/in t/1800 f/Drumstick c/76`
 
-### Adding a calorie output : `calorie /out`
+### Adding a calorie output : `calorie tp/out`
 Add calorie output to the calorie tracker.
 
-Format: `calorie out t/TIME e/EXERCISE c/CALORIE_BURNT`
+Format: `calorie tp/out t/TIME e/EXERCISE c/CALORIE_BURNT`
 
 Examples:  
 `calorie tp/out t/1200 e/running c/500`  
@@ -127,7 +127,7 @@ My Fitness Buddy data are saved in the hard disk automatically after any command
 Action | Format
 --------|------------------
 **Add a new weight record** | `add d/DATE w/WEIGHT`
-**Edit a weight record** | `edit i/INDEX w/WEIGHT`
+**Edit a weight record** | `edit INDEX w/WEIGHT`
 **Add input** | `calorie in t/TIME f/FOOD c/CALORIE_COUNT`
 **Add output** | `calorie out t/TIME d/DURATION (MINUTES) c/CALORIE_BURNT`
 **Delete input** | `delete /in i/INDEX`
