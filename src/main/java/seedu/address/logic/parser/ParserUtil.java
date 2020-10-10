@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.day.Address;
 import seedu.address.model.day.Email;
 import seedu.address.model.day.Name;
-import seedu.address.model.day.Phone;
+import seedu.address.model.day.Weight;
 import seedu.address.model.day.calorie.CalorieCount;
 import seedu.address.model.day.calorie.Exercise;
 import seedu.address.model.day.calorie.Food;
@@ -55,18 +55,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String weight} into a {@code Weight}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code weight} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static Weight parseWeight(String weight) throws ParseException {
+        requireNonNull(weight);
+        String trimmedWeight = weight.trim();
+        if (!Weight.isValidWeight(trimmedWeight)) {
+            throw new ParseException(Weight.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new Weight(trimmedWeight);
     }
 
     /**
