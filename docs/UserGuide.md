@@ -59,19 +59,19 @@ Format: `edit INDEX w/WEIGHT`
 Examples:  
 `edit 1 w/65`
 
-### Adding a calorie intake : `calorie /in`
+### Adding a calorie intake : `calorie tp/in`
 Add calorie input to the calorie tracker.
 
-Format: `calorie in t/TIME f/FOOD c/CALORIE COUNT`
+Format: `calorie tp/in t/TIME f/FOOD c/CALORIE COUNT`
 
 Examples:  
 `calorie tp/in t/1200 f/Laksa c/290`  
 `calorie tp/in t/1800 f/Drumstick c/76`
 
-### Adding a calorie output : `calorie /out`
+### Adding a calorie output : `calorie tp/out`
 Add calorie output to the calorie tracker.
 
-Format: `calorie out t/TIME e/EXERCISE c/CALORIE_BURNT`
+Format: `calorie tp/out t/TIME e/EXERCISE c/CALORIE_BURNT`
 
 Examples:  
 `calorie tp/out t/1200 e/running c/500`  
