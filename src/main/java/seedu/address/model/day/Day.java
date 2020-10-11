@@ -1,23 +1,31 @@
-package seedu.address.model.person;
+package seedu.address.model.day;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.day.calorie.Output;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Day {
+
+    private LocalDate date;
+    // private List<Input> calorieInputList;
+    private List<Output> calorieOutputList;
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Weight weight;
     private final Email email;
 
     // Data fields
@@ -25,23 +33,46 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Class constructor
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Day(Name name, Weight weight, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, weight, email, address, tags);
         this.name = name;
-        this.phone = phone;
+        this.weight = weight;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.date = LocalDate.now();
+        this.calorieOutputList = new ArrayList<Output>();
+        // this.calorieInputList = new ArrayList<Input>();
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public List<Output> getCalorieOutputList() {
+        return calorieOutputList;
+    }
+
+    //    public List<Input> getCalorieInputList() {
+    //        return calorieInputList;
+    //    }
+    //
+    //    public void addCalorieInput(Input calorieInput) {
+    //        calorieInputList.add(calorieInput);
+    //    }
+
+    public void addCalorieOutput(Output calorieOutput) {
+        calorieOutputList.add(calorieOutput);
     }
 
     public Name getName() {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Weight getWeight() {
+        return weight;
     }
 
     public Email getEmail() {
@@ -64,14 +95,14 @@ public class Person {
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSamePerson(Day otherDay) {
+        if (otherDay == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+        return otherDay != null
+                && otherDay.getName().equals(getName())
+                && (otherDay.getEmail().equals(getEmail()) || otherDay.getWeight().equals(getWeight()));
     }
 
     /**
@@ -84,30 +115,30 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Day)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        Day otherDay = (Day) other;
+        return otherDay.getName().equals(getName())
+                && otherDay.getWeight().equals(getWeight())
+                && otherDay.getEmail().equals(getEmail())
+                && otherDay.getAddress().equals(getAddress())
+                && otherDay.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, weight, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
+                .append(" Weight: ")
+                .append(getWeight())
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Address: ")

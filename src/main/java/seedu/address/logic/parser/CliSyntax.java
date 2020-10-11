@@ -16,6 +16,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_CALORIE_COUNT = new Prefix("c/");
     public static final Prefix PREFIX_TIME = new Prefix("t/");
     public static final Prefix PREFIX_EXERCISE = new Prefix("e/");
+    public static final Prefix PREFIX_FOOD = new Prefix("f/");
+
+    public static final Prefix PREFIX_WEIGHT = new Prefix("w/");
 
 
 }

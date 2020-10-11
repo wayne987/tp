@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
-import seedu.address.model.person.calorie.Calorie;
+import seedu.address.model.day.calorie.Calorie;
 
 
 public class CalorieCommand extends Command {
