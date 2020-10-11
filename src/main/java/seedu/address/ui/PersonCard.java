@@ -29,17 +29,17 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label date;
     @FXML
     private Label id;
     @FXML
     private Label weight;
     @FXML
-    private Label address;
+    private Label totalCalorieIn;
     @FXML
-    private Label email;
-    @FXML
-    private FlowPane tags;
+    private Label totalCalorieOut;
+//    @FXML
+//    private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -48,13 +48,13 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.day = day;
         id.setText(displayedIndex + ". ");
-        name.setText(day.getName().fullName);
+        date.setText(day.getName().fullName);
         weight.setText(day.getWeight().value + " kg");
-        address.setText(day.getAddress().value);
-        email.setText(day.getEmail().value);
-        day.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        totalCalorieIn.setText("Total Calories In: " + day.getAddress().value + " calories");
+        totalCalorieOut.setText("Total Calories Out: " + day.getEmail().value +  " calories");
+//        day.getTags().stream()
+//                .sorted(Comparator.comparing(tag -> tag.tagName))
+//                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
