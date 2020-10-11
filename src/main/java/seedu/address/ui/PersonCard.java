@@ -44,7 +44,7 @@ public class PersonCard extends UiPart<Region> {
         this.day = day;
         id.setText(displayedIndex + ". ");
         date.setText(day.getName().fullName);
-        weight.setText(day.getWeight().value + " kg");
+        weight.setText("Weight: " + day.getWeight().value + " kg");
         totalCalorieIn.setText("Total Calories In: " + day.getAddress().value + " calories");
         totalCalorieOut.setText("Total Calories Out: " + day.getEmail().value + " calories");
     }
