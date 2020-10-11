@@ -9,14 +9,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.day.Address;
-import seedu.address.model.day.Email;
-import seedu.address.model.day.Name;
-import seedu.address.model.day.Weight;
-import seedu.address.model.day.calorie.CalorieCount;
-import seedu.address.model.day.calorie.Exercise;
-import seedu.address.model.day.calorie.Food;
-import seedu.address.model.day.calorie.Time;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.calorie.CalorieCount;
+import seedu.address.model.person.calorie.Exercise;
+import seedu.address.model.person.calorie.Time;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -55,18 +54,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String weight} into a {@code Weight}.
+     * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code weight} is invalid.
+     * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Weight parseWeight(String weight) throws ParseException {
-        requireNonNull(weight);
-        String trimmedWeight = weight.trim();
-        if (!Weight.isValidWeight(trimmedWeight)) {
-            throw new ParseException(Weight.MESSAGE_CONSTRAINTS);
+    public static Phone parsePhone(String phone) throws ParseException {
+        requireNonNull(phone);
+        String trimmedPhone = phone.trim();
+        if (!Phone.isValidPhone(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
-        return new Weight(trimmedWeight);
+        return new Phone(trimmedPhone);
     }
 
     /**
@@ -177,18 +176,5 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new CalorieCount(trimmedCalorieCount);
-    }
-
-    /**
-     * Parses a {@code String food} into @code Food.
-     * Leading and trailing whitespaces will be trimmed.
-     */
-    public static Food parseFood(String food) throws ParseException {
-        requireNonNull(food);
-        String trimmedFood = food.trim();
-        if (!Food.isValidFood(trimmedFood)) {
-            throw new ParseException(Food.MESSAGE_CONSTRAINTS);
-        }
-        return new Food(trimmedFood);
     }
 }
