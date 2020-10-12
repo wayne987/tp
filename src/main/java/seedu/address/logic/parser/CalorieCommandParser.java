@@ -22,7 +22,6 @@ import seedu.address.model.day.calorie.Time;
 
 
 public class CalorieCommandParser implements Parser<CalorieCommand> {
-
     @Override
     public CalorieCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -51,7 +50,7 @@ public class CalorieCommandParser implements Parser<CalorieCommand> {
             Exercise exercise = ParserUtil.parseExercise(argMultimap.getValue(PREFIX_EXERCISE).get());
             calorie = new Output(time, exercise, calorieCount);
         }
-        return new CalorieCommand(calorie);
+        return new CalorieCommand(calorie, type);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

@@ -57,6 +57,10 @@ public interface Model {
      */
     boolean hasDay(Day day);
 
+    boolean hasDay();
+
+    Day getDay();
+
     /**
      * Deletes the given day.
      * The day must exist in the address book.

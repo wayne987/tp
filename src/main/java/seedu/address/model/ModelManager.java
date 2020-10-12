@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -92,6 +93,16 @@ public class ModelManager implements Model {
     public boolean hasDay(Day day) {
         requireNonNull(day);
         return addressBook.hasDay(day);
+    }
+
+    @Override
+    public boolean hasDay() {
+        return addressBook.hasDay();
+    }
+
+    @Override
+    public Day getDay() {
+        return addressBook.getDay(LocalDate.now());
     }
 
     @Override

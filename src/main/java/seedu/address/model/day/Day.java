@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.day.calorie.CalorieCount;
 import seedu.address.model.day.calorie.Output;
 import seedu.address.model.tag.Tag;
 
@@ -21,6 +22,7 @@ public class Day {
 
     private LocalDate date;
     // private List<Input> calorieInputList;
+    private int totalCalorieOut;
     private List<Output> calorieOutputList;
 
     // Identity fields
@@ -42,9 +44,28 @@ public class Day {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.date = LocalDate.now();
+        this.calorieOutputList = new ArrayList<Output>();
+        this.date = LocalDate.of(2019, 11, 11); //placeholder
+        // this.calorieInputList = new ArrayList<Input>();
+    }
+
+    /**
+     * Class constructor
+     */
+    public Day(Name name, Weight weight, Email email, Address address, LocalDate date) {
+        requireAllNonNull(name, weight, email, address, tags);
+        this.name = name;
+        this.weight = weight;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.date = date;
         this.calorieOutputList = new ArrayList<Output>();
         // this.calorieInputList = new ArrayList<Input>();
+    }
+
+    public void addTotalCalorieOut(CalorieCount calorieCount) {
+        totalCalorieOut += Integer.parseInt(calorieCount.toString());
     }
 
     public LocalDate getDate() {
@@ -63,8 +84,19 @@ public class Day {
     //        calorieInputList.add(calorieInput);
     //    }
 
+    /**
+     * add a calorie output into the calorieOutputList and update the total calorie output
+     */
     public void addCalorieOutput(Output calorieOutput) {
         calorieOutputList.add(calorieOutput);
+        addTotalCalorieOut(calorieOutput.getCalorieCount());
+    }
+
+    /**
+     * returns the total output calorie
+     */
+    public int getTotalOutputCalorie() {
+        return totalCalorieOut;
     }
 
     public Name getName() {
@@ -99,10 +131,22 @@ public class Day {
         if (otherDay == this) {
             return true;
         }
-
         return otherDay != null
                 && otherDay.getName().equals(getName())
-                && (otherDay.getEmail().equals(getEmail()) || otherDay.getWeight().equals(getWeight()));
+                && (otherDay.getEmail().equals(getEmail()));
+    }
+
+    /**
+     * Returns true if both persons of the same name have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSameDay(Day otherDay) {
+        if (otherDay == this) {
+            return true;
+        }
+
+        return otherDay != null
+                && otherDay.getDate().equals(getDate());
     }
 
     /**
