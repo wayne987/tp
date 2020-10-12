@@ -2,57 +2,57 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_1;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_2;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.logic.commands.EditCommand.EditDayDescriptor;
+import seedu.address.testutil.EditDayDescriptorBuilder;
 
 public class EditDayDescriptorTest {
 
     @Test
     public void equals() {
         // same values -> returns true
-        EditPersonDescriptor descriptorWithSameValues = new EditPersonDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditDayDescriptor descriptorWithSameValues = new EditDayDescriptor(DESC_1);
+        assertTrue(DESC_1.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertTrue(DESC_1.equals(DESC_1));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertFalse(DESC_1.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertFalse(DESC_1.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertFalse(DESC_1.equals(DESC_2));
 
         // different name -> returns false
-        EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        EditDayDescriptor editedAmy = new EditDayDescriptorBuilder(DESC_1).withDate(VALID_DATE_2).build();
+        assertFalse(DESC_1.equals(editedAmy));
 
         // different weight -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withWeight(VALID_WEIGHT_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditDayDescriptorBuilder(DESC_1).withWeight(VALID_WEIGHT_2).build();
+        assertFalse(DESC_1.equals(editedAmy));
 
         // different email -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditDayDescriptorBuilder(DESC_1).withEmail(VALID_EMAIL_2).build();
+        assertFalse(DESC_1.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditDayDescriptorBuilder(DESC_1).withAddress(VALID_ADDRESS_2).build();
+        assertFalse(DESC_1.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditDayDescriptorBuilder(DESC_1).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(DESC_1.equals(editedAmy));
     }
 }

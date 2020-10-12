@@ -35,7 +35,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredDays = new FilteredList<>(this.addressBook.getPersonList());
+        filteredDays = new FilteredList<>(this.addressBook.getDayList());
     }
 
     public ModelManager() {
@@ -113,7 +113,7 @@ public class ModelManager implements Model {
     @Override
     public void addDay(Day day) {
         addressBook.addDay(day);
-        updateFilteredDayList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
     }
 
     @Override

@@ -2,62 +2,62 @@ package seedu.address.model.day;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_2;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalDays.ALICE;
+import static seedu.address.testutil.TypicalDays.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.DayBuilder;
 
 public class DayTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Day day = new PersonBuilder().build();
+        Day day = new DayBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> day.getTags().remove(0));
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameDay() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(ALICE.isSameDay(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(ALICE.isSameDay(null));
 
         // different weight and email -> returns false
-        Day editedAlice = new PersonBuilder(ALICE).withWeight(VALID_WEIGHT_BOB).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        Day editedAlice = new DayBuilder(ALICE).withWeight(VALID_WEIGHT_2).withEmail(VALID_EMAIL_2).build();
+        assertFalse(ALICE.isSameDay(editedAlice));
 
-        // different name -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        // different date -> returns false
+        editedAlice = new DayBuilder(ALICE).withDate(VALID_DATE_2).build();
+        assertFalse(ALICE.isSameDay(editedAlice));
 
-        // same name, same weight, different attributes -> returns true
-        //        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-        //                .withTags(VALID_TAG_HUSBAND).build();
-        //        assertTrue(ALICE.isSamePerson(editedAlice));
+        // same date, same weight, different attributes -> returns true
+        editedAlice = new DayBuilder(ALICE).withEmail(VALID_EMAIL_2).withAddress(VALID_ADDRESS_2)
+                .withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(ALICE.isSameDay(editedAlice));
 
-        // same name, same email, different attributes -> returns true
-        //        editedAlice = new PersonBuilder(ALICE).withWeight(VALID_WEIGHT_BOB).withAddress(VALID_ADDRESS_BOB)
-        //                .withTags(VALID_TAG_HUSBAND).build();
-        //        assertTrue(ALICE.isSamePerson(editedAlice));
+        // same date, same email, different attributes -> returns true
+        editedAlice = new DayBuilder(ALICE).withWeight(VALID_WEIGHT_2).withAddress(VALID_ADDRESS_2)
+                .withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(ALICE.isSameDay(editedAlice));
 
-        // same name, same weight, same email, different attributes -> returns true
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        // same date, same weight, same email, different attributes -> returns true
+        editedAlice = new DayBuilder(ALICE).withAddress(VALID_ADDRESS_2).withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(ALICE.isSameDay(editedAlice));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Day aliceCopy = new PersonBuilder(ALICE).build();
+        Day aliceCopy = new DayBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -72,24 +72,24 @@ public class DayTest {
         // different day -> returns false
         assertFalse(ALICE.equals(BOB));
 
-        // different name -> returns false
-        Day editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        // different date -> returns false
+        Day editedAlice = new DayBuilder(ALICE).withDate(VALID_DATE_2).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different weight -> returns false
-        editedAlice = new PersonBuilder(ALICE).withWeight(VALID_WEIGHT_BOB).build();
+        editedAlice = new DayBuilder(ALICE).withWeight(VALID_WEIGHT_2).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false
-        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        editedAlice = new DayBuilder(ALICE).withEmail(VALID_EMAIL_2).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        editedAlice = new DayBuilder(ALICE).withAddress(VALID_ADDRESS_2).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new DayBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

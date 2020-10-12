@@ -36,7 +36,7 @@ public class DeleteCommand extends Command {
         List<Day> lastShownList = model.getFilteredDayList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DAY_DISPLAYED_INDEX);
         }
 
         Day dayToDelete = lastShownList.get(targetIndex.getZeroBased());
