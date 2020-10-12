@@ -12,7 +12,7 @@ import seedu.address.model.day.Day;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Day> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Day> PREDICATE_SHOW_ALL_DAYS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
