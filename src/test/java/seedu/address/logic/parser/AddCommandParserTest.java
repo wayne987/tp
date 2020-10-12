@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_2;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_1;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_2;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
+//import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_WEIGHT_DESC;
@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.day.Address;
-import seedu.address.model.day.Date;
+//import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Email;
 import seedu.address.model.day.Weight;
