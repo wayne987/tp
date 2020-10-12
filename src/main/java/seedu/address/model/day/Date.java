@@ -13,10 +13,10 @@ public class Date {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Date should only contain numbers, and it must be 6 digits long in the form of DDMMYY. ";
-    public static final String VALIDATION_REGEX = "[0-9]+";
+    public static final String VALIDATION_REGEX = ".*";
     public final String value;
 
-    //private LocalDate date;
+    //    private LocalDate date;
 
     /**
      * Constructs a {@code Date}.

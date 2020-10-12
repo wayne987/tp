@@ -43,7 +43,7 @@ public class UniqueDayList implements Iterable<Day> {
      */
     public boolean contains() {
         LocalDate date = LocalDate.now();
-        return internalList.stream().anyMatch(x->x.getDate().equals(date));
+        return internalList.stream().anyMatch(x->x.getDate().toString().equals(date.toString()));
     }
 
     /**
@@ -90,7 +90,7 @@ public class UniqueDayList implements Iterable<Day> {
     }
 
     public Day getDate(LocalDate date) {
-        return internalList.stream().filter(x->x.getDate().equals(date)).reduce((x, y)->x).get();
+        return internalList.stream().filter(x->x.getDate().toString().equals(date.toString())).reduce((x, y)->x).get();
     }
 
     public void setDays(UniqueDayList replacement) {
