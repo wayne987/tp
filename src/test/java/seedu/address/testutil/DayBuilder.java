@@ -4,34 +4,34 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.day.Address;
+import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Email;
-import seedu.address.model.day.Name;
 import seedu.address.model.day.Weight;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Day objects.
  */
-public class PersonBuilder {
+public class DayBuilder {
 
-    public static final String DEFAULT_NAME = "Alice Pauline";
+    public static final String DEFAULT_DATE = "010120";
     public static final String DEFAULT_WEIGHT = "42";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private Name name;
+    private Date date;
     private Weight weight;
     private Email email;
     private Address address;
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code DayBuilder} with the default details.
      */
-    public PersonBuilder() {
-        name = new Name(DEFAULT_NAME);
+    public DayBuilder() {
+        date = new Date(DEFAULT_DATE);
         weight = new Weight(DEFAULT_WEIGHT);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
@@ -39,10 +39,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the DayBuilder with the data of {@code dayToCopy}.
      */
-    public PersonBuilder(Day dayToCopy) {
-        name = dayToCopy.getName();
+    public DayBuilder(Day dayToCopy) {
+        date = dayToCopy.getDate();
         weight = dayToCopy.getWeight();
         email = dayToCopy.getEmail();
         address = dayToCopy.getAddress();
@@ -50,25 +50,25 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Date} of the {@code Day} that we are building.
      */
-    public PersonBuilder withName(String name) {
-        this.name = new Name(name);
+    public DayBuilder withDate(String date) {
+        this.date = new Date(date);
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Day} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public DayBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Day} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public DayBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
@@ -76,21 +76,21 @@ public class PersonBuilder {
     /**
      * Sets the {@code Weight} of the {@code Day} that we are building.
      */
-    public PersonBuilder withWeight(String weight) {
+    public DayBuilder withWeight(String weight) {
         this.weight = new Weight(weight);
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Day} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public DayBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
 
     public Day build() {
-        return new Day(name, weight, email, address, tags);
+        return new Day(date, weight, email, address, tags);
     }
 
 }

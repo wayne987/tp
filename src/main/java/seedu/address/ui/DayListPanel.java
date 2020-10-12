@@ -13,9 +13,9 @@ import seedu.address.model.day.Day;
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
+public class DayListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(DayListPanel.class);
 
     @FXML
     private ListView<Day> personListView;
@@ -23,7 +23,7 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Day> dayList) {
+    public DayListPanel(ObservableList<Day> dayList) {
         super(FXML);
         personListView.setItems(dayList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
@@ -41,7 +41,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(day, getIndex() + 1).getRoot());
+                setGraphic(new DayCard(day, getIndex() + 1).getRoot());
             }
         }
     }

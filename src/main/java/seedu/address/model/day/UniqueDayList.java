@@ -8,19 +8,19 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.day.exceptions.DuplicatePersonException;
-import seedu.address.model.day.exceptions.PersonNotFoundException;
+import seedu.address.model.day.exceptions.DayNotFoundException;
+import seedu.address.model.day.exceptions.DuplicateDayException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A day is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the day being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a day uses Person#equals(Object) so
+ * A list of days that enforces uniqueness between its elements and does not allow nulls.
+ * A day is considered unique by comparing using {@code Day#isSameDay(Day)}. As such, adding and updating of
+ * days uses Day#isSameDay(Day) for equality so as to ensure that the day being added or updated is
+ * unique in terms of identity in the UniqueDayList. However, the removal of a day uses Day#equals(Object) so
  * as to ensure that the day with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Day#isSamePerson(Day)
+ * @see Day#isSameDay(Day)
  */
 public class UniqueDayList implements Iterable<Day> {
 
@@ -33,7 +33,7 @@ public class UniqueDayList implements Iterable<Day> {
      */
     public boolean contains(Day toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameDay);
     }
 
     /**
@@ -43,7 +43,7 @@ public class UniqueDayList implements Iterable<Day> {
     public void add(Day toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateDayException();
         }
         internalList.add(toAdd);
     }
@@ -58,11 +58,11 @@ public class UniqueDayList implements Iterable<Day> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new DayNotFoundException();
         }
 
-        if (!target.isSamePerson(editedDay) && contains(editedDay)) {
-            throw new DuplicatePersonException();
+        if (!target.isSameDay(editedDay) && contains(editedDay)) {
+            throw new DuplicateDayException();
         }
 
         internalList.set(index, editedDay);
@@ -75,7 +75,7 @@ public class UniqueDayList implements Iterable<Day> {
     public void remove(Day toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new DayNotFoundException();
         }
     }
 
@@ -85,13 +85,13 @@ public class UniqueDayList implements Iterable<Day> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code days}.
+     * {@code days} must not contain duplicate days.
      */
     public void setDays(List<Day> days) {
         requireAllNonNull(days);
         if (!daysAreUnique(days)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateDayException();
         }
 
         internalList.setAll(days);
@@ -122,12 +122,12 @@ public class UniqueDayList implements Iterable<Day> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code days} contains only unique days.
      */
     private boolean daysAreUnique(List<Day> days) {
         for (int i = 0; i < days.size() - 1; i++) {
             for (int j = i + 1; j < days.size(); j++) {
-                if (days.get(i).isSamePerson(days.get(j))) {
+                if (days.get(i).isSameDay(days.get(j))) {
                     return false;
                 }
             }

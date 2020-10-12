@@ -21,9 +21,9 @@ public class AddressBookBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Day} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Day day) {
+    public AddressBookBuilder withDay(Day day) {
         addressBook.addDay(day);
         return this;
     }

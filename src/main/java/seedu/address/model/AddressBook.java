@@ -53,7 +53,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setDays(newData.getPersonList());
+        setDays(newData.getDayList());
     }
 
     //// day-level operations
@@ -102,7 +102,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Day> getPersonList() {
+    public ObservableList<Day> getDayList() {
         return days.asUnmodifiableObservableList();
     }
 
