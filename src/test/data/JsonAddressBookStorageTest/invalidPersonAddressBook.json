@@ -1,6 +1,6 @@
 {
   "days": [ {
-    "date": "Person with invalid date field: Ha!ns Mu@ster",
+    "date": "",
     "weight": "90",
     "email": "hans@example.com",
     "address": "4th street"

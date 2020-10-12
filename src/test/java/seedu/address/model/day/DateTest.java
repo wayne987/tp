@@ -27,12 +27,6 @@ public class DateTest {
         // invalid date
         assertFalse(Date.isValidDate("")); // empty string
         assertFalse(Date.isValidDate(" ")); // spaces only
-        assertFalse(Date.isValidDate("^")); // only non-alphanumeric characters
-        assertFalse(Date.isValidDate("peter*")); // contains non-alphanumeric characters
-        assertFalse(Date.isValidDate("peter jack")); // alphabets only
-        assertFalse(Date.isValidDate("peter the 2nd")); // alphanumeric characters
-        assertFalse(Date.isValidDate("Capital Tan")); // with capital letters
-        assertFalse(Date.isValidDate("David Roger Jackson Ray Jr 2nd")); // long names
 
         // valid date
         assertTrue(Date.isValidDate("123455")); // numbers only

@@ -18,7 +18,7 @@ import seedu.address.model.day.Email;
 import seedu.address.model.day.Weight;
 
 public class JsonAdaptedDayTest {
-    private static final String INVALID_DATE = "R@chel";
+    private static final String INVALID_DATE = "";
     private static final String INVALID_WEIGHT = "7-0";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
