@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the day in the {@code model}'s day list at {@code index}.
      */
-    public static Day getPerson(Model model, Index index) {
+    public static Day getDay(Model model, Index index) {
         return model.getFilteredDayList().get(index.getZeroBased());
     }
 }
