@@ -133,7 +133,8 @@ public class Day {
         }
         return otherDay != null
                 && otherDay.getName().equals(getName())
-                && (otherDay.getEmail().equals(getEmail()));
+                && (otherDay.getEmail().equals(getEmail()))
+                && (otherDay.getWeight().equals(getWeight()));
     }
 
     /**
