@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.day.calorie.CalorieCount;
 import seedu.address.model.day.calorie.Output;
 import seedu.address.model.tag.Tag;
 
@@ -19,6 +20,7 @@ import seedu.address.model.tag.Tag;
 public class Day {
 
     // private List<Input> calorieInputList;
+    private int totalCalorieOut;
     private List<Output> calorieOutputList;
 
     // Identity fields
@@ -44,6 +46,10 @@ public class Day {
         // this.calorieInputList = new ArrayList<Input>();
     }
 
+    public void addTotalCalorieOut(CalorieCount calorieCount) {
+        totalCalorieOut += Integer.parseInt(calorieCount.toString());
+    }
+
     public List<Output> getCalorieOutputList() {
         return calorieOutputList;
     }
@@ -56,8 +62,19 @@ public class Day {
     //        calorieInputList.add(calorieInput);
     //    }
 
+    /**
+     * add a calorie output into the calorieOutputList and update the total calorie output
+     */
     public void addCalorieOutput(Output calorieOutput) {
         calorieOutputList.add(calorieOutput);
+        addTotalCalorieOut(calorieOutput.getCalorieCount());
+    }
+
+    /**
+     * returns the total output calorie
+     */
+    public int getTotalOutputCalorie() {
+        return totalCalorieOut;
     }
 
     public Date getDate() {
@@ -83,6 +100,7 @@ public class Day {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
 
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.

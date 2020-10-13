@@ -3,6 +3,7 @@ package seedu.address.model.day;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.day.exceptions.DayNotFoundException;
 import seedu.address.model.day.exceptions.DuplicateDayException;
+
 
 /**
  * A list of days that enforces uniqueness between its elements and does not allow nulls.
@@ -34,6 +36,14 @@ public class UniqueDayList implements Iterable<Day> {
     public boolean contains(Day toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameDay);
+    }
+
+    /**
+     * Returns true if the list contains the a day with current date.
+     */
+    public boolean contains() {
+        LocalDate date = LocalDate.now();
+        return internalList.stream().anyMatch(x->x.getDate().toString().equals(date.toString()));
     }
 
     /**
@@ -77,6 +87,10 @@ public class UniqueDayList implements Iterable<Day> {
         if (!internalList.remove(toRemove)) {
             throw new DayNotFoundException();
         }
+    }
+
+    public Day getDate(LocalDate date) {
+        return internalList.stream().filter(x->x.getDate().toString().equals(date.toString())).reduce((x, y)->x).get();
     }
 
     public void setDays(UniqueDayList replacement) {

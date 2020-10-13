@@ -129,6 +129,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasDay() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Day getDay() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteDay(Day target) {
             throw new AssertionError("This method should not be called.");
         }

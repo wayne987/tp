@@ -19,22 +19,22 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Day[] getSamplePersons() {
         return new Day[] {
-            new Day(new Date("Alex Yeoh"), new Weight("80"), new Email("alexyeoh@example.com"),
+            new Day(new Date("101320"), new Weight("80"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends")),
-            new Day(new Date("Bernice Yu"), new Weight("45"), new Email("berniceyu@example.com"),
+            new Day(new Date("101420"), new Weight("45"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends")),
-            new Day(new Date("Charlotte Oliveiro"), new Weight("55"), new Email("charlotte@example.com"),
+            new Day(new Date("101520"), new Weight("55"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours")),
-            new Day(new Date("David Li"), new Weight("79"), new Email("lidavid@example.com"),
+            new Day(new Date("101620"), new Weight("79"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family")),
-            new Day(new Date("Irfan Ibrahim"), new Weight("66"), new Email("irfan@example.com"),
+            new Day(new Date("101720"), new Weight("66"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates")),
-            new Day(new Date("Roy Balakrishnan"), new Weight("66"), new Email("royb@example.com"),
+            new Day(new Date("101820"), new Weight("66"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"))
         };
