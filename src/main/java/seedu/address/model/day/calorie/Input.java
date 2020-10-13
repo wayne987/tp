@@ -1,5 +1,7 @@
 package seedu.address.model.day.calorie;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 public class Input extends Calorie {
 
     private Food food;
@@ -9,6 +11,7 @@ public class Input extends Calorie {
      */
     public Input(Time time, Food food, CalorieCount calorieCount) {
         super(calorieCount, time);
+        requireAllNonNull(food, time, calorieCount);
         this.food = food;
     }
 
@@ -30,6 +33,6 @@ public class Input extends Calorie {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Input(new Time("12:00"), new Food("Laksa"), new CalorieCount("400")));
+        System.out.println(new Input(new Time("1200"), new Food("Laksa"), new CalorieCount("400")));
     }
 }
