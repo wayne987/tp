@@ -1,5 +1,7 @@
 package seedu.address.model.day.calorie;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 public class Output extends Calorie {
 
     private Exercise exercise;
@@ -8,6 +10,7 @@ public class Output extends Calorie {
      */
     public Output(Time time, Exercise exercise, CalorieCount calorieCount) {
         super(calorieCount, time);
+        requireAllNonNull(exercise, time, calorieCount);
         this.exercise = exercise;
     }
 
