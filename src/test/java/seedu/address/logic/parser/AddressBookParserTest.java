@@ -33,13 +33,14 @@ import seedu.address.testutil.EditDayDescriptorBuilder;
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
-
+/*
     @Test
     public void parseCommand_add() throws Exception {
         Day day = new DayBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(DayUtil.getAddCommand(day));
         assertEquals(new AddCommand(day), command);
     }
+ */
 
     @Test
     public void parseCommand_clear() throws Exception {

@@ -28,8 +28,4 @@ public class Output extends Calorie {
 
         return builder.toString();
     }
-
-    public static void main(String[] args) {
-        System.out.println(new Output(new Time("13:00"), new Exercise("running"), new CalorieCount("100")));
-    }
 }

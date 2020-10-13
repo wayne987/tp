@@ -46,7 +46,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateDays_throwsDuplicateDayException() {
         // Two days with the same identity fields
-        Day editedAlice = new DayBuilder(ALICE).withAddress(VALID_ADDRESS_2).withTags(VALID_TAG_HUSBAND)
+        Day editedAlice = new DayBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Day> newDays = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newDays);
@@ -73,7 +73,7 @@ public class AddressBookTest {
     @Test
     public void hasDay_dayWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addDay(ALICE);
-        Day editedAlice = new DayBuilder(ALICE).withAddress(VALID_ADDRESS_2).withTags(VALID_TAG_HUSBAND)
+        Day editedAlice = new DayBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(addressBook.hasDay(editedAlice));
     }

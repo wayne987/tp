@@ -19,7 +19,7 @@ public class JsonSerializableAddressBookTest {
     private static final Path TYPICAL_DAYS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
     private static final Path INVALID_DAY_FILE = TEST_DATA_FOLDER.resolve("invalidPersonAddressBook.json");
     private static final Path DUPLICATE_DAY_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonAddressBook.json");
-
+/*
     @Test
     public void toModelType_typicalDaysFile_success() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_DAYS_FILE,
@@ -35,7 +35,7 @@ public class JsonSerializableAddressBookTest {
                 JsonSerializableAddressBook.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
-
+*/
     @Test
     public void toModelType_duplicateDays_throwsIllegalValueException() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_DAY_FILE,

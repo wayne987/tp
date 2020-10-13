@@ -50,8 +50,6 @@ public class DayCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         date.setText(day.getDate().value);
         weight.setText(day.getWeight().value + " kg");
-        address.setText(day.getAddress().value);
-        email.setText(day.getEmail().value);
         day.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
