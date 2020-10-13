@@ -1,6 +1,8 @@
 package seedu.address.model.day;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_2;
@@ -10,11 +12,17 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDays.ALICE;
 import static seedu.address.testutil.TypicalDays.BOB;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.day.calorie.*;
+import seedu.address.model.day.calorie.CalorieCount;
+import seedu.address.model.day.calorie.Exercise;
+import seedu.address.model.day.calorie.Food;
+import seedu.address.model.day.calorie.Input;
+import seedu.address.model.day.calorie.Output;
+import seedu.address.model.day.calorie.Time;
 import seedu.address.testutil.DayBuilder;
-import java.util.ArrayList;
 
 public class DayTest {
 

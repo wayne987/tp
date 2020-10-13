@@ -1,9 +1,9 @@
 package seedu.address.model.day.calorie;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 class InputTest {
 
@@ -19,21 +19,19 @@ class InputTest {
 
     @Test
     public void constructor_invalidTime_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new Input(new Time(invalidInput), food, calorieCount));
+        assertThrows(IllegalArgumentException.class, () -> new Input(new Time(invalidInput), food, calorieCount));
     }
 
     @Test
     public void constructor_invalidFood_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new Input(time, new Food(invalidInput), calorieCount));
+        assertThrows(IllegalArgumentException.class, () -> new Input(time, new Food(invalidInput), calorieCount));
     }
 
     @Test
     public void constructor_invalidCalorieCount_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new Input(time, food, new CalorieCount(invalidInput)));
+        assertThrows(IllegalArgumentException.class, () -> new Input(time, food, new CalorieCount(invalidInput)));
     }
+
     @Test
     void getFood() {
         Food validFood = new Food("Laksa");
