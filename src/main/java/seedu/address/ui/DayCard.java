@@ -1,10 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.day.Day;
@@ -35,11 +32,9 @@ public class DayCard extends UiPart<Region> {
     @FXML
     private Label weight;
     @FXML
-    private Label address;
+    private Label totalCalorieIn;
     @FXML
-    private Label email;
-    @FXML
-    private FlowPane tags;
+    private Label totalCalorieOut;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -48,13 +43,10 @@ public class DayCard extends UiPart<Region> {
         super(FXML);
         this.day = day;
         id.setText(displayedIndex + ". ");
-        date.setText(day.getDate().value);
-        weight.setText(day.getWeight().value + " kg");
-        address.setText(day.getAddress().value);
-        email.setText(day.getEmail().value);
-        day.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        date.setText("Date: " + day.getDate().value);
+        weight.setText("Weight: " + day.getWeight().value + " kg");
+        totalCalorieIn.setText("Total Calories In: " + day.getTotalCalorieIn() + " calories");
+        totalCalorieOut.setText("Total Calories Out: " + day.getTotalOutputCalorie() + " calories");
     }
 
     @Override
