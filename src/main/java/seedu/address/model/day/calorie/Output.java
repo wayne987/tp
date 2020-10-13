@@ -3,7 +3,7 @@ package seedu.address.model.day.calorie;
 public class Output extends Calorie {
 
     private Exercise exercise;
-
+    private Time time;
     /**
      * Every field must be present and not null.
      */
@@ -30,6 +30,6 @@ public class Output extends Calorie {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Output(new Time("18:00"), new Exercise("running"), new CalorieCount("100")));
+        System.out.println(new Output(new Time("13:00"), new Exercise("running"), new CalorieCount("100")));
     }
 }

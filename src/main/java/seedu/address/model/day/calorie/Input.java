@@ -30,6 +30,6 @@ public class Input extends Calorie {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Input(new Time("18:00"), new Food("Laksa"), new CalorieCount("400")));
+        System.out.println(new Input(new Time("12:00"), new Food("Laksa"), new CalorieCount("400")));
     }
 }

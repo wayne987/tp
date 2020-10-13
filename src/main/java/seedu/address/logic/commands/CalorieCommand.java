@@ -4,6 +4,7 @@ package seedu.address.logic.commands;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.day.calorie.Calorie;
+import seedu.address.model.day.calorie.Input;
 import seedu.address.model.day.calorie.Output;
 
 public class CalorieCommand extends Command {
@@ -24,7 +25,7 @@ public class CalorieCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         if (model.hasDay()) {
             if (type.equals("in")) {
-                //
+                model.getDay().addCalorieInput((Input) calorie);
             } else {
                 model.getDay().addCalorieOutput((Output) calorie);
             }

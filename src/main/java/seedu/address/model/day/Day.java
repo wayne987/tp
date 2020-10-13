@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.day.calorie.CalorieCount;
+import seedu.address.model.day.calorie.Input;
 import seedu.address.model.day.calorie.Output;
 import seedu.address.model.tag.Tag;
 
@@ -19,7 +20,8 @@ import seedu.address.model.tag.Tag;
  */
 public class Day {
 
-    // private List<Input> calorieInputList;
+    private List<Input> calorieInputList;
+    private int totalCalorieIn;
     private int totalCalorieOut;
     private List<Output> calorieOutputList;
 
@@ -43,7 +45,7 @@ public class Day {
         this.address = address;
         this.tags.addAll(tags);
         this.calorieOutputList = new ArrayList<Output>();
-        // this.calorieInputList = new ArrayList<Input>();
+        this.calorieInputList = new ArrayList<Input>();
     }
 
     public void addTotalCalorieOut(CalorieCount calorieCount) {
@@ -54,13 +56,27 @@ public class Day {
         return calorieOutputList;
     }
 
-    //    public List<Input> getCalorieInputList() {
-    //        return calorieInputList;
-    //    }
-    //
-    //    public void addCalorieInput(Input calorieInput) {
-    //        calorieInputList.add(calorieInput);
-    //    }
+    public List<Input> getCalorieInputList() {
+        return calorieInputList;
+    }
+
+    public void addTotalCalorieInput(CalorieCount calorieInput) {
+        totalCalorieIn += Integer.parseInt(calorieInput.toString());
+    }
+
+    /**
+     * add a calorie input into the calorieInputList and update the total calorie input
+     */
+    public void addCalorieInput(Input calorieInput) {
+        calorieInputList.add(calorieInput);
+        addTotalCalorieInput(calorieInput.getCalorieCount());
+    }
+    /**
+     * returns the total input calorie
+     */
+    public int getTotalCalorieIn() {
+        return totalCalorieIn;
+    }
 
     /**
      * add a calorie output into the calorieOutputList and update the total calorie output
