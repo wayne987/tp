@@ -9,7 +9,7 @@ import seedu.address.model.day.Day;
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class PersonCard extends UiPart<Region> {
+public class DayCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
 
@@ -39,11 +39,11 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Day day, int displayedIndex) {
+    public DayCard(Day day, int displayedIndex) {
         super(FXML);
         this.day = day;
         id.setText(displayedIndex + ". ");
-        date.setText(day.getName().fullName);
+        date.setText(day.getDate().value);
         weight.setText("Weight: " + day.getWeight().value + " kg");
         totalCalorieIn.setText("Total Calories In: " + day.getAddress().value + " calories");
         totalCalorieOut.setText("Total Calories Out: " + day.getEmail().value + " calories");
@@ -57,12 +57,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof DayCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        DayCard card = (DayCard) other;
         return id.getText().equals(card.id.getText())
                 && day.equals(card.day);
     }

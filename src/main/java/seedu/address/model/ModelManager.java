@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -34,7 +35,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredDays = new FilteredList<>(this.addressBook.getPersonList());
+        filteredDays = new FilteredList<>(this.addressBook.getDayList());
     }
 
     public ModelManager() {
@@ -95,6 +96,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasDay() {
+        return addressBook.hasDay();
+    }
+
+    @Override
+    public Day getDay() {
+        return addressBook.getDay(LocalDate.now());
+    }
+
+    @Override
     public void deleteDay(Day target) {
         addressBook.removeDay(target);
     }
@@ -102,7 +113,7 @@ public class ModelManager implements Model {
     @Override
     public void addDay(Day day) {
         addressBook.addDay(day);
-        updateFilteredDayList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
     }
 
     @Override

@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -53,7 +54,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setDays(newData.getPersonList());
+        setDays(newData.getDayList());
     }
 
     //// day-level operations
@@ -66,6 +67,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         return days.contains(day);
     }
 
+    /**
+     * Returns true if a day in the address book with the same date as the current date.
+     */
+    public boolean hasDay() {
+        return days.contains();
+    }
+
+    /**
+     * get a day in the address book with a specific date
+     */
+    public Day getDay(LocalDate date) {
+        return days.getDate(date);
+    }
     /**
      * Adds a day to the address book.
      * The day must not already exist in the address book.
@@ -102,7 +116,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Day> getPersonList() {
+    public ObservableList<Day> getDayList() {
         return days.asUnmodifiableObservableList();
     }
 

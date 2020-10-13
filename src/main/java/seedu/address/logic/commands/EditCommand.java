@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DAYS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -20,9 +20,9 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.day.Address;
+import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Email;
-import seedu.address.model.day.Name;
 import seedu.address.model.day.Weight;
 import seedu.address.model.tag.Tag;
 
@@ -37,7 +37,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed day list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
@@ -46,23 +46,23 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_DAY_SUCCESS = "Edited Day: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This day already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_DAY = "This day already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditDayDescriptor editDayDescriptor;
 
     /**
      * @param index of the day in the filtered day list to edit
-     * @param editPersonDescriptor details to edit the day with
+     * @param editDayDescriptor details to edit the day with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditDayDescriptor editDayDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editDayDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editDayDescriptor = new EditDayDescriptor(editDayDescriptor);
     }
 
     @Override
@@ -71,35 +71,35 @@ public class EditCommand extends Command {
         List<Day> lastShownList = model.getFilteredDayList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DAY_DISPLAYED_INDEX);
         }
 
         Day dayToEdit = lastShownList.get(index.getZeroBased());
-        Day editedDay = createEditedPerson(dayToEdit, editPersonDescriptor);
+        Day editedDay = createEditedDay(dayToEdit, editDayDescriptor);
 
-        if (!dayToEdit.isSamePerson(editedDay) && model.hasDay(editedDay)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!dayToEdit.isSameDay(editedDay) && model.hasDay(editedDay)) {
+            throw new CommandException(MESSAGE_DUPLICATE_DAY);
         }
 
         model.setDay(dayToEdit, editedDay);
-        model.updateFilteredDayList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedDay));
+        model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
+        return new CommandResult(String.format(MESSAGE_EDIT_DAY_SUCCESS, editedDay));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Day} with the details of {@code dayToEdit}
+     * edited with {@code editDayDescriptor}.
      */
-    private static Day createEditedPerson(Day dayToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Day createEditedDay(Day dayToEdit, EditDayDescriptor editDayDescriptor) {
         assert dayToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(dayToEdit.getName());
-        Weight updatedWeight = editPersonDescriptor.getWeight().orElse(dayToEdit.getWeight());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(dayToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(dayToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(dayToEdit.getTags());
+        Date updatedDate = editDayDescriptor.getDate().orElse(dayToEdit.getDate());
+        Weight updatedWeight = editDayDescriptor.getWeight().orElse(dayToEdit.getWeight());
+        Email updatedEmail = editDayDescriptor.getEmail().orElse(dayToEdit.getEmail());
+        Address updatedAddress = editDayDescriptor.getAddress().orElse(dayToEdit.getAddress());
+        Set<Tag> updatedTags = editDayDescriptor.getTags().orElse(dayToEdit.getTags());
 
-        return new Day(updatedName, updatedWeight, updatedEmail, updatedAddress, updatedTags);
+        return new Day(updatedDate, updatedWeight, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -117,28 +117,28 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editDayDescriptor.equals(e.editDayDescriptor);
     }
 
     /**
      * Stores the details to edit the day with. Each non-empty field value will replace the
      * corresponding field value of the day.
      */
-    public static class EditPersonDescriptor {
-        private Name name;
+    public static class EditDayDescriptor {
+        private Date date;
         private Weight weight;
         private Email email;
         private Address address;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditDayDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.name);
+        public EditDayDescriptor(EditDayDescriptor toCopy) {
+            setDate(toCopy.date);
             setWeight(toCopy.weight);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -149,15 +149,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, weight, email, address, tags);
+            return CollectionUtil.isAnyNonNull(date, weight, email, address, tags);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setDate(Date date) {
+            this.date = date;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<Date> getDate() {
+            return Optional.ofNullable(date);
         }
 
         public void setWeight(Weight weight) {
@@ -209,14 +209,14 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditDayDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditDayDescriptor e = (EditDayDescriptor) other;
 
-            return getName().equals(e.getName())
+            return getDate().equals(e.getDate())
                     && getEmail().equals(e.getEmail())
                     && getWeight().equals(e.getWeight())
                     && getAddress().equals(e.getAddress())

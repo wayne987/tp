@@ -3,11 +3,11 @@ package seedu.address.model.day;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalDays.ALICE;
+import static seedu.address.testutil.TypicalDays.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,66 +15,66 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.day.exceptions.DuplicatePersonException;
-import seedu.address.model.day.exceptions.PersonNotFoundException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.day.exceptions.DayNotFoundException;
+import seedu.address.model.day.exceptions.DuplicateDayException;
+import seedu.address.testutil.DayBuilder;
 
 public class UniqueDayListTest {
 
     private final UniqueDayList uniqueDayList = new UniqueDayList();
 
     @Test
-    public void contains_nullPerson_throwsNullPointerException() {
+    public void contains_nullDay_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueDayList.contains(null));
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
+    public void contains_dayNotInList_returnsFalse() {
         assertFalse(uniqueDayList.contains(ALICE));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
+    public void contains_dayInList_returnsTrue() {
         uniqueDayList.add(ALICE);
         assertTrue(uniqueDayList.contains(ALICE));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_dayWithSameIdentityFieldsInList_returnsTrue() {
         uniqueDayList.add(ALICE);
-        Day editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Day editedAlice = new DayBuilder(ALICE).withAddress(VALID_ADDRESS_2).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueDayList.contains(editedAlice));
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
+    public void add_nullDay_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueDayList.add(null));
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
+    public void add_duplicateDay_throwsDuplicateDayException() {
         uniqueDayList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueDayList.add(ALICE));
+        assertThrows(DuplicateDayException.class, () -> uniqueDayList.add(ALICE));
     }
 
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
+    public void setDay_nullTargetDay_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueDayList.setDay(null, ALICE));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
+    public void setDay_nullEditedDay_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueDayList.setDay(ALICE, null));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueDayList.setDay(ALICE, ALICE));
+    public void setDay_targetDayNotInList_throwsDayNotFoundException() {
+        assertThrows(DayNotFoundException.class, () -> uniqueDayList.setDay(ALICE, ALICE));
     }
 
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
+    public void setDay_editedDayIsSameDay_success() {
         uniqueDayList.add(ALICE);
         uniqueDayList.setDay(ALICE, ALICE);
         UniqueDayList expectedUniqueDayList = new UniqueDayList();
@@ -83,9 +83,9 @@ public class UniqueDayListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
+    public void setDay_editedDayHasSameIdentity_success() {
         uniqueDayList.add(ALICE);
-        Day editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Day editedAlice = new DayBuilder(ALICE).withAddress(VALID_ADDRESS_2).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueDayList.setDay(ALICE, editedAlice);
         UniqueDayList expectedUniqueDayList = new UniqueDayList();
@@ -94,7 +94,7 @@ public class UniqueDayListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
+    public void setDay_editedDayHasDifferentIdentity_success() {
         uniqueDayList.add(ALICE);
         uniqueDayList.setDay(ALICE, BOB);
         UniqueDayList expectedUniqueDayList = new UniqueDayList();
@@ -103,24 +103,24 @@ public class UniqueDayListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
+    public void setDay_editedDayHasNonUniqueIdentity_throwsDuplicateDayException() {
         uniqueDayList.add(ALICE);
         uniqueDayList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniqueDayList.setDay(ALICE, BOB));
+        assertThrows(DuplicateDayException.class, () -> uniqueDayList.setDay(ALICE, BOB));
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
+    public void remove_nullDay_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueDayList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueDayList.remove(ALICE));
+    public void remove_dayDoesNotExist_throwsDayNotFoundException() {
+        assertThrows(DayNotFoundException.class, () -> uniqueDayList.remove(ALICE));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
+    public void remove_existingDay_removesDay() {
         uniqueDayList.add(ALICE);
         uniqueDayList.remove(ALICE);
         UniqueDayList expectedUniqueDayList = new UniqueDayList();
@@ -128,12 +128,12 @@ public class UniqueDayListTest {
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
+    public void setDays_nullUniqueDayList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueDayList.setDays((UniqueDayList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
+    public void setDays_uniqueDayList_replacesOwnListWithProvidedUniqueDayList() {
         uniqueDayList.add(ALICE);
         UniqueDayList expectedUniqueDayList = new UniqueDayList();
         expectedUniqueDayList.add(BOB);
@@ -142,12 +142,12 @@ public class UniqueDayListTest {
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
+    public void setDays_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueDayList.setDays((List<Day>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
+    public void setDays_list_replacesOwnListWithProvidedList() {
         uniqueDayList.add(ALICE);
         List<Day> dayList = Collections.singletonList(BOB);
         uniqueDayList.setDays(dayList);
@@ -157,9 +157,9 @@ public class UniqueDayListTest {
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
+    public void setDays_listWithDuplicateDays_throwsDuplicateDayException() {
         List<Day> listWithDuplicateDays = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueDayList.setDays(listWithDuplicateDays));
+        assertThrows(DuplicateDayException.class, () -> uniqueDayList.setDays(listWithDuplicateDays));
     }
 
     @Test

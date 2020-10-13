@@ -21,39 +21,39 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.day.Day;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.DayBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullDay_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Day validDay = new PersonBuilder().build();
+    public void execute_dayAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingDayAdded modelStub = new ModelStubAcceptingDayAdded();
+        Day validDay = new DayBuilder().build();
 
         CommandResult commandResult = new AddCommand(validDay).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validDay), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validDay), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validDay), modelStub.daysAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Day validDay = new PersonBuilder().build();
+    public void execute_duplicateDay_throwsCommandException() {
+        Day validDay = new DayBuilder().build();
         AddCommand addCommand = new AddCommand(validDay);
-        ModelStub modelStub = new ModelStubWithPerson(validDay);
+        ModelStub modelStub = new ModelStubWithDay(validDay);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_DAY, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Day alice = new PersonBuilder().withName("Alice").build();
-        Day bob = new PersonBuilder().withName("Bob").build();
+        Day alice = new DayBuilder().withDate("010120").build();
+        Day bob = new DayBuilder().withDate("020120").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -129,6 +129,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasDay() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Day getDay() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteDay(Day target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -152,10 +162,10 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single day.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithDay extends ModelStub {
         private final Day day;
 
-        ModelStubWithPerson(Day day) {
+        ModelStubWithDay(Day day) {
             requireNonNull(day);
             this.day = day;
         }
@@ -163,26 +173,26 @@ public class AddCommandTest {
         @Override
         public boolean hasDay(Day day) {
             requireNonNull(day);
-            return this.day.isSamePerson(day);
+            return this.day.isSameDay(day);
         }
     }
 
     /**
      * A Model stub that always accept the day being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Day> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingDayAdded extends ModelStub {
+        final ArrayList<Day> daysAdded = new ArrayList<>();
 
         @Override
         public boolean hasDay(Day day) {
             requireNonNull(day);
-            return personsAdded.stream().anyMatch(day::isSamePerson);
+            return daysAdded.stream().anyMatch(day::isSameDay);
         }
 
         @Override
         public void addDay(Day day) {
             requireNonNull(day);
-            personsAdded.add(day);
+            daysAdded.add(day);
         }
 
         @Override
