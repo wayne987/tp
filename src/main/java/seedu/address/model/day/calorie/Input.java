@@ -30,8 +30,7 @@ public class Input extends Calorie {
 
         return builder.toString();
     }
-
-
+  
     /**
      * Returns true if both Input have the same identity and data fields.
      * This defines a stronger notion of equality between two Input.
