@@ -7,8 +7,8 @@ public class Output extends Calorie {
     /**
      * Every field must be present and not null.
      */
-    public Output(Time time, Exercise exercise, CalorieCount calorieCount) {
-        super(calorieCount, time);
+    public Output(Exercise exercise, CalorieCount calorieCount) {
+        super(calorieCount);
         this.exercise = exercise;
     }
 
@@ -21,8 +21,6 @@ public class Output extends Calorie {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Exercise: ")
                 .append(getExercise())
-                .append(" Time: ")
-                .append(getTime())
                 .append(" Calorie Burnt: ")
                 .append(getCalorieCount());
 
@@ -30,6 +28,6 @@ public class Output extends Calorie {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Output(new Time("18:00"), new Exercise("running"), new CalorieCount("100")));
+        System.out.println(new Output(new Exercise("running"), new CalorieCount("100")));
     }
 }

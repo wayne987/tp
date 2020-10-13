@@ -7,8 +7,8 @@ public class Input extends Calorie {
     /**
      * Every field must be present and not null.
      */
-    public Input(Time time, Food food, CalorieCount calorieCount) {
-        super(calorieCount, time);
+    public Input(Food food, CalorieCount calorieCount) {
+        super(calorieCount);
         this.food = food;
     }
 
@@ -21,8 +21,6 @@ public class Input extends Calorie {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Food: ")
                 .append(getFood())
-                .append(" Time: ")
-                .append(getTime())
                 .append(" Calorie Intake: ")
                 .append(getCalorieCount());
 
@@ -30,6 +28,6 @@ public class Input extends Calorie {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Input(new Time("18:00"), new Food("Laksa"), new CalorieCount("400")));
+        System.out.println(new Input(new Food("Laksa"), new CalorieCount("400")));
     }
 }
