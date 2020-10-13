@@ -3,7 +3,6 @@ package seedu.address.model.day.calorie;
 public class Input extends Calorie {
 
     private Food food;
-
     /**
      * Every field must be present and not null.
      */

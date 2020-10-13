@@ -3,7 +3,6 @@ package seedu.address.model.day.calorie;
 public class Output extends Calorie {
 
     private Exercise exercise;
-    private Time time;
     /**
      * Every field must be present and not null.
      */
