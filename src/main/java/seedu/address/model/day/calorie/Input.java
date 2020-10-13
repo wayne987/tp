@@ -1,5 +1,7 @@
 package seedu.address.model.day.calorie;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 public class Input extends Calorie {
 
     private Food food;
@@ -8,6 +10,7 @@ public class Input extends Calorie {
      */
     public Input(Time time, Food food, CalorieCount calorieCount) {
         super(calorieCount, time);
+        requireAllNonNull(food, time, calorieCount);
         this.food = food;
     }
 
@@ -27,6 +30,7 @@ public class Input extends Calorie {
 
         return builder.toString();
     }
+
 
     /**
      * Returns true if both Input have the same identity and data fields.
