@@ -43,10 +43,10 @@ public class DayCard extends UiPart<Region> {
         super(FXML);
         this.day = day;
         id.setText(displayedIndex + ". ");
-        date.setText(day.getDate().value);
+        date.setText("Date: " + day.getDate().value);
         weight.setText("Weight: " + day.getWeight().value + " kg");
-        totalCalorieIn.setText("Total Calories In: " + day.getAddress().value + " calories");
-        totalCalorieOut.setText("Total Calories Out: " + day.getEmail().value + " calories");
+        totalCalorieIn.setText("Total Calories In: " + day.getTotalCalorieIn() + " calories");
+        totalCalorieOut.setText("Total Calories Out: " + day.getTotalOutputCalorie() + " calories");
     }
 
     @Override
