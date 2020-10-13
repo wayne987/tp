@@ -1,15 +1,12 @@
 package seedu.address.testutil;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.model.day.Address;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
-import seedu.address.model.day.Email;
 import seedu.address.model.day.Weight;
 import seedu.address.model.day.calorie.Input;
 import seedu.address.model.day.calorie.Output;

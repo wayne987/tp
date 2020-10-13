@@ -12,12 +12,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.day.Address;
 import seedu.address.model.day.Date;
-import seedu.address.model.day.Email;
 import seedu.address.model.day.Weight;
-import seedu.address.model.day.calorie.Input;
-import seedu.address.model.day.calorie.Output;
 
 public class JsonAdaptedDayTest {
     private static final String INVALID_DATE = "";
@@ -69,7 +65,7 @@ public class JsonAdaptedDayTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, day::toModelType);
     }
-/*
+    /*
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedDay day =
@@ -77,7 +73,7 @@ public class JsonAdaptedDayTest {
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, day::toModelType);
     }
-*/
+    */
     /*
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
@@ -87,7 +83,7 @@ public class JsonAdaptedDayTest {
     }
     /*
      */
-/*
+    /*
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedDay day =
@@ -96,7 +92,7 @@ public class JsonAdaptedDayTest {
         assertThrows(IllegalValueException.class, expectedMessage, day::toModelType);
     }
     */
-/*
+    /*
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedDay day = new JsonAdaptedDay(VALID_DATE, VALID_WEIGHT, VALID_TAGS, VALID_INPUT, VALID_OUTPUT);

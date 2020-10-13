@@ -3,8 +3,6 @@ package seedu.address.model.day;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDays.ALICE;
 import static seedu.address.testutil.TypicalDays.BOB;
@@ -17,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.day.exceptions.DayNotFoundException;
 import seedu.address.model.day.exceptions.DuplicateDayException;
-import seedu.address.testutil.DayBuilder;
 
 public class UniqueDayListTest {
 
@@ -53,13 +50,13 @@ public class UniqueDayListTest {
     public void add_nullDay_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueDayList.add(null));
     }
-/*
+    /*
     @Test
     public void add_duplicateDay_throwsDuplicateDayException() {
         uniqueDayList.add(ALICE);
         assertThrows(DuplicateDayException.class, () -> uniqueDayList.add(ALICE));
     }
- */
+    */
 
     @Test
     public void setDay_nullTargetDay_throwsNullPointerException() {
@@ -106,14 +103,14 @@ public class UniqueDayListTest {
         expectedUniqueDayList.add(BOB);
         assertEquals(expectedUniqueDayList, uniqueDayList);
     }
-/*
+    /*
     @Test
     public void setDay_editedDayHasNonUniqueIdentity_throwsDuplicateDayException() {
         uniqueDayList.add(ALICE);
         uniqueDayList.add(BOB);
         assertThrows(DuplicateDayException.class, () -> uniqueDayList.setDay(ALICE, BOB));
     }
-*/
+    */
     @Test
     public void remove_nullDay_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueDayList.remove(null));
