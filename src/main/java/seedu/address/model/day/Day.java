@@ -92,7 +92,7 @@ public class Day {
     /**
      * returns the total input calorie
      */
-    public int getTotalCalorieIn() {
+    public int getTotalInputCalorie() {
         return totalCalorieIn;
     }
 
