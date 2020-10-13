@@ -28,7 +28,19 @@ public class Output extends Calorie {
         return builder.toString();
     }
 
-    public static void main(String[] args) {
-        System.out.println(new Output(new Time("13:00"), new Exercise("running"), new CalorieCount("100")));
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Output)) {
+            return false;
+        }
+
+        Output otherInput = (Output) other;
+        return otherInput.getCalorieCount().equals(getCalorieCount())
+                && otherInput.getTime().equals(getTime())
+                && otherInput.getExercise().equals(getExercise());
     }
 }
