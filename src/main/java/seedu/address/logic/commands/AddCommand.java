@@ -1,45 +1,35 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.day.Day;
 
 /**
- * Adds a day to the address book.
+ * Adds a day to the records.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a day to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a day to the records. "
             + "Parameters: "
             + PREFIX_DATE + "DATE "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_WEIGHT + "WEIGHT "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DATE + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_DATE + "2020-10-14 "
+            + PREFIX_WEIGHT + "70 ";
 
     public static final String MESSAGE_SUCCESS = "New day added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DAY = "This day already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_DAY = "This day already exists in the records.";
 
     private final Day toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Day}
      */
     public AddCommand(Day day) {
         requireNonNull(day);
