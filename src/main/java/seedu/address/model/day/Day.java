@@ -172,9 +172,8 @@ public class Day {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDate())
                 .append(" Weight: ")
-                .append(getWeight())
-                .append(" Email: ")
-                .append(" Tags: ");
+                .append(getWeight());
+        //        .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }

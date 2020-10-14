@@ -3,9 +3,7 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DAY_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_1;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_1;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_1;
 import static seedu.address.logic.commands.CommandTestUtil.WEIGHT_DESC_1;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDays.AMY;
@@ -79,8 +77,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + DATE_DESC_1 + WEIGHT_DESC_1 + EMAIL_DESC_1
-                + ADDRESS_DESC_1;
+        String addCommand = AddCommand.COMMAND_WORD + DATE_DESC_1 + WEIGHT_DESC_1;
         Day expectedDay = new DayBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addDay(expectedDay);
