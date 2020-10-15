@@ -56,7 +56,6 @@ public class Day {
         this.calorieOutputList = outputList;
         this.calorieInputList = inputList;
         updateTotalCalorieCounts(inputList, outputList);
-        System.out.println("THis is a size!!! " + outputList.size());
     }
 
     public List<Input> getInputList() {
