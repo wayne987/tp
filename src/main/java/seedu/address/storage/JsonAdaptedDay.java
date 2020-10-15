@@ -121,7 +121,7 @@ class JsonAdaptedDay {
         }
 
         final Set<Tag> modelTags = new HashSet<>(dayTags);
-        return new Day(modelDate, modelWeight, modelTags);
+        return new Day(modelDate, modelWeight, modelTags, dayInputs, dayOutputs);
     }
 
 }

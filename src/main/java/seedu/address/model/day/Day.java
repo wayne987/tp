@@ -55,6 +55,7 @@ public class Day {
         this.tags.addAll(tags);
         this.calorieOutputList = outputList;
         this.calorieInputList = inputList;
+        updateTotalCalorieCounts(inputList, outputList);
     }
 
     public List<Input> getInputList() {
@@ -63,6 +64,20 @@ public class Day {
 
     public List<Output> getOutputList() {
         return calorieOutputList;
+    }
+
+    /**
+     * A method to update all the counters
+     * @param inputList list of inputs
+     * @param outputList list of outputs
+     */
+    public void updateTotalCalorieCounts(List<Input> inputList, List<Output> outputList) {
+        for (Input x: inputList) {
+            totalCalorieIn += Integer.parseInt(x.getCalorieCount().calorieCount);
+        }
+        for (Output y: outputList) {
+            totalCalorieOut += Integer.parseInt(y.getCalorieCount().calorieCount);
+        }
     }
 
 
