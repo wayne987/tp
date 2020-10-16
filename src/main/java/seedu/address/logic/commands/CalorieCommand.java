@@ -29,9 +29,9 @@ public class CalorieCommand extends Command {
         if (model.hasDay()) {
             Day editDay = model.getDay();
             if (type.equals("in")) {
-                editDay.addCalorieInput((Input) calorie);
+                editDay.getCalorieManager().addCalorieInput((Input) calorie);
             } else {
-                editDay.addCalorieOutput((Output) calorie);
+                editDay.getCalorieManager().addCalorieOutput((Output) calorie);
             }
             model.setDay(model.getDay(), editDay);
             model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);

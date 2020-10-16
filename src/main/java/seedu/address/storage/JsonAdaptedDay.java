@@ -13,8 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
-import seedu.address.model.day.calorie.Input;
-import seedu.address.model.day.calorie.Output;
+import seedu.address.model.day.calorie.CalorieManager;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,9 +25,9 @@ class JsonAdaptedDay {
 
     private final String date;
     private final String weight;
+    private final JsonAdaptedCalorieManager calorieManager;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedInput> inputList = new ArrayList<>();
-    private final List<JsonAdaptedOutput> outputList = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedDay} with the given day details.
@@ -43,12 +42,7 @@ class JsonAdaptedDay {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        if (inputList != null) {
-            this.inputList.addAll(inputList);
-        }
-        if (outputList != null) {
-            this.outputList.addAll(outputList);
-        }
+        calorieManager = new JsonAdaptedCalorieManager(inputList, outputList);
     }
 
     /*
@@ -75,10 +69,12 @@ class JsonAdaptedDay {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        inputList.addAll(source.getCalorieInputList().stream()
+        calorieManager = new JsonAdaptedCalorieManager(new ArrayList<>(),
+                                                       new ArrayList<>());
+        calorieManager.getInputList().addAll(source.getCalorieManager().getCalorieInputList().stream()
                 .map(JsonAdaptedInput::new)
                 .collect(Collectors.toList()));
-        outputList.addAll(source.getCalorieOutputList().stream()
+        calorieManager.getOutputList().addAll(source.getCalorieManager().getCalorieOutputList().stream()
                 .map(JsonAdaptedOutput::new)
                 .collect(Collectors.toList()));
     }
@@ -110,18 +106,15 @@ class JsonAdaptedDay {
         }
         final Weight modelWeight = new Weight(weight);
 
-        final List<Input> dayInputs = new ArrayList<>();
-        for (JsonAdaptedInput input : inputList) {
-            dayInputs.add(input.toModelType());
+        if (calorieManager == null) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
 
-        final List<Output> dayOutputs = new ArrayList<>();
-        for (JsonAdaptedOutput output : outputList) {
-            dayOutputs.add(output.toModelType());
-        }
+        final CalorieManager modelCalorieManager = calorieManager.toModelType();
 
         final Set<Tag> modelTags = new HashSet<>(dayTags);
-        return new Day(modelDate, modelWeight, modelTags, dayInputs, dayOutputs);
+
+        return new Day(modelDate, modelWeight, modelTags, modelCalorieManager);
     }
 
 }

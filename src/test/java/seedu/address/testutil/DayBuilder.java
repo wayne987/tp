@@ -18,7 +18,7 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class DayBuilder {
 
-    public static final String DEFAULT_DATE = "010120";
+    public static final String DEFAULT_DATE = "2020-06-09";
     public static final String DEFAULT_WEIGHT = "42";
 
     private Date date;
