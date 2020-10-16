@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -52,8 +53,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Day alice = new DayBuilder().withDate("010120").build();
-        Day bob = new DayBuilder().withDate("020120").build();
+        Day alice = new DayBuilder().withDate("2020-06-09").build();
+        Day bob = new DayBuilder().withDate("2020-09-06").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -129,7 +130,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasDay() {
+        public boolean hasDay(LocalDate date) {
             throw new AssertionError("This method should not be called.");
         }
 

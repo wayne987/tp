@@ -39,11 +39,11 @@ public class UniqueDayList implements Iterable<Day> {
     }
 
     /**
-     * Returns true if the list contains the a day with current date.
+     * Returns true if the list contains the a day with an LocalDate same as toCheck.
      */
-    public boolean contains() {
-        LocalDate date = LocalDate.now();
-        return internalList.stream().anyMatch(x->x.getDate().toString().equals(date.toString()));
+    public boolean contains(LocalDate toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(x->x.getDate().get().equals(toCheck));
     }
 
     /**
@@ -92,7 +92,8 @@ public class UniqueDayList implements Iterable<Day> {
     }
 
     public Day getDate(LocalDate date) {
-        return internalList.stream().filter(x->x.getDate().toString().equals(date.toString())).reduce((x, y)->x).get();
+        requireNonNull(date);
+        return internalList.stream().filter(x->x.getDate().get().equals(date)).reduce((x, y)->x).get();
     }
 
     public void setDays(UniqueDayList replacement) {

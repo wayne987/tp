@@ -10,11 +10,13 @@ import static seedu.address.testutil.TypicalDays.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.day.Day;
 import seedu.address.model.day.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
@@ -74,8 +76,14 @@ public class ModelManagerTest {
 
     @Test
     public void hasDay_nullDay_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasDay(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasDay((Day) null));
     }
+
+    @Test
+    public void hasDay_nullDate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasDay((LocalDate) null));
+    }
+
 
     @Test
     public void hasDay_dayNotInAddressBook_returnsFalse() {

@@ -96,8 +96,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasDay() {
-        return addressBook.hasDay();
+    public boolean hasDay(LocalDate date) {
+        return addressBook.hasDay(date);
     }
 
     @Override

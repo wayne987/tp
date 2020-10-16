@@ -70,8 +70,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a day in the address book with the same date as the current date.
      */
-    public boolean hasDay() {
-        return days.contains();
+    public boolean hasDay(LocalDate date) {
+        return days.contains(date);
     }
 
     /**

@@ -67,7 +67,7 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("030120 050120 060120");
+        NameContainsKeywordsPredicate predicate = preparePredicate("2020-01-23 2020-09-12 2020-03-01");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredDayList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
