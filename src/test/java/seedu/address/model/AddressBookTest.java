@@ -55,7 +55,7 @@ public class AddressBookTest {
 
     @Test
     public void hasDay_nullDay_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasDay(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasDay((Day) null));
     }
 
     @Test

@@ -49,7 +49,7 @@ Add a new daily weight record.
 Format: `add d/DATE w/WEIGHT`
 
 Examples:  
-`add d/02/11/20 w/70`  
+`add d/2020-10-16 w/70`  
 
 ### Editing a daily weight record : `edit INDEX w/WEIGHT`
 Edit a new daily weight record.

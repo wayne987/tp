@@ -42,16 +42,16 @@ public class NameContainsKeywordsPredicateTest {
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(
-                Collections.singletonList("010120"));
-        assertTrue(predicate.test(new DayBuilder().withDate("010120").build()));
+                Collections.singletonList("2020-06-09"));
+        assertTrue(predicate.test(new DayBuilder().withDate("2020-06-09").build()));
 
         // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("010120", "101010"));
-        assertTrue(predicate.test(new DayBuilder().withDate("010120").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("2020-06-09", "2020-07-09"));
+        assertTrue(predicate.test(new DayBuilder().withDate("2020-06-09").build()));
 
         // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("010120", "101010"));
-        assertTrue(predicate.test(new DayBuilder().withDate("101010").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("2020-07-09", "2020-07-09"));
+        assertTrue(predicate.test(new DayBuilder().withDate("2020-07-09").build()));
 
         //        // Mixed-case keywords
         //        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
@@ -62,15 +62,15 @@ public class NameContainsKeywordsPredicateTest {
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new DayBuilder().withDate("010120").build()));
+        assertFalse(predicate.test(new DayBuilder().withDate("2020-06-09").build()));
 
         // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("010120"));
-        assertFalse(predicate.test(new DayBuilder().withDate("200120").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("2020-06-09"));
+        assertFalse(predicate.test(new DayBuilder().withDate("2020-07-09").build()));
 
         // Keywords match phone, email and address, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("42", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new DayBuilder().withDate("111111").withWeight("42")
+        assertFalse(predicate.test(new DayBuilder().withDate("2020-06-09").withWeight("42")
               .build()));
     }
 }

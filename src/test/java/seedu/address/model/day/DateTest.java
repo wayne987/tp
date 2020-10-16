@@ -29,6 +29,6 @@ public class DateTest {
         assertFalse(Date.isValidDate(" ")); // spaces only
 
         // valid date
-        assertTrue(Date.isValidDate("123455")); // numbers only
+        assertTrue(Date.isValidDate("2020-06-09")); // numbers only
     }
 }
