@@ -6,7 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_2;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_1;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_1;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_2;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 //import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -36,7 +35,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditDayDescriptor;
-import seedu.address.model.day.Address;
 //import seedu.address.model.day.Date;
 import seedu.address.model.day.Email;
 import seedu.address.model.day.Weight;
@@ -85,7 +83,6 @@ public class EditCommandParserTest {
         // invalid date
         assertParseFailure(parser, "1" + INVALID_WEIGHT_DESC, Weight.MESSAGE_CONSTRAINTS); // invalid weight
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid weight followed by valid email
@@ -114,7 +111,7 @@ public class EditCommandParserTest {
                 + EMAIL_DESC_1 + ADDRESS_DESC_1 + DATE_DESC_1 + TAG_DESC_FRIEND;
 
         EditDayDescriptor descriptor = new EditDayDescriptorBuilder().withDate(VALID_DATE_1)
-                .withWeight(VALID_WEIGHT_2).withEmail(VALID_EMAIL_1).withAddress(VALID_ADDRESS_1)
+                .withWeight(VALID_WEIGHT_2).withEmail(VALID_EMAIL_1)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -156,7 +153,7 @@ public class EditCommandParserTest {
 
         // address
         userInput = targetIndex.getOneBased() + ADDRESS_DESC_1;
-        descriptor = new EditDayDescriptorBuilder().withAddress(VALID_ADDRESS_1).build();
+        descriptor = new EditDayDescriptorBuilder().build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -175,7 +172,7 @@ public class EditCommandParserTest {
                 + WEIGHT_DESC_2 + ADDRESS_DESC_2 + EMAIL_DESC_2 + TAG_DESC_HUSBAND;
 
         EditDayDescriptor descriptor = new EditDayDescriptorBuilder().withWeight(VALID_WEIGHT_2)
-                .withEmail(VALID_EMAIL_2).withAddress(VALID_ADDRESS_2).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withEmail(VALID_EMAIL_2).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -195,7 +192,7 @@ public class EditCommandParserTest {
         userInput = targetIndex.getOneBased() + EMAIL_DESC_2 + INVALID_WEIGHT_DESC + ADDRESS_DESC_2
                 + WEIGHT_DESC_2;
         descriptor = new EditDayDescriptorBuilder().withWeight(VALID_WEIGHT_2).withEmail(VALID_EMAIL_2)
-                .withAddress(VALID_ADDRESS_2).build();
+               .build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

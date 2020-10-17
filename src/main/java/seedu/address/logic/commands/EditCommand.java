@@ -19,7 +19,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.day.Address;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Email;
@@ -126,7 +125,6 @@ public class EditCommand extends Command {
         private Date date;
         private Weight weight;
         private Email email;
-        private Address address;
         private Set<Tag> tags;
 
         public EditDayDescriptor() {}
@@ -139,7 +137,6 @@ public class EditCommand extends Command {
             setDate(toCopy.date);
             setWeight(toCopy.weight);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
 
@@ -147,7 +144,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(date, weight, email, address, tags);
+            return CollectionUtil.isAnyNonNull(date, weight, email, tags);
         }
 
         public void setDate(Date date) {
@@ -172,14 +169,6 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
         }
 
         /**
@@ -217,7 +206,6 @@ public class EditCommand extends Command {
             return getDate().equals(e.getDate())
                     && getEmail().equals(e.getEmail())
                     && getWeight().equals(e.getWeight())
-                    && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
     }
