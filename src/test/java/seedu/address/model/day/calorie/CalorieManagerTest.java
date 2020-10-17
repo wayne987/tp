@@ -21,7 +21,7 @@ import seedu.address.testutil.TypicalCalories;
 public class CalorieManagerTest {
 
     @Test
-    void addTotalCalorieOut() {
+    void addTotalCalorieOutput() {
         CalorieManager calorieManager = new CalorieManager();
         calorieManager.addTotalCalorieOut(OUTPUT_A.getCalorieCount());
         calorieManager.addTotalCalorieOut(OUTPUT_B.getCalorieCount());

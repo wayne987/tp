@@ -107,7 +107,8 @@ class JsonAdaptedDay {
         final Weight modelWeight = new Weight(weight);
 
         if (calorieManager == null) {
-            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    CalorieManager.class.getSimpleName()));
         }
 
         final CalorieManager modelCalorieManager = calorieManager.toModelType();
