@@ -27,10 +27,6 @@ public class CalorieManager {
         updateTotalCalorieCounts(inputList, outputList);
     }
 
-    public void setInput(List<Input> inputList) {
-        this.calorieInputList = inputList;
-    }
-
     /**
      * returns the total input calorie
      */
