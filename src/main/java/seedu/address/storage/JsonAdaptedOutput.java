@@ -20,7 +20,7 @@ class JsonAdaptedOutput {
     private final String exercise;
 
     /**
-     * Constructs a {@code JsonAdaptedDay} with the given day details.
+     * Constructs a {@code JsonAdaptedOutput} with the given Output details.
      */
     @JsonCreator
     public JsonAdaptedOutput(@JsonProperty("calorieCount") String calorieCount, @JsonProperty("time") String time,
