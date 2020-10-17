@@ -136,7 +136,7 @@ public class ParserUtil {
         if (trimmedType.equals("in") || trimmedType.equals("out")) {
             return trimmedType;
         } else {
-            throw new ParseException("wrong calorie direction");
+            throw new ParseException("wrong calorie type");
         }
     }
 
@@ -148,7 +148,7 @@ public class ParserUtil {
         requireNonNull(time);
         String trimmedTime = time.trim();
         if (!Time.isValidTime(trimmedTime)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
         return new Time(trimmedTime);
     }
@@ -161,7 +161,7 @@ public class ParserUtil {
         requireNonNull(exercise);
         String trimmedExercise = exercise.trim();
         if (!Exercise.isValidExercise(trimmedExercise)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Exercise.MESSAGE_CONSTRAINTS);
         }
         return new Exercise(trimmedExercise);
     }
@@ -174,7 +174,7 @@ public class ParserUtil {
         requireNonNull(calorieCount);
         String trimmedCalorieCount = calorieCount.trim();
         if (!CalorieCount.isValidCalorieCount(trimmedCalorieCount)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(CalorieCount.MESSAGE_CONSTRAINTS);
         }
         return new CalorieCount(trimmedCalorieCount);
     }

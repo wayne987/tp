@@ -3,13 +3,14 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE_COUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
+import java.time.LocalDate;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CalorieCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.day.calorie.Calorie;
@@ -25,32 +26,42 @@ public class CalorieCommandParser implements Parser<CalorieCommand> {
     @Override
     public CalorieCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_CALORIE_TYPE, PREFIX_TIME, PREFIX_EXERCISE, PREFIX_FOOD,
-                    PREFIX_CALORIE_COUNT);
+            ArgumentTokenizer.tokenize(args, PREFIX_CALORIE_TYPE, PREFIX_DATE, PREFIX_TIME,
+                    PREFIX_EXERCISE, PREFIX_FOOD, PREFIX_CALORIE_COUNT);
 
+        if (!arePrefixesPresent(argMultimap, PREFIX_CALORIE_TYPE) || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalorieCommand.MESSAGE_USAGE));
+        }
         String type = ParserUtil.parseCalorieType(argMultimap.getValue(PREFIX_CALORIE_TYPE).get());
+
+        String date;
+        if (arePrefixesPresent(argMultimap, PREFIX_DATE)) {
+            date = argMultimap.getValue(PREFIX_DATE).get();
+        } else {
+            date = LocalDate.now().toString();
+        }
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_TIME, PREFIX_CALORIE_COUNT)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalorieCommand.MESSAGE_USAGE));
+        }
+        Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
+        CalorieCount calorieCount = ParserUtil.parseCalorieCount(argMultimap.getValue(PREFIX_CALORIE_COUNT).get());
+
         Calorie calorie;
         if (type.equals("in")) {
-            if (!arePrefixesPresent(argMultimap, PREFIX_CALORIE_TYPE, PREFIX_TIME, PREFIX_FOOD, PREFIX_CALORIE_COUNT)
-                    || !argMultimap.getPreamble().isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            if (!arePrefixesPresent(argMultimap, PREFIX_FOOD)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalorieCommand.MESSAGE_USAGE));
             }
-            Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
-            CalorieCount calorieCount = ParserUtil.parseCalorieCount(argMultimap.getValue(PREFIX_CALORIE_COUNT).get());
             Food food = ParserUtil.parseFood(argMultimap.getValue(PREFIX_FOOD).get());
             calorie = new Input(time, food, calorieCount);
         } else {
-            if (!arePrefixesPresent(argMultimap, PREFIX_CALORIE_TYPE, PREFIX_TIME, PREFIX_EXERCISE,
-                    PREFIX_CALORIE_COUNT)
-                    || !argMultimap.getPreamble().isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            if (!arePrefixesPresent(argMultimap, PREFIX_EXERCISE)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalorieCommand.MESSAGE_USAGE));
             }
-            Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
-            CalorieCount calorieCount = ParserUtil.parseCalorieCount(argMultimap.getValue(PREFIX_CALORIE_COUNT).get());
             Exercise exercise = ParserUtil.parseExercise(argMultimap.getValue(PREFIX_EXERCISE).get());
             calorie = new Output(time, exercise, calorieCount);
         }
-        return new CalorieCommand(calorie, type);
+        return new CalorieCommand(calorie, type, date);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
