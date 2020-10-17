@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
-import seedu.address.model.day.Email;
 import seedu.address.model.day.Weight;
 import seedu.address.model.tag.Tag;
 
@@ -49,14 +48,6 @@ public class EditDayDescriptorBuilder {
      */
     public EditDayDescriptorBuilder withWeight(String weight) {
         descriptor.setWeight(new Weight(weight));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code EditDayDescriptor} that we are building.
-     */
-    public EditDayDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
         return this;
     }
 
