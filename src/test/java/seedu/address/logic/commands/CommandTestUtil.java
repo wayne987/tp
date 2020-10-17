@@ -26,8 +26,8 @@ import seedu.address.testutil.EditDayDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_DATE_1 = "010120";
-    public static final String VALID_DATE_2 = "020120";
+    public static final String VALID_DATE_1 = "2019-12-23";
+    public static final String VALID_DATE_2 = "2020-10-11";
     public static final String VALID_EMAIL_1 = "amy@example.com";
     public static final String VALID_EMAIL_2 = "bob@example.com";
     public static final String VALID_ADDRESS_1 = "Block 312, Amy Street 1";

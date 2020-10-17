@@ -2,12 +2,16 @@ package seedu.address.logic.commands;
 
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DAYS;
 
+import java.time.LocalDate;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.calorie.Calorie;
 import seedu.address.model.day.calorie.Input;
 import seedu.address.model.day.calorie.Output;
+
+
 
 
 public class CalorieCommand extends Command {
@@ -26,7 +30,8 @@ public class CalorieCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (model.hasDay()) {
+        LocalDate date = LocalDate.now();
+        if (model.hasDay(date)) {
             Day editDay = model.getDay();
             if (type.equals("in")) {
                 editDay.getCalorieManager().addCalorieInput((Input) calorie);

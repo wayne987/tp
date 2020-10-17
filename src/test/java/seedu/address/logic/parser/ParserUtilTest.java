@@ -27,7 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_DATE = "010120";
+    private static final String VALID_DATE = "2019-10-13";
     private static final String VALID_WEIGHT = "45";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";

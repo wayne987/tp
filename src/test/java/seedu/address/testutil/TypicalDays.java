@@ -19,25 +19,25 @@ import seedu.address.model.day.Day;
  */
 public class TypicalDays {
 
-    public static final Day ALICE = new DayBuilder().withDate("010120")
+    public static final Day ALICE = new DayBuilder().withDate("2020-11-23")
             .withWeight("45")
             .withTags("friends").build();
-    public static final Day BENSON = new DayBuilder().withDate("020120")
+    public static final Day BENSON = new DayBuilder().withDate("2020-05-12")
             .withTags("owesMoney", "friends").build();
-    public static final Day CARL = new DayBuilder().withDate("030120").withWeight("75").build();
-    public static final Day DANIEL = new DayBuilder().withDate("040120").withWeight("66")
+    public static final Day CARL = new DayBuilder().withDate("2020-01-23").withWeight("75").build();
+    public static final Day DANIEL = new DayBuilder().withDate("2020-01-13").withWeight("66")
            .withTags("friends").build();
-    public static final Day ELLE = new DayBuilder().withDate("050120").withWeight("42")
+    public static final Day ELLE = new DayBuilder().withDate("2020-09-12").withWeight("42")
           .build();
-    public static final Day FIONA = new DayBuilder().withDate("060120").withWeight("51")
+    public static final Day FIONA = new DayBuilder().withDate("2020-03-01").withWeight("51")
            .build();
-    public static final Day GEORGE = new DayBuilder().withDate("070120").withWeight("73")
+    public static final Day GEORGE = new DayBuilder().withDate("2019-12-25").withWeight("73")
            .build();
 
     // Manually added
-    public static final Day HOON = new DayBuilder().withDate("080120").withWeight("56")
+    public static final Day HOON = new DayBuilder().withDate("2020-06-09").withWeight("56")
            .build();
-    public static final Day IDA = new DayBuilder().withDate("090120").withWeight("40")
+    public static final Day IDA = new DayBuilder().withDate("2020-10-11").withWeight("40")
           .build();
 
     // Manually added - Day's details found in {@code CommandTestUtil}

@@ -22,7 +22,8 @@ public class UniqueDayListTest {
 
     @Test
     public void contains_nullDay_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueDayList.contains(null));
+        Day day = null;
+        assertThrows(NullPointerException.class, () -> uniqueDayList.contains(day));
     }
 
     @Test

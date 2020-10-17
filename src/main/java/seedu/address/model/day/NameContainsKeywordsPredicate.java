@@ -18,7 +18,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Day> {
     @Override
     public boolean test(Day day) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(day.getDate().value, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(day.getDate().toString(), keyword));
     }
 
     @Override
