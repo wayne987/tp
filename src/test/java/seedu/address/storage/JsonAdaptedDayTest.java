@@ -65,41 +65,6 @@ public class JsonAdaptedDayTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, day::toModelType);
     }
-    /*
-    @Test
-    public void toModelType_invalidEmail_throwsIllegalValueException() {
-        JsonAdaptedDay day =
-                new JsonAdaptedDay(VALID_DATE, VALID_WEIGHT, VALID_TAGS, VALID_INPUT, VALID_OUTPUT);
-        String expectedMessage = Email.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, day::toModelType);
-    }
-    */
-    /*
-    @Test
-    public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedDay day = new JsonAdaptedDay(VALID_DATE, VALID_WEIGHT, VALID_TAGS, VALID_INPUT, VALID_OUTPUT);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, day::toModelType);
-    }
-    /*
-     */
-    /*
-    @Test
-    public void toModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedDay day =
-                new JsonAdaptedDay(VALID_DATE, VALID_WEIGHT, VALID_TAGS, VALID_INPUT, VALID_OUTPUT);
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, day::toModelType);
-    }
-    */
-    /*
-    @Test
-    public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedDay day = new JsonAdaptedDay(VALID_DATE, VALID_WEIGHT, VALID_TAGS, VALID_INPUT, VALID_OUTPUT);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, day::toModelType);
-    }
-    */
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {

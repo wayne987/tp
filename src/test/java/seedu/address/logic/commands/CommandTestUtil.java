@@ -2,9 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -28,10 +26,6 @@ public class CommandTestUtil {
 
     public static final String VALID_DATE_1 = "2019-12-23";
     public static final String VALID_DATE_2 = "2020-10-11";
-    public static final String VALID_EMAIL_1 = "amy@example.com";
-    public static final String VALID_EMAIL_2 = "bob@example.com";
-    public static final String VALID_ADDRESS_1 = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_2 = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_WEIGHT_1 = "45";
@@ -39,18 +33,12 @@ public class CommandTestUtil {
 
     public static final String DATE_DESC_1 = " " + PREFIX_DATE + VALID_DATE_1;
     public static final String DATE_DESC_2 = " " + PREFIX_DATE + VALID_DATE_2;
-    public static final String EMAIL_DESC_1 = " " + PREFIX_EMAIL + VALID_EMAIL_1;
-    public static final String EMAIL_DESC_2 = " " + PREFIX_EMAIL + VALID_EMAIL_2;
-    public static final String ADDRESS_DESC_1 = " " + PREFIX_ADDRESS + VALID_ADDRESS_1;
-    public static final String ADDRESS_DESC_2 = " " + PREFIX_ADDRESS + VALID_ADDRESS_2;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String WEIGHT_DESC_1 = " " + PREFIX_WEIGHT + VALID_WEIGHT_1;
     public static final String WEIGHT_DESC_2 = " " + PREFIX_WEIGHT + VALID_WEIGHT_2;
 
     public static final String INVALID_DATE_DESC = "2020-10&14"; // '&' not allowed in dates
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_WEIGHT_DESC = " " + PREFIX_WEIGHT + "91a"; // 'a' not allowed in weight
 
@@ -62,10 +50,10 @@ public class CommandTestUtil {
 
     static {
         DESC_1 = new EditDayDescriptorBuilder().withDate(VALID_DATE_1)
-                .withWeight(VALID_WEIGHT_1).withEmail(VALID_EMAIL_1).withAddress(VALID_ADDRESS_1)
+                .withWeight(VALID_WEIGHT_1)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_2 = new EditDayDescriptorBuilder().withDate(VALID_DATE_2)
-                .withWeight(VALID_WEIGHT_2).withEmail(VALID_EMAIL_2).withAddress(VALID_ADDRESS_2)
+                .withWeight(VALID_WEIGHT_2)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
