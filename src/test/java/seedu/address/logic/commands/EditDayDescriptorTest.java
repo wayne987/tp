@@ -4,9 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_1;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_2;
 
@@ -41,14 +39,6 @@ public class EditDayDescriptorTest {
 
         // different weight -> returns false
         editedAmy = new EditDayDescriptorBuilder(DESC_1).withWeight(VALID_WEIGHT_2).build();
-        assertFalse(DESC_1.equals(editedAmy));
-
-        // different email -> returns false
-        editedAmy = new EditDayDescriptorBuilder(DESC_1).withEmail(VALID_EMAIL_2).build();
-        assertFalse(DESC_1.equals(editedAmy));
-
-        // different address -> returns false
-        editedAmy = new EditDayDescriptorBuilder(DESC_1).withAddress(VALID_ADDRESS_2).build();
         assertFalse(DESC_1.equals(editedAmy));
 
         // different tags -> returns false

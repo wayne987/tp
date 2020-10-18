@@ -32,7 +32,7 @@ public class Date {
     }
 
     /**
-     * Returns true if a given string is a valid weight number.
+     * Returns true if a given string is a valid date number.
      */
     public static boolean isValidDate(String test) {
         try {

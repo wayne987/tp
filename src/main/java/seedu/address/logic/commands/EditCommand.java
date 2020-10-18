@@ -1,10 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DAYS;
 
@@ -19,10 +16,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.day.Address;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
-import seedu.address.model.day.Email;
 import seedu.address.model.day.Weight;
 import seedu.address.model.tag.Tag;
 
@@ -38,13 +33,8 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_EDIT_DAY_SUCCESS = "Edited Day: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -125,8 +115,6 @@ public class EditCommand extends Command {
     public static class EditDayDescriptor {
         private Date date;
         private Weight weight;
-        private Email email;
-        private Address address;
         private Set<Tag> tags;
 
         public EditDayDescriptor() {}
@@ -138,8 +126,6 @@ public class EditCommand extends Command {
         public EditDayDescriptor(EditDayDescriptor toCopy) {
             setDate(toCopy.date);
             setWeight(toCopy.weight);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
 
@@ -147,7 +133,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(date, weight, email, address, tags);
+            return CollectionUtil.isAnyNonNull(date, weight, tags);
         }
 
         public void setDate(Date date) {
@@ -164,22 +150,6 @@ public class EditCommand extends Command {
 
         public Optional<Weight> getWeight() {
             return Optional.ofNullable(weight);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
         }
 
         /**
@@ -215,9 +185,7 @@ public class EditCommand extends Command {
             EditDayDescriptor e = (EditDayDescriptor) other;
 
             return getDate().equals(e.getDate())
-                    && getEmail().equals(e.getEmail())
                     && getWeight().equals(e.getWeight())
-                    && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
     }

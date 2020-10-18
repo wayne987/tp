@@ -9,9 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.day.Address;
 import seedu.address.model.day.Date;
-import seedu.address.model.day.Email;
 import seedu.address.model.day.Weight;
 import seedu.address.model.day.calorie.CalorieCount;
 import seedu.address.model.day.calorie.Exercise;
@@ -70,36 +68,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Email(trimmedEmail);
-    }
-
-    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -148,7 +116,7 @@ public class ParserUtil {
         requireNonNull(time);
         String trimmedTime = time.trim();
         if (!Time.isValidTime(trimmedTime)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
         return new Time(trimmedTime);
     }
@@ -161,7 +129,7 @@ public class ParserUtil {
         requireNonNull(exercise);
         String trimmedExercise = exercise.trim();
         if (!Exercise.isValidExercise(trimmedExercise)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Exercise.MESSAGE_CONSTRAINTS);
         }
         return new Exercise(trimmedExercise);
     }
@@ -174,7 +142,7 @@ public class ParserUtil {
         requireNonNull(calorieCount);
         String trimmedCalorieCount = calorieCount.trim();
         if (!CalorieCount.isValidCalorieCount(trimmedCalorieCount)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(CalorieCount.MESSAGE_CONSTRAINTS);
         }
         return new CalorieCount(trimmedCalorieCount);
     }

@@ -20,7 +20,7 @@ class JsonAdaptedInput {
     private final String food;
 
     /**
-     * Constructs a {@code JsonAdaptedDay} with the given day details.
+     * Constructs a {@code JsonAdaptedInput} with the given Input details.
      */
     @JsonCreator
     public JsonAdaptedInput(@JsonProperty("calorieCount") String calorieCount, @JsonProperty("time") String time,
