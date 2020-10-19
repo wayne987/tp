@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private DayListPanel dayListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private WeightStatsWindow weightStatsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +50,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private MenuItem weightStatsMenuItem;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +70,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        weightStatsWindow = new WeightStatsWindow(logic.getFilteredDayList());
     }
 
     public Stage getPrimaryStage() {
@@ -144,6 +150,18 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the weight stats window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleWeightStats() {
+        if (!weightStatsWindow.isShowing()) {
+            weightStatsWindow.show();
+        } else {
+            weightStatsWindow.focus();
         }
     }
 
