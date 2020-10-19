@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +18,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.day.Day;
+import seedu.address.model.day.calorie.Input;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private DayListPanel dayListPanel;
+    private CalorieInputListPanel calorieInputListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +48,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane calorieInputListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -106,11 +114,18 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    void fillCaloriePlaceholders(Day day) {
+        ObservableList<Input> oListInput = FXCollections.observableArrayList(day.getInputList());
+        calorieInputListPanel = new CalorieInputListPanel(oListInput);
+        calorieInputListPanelPlaceholder.getChildren().add(calorieInputListPanel.getRoot());
+    }
+
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        dayListPanel = new DayListPanel(logic.getFilteredDayList());
+        System.out.println(logic.getFilteredDayList());
+        dayListPanel = new DayListPanel(logic.getFilteredDayList(), this);
         personListPanelPlaceholder.getChildren().add(dayListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

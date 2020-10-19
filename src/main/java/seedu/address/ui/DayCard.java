@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.Main;
 import seedu.address.model.day.Day;
 
 /**
@@ -36,10 +37,12 @@ public class DayCard extends UiPart<Region> {
     @FXML
     private Label totalCalorieOut;
 
+    private MainWindow mainWindow;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public DayCard(Day day, int displayedIndex) {
+    public DayCard(Day day, int displayedIndex, MainWindow mainWindow) {
         super(FXML);
         this.day = day;
         id.setText(displayedIndex + ". ");
@@ -47,6 +50,12 @@ public class DayCard extends UiPart<Region> {
         weight.setText("Weight: " + day.getWeight().value + " kg");
         totalCalorieIn.setText("Total Calories In: " + day.getTotalInputCalorie() + " calories");
         totalCalorieOut.setText("Total Calories Out: " + day.getTotalOutputCalorie() + " calories");
+        this.mainWindow = mainWindow;
+        cardPane.setOnMouseClicked(x -> displayCalories(day));
+    }
+
+    private void displayCalories(Day day) {
+        this.mainWindow.fillCaloriePlaceholders(day);
     }
 
     @Override
