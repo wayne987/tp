@@ -80,10 +80,10 @@ public class CalorieStatsWindow extends UiPart<Stage> {
         //Get the calorie data of all the days.
         for (int i = 0; i < dayList.size(); i++) {
             calorieIn.getData()
-                    .add(new XYChart.Data<>(dates.get(i), dayList.get(i).getTotalInputCalorie()));
+                    .add(new XYChart.Data<>(dates.get(i), dayList.get(i).getCalorieManager().getTotalInputCalorie()));
 
             calorieOut.getData()
-                    .add(new XYChart.Data<>(dates.get(i), dayList.get(i).getTotalOutputCalorie()));
+                    .add(new XYChart.Data<>(dates.get(i), dayList.get(i).getCalorieManager().getTotalOutputCalorie()));
         }
 
         lineChart.getData().add(calorieIn);
