@@ -12,6 +12,7 @@ import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
 import seedu.address.model.day.calorie.CalorieCount;
+import seedu.address.model.day.calorie.CalorieManager;
 import seedu.address.model.day.calorie.Exercise;
 import seedu.address.model.day.calorie.Food;
 import seedu.address.model.day.calorie.Input;
@@ -30,12 +31,13 @@ public class SampleDataUtil {
         sampleInput.add(new Input(new Time("1230"), new Food("Laksa"), new CalorieCount("800")));
         List<Output> sampleOutput = new ArrayList<>();
         sampleOutput.add(new Output(new Time("1800"), new Exercise("Run"), new CalorieCount("200")));
+        CalorieManager cm = new CalorieManager(sampleInput, sampleOutput);
 
         return new Day[] {
             new Day(new Date("2020-10-11"), new Weight("110"), getTagSet("5BX")),
-            new Day(new Date("2020-10-12"), new Weight("120"), getTagSet(), sampleInput, emptyOutput),
-            new Day(new Date("2020-10-13"), new Weight("130"), getTagSet(), emptyInput , sampleOutput),
-            new Day(new Date("2020-10-14"), new Weight("140"), getTagSet(), sampleInput, sampleOutput),
+            new Day(new Date("2020-10-12"), new Weight("120"), getTagSet(), cm),
+            new Day(new Date("2020-10-13"), new Weight("130"), getTagSet(), cm),
+            new Day(new Date("2020-10-14"), new Weight("140"), getTagSet(), cm),
         };
     }
 

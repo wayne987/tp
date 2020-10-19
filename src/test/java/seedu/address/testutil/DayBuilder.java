@@ -1,15 +1,12 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
-import seedu.address.model.day.calorie.Input;
-import seedu.address.model.day.calorie.Output;
+import seedu.address.model.day.calorie.CalorieManager;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -18,13 +15,13 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class DayBuilder {
 
+
     public static final String DEFAULT_DATE = "2020-01-02";
     public static final String DEFAULT_WEIGHT = "42";
 
     private Date date;
     private Weight weight;
-    private List<Input> inputs;
-    private List<Output> outputs;
+    private CalorieManager calorieManager;
     private Set<Tag> tags;
 
     /**
@@ -33,8 +30,7 @@ public class DayBuilder {
     public DayBuilder() {
         date = new Date(DEFAULT_DATE);
         weight = new Weight(DEFAULT_WEIGHT);
-        inputs = new ArrayList<>();
-        outputs = new ArrayList<>();
+        calorieManager = new CalorieManager();
         tags = new HashSet<>();
     }
 
@@ -44,8 +40,9 @@ public class DayBuilder {
     public DayBuilder(Day dayToCopy) {
         date = dayToCopy.getDate();
         weight = dayToCopy.getWeight();
-        inputs = dayToCopy.getCalorieInputList();
-        outputs = dayToCopy.getCalorieOutputList();
+        calorieManager = dayToCopy.getCalorieManager();
+        calorieManager.addCalorieOutput(new CalorieBuilder().buildOutput());
+        calorieManager.addCalorieInput(new CalorieBuilder().buildInput());
         tags = new HashSet<>(dayToCopy.getTags());
     }
 
@@ -76,7 +73,7 @@ public class DayBuilder {
 
 
     public Day build() {
-        return new Day(date, weight, tags, inputs, outputs);
+        return new Day(date, weight, tags, calorieManager);
     }
 
 }
