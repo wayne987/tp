@@ -20,6 +20,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.calorie.Input;
+import seedu.address.model.day.calorie.Output;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -37,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private DayListPanel dayListPanel;
     private CalorieInputListPanel calorieInputListPanel;
+    private CalorieOutputListPanel calorieOutputListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -51,6 +53,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane calorieInputListPanelPlaceholder;
+
+    @FXML
+    private StackPane calorieOutputListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -118,6 +123,10 @@ public class MainWindow extends UiPart<Stage> {
         ObservableList<Input> oListInput = FXCollections.observableArrayList(day.getInputList());
         calorieInputListPanel = new CalorieInputListPanel(oListInput);
         calorieInputListPanelPlaceholder.getChildren().add(calorieInputListPanel.getRoot());
+
+        ObservableList<Output> oListOutput = FXCollections.observableArrayList(day.getOutputList());
+        calorieOutputListPanel = new CalorieOutputListPanel(oListOutput);
+        calorieOutputListPanelPlaceholder.getChildren().add(calorieOutputListPanel.getRoot());
     }
 
     /**
