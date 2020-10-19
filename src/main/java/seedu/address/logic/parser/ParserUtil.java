@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -158,5 +159,36 @@ public class ParserUtil {
             throw new ParseException(Food.MESSAGE_CONSTRAINTS);
         }
         return new Food(trimmedFood);
+    }
+
+    /**
+     * Check if {@code String type} is of correct type.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static String parseType(String type) throws ParseException {
+        requireNonNull(type);
+        String trimmedType = type.trim();
+        switch (trimmedType) {
+        case "out":
+            return "out";
+        case "in":
+            return "in";
+        default:
+            throw new ParseException("type can only be either in/out");
+        }
+    }
+
+    /**
+     * Parse {@code String date} into LocalDate
+     */
+    public static LocalDate parseLocalDate(String date) throws ParseException {
+        requireNonNull(date);
+        String toCheck = date.trim();
+
+        if (Date.isValidDate(toCheck)) {
+            return LocalDate.parse(toCheck);
+        } else {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
     }
 }

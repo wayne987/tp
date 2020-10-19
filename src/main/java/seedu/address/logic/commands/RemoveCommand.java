@@ -1,9 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.CalorieCommand.NO_AVAILABLE_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DAYS;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,7 +15,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.day.Day;
-import seedu.address.model.day.calorie.Calorie;
+import seedu.address.model.day.calorie.Input;
+import seedu.address.model.day.calorie.Output;
+
 
 public class RemoveCommand extends Command {
 
@@ -27,7 +31,7 @@ public class RemoveCommand extends Command {
             + PREFIX_INDEX + "Positive index number"
             + "Example: " + COMMAND_WORD + PREFIX_CALORIE_TYPE + " tp/out " + PREFIX_INDEX + " 1";
 
-    public static final String MESSAGE_DELETE_CALORIE_SUCCESS = "Deleted Calorie + " + ": %1$s";
+    public static final String MESSAGE_DELETE_CALORIE_SUCCESS = "Removed Calorie - " + ": %1$s";
 
     private final Index targetIndex;
 
@@ -48,19 +52,29 @@ public class RemoveCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Day> lastShownList = model.getFilteredDayList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DAY_DISPLAYED_INDEX);
+        if (!model.hasDay(date)) {
+            throw new CommandException(NO_AVAILABLE_DAY);
         }
 
-        List<Calorie> listOfCalorie;
-        if (type.equals("OUT")) {
-            listOfCalorie = model.getDay(date).getCalorieOutputList()
+        Day editDay = model.getDay(date);
+
+        if (type.equals("out")) {
+            List<Output> listOfCalorie = editDay.getCalorieManager().getCalorieOutputList();
+            if (targetIndex.getZeroBased() >= listOfCalorie.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_DAY_DISPLAYED_INDEX);
+            }
+            editDay.getCalorieManager().removeCalorieOutput(targetIndex);
+        } else {
+            List<Input> listOfCalorie = editDay.getCalorieManager().getCalorieInputList();
+            if (targetIndex.getZeroBased() >= listOfCalorie.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_DAY_DISPLAYED_INDEX);
+            }
+            editDay.getCalorieManager().removeCalorieInput(targetIndex);
         }
-        Day dayToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteDay(dayToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_CALORIE_SUCCESS, dayToDelete));
+        model.setDay(model.getDay(date), editDay);
+        model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
+        return new CommandResult(String.format(MESSAGE_DELETE_CALORIE_SUCCESS, editDay));
     }
 
     @Override

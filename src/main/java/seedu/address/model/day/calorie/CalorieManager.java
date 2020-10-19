@@ -3,6 +3,8 @@ package seedu.address.model.day.calorie;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.commons.core.index.Index;
+
 public class CalorieManager {
 
     private List<Input> calorieInputList;
@@ -63,6 +65,22 @@ public class CalorieManager {
         totalCalorieIn += Integer.parseInt(calorieInput.toString());
     }
 
+    /**
+     * delete calorie output from the calorieOutputList and update the total calorie output.
+     */
+    public void deleteTotalCalorieOutput(int index) {
+        CalorieCount calorieCount = getCalorieOutputList().get(index).getCalorieCount();
+        totalCalorieOut -= Integer.parseInt(calorieCount.toString());
+    }
+
+    /**
+     * delete calorie input from the calorieInputList and update the total calorie input.
+     */
+    public void deleteTotalCalorieInput(int index) {
+        CalorieCount calorieCount = getCalorieInputList().get(index).getCalorieCount();
+        totalCalorieIn -= Integer.parseInt(calorieCount.toString());
+    }
+
     public List<Output> getCalorieOutputList() {
         return calorieOutputList;
     }
@@ -86,5 +104,23 @@ public class CalorieManager {
     public void addCalorieOutput(Output calorieOutput) {
         calorieOutputList.add(calorieOutput);
         addTotalCalorieOut(calorieOutput.getCalorieCount());
+    }
+
+    /**
+     * removes a calorie input from the calorieInputList and update the total calorie input
+     */
+    public void removeCalorieInput(Index targetIndex) {
+        int index = targetIndex.getZeroBased();
+        deleteTotalCalorieInput(index);
+        calorieInputList.remove(index);
+    }
+
+    /**
+     * removes a calorie output from the calorieOutputList and update the total calorie Output
+     */
+    public void removeCalorieOutput(Index targetIndex) {
+        int index = targetIndex.getZeroBased();
+        deleteTotalCalorieOutput(index);
+        calorieOutputList.remove(index);
     }
 }
