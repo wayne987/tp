@@ -60,7 +60,7 @@ public interface Model {
 
     boolean hasDay(LocalDate date);
 
-    Day getDay();
+    Day getDay(LocalDate date);
 
     /**
      * Deletes the given day.
