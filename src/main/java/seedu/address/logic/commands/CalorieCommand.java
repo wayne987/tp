@@ -25,7 +25,7 @@ public class CalorieCommand extends Command {
 
     public static final String COMMAND_WORD = "calorie";
     public static final String NO_AVAILABLE_DAY =
-            "please add a new day entry for the date intended before adding calorie input/output";
+            "Please add a new day entry for the date intended before adding calorie input/output";
     public static final String INVALID_DATE = "Please input a valid Date";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a calorie to a particular day. "
             + "Parameters: "
