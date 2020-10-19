@@ -14,16 +14,16 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.day.Day;
 
 /**
- * The controller for the weight statistics window.
+ * The controller for the calorie statistics window.
  *
  * @@author Marco Jakob - Adapted
  * Adapted from https://code.makery.ch/library/javafx-tutorial/part6/
  * with modifications for this app context.
  */
-public class WeightStatsWindow extends UiPart<Stage> {
+public class CalorieStatsWindow extends UiPart<Stage> {
 
-    private static final Logger logger = LogsCenter.getLogger(WeightStatsWindow.class);
-    private static final String FXML = "WeightStatsWindow.fxml";
+    private static final Logger logger = LogsCenter.getLogger(CalorieStatsWindow.class);
+    private static final String FXML = "CalorieStatsWindow.fxml";
 
     @FXML
     private LineChart<String, Integer> lineChart;
@@ -34,21 +34,21 @@ public class WeightStatsWindow extends UiPart<Stage> {
     private ObservableList<String> dates = FXCollections.observableArrayList();
 
     /**
-     * Creates a new WeightStatsWindow.
+     * Creates a new CalorieStatsWindow.
      *
-     * @param root Stage to use as the root of the WeightStatsWindow.
+     * @param root Stage to use as the root of the CalorieStatsWindow.
      */
-    public WeightStatsWindow(Stage root) {
+    public CalorieStatsWindow(Stage root) {
         super(FXML, root);
     }
 
     /**
-     * Creates a new WeightStatsWindow.
+     * Creates a new CalorieStatsWindow.
      */
-    public WeightStatsWindow(ObservableList<Day> dayList) {
+    public CalorieStatsWindow(ObservableList<Day> dayList) {
         this(new Stage());
         initialize(dayList);
-        setWeightData(dayList);
+        setCalorieData(dayList);
     }
 
     /**
@@ -66,21 +66,28 @@ public class WeightStatsWindow extends UiPart<Stage> {
     }
 
     /**
-     * Sets the weight data points to show the statistics for.
+     * Sets the calorie data points to show the statistics for.
      *
      * @param dayList
      */
-    public void setWeightData(ObservableList<Day> dayList) {
+    public void setCalorieData(ObservableList<Day> dayList) {
 
-        XYChart.Series<String, Integer> weights = new XYChart.Series<>();
-        weights.setName("Weight");
+        XYChart.Series<String, Integer> calorieIn = new XYChart.Series<>();
+        XYChart.Series<String, Integer> calorieOut = new XYChart.Series<>();
+        calorieIn.setName("Calorie In");
+        calorieOut.setName("Calorie Out");
 
-        //Get the weight data of all the days.
+        //Get the calorie data of all the days.
         for (int i = 0; i < dayList.size(); i++) {
-            weights.getData().add(new XYChart.Data<>(dates.get(i), Integer.parseInt(dayList.get(i).getWeight().value)));
+            calorieIn.getData()
+                    .add(new XYChart.Data<>(dates.get(i), dayList.get(i).getTotalInputCalorie()));
+
+            calorieOut.getData()
+                    .add(new XYChart.Data<>(dates.get(i), dayList.get(i).getTotalOutputCalorie()));
         }
 
-        lineChart.getData().add(weights);
+        lineChart.getData().add(calorieIn);
+        lineChart.getData().add(calorieOut);
     }
 
     /**
@@ -102,7 +109,7 @@ public class WeightStatsWindow extends UiPart<Stage> {
      * </ul>
      */
     public void show() {
-        logger.fine("Showing weight statistics.");
+        logger.fine("Showing calorie statistics.");
         getRoot().show();
         getRoot().centerOnScreen();
     }

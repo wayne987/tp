@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private WeightStatsWindow weightStatsWindow;
+    private CalorieStatsWindow calorieStatsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -54,6 +55,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private MenuItem weightStatsMenuItem;
 
+    @FXML
+    private MenuItem calorieStatsMenuItem;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -72,6 +76,8 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
 
         weightStatsWindow = new WeightStatsWindow(logic.getFilteredDayList());
+
+        calorieStatsWindow = new CalorieStatsWindow(logic.getFilteredDayList());
     }
 
     public Stage getPrimaryStage() {
@@ -162,6 +168,18 @@ public class MainWindow extends UiPart<Stage> {
             weightStatsWindow.show();
         } else {
             weightStatsWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the calorie stats window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleCalorieStats() {
+        if (!calorieStatsWindow.isShowing()) {
+            calorieStatsWindow.show();
+        } else {
+            calorieStatsWindow.focus();
         }
     }
 
