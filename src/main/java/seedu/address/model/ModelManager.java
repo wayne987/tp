@@ -101,8 +101,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Day getDay() {
-        return addressBook.getDay(LocalDate.now());
+    public Day getDay(LocalDate date) {
+        return addressBook.getDay(date);
     }
 
     @Override

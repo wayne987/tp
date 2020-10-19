@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.Main;
 import seedu.address.model.day.Day;
+import seedu.address.model.day.calorie.CalorieManager;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -45,11 +45,12 @@ public class DayCard extends UiPart<Region> {
     public DayCard(Day day, int displayedIndex, MainWindow mainWindow) {
         super(FXML);
         this.day = day;
+        CalorieManager cm = day.getCalorieManager();
         id.setText(displayedIndex + ". ");
         date.setText("Date: " + day.getDate().get());
         weight.setText("Weight: " + day.getWeight().value + " kg");
-        totalCalorieIn.setText("Total Calories In: " + day.getTotalInputCalorie() + " calories");
-        totalCalorieOut.setText("Total Calories Out: " + day.getTotalOutputCalorie() + " calories");
+        totalCalorieIn.setText("Total Calories In: " + day.getCalorieManager().getTotalInputCalorie() + " calories");
+        totalCalorieOut.setText("Total Calories Out: " + day.getCalorieManager().getTotalOutputCalorie() + " calories");
         this.mainWindow = mainWindow;
         cardPane.setOnMouseClicked(x -> displayCalories(day));
     }

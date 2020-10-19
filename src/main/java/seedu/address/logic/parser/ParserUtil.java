@@ -104,7 +104,7 @@ public class ParserUtil {
         if (trimmedType.equals("in") || trimmedType.equals("out")) {
             return trimmedType;
         } else {
-            throw new ParseException("wrong calorie direction");
+            throw new ParseException("wrong calorie type");
         }
     }
 
