@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.day.Day;
+import seedu.address.model.person.Profile;
 
 /**
  * The API of the Model component.
@@ -48,10 +49,10 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setPerson(ReadOnlyAddressBook person);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyAddressBook getPerson();
 
     /**
      * Returns true if a day with the same identity as {@code day} exists in the address book.
@@ -89,4 +90,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredDayList(Predicate<Day> predicate);
+
+    /**
+     * Updates the profile of a person.
+     */
+    void setProfile(Profile profile);
+
+    /**
+     * Checks if the current data {@code Person} has a profile.
+     */
+    boolean hasProfile();
 }

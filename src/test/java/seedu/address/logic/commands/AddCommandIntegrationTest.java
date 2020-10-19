@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Day dayInList = model.getAddressBook().getDayList().get(0);
+        Day dayInList = model.getPerson().getDayList().get(0);
         assertCommandFailure(new AddCommand(dayInList), model, AddCommand.MESSAGE_DUPLICATE_DAY);
     }
 

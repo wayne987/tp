@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.Person;
 import seedu.address.model.day.Day;
 
 /**
@@ -54,8 +54,8 @@ public class TypicalDays {
     /**
      * Returns an {@code AddressBook} with all the typical days.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static Person getTypicalAddressBook() {
+        Person ab = new Person();
         for (Day day : getTypicalDays()) {
             ab.addDay(day);
         }

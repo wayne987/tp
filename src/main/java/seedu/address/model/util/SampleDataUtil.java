@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.Person;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
@@ -40,7 +40,7 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+        Person sampleAb = new Person();
         for (Day sampleDay : getSampleDay()) {
             sampleAb.addDay(sampleDay);
         }

@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.day.Day;
+import seedu.address.model.person.Profile;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -20,7 +21,7 @@ import seedu.address.model.day.Day;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Person person;
     private final UserPrefs userPrefs;
     private final FilteredList<Day> filteredDays;
 
@@ -33,13 +34,13 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.person = new Person(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredDays = new FilteredList<>(this.addressBook.getDayList());
+        filteredDays = new FilteredList<>(this.person.getDayList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Person(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -80,39 +81,39 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setPerson(ReadOnlyAddressBook person) {
+        this.person.resetData(person);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyAddressBook getPerson() {
+        return person;
     }
 
     @Override
     public boolean hasDay(Day day) {
         requireNonNull(day);
-        return addressBook.hasDay(day);
+        return person.hasDay(day);
     }
 
     @Override
     public boolean hasDay(LocalDate date) {
-        return addressBook.hasDay(date);
+        return person.hasDay(date);
     }
 
     @Override
     public Day getDay() {
-        return addressBook.getDay(LocalDate.now());
+        return person.getDay(LocalDate.now());
     }
 
     @Override
     public void deleteDay(Day target) {
-        addressBook.removeDay(target);
+        person.removeDay(target);
     }
 
     @Override
     public void addDay(Day day) {
-        addressBook.addDay(day);
+        person.addDay(day);
         updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
     }
 
@@ -120,7 +121,7 @@ public class ModelManager implements Model {
     public void setDay(Day target, Day editedDay) {
         requireAllNonNull(target, editedDay);
 
-        addressBook.setDay(target, editedDay);
+        person.setDay(target, editedDay);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -141,6 +142,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setProfile(Profile profile) {
+        person.setProfile(profile);
+    }
+
+    @Override
+    public boolean hasProfile() {
+        return person.hasProfile();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -154,7 +165,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return person.equals(other.person)
                 && userPrefs.equals(other.userPrefs)
                 && filteredDays.equals(other.filteredDays);
     }

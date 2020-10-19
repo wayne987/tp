@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CalorieCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.day.calorie.Calorie;
@@ -33,7 +32,7 @@ public class CalorieCommandParser implements Parser<CalorieCommand> {
         if (type.equals("in")) {
             if (!arePrefixesPresent(argMultimap, PREFIX_CALORIE_TYPE, PREFIX_TIME, PREFIX_FOOD, PREFIX_CALORIE_COUNT)
                     || !argMultimap.getPreamble().isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalorieCommand.MESSAGE_USAGE));
             }
             Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
             CalorieCount calorieCount = ParserUtil.parseCalorieCount(argMultimap.getValue(PREFIX_CALORIE_COUNT).get());
@@ -43,7 +42,7 @@ public class CalorieCommandParser implements Parser<CalorieCommand> {
             if (!arePrefixesPresent(argMultimap, PREFIX_CALORIE_TYPE, PREFIX_TIME, PREFIX_EXERCISE,
                     PREFIX_CALORIE_COUNT)
                     || !argMultimap.getPreamble().isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalorieCommand.MESSAGE_USAGE));
             }
             Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
             CalorieCount calorieCount = ParserUtil.parseCalorieCount(argMultimap.getValue(PREFIX_CALORIE_COUNT).get());
