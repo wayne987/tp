@@ -4,12 +4,16 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.stage.Stage?>
 
 <fx:root title="Weight Statistics" type="Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/stats_icon.png" />
+    </icons>
     <scene>
-        <Scene>
+        <Scene stylesheets="@DarkChartTheme.css">
             <AnchorPane prefHeight="450.0" prefWidth="620.0">
             <children>
                <LineChart fx:id="lineChart" prefHeight="450.0" prefWidth="620.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
