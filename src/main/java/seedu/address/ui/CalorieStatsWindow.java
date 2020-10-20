@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.CategoryAxis;
@@ -16,14 +17,16 @@ import seedu.address.model.day.Day;
 /**
  * The controller for the calorie statistics window.
  *
- * @@author Marco Jakob - Adapted
+ * @author Marco Jakob - Adapted
  * Adapted from https://code.makery.ch/library/javafx-tutorial/part6/
- * with modifications for this app context.
+ * with major modifications for this app context.
  */
 public class CalorieStatsWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(CalorieStatsWindow.class);
     private static final String FXML = "CalorieStatsWindow.fxml";
+
+    private ObservableList<Day> dayList;
 
     @FXML
     private LineChart<String, Integer> lineChart;
@@ -44,15 +47,24 @@ public class CalorieStatsWindow extends UiPart<Stage> {
 
     /**
      * Creates a new CalorieStatsWindow.
+     *
+     * @param dayList dayList from seedu.address.logic.Logic
      */
     public CalorieStatsWindow(ObservableList<Day> dayList) {
         this(new Stage());
+        this.dayList = dayList;
+
         initialize(dayList);
         setCalorieData(dayList);
+
+        //ListChangeListener to check for any changes to the dayList and updates the line chart accordingly
+        dayList.addListener((ListChangeListener<Day>) (c -> updateChart()));
     }
 
     /**
      * Initializes the Line Chart
+     *
+     * @param dayList dayList from seedu.address.logic.Logic
      */
     @FXML
     private void initialize(ObservableList<Day> dayList) {
@@ -68,7 +80,7 @@ public class CalorieStatsWindow extends UiPart<Stage> {
     /**
      * Sets the calorie data points to show the statistics for.
      *
-     * @param dayList
+     * @param dayList dayList from seedu.address.logic.Logic
      */
     public void setCalorieData(ObservableList<Day> dayList) {
 
@@ -88,6 +100,22 @@ public class CalorieStatsWindow extends UiPart<Stage> {
 
         lineChart.getData().add(calorieIn);
         lineChart.getData().add(calorieOut);
+    }
+
+    /**
+     * Updates the line chart when there is a change in dayList.
+     */
+    private void updateChart() {
+        //clear all data points and xAxis
+        lineChart.getData().clear();
+        dates.clear();
+
+        //re-initialize the xAxis
+        initialize(dayList);
+        xAxis.invalidateRange(dates);
+
+        //set the new data points
+        setCalorieData(dayList);
     }
 
     /**
