@@ -45,10 +45,15 @@ public class CreateCommand extends Command {
 
         if (model.hasProfile()) {
             throw new CommandException(MESSAGE_ERROR);
-        } else {
-            model.setProfile(profile);
         }
-
+        model.setProfile(profile);
         return new CommandResult(String.format(MESSAGE_SUCCESS, profile));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CreateCommand
+                && profile.equals(((CreateCommand) other).profile));
     }
 }

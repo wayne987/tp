@@ -40,14 +40,15 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (model.hasDay(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_DAY);
+        }
         if (!model.hasProfile()) {
             throw new CommandException(CreateCommand.MESSAGE_NO_PROFILE);
-        } else if (model.hasDay(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_DAY);
-        } else {
-            model.addDay(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }
+
+        model.addDay(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
