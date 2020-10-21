@@ -21,26 +21,26 @@ import seedu.address.model.person.Profile;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final Person person;
+    private final MyFitnessBuddy myFitnessBuddy;
     private final UserPrefs userPrefs;
     private final FilteredList<Day> filteredDays;
 
     /**
      * Initializes a ModelManager with the given person and userPrefs.
      */
-    public ModelManager(ReadOnlyPerson readOnlyPerson, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyMyFitnessBuddy readOnlyMyFitnessBuddy, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(readOnlyPerson, userPrefs);
+        requireAllNonNull(readOnlyMyFitnessBuddy, userPrefs);
 
-        logger.fine("Initializing with person: " + readOnlyPerson + " and user prefs " + userPrefs);
+        logger.fine("Initializing with person: " + readOnlyMyFitnessBuddy + " and user prefs " + userPrefs);
 
-        this.person = new Person(readOnlyPerson);
+        this.myFitnessBuddy = new MyFitnessBuddy(readOnlyMyFitnessBuddy);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredDays = new FilteredList<>(this.person.getDayList());
+        filteredDays = new FilteredList<>(this.myFitnessBuddy.getDayList());
     }
 
     public ModelManager() {
-        this(new Person(), new UserPrefs());
+        this(new MyFitnessBuddy(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -68,52 +68,60 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getPersonFilePath() {
-        return userPrefs.getPersonFilePath();
+    public Path getMyFitnessBuddyFilePath() {
+        return userPrefs.getMyFitnessBuddyFilePath();
     }
 
+    /**
+     * Sets the user prefs' person file path.
+     *
+     * @param personFilePath
+     */
     @Override
-    public void setPersonFilePath(Path personFilePath) {
+    public void setMyFitnessBuddyFilePath(Path personFilePath) {
         requireNonNull(personFilePath);
-        userPrefs.setPersonFilePath(personFilePath);
+        userPrefs.setMyFitnessBuddyFilePath(personFilePath);
     }
 
     //=========== Person ================================================================================
 
     @Override
-    public void setPerson(ReadOnlyPerson person) {
-        this.person.resetData(person);
+    public void setMyFitnessBuddy(ReadOnlyMyFitnessBuddy myFitnessBuddy) {
+        this.myFitnessBuddy.resetData(myFitnessBuddy);
     }
 
+    /**
+     * Returns my fitness buddy
+     */
     @Override
-    public ReadOnlyPerson getPerson() {
-        return person;
+    public ReadOnlyMyFitnessBuddy getMyFitnessBuddy() {
+        return myFitnessBuddy;
     }
 
     @Override
     public boolean hasDay(Day day) {
         requireNonNull(day);
-        return person.hasDay(day);
+        return myFitnessBuddy.hasDay(day);
     }
 
     @Override
     public boolean hasDay(LocalDate date) {
-        return person.hasDay(date);
+        return myFitnessBuddy.hasDay(date);
     }
 
     @Override
     public Day getDay(LocalDate date) {
-        return person.getDay(date);
+        return myFitnessBuddy.getDay(date);
     }
 
     @Override
     public void deleteDay(Day target) {
-        person.removeDay(target);
+        myFitnessBuddy.removeDay(target);
     }
 
     @Override
     public void addDay(Day day) {
-        person.addDay(day);
+        myFitnessBuddy.addDay(day);
         updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
     }
 
@@ -121,7 +129,7 @@ public class ModelManager implements Model {
     public void setDay(Day target, Day editedDay) {
         requireAllNonNull(target, editedDay);
 
-        person.setDay(target, editedDay);
+        myFitnessBuddy.setDay(target, editedDay);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -143,12 +151,12 @@ public class ModelManager implements Model {
 
     @Override
     public void setProfile(Profile profile) {
-        person.setProfile(profile);
+        myFitnessBuddy.setProfile(profile);
     }
 
     @Override
     public boolean hasProfile() {
-        return person.hasProfile();
+        return myFitnessBuddy.hasProfile();
     }
 
     @Override
@@ -165,7 +173,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return person.equals(other.person)
+        return myFitnessBuddy.equals(other.myFitnessBuddy)
                 && userPrefs.equals(other.userPrefs)
                 && filteredDays.equals(other.filteredDays);
     }

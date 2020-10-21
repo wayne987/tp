@@ -39,20 +39,20 @@ public interface Model {
     /**
      * Returns the user prefs' person file path.
      */
-    Path getPersonFilePath();
+    Path getMyFitnessBuddyFilePath();
 
     /**
      * Sets the user prefs' person file path.
      */
-    void setPersonFilePath(Path personFilePath);
+    void setMyFitnessBuddyFilePath(Path personFilePath);
 
     /**
-     * Replaces person data records with the data in {@code person}.
+     * Replaces myFitnessBuddy data records with the data in {@code myFitnessBuddy}.
      */
-    void setPerson(ReadOnlyPerson person);
+    void setMyFitnessBuddy(ReadOnlyMyFitnessBuddy myFitnessBuddy);
 
     /** Returns the person */
-    ReadOnlyPerson getPerson();
+    ReadOnlyMyFitnessBuddy getMyFitnessBuddy();
 
     /**
      * Returns true if a day with the same identity as {@code day} exists in the person.

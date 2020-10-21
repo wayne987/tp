@@ -9,9 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Person;
-import seedu.address.model.ReadOnlyPerson;
+import seedu.address.model.MyFitnessBuddy;
+import seedu.address.model.ReadOnlyMyFitnessBuddy;
 import seedu.address.model.day.Day;
+
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -36,7 +37,7 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyPerson source) {
+    public JsonSerializableAddressBook(ReadOnlyMyFitnessBuddy source) {
         days.addAll(source.getDayList().stream().map(JsonAdaptedDay::new).collect(Collectors.toList()));
     }
 
@@ -45,16 +46,16 @@ class JsonSerializableAddressBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public Person toModelType() throws IllegalValueException {
-        Person addressBook = new Person();
+    public MyFitnessBuddy toModelType() throws IllegalValueException {
+        MyFitnessBuddy myFitnessBuddy = new MyFitnessBuddy();
         for (JsonAdaptedDay jsonAdaptedDay : days) {
             Day day = jsonAdaptedDay.toModelType();
-            if (addressBook.hasDay(day)) {
+            if (myFitnessBuddy.hasDay(day)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_DAY);
             }
-            addressBook.addDay(day);
+            myFitnessBuddy.addDay(day);
         }
-        return addressBook;
+        return myFitnessBuddy;
     }
 
 }

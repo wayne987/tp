@@ -30,7 +30,11 @@ public class Person {
         this.days = days;
     }
 
+    /**
+     * Profile cannot be null and be present.
+     */
     public Person(Profile profile) {
+        requireNonNull(profile);
         this.profile = profile;
         this.days = new UniqueDayList();
     }
@@ -41,6 +45,10 @@ public class Person {
 
     public ObservableList<Day> getDayList() {
         return days.asUnmodifiableObservableList();
+    }
+
+    public UniqueDayList getDays() {
+        return days;
     }
 
     /**
@@ -97,7 +105,8 @@ public class Person {
     /**
      * Replaces the given day {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the my fitness buddy records.
-     * The day identity of {@code editedPerson} must not be the same as another existing day in the my fitness buddy records.
+     * The day identity of {@code editedPerson} must not be the same as another
+     * existing day in the my fitness buddy records.
      */
     public void setDay(Day target, Day editedDay) {
         requireNonNull(editedDay);

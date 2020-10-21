@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.Person;
+import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.day.Day;
 
 /**
@@ -10,13 +10,13 @@ import seedu.address.model.day.Day;
  */
 public class PersonBuilder {
 
-    private Person person;
+    private MyFitnessBuddy person;
 
     public PersonBuilder() {
-        person = new Person();
+        person = new MyFitnessBuddy();
     }
 
-    public PersonBuilder(Person person) {
+    public PersonBuilder(MyFitnessBuddy person) {
         this.person = person;
     }
 
@@ -28,7 +28,7 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
+    public MyFitnessBuddy build() {
         return person;
     }
 }

@@ -18,29 +18,31 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.day.Day;
+import seedu.address.model.day.Weight;
 import seedu.address.model.day.exceptions.DuplicateDayException;
-import seedu.address.model.person.Profile;
+import seedu.address.model.person.*;
 import seedu.address.testutil.DayBuilder;
 
 public class PersonTest {
 
-    private final Person addressBook = new Person();
+    private final MyFitnessBuddy myFitnessBuddy = new MyFitnessBuddy();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getDayList());
+        assertEquals(Collections.emptyList(), myFitnessBuddy.getDayList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> myFitnessBuddy.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        Person newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        MyFitnessBuddy newData = getTypicalAddressBook();
+        newData.setPerson(new Person(new Profile(new Name("Jon"), new ID("1222"), new Height("177"), new Weight("76"))));
+        myFitnessBuddy.resetData(newData);
+        assertEquals(newData, myFitnessBuddy);
     }
 
     @Test
@@ -49,49 +51,51 @@ public class PersonTest {
         Day editedAlice = new DayBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Day> newDays = Arrays.asList(ALICE, editedAlice);
-        PersonStub newData = new PersonStub(newDays);
+        MyFitnessBuddyStub newData = new MyFitnessBuddyStub(newDays);
 
-        assertThrows(DuplicateDayException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateDayException.class, () -> myFitnessBuddy.resetData(newData));
     }
 
     @Test
     public void hasDay_nullDay_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasDay((Day) null));
+        assertThrows(NullPointerException.class, () -> myFitnessBuddy.hasDay((Day) null));
     }
 
     @Test
     public void hasDay_dayNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasDay(ALICE));
+        assertFalse(myFitnessBuddy.hasDay(ALICE));
     }
 
     @Test
     public void hasDay_dayInAddressBook_returnsTrue() {
-        addressBook.addDay(ALICE);
-        assertTrue(addressBook.hasDay(ALICE));
+        myFitnessBuddy.addDay(ALICE);
+        assertTrue(myFitnessBuddy.hasDay(ALICE));
     }
 
     @Test
     public void hasDay_dayWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addDay(ALICE);
+        myFitnessBuddy.addDay(ALICE);
         Day editedAlice = new DayBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasDay(editedAlice));
+        assertTrue(myFitnessBuddy.hasDay(editedAlice));
     }
 
     @Test
     public void getDayList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getDayList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> myFitnessBuddy.getDayList().remove(0));
     }
 
     /**
      * A stub ReadOnlyAddressBook whose days list can violate interface constraints.
      */
-    private static class PersonStub implements ReadOnlyPerson {
+    private static class MyFitnessBuddyStub implements ReadOnlyMyFitnessBuddy {
         private final ObservableList<Day> days = FXCollections.observableArrayList();
-        private Profile profile;
+        private Profile profile = new Profile(new Name("Jon"), new ID("1222"), new Height("177"), new Weight("76"));
+        private Person person;
 
-        PersonStub(Collection<Day> days) {
+        MyFitnessBuddyStub(Collection<Day> days) {
             this.days.setAll(days);
+            this.person = new Person(profile);
         }
 
         @Override
@@ -102,6 +106,11 @@ public class PersonTest {
         @Override
         public Profile getProfile() {
             return profile;
+        }
+
+        @Override
+        public Person getPerson() {
+            return null;
         }
     }
 

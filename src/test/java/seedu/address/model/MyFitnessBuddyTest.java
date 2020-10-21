@@ -87,32 +87,19 @@ public class MyFitnessBuddyTest {
     /**
      * A stub ReadOnlyAddressBook whose days list can violate interface constraints.
      */
-    private static class MyFitnessBuddyStub implements ReadOnlyMyFitnessBuddy {
-        //private final ObservableList<Person> personList = FXCollections.observableArrayList();
-        private Person person;
+//    private static class MyFitnessBuddyStub implements ReadOnlyMyFitnessBuddy {
+//        //private final ObservableList<Person> personList = FXCollections.observableArrayList();
+//        private Person person;
 //        MyFitnessBuddyStub(Collection<Day> personList) {
 //            this.personList.setAll(personList);
 //        }
-
-        MyFitnessBuddyStub(Person person) {
-            this.person = person;
-        }
-
-        @Override
-        public Person getPerson() {
-            return person;
-        }
-
-        @Override
-        public Profile getProfile() {
-            return getPerson().getProfile();
-        }
-
+//
+//
 //        @Override
 //        public ObservableList<Person> getPerson() {
 //            return personList;
 //        }
-
-    }
+//
+//    }
 
 }
