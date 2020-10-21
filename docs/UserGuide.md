@@ -1,7 +1,7 @@
 # User Guide
 
 My Fitness Buddy helps Full-Time National Servicemen with PES ‘BP’ Status to track their overall change in fitness level 
-by managing their daily calorie intake/output and weight changes during Basic Military Training. 
+by managing their daily calorie input/output and weight changes during Basic Military Training. 
 
 * **Table of Contents**
     * Quick Start
@@ -59,7 +59,7 @@ Format: `edit INDEX w/WEIGHT`
 Examples:  
 `edit 1 w/65`
 
-### Adding a calorie intake : `calorie tp/in`
+### Adding a calorie input : `calorie tp/in`
 Add calorie input to the calorie tracker.
 
 Format: `calorie tp/in t/TIME f/FOOD c/CALORIE COUNT`
@@ -77,14 +77,13 @@ Examples:
 `calorie tp/out t/1200 e/running c/500`  
 `calorie tp/out t/1800 e/swimming c/250`
 
+### View all calorie inputs and outputs of a day: `Double click on a day`
+Shows a list of all entries of calorie inputs and calorie outputs of a particular day.
 
-### Listing past entries: `view`
-Shows a list of all entries including calorie input, calorie output and daily weight.
-
-Format: `view`
+Image: `image to be added`
 
 ### View Statistics: `Command to be added`
-Shows all the weight and calorie statistics in a line chart
+Shows all the weight and calorie statistics in a line chart.
 
 ![weight_stats_chart](images/weight_stats_chart.png)
 
@@ -135,8 +134,8 @@ Action | Format
 --------|------------------
 **Add a new weight record** | `add d/DATE w/WEIGHT`
 **Edit a weight record** | `edit INDEX w/WEIGHT`
-**Add input** | `calorie in t/TIME f/FOOD c/CALORIE_COUNT`
-**Add output** | `calorie out t/TIME d/DURATION (MINUTES) c/CALORIE_BURNT`
+**Add input** | `calorie tp/in t/TIME f/FOOD c/CALORIE_COUNT`
+**Add output** | `calorie tp/out t/TIME d/DURATION (MINUTES) c/CALORIE_BURNT`
 **Delete input** | `delete /in i/INDEX`
 **Delete output** | `delete /out i/INDEX`
 **Exit** | `exit`
