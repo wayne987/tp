@@ -175,7 +175,8 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping person" +
+        logger.info("============================ [ Stopping person"
+                +
                 " ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
