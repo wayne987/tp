@@ -77,14 +77,13 @@ Examples:
 `calorie tp/out t/1200 e/running c/500`  
 `calorie tp/out t/1800 e/swimming c/250`
 
+### View all calorie inputs and outputs of a day: `Double click on a day`
+Shows a list of all entries of calorie inputs and calorie outputs of a particular day.
 
-### Listing past entries: `view`
-Shows a list of all entries including calorie input, calorie output and daily weight.
-
-Format: `view`
+Image: `image to be added`
 
 ### View Statistics: `Command to be added`
-Shows all the weight and calorie statistics in a line chart
+Shows all the weight and calorie statistics in a line chart.
 
 ![weight_stats_chart](images/weight_stats_chart.png)
 
