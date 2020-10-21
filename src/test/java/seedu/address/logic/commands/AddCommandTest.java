@@ -144,7 +144,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public Day getDay() {
+        public Day getDay(LocalDate date) {
             throw new AssertionError("This method should not be called.");
         }
 
