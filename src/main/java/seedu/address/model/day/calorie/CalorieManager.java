@@ -3,6 +3,9 @@ package seedu.address.model.day.calorie;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a Calorie Manager.
+ */
 public class CalorieManager {
 
     private List<Input> calorieInputList;

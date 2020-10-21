@@ -47,7 +47,7 @@
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="110.0" prefHeight="330.0" prefWidth="245.0">
               <children>
-                <VBox fx:id="inputList" minWidth="340" prefHeight="158.0" prefWidth="500.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <VBox fx:id="inputList" minWidth="340" prefHeight="158.0" prefWidth="348.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                   </padding>
@@ -55,9 +55,9 @@
                 </VBox>
               </children>
             </AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="210.0" prefHeight="330.0" prefWidth="245.0">
+            <AnchorPane minHeight="0.0" minWidth="110.0" prefHeight="330.0" prefWidth="245.0">
               <children>
-                <VBox fx:id="outputList" minWidth="340" prefHeight="158.0" prefWidth="500.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <VBox fx:id="outputList" minWidth="340" prefHeight="158.0" prefWidth="348.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                   </padding>
