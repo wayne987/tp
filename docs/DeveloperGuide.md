@@ -11,12 +11,13 @@ title: Developer Guide
 
 ### 1.1 Purpose
 
-My Fitness Buddy is a desktop application that helps users keep track of their weight and calorie intake/output.
+My Fitness Buddy is a desktop application that helps users keep track of their weight and calorie input/output.
 
 ### 1.2 Audience
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
-
+The audience of My Fitness Buddy are soldiers that are under going basic military training and are in the PES 'B' Pending batch. 
+This app is catered to help them easily keep track of their weights and calories daily. The app is also able to display these information
+in a fruitful manner making it easy for soldiers to visualise their progress. 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **2. Design**
@@ -143,12 +144,12 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-This feature allows users to view their daily calorie intake, 
+This feature allows users to view their daily calorie input, 
 calorie output and weight in the form of a line chart generated using JavaFX
 `LineChart` and `XYChart`.
 
 The mechanism utilises the `Logic#getFilteredDayList` method to get all
-daily records of calorie intake/output and weight to be used
+daily records of calorie input/output and weight to be used
 as data points and axis of the chart. 
 
 It also utilises JavaFX `ListChangeListner` to listen for any changes
@@ -156,10 +157,27 @@ to the list when the user adds or modifies any data, and updates the chart
 instantly.
 
 This feature comprises the `CalorieStatsWindow` and `WeightStatsWindow` classes
-and have the same behaviour, with the only difference is the type of data (calorie intake/output, weight)
+and have the same behaviour, with the only difference is the type of data (calorie input/output, weight)
 used to generate the chart. Given below is a diagram...
 
 _{Diagram to be added}_
+
+### View all calorie inputs and calorie outputs of a day feature
+
+#### Implementation
+
+This feature allows users to view each of their calorie inputs and calorie 
+outputs for a particular day when that day is double clicked. When a `DayCard` gets 
+double clicked, the `MainWindow#fillCaloriePlaceHolders` method gets called. The 
+list of calorie inputs and calorie outputs of that day would be then used to fill up 
+the JavaFX `ListView`. The `ListView` is then used to replace the placeholders on the 
+right side of the app in `MainWindow`. 
+
+{More details to be added in terms of updating the list when a new calorie is added}
+
+_{Diagram to be added}_
+
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -264,7 +282,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage their calorie intake and weight loss
+* has a need to manage their calorie input and weight loss
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -312,14 +330,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
 
-**Use case: Add a calorie intake**
+**Use case: Add a calorie input**
 
 **MSS**
 
-1.  User requests to add calorie intake
-2.  User selects the date that he/she wants to add a calorie intake
-3.  User inputs the calorie intake
-4.  User sees the newly updated calorie intake of the day
+1.  User requests to add calorie input
+2.  User selects the date that he/she wants to add a calorie input
+3.  User inputs the calorie input
+4.  User sees the newly updated calorie input of the day
 
     Use case ends.
     
@@ -353,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Calorie Input**: The amount of energy eaten from food eaten by the user
 * **Calorie Output**: The amount of energy used by the user from exercises
-* **Calorie History**: A collection of calorie intake and output for the past months
+* **Calorie History**: A collection of calorie input and output for the past months
 * **Daily Weight**: The weight of the user for a specific day
 
 
