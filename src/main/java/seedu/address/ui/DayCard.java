@@ -40,7 +40,7 @@ public class DayCard extends UiPart<Region> {
     private MainWindow mainWindow;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code DayCard} with the given {@code Day} and index to display.
      */
     public DayCard(Day day, int displayedIndex, MainWindow mainWindow) {
         super(FXML);
@@ -49,8 +49,8 @@ public class DayCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         date.setText("Date: " + day.getDate().get());
         weight.setText("Weight: " + day.getWeight().value + " kg");
-        totalCalorieIn.setText("Total Calories In: " + day.getCalorieManager().getTotalInputCalorie() + " calories");
-        totalCalorieOut.setText("Total Calories Out: " + day.getCalorieManager().getTotalOutputCalorie() + " calories");
+        totalCalorieIn.setText("Total Calories In: " + cm.getTotalInputCalorie() + " calories");
+        totalCalorieOut.setText("Total Calories Out: " + cm.getTotalOutputCalorie() + " calories");
         this.mainWindow = mainWindow;
         cardPane.setOnMouseClicked(x -> displayCalories(day));
     }
