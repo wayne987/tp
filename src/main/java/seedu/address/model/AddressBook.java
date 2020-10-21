@@ -95,7 +95,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setDay(Day target, Day editedDay) {
         requireNonNull(editedDay);
-
         days.setDay(target, editedDay);
     }
 

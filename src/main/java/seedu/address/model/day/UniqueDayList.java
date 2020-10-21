@@ -49,15 +49,25 @@ public class UniqueDayList implements Iterable<Day> {
     /**
      * Adds a day to the list.
      * The day must not already exist in the list.
+     * Adds it according to the order of dates.
      */
     public void add(Day toAdd) {
         requireNonNull(toAdd);
-        /*
         if (contains(toAdd)) {
             throw new DuplicateDayException();
+        } else {
+            boolean isAdded = false;
+            for (int index = internalList.size() - 1; index >= 0; index -= 1) {
+                if (toAdd.isAfter(internalList.get(index))) {
+                    internalList.add(index + 1, toAdd);
+                    isAdded = true;
+                    break;
+                }
+            }
+            if (isAdded == false) {
+                internalList.add(0, toAdd);
+            }
         }
-        */
-        internalList.add(toAdd);
     }
 
     /**
@@ -72,12 +82,11 @@ public class UniqueDayList implements Iterable<Day> {
         if (index == -1) {
             throw new DayNotFoundException();
         }
-        /*
         if (!target.isSameDay(editedDay) && contains(editedDay)) {
             throw new DuplicateDayException();
         }
-        */
-        internalList.set(index, editedDay);
+        internalList.remove(target);
+        this.add(editedDay);
     }
 
     /**

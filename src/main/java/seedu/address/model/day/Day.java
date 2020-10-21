@@ -81,6 +81,13 @@ public class Day {
     }
 
     /**
+     * Returns true if the date of this day is after otherDay
+     */
+    public boolean isAfter(Day otherDay) {
+        return this.getDate().dateAfter(otherDay.getDate());
+    }
+
+    /**
      * Returns true if both days have the same identity and data fields.
      * This defines a stronger notion of equality between two days.
      */
