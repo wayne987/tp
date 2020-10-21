@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Developer Guide
+title: My Fitness Buddy Developer Guide
 ---
 * Table of Contents
 {:toc}
@@ -9,15 +9,19 @@ title: Developer Guide
 
 ## **1. Introduction**
 
-### 1.1 Purpose
+### 1.1 About the application
 
 My Fitness Buddy is a desktop application that helps users keep track of their weight and calorie input/output.
 
-### 1.2 Audience
+### 1.2 Purpose
 
-The audience of My Fitness Buddy are soldiers that are under going basic military training and are in the PES 'B' Pending batch. 
-This app is catered to help them easily keep track of their weights and calories daily. The app is also able to display these information
-in a fruitful manner making it easy for soldiers to visualise their progress. 
+This document specifies the architecture, implementation and design decisions for
+the application, My Fitness Buddy.
+
+### 1.3 Intended Audience
+This Developer Guide is for anyone who are interested in the implementation of My Fitness Buddy,
+as well as future developers that are interested in further developing of our application.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **2. Design**
@@ -64,7 +68,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-###2.2 UI component
+### 2.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
