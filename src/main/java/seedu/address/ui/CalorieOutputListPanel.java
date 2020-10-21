@@ -16,7 +16,7 @@ public class CalorieOutputListPanel extends UiPart<Region> {
     private ListView<Output> calorieOutputListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code CalorieOutputListPanel} with the given {@code ObservableList}.
      */
     public CalorieOutputListPanel(ObservableList<Output> outputList) {
         super(FXML);
@@ -25,7 +25,7 @@ public class CalorieOutputListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Output} using a {@code CalorieOutputCard}.
      */
     class CalorieOutputListViewCell extends ListCell<Output> {
         @Override

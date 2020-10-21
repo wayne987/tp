@@ -16,7 +16,7 @@ public class CalorieInputListPanel extends UiPart<Region> {
     private ListView<Input> calorieInputListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code CalorieInputListPanel} with the given {@code ObservableList}.
      */
     public CalorieInputListPanel(ObservableList<Input> inputList) {
         super(FXML);
@@ -25,7 +25,7 @@ public class CalorieInputListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Input} using a {@code CalorieInputCard}.
      */
     class CalorieInputListViewCell extends ListCell<Input> {
         @Override
