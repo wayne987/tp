@@ -16,7 +16,7 @@ import seedu.address.model.day.Day;
 import seedu.address.model.person.Profile;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the person data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -26,15 +26,15 @@ public class ModelManager implements Model {
     private final FilteredList<Day> filteredDays;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given person and userPrefs.
      */
-    public ModelManager(ReadOnlyPerson addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyPerson readOnlyPerson, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(readOnlyPerson, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with person: " + readOnlyPerson + " and user prefs " + userPrefs);
 
-        this.person = new Person(addressBook);
+        this.person = new Person(readOnlyPerson);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredDays = new FilteredList<>(this.person.getDayList());
     }
@@ -68,17 +68,17 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getPersonFilePath() {
+        return userPrefs.getPersonFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setPersonFilePath(Path personFilePath) {
+        requireNonNull(personFilePath);
+        userPrefs.setPersonFilePath(personFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Person ================================================================================
 
     @Override
     public void setPerson(ReadOnlyPerson person) {

@@ -37,25 +37,25 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' person file path.
      */
-    Path getAddressBookFilePath();
+    Path getPersonFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' person file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setPersonFilePath(Path personFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces person data records with the data in {@code person}.
      */
     void setPerson(ReadOnlyPerson person);
 
-    /** Returns the AddressBook */
+    /** Returns the person */
     ReadOnlyPerson getPerson();
 
     /**
-     * Returns true if a day with the same identity as {@code day} exists in the address book.
+     * Returns true if a day with the same identity as {@code day} exists in the person.
      */
     boolean hasDay(Day day);
 
@@ -65,20 +65,20 @@ public interface Model {
 
     /**
      * Deletes the given day.
-     * The day must exist in the address book.
+     * The day must exist in the person.
      */
     void deleteDay(Day target);
 
     /**
      * Adds the given day.
-     * {@code day} must not already exist in the address book.
+     * {@code day} must not already exist in the person.
      */
     void addDay(Day day);
 
     /**
      * Replaces the given day {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The day identity of {@code editedPerson} must not be the same as another existing day in the address book.
+     * {@code target} must exist in the person.
+     * The day identity of {@code editedPerson} must not be the same as another existing day in the person.
      */
     void setDay(Day target, Day editedDay);
 

@@ -56,7 +56,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getPersonFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
@@ -69,19 +69,21 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s person and {@code userPrefs}. <br>
+     * The data from the sample person will be used instead if {@code storage}'s person is not found,
+     * or an empty person
+     * will be used instead if errors occur when reading {@code storage}'s person
+     * .
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyPerson> addressBookOptional;
+        Optional<ReadOnlyPerson> personOptional;
         ReadOnlyPerson initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            personOptional = storage.readAddressBook();
+            if (!personOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Person");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSamplePerson);
+            initialData = personOptional.orElseGet(SampleDataUtil::getSamplePerson);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with a new Person");
             initialData = new Person();
@@ -173,7 +175,8 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping person" +
+                " ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
