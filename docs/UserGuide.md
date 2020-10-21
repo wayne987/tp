@@ -134,8 +134,8 @@ Action | Format
 --------|------------------
 **Add a new weight record** | `add d/DATE w/WEIGHT`
 **Edit a weight record** | `edit INDEX w/WEIGHT`
-**Add input** | `calorie in t/TIME f/FOOD c/CALORIE_COUNT`
-**Add output** | `calorie out t/TIME d/DURATION (MINUTES) c/CALORIE_BURNT`
+**Add input** | `calorie tp/in t/TIME f/FOOD c/CALORIE_COUNT`
+**Add output** | `calorie tp/out t/TIME d/DURATION (MINUTES) c/CALORIE_BURNT`
 **Delete input** | `delete /in i/INDEX`
 **Delete output** | `delete /out i/INDEX`
 **Exit** | `exit`

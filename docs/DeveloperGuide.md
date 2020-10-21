@@ -11,12 +11,13 @@ title: Developer Guide
 
 ### 1.1 Purpose
 
-My Fitness Buddy is a desktop application that helps users keep track of their weight and calorie intake/output.
+My Fitness Buddy is a desktop application that helps users keep track of their weight and calorie input/output.
 
 ### 1.2 Audience
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
-
+The audience of My Fitness Buddy are soldiers that are under going basic military training and are in the PES 'B' Pending batch. 
+This app is catered to help them easily keep track of their weights and calories daily. The app is also able to display these information
+in a fruitful manner making it easy for soldiers to visualise their progress. 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **2. Design**
@@ -160,6 +161,23 @@ and have the same behaviour, with the only difference is the type of data (calor
 used to generate the chart. Given below is a diagram...
 
 _{Diagram to be added}_
+
+### View all calorie inputs and calorie outputs of a day feature
+
+#### Implementation
+
+This feature allows users to view each of their calorie intakes and calorie 
+outputs for a particular day when that day is double clicked. When a `DayCard` gets 
+double clicked, the `MainWindow#fillCaloriePlaceHolders` method gets called. The 
+list of calorie inputs and calorie outputs of that day would be then used to fill up 
+the JavaFX `ListView`. The `ListView` is then used to replace the placeholders on the 
+right side of the app in `MainWindow`. 
+
+{More details to be added in terms of updating the list when a new calorie is added}
+
+_{Diagram to be added}_
+
+
 
 ### \[Proposed\] Undo/redo feature
 
