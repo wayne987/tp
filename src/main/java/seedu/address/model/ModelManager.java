@@ -103,7 +103,7 @@ public class ModelManager implements Model {
 
     @Override
     public Day getDay(LocalDate date) {
-        return addressBook.getDay(date);
+        return person.getDay(date);
     }
 
     @Override
