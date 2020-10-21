@@ -83,6 +83,13 @@ Shows a list of all entries including calorie input, calorie output and daily we
 
 Format: `view`
 
+### View Statistics: `Command to be added`
+Shows all the weight and calorie statistics in a line chart
+
+![weight_stats_chart](images/weight_stats_chart.png)
+
+Format: `cmd to be added`
+
 ### Deleting an input : `delete /in`
 Deletes the calorie input at the specified index.  
 The index refers to the index number shown in the calorie input list.  

@@ -7,15 +7,21 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **1. Introduction**
+
+### 1.1 Purpose
+
+My Fitness Buddy is a desktop application that helps users keep track of their weight and calorie intake/output.
+
+### 1.2 Audience
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **2. Design**
 
-### Architecture
+### 2.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -57,7 +63,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+###2.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -73,7 +79,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 2.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -93,7 +99,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 2.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -113,7 +119,7 @@ The `Model`,
 </div>
 
 
-### Storage component
+### 2.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -123,15 +129,37 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 
-### Common classes
+### 2.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **3. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### View Statistics feature
+
+#### Implementation
+
+This feature allows users to view their daily calorie intake, 
+calorie output and weight in the form of a line chart generated using JavaFX
+`LineChart` and `XYChart`.
+
+The mechanism utilises the `Logic#getFilteredDayList` method to get all
+daily records of calorie intake/output and weight to be used
+as data points and axis of the chart. 
+
+It also utilises JavaFX `ListChangeListner` to listen for any changes
+to the list when the user adds or modifies any data, and updates the chart 
+instantly.
+
+This feature comprises the `CalorieStatsWindow` and `WeightStatsWindow` classes
+and have the same behaviour, with the only difference is the type of data (calorie intake/output, weight)
+used to generate the chart. Given below is a diagram...
+
+_{Diagram to be added}_
 
 ### \[Proposed\] Undo/redo feature
 
@@ -220,7 +248,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **4. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -230,7 +258,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **5. Appendix: Requirements**
 
 ### Product scope
 
@@ -332,7 +360,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **6. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
