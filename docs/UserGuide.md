@@ -1,3 +1,8 @@
+---
+layout: page
+title: My Fitness Buddy User Guide
+---
+
 My Fitness Buddy helps Full-Time National Servicemen with PES ‘BP’ Status to track their overall change in fitness level 
 by managing their daily calorie input/output and weight changes during Basic Military Training. 
 
