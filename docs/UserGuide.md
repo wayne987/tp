@@ -1,7 +1,7 @@
 # User Guide
 
 My Fitness Buddy helps Full-Time National Servicemen with PES ‘BP’ Status to track their overall change in fitness level 
-by managing their daily calorie intake/output and weight changes during Basic Military Training. 
+by managing their daily calorie input/output and weight changes during Basic Military Training. 
 
 * **Table of Contents**
     * Quick Start
@@ -59,7 +59,7 @@ Format: `edit INDEX w/WEIGHT`
 Examples:  
 `edit 1 w/65`
 
-### Adding a calorie intake : `calorie tp/in`
+### Adding a calorie input : `calorie tp/in`
 Add calorie input to the calorie tracker.
 
 Format: `calorie tp/in t/TIME f/FOOD c/CALORIE COUNT`
