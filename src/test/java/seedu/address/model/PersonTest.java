@@ -49,7 +49,7 @@ public class PersonTest {
         Day editedAlice = new DayBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Day> newDays = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newDays);
+        PersonStub newData = new PersonStub(newDays);
 
         assertThrows(DuplicateDayException.class, () -> addressBook.resetData(newData));
     }
@@ -86,11 +86,11 @@ public class PersonTest {
     /**
      * A stub ReadOnlyAddressBook whose days list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class PersonStub implements ReadOnlyPerson {
         private final ObservableList<Day> days = FXCollections.observableArrayList();
         private Profile profile;
 
-        AddressBookStub(Collection<Day> days) {
+        PersonStub(Collection<Day> days) {
             this.days.setAll(days);
         }
 

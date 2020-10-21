@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.Person;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyPerson;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
@@ -39,7 +39,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
+    public static ReadOnlyPerson getSamplePerson() {
         Person sampleAb = new Person();
         for (Day sampleDay : getSampleDay()) {
             sampleAb.addDay(sampleDay);

@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class ModelManagerTest {
 
@@ -103,7 +103,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Person addressBook = new AddressBookBuilder().withDay(ALICE).withDay(BENSON).build();
+        Person addressBook = new PersonBuilder().withDay(ALICE).withDay(BENSON).build();
         Person differentAddressBook = new Person();
         UserPrefs userPrefs = new UserPrefs();
 

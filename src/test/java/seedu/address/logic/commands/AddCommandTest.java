@@ -17,7 +17,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.Person;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyPerson;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
@@ -124,12 +124,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setPerson(ReadOnlyAddressBook newData) {
+        public void setPerson(ReadOnlyPerson newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getPerson() {
+        public ReadOnlyPerson getPerson() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -216,7 +216,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getPerson() {
+        public ReadOnlyPerson getPerson() {
             return new Person();
         }
     }

@@ -16,7 +16,16 @@ import seedu.address.model.person.ID;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Profile;
 
+/**
+ * Parses input arguments and creates a new CreateCommand object.
+ */
 public class CreateCommandParser implements Parser<CreateCommand> {
+
+    /**
+     * Parses the given {@code userInput} of arguments in the context of the CreateCommand
+     * and returns a CreateCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     @Override
     public CreateCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultimap =

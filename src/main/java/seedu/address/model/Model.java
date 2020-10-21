@@ -49,10 +49,10 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setPerson(ReadOnlyAddressBook person);
+    void setPerson(ReadOnlyPerson person);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getPerson();
+    ReadOnlyPerson getPerson();
 
     /**
      * Returns true if a day with the same identity as {@code day} exists in the address book.

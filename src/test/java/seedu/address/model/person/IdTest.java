@@ -27,10 +27,10 @@ class IdTest {
         // invalid Id
         assertFalse(ID.isValidId("")); // empty string
         assertFalse(ID.isValidId(" ")); // spaces only
-        assertFalse(ID.isValidId("abc1")); //
+        assertFalse(ID.isValidId("abc1"));
 
         // valid Id
-        assertTrue(ID.isValidId("1234")); //
+        assertTrue(ID.isValidId("1234"));
         assertTrue(ID.isValidId("0123"));
 
     }

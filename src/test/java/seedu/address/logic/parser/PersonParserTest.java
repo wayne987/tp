@@ -31,7 +31,7 @@ import seedu.address.testutil.EditDayDescriptorBuilder;
 
 public class PersonParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final PersonParser parser = new PersonParser();
     /*
     @Test
     public void parseCommand_add() throws Exception {

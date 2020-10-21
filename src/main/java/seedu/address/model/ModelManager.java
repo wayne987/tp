@@ -28,7 +28,7 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyPerson addressBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -81,12 +81,12 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setPerson(ReadOnlyAddressBook person) {
+    public void setPerson(ReadOnlyPerson person) {
         this.person.resetData(person);
     }
 
     @Override
-    public ReadOnlyAddressBook getPerson() {
+    public ReadOnlyPerson getPerson() {
         return person;
     }
 

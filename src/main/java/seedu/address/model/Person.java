@@ -14,7 +14,7 @@ import seedu.address.model.person.Profile;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class Person implements ReadOnlyAddressBook {
+public class Person implements ReadOnlyPerson {
 
     private final UniqueDayList days;
     private Profile profile;
@@ -35,7 +35,7 @@ public class Person implements ReadOnlyAddressBook {
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public Person(ReadOnlyAddressBook toBeCopied) {
+    public Person(ReadOnlyPerson toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -53,7 +53,7 @@ public class Person implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyPerson newData) {
         requireNonNull(newData);
         setProfile(newData.getProfile());
         setDays(newData.getDayList());

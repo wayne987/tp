@@ -8,27 +8,27 @@ import seedu.address.model.day.Day;
  * Example usage: <br>
  *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class PersonBuilder {
 
-    private Person addressBook;
+    private Person person;
 
-    public AddressBookBuilder() {
-        addressBook = new Person();
+    public PersonBuilder() {
+        person = new Person();
     }
 
-    public AddressBookBuilder(Person addressBook) {
-        this.addressBook = addressBook;
+    public PersonBuilder(Person person) {
+        this.person = person;
     }
 
     /**
      * Adds a new {@code Day} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withDay(Day day) {
-        addressBook.addDay(day);
+    public PersonBuilder withDay(Day day) {
+        person.addDay(day);
         return this;
     }
 
     public Person build() {
-        return addressBook;
+        return person;
     }
 }

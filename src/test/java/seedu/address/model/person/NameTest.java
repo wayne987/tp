@@ -14,26 +14,26 @@ class NameTest {
     }
 
     @Test
-    public void constructor_invalidFood_throwsIllegalArgumentException() {
+    public void constructor_invalidName_throwsIllegalArgumentException() {
         String invalidName = "";
         assertThrows(IllegalArgumentException.class, () -> new Name(invalidName));
     }
 
     @Test
     void isValidName() {
-        // null Food
+        // null Name
         assertThrows(NullPointerException.class, () -> Name.isValidName(null));
 
-        // invalid Food
+        // invalid Name
         assertFalse(Name.isValidName("")); // empty string
         assertFalse(Name.isValidName(" ")); // spaces only
         assertFalse(Name.isValidName("jonny@nus")); // contains special character
 
 
-        // valid Food
+        // valid Name
         assertTrue(Name.isValidName("jonny")); // alphabets only
         assertTrue(Name.isValidName("jonny no 1")); // contains number and space
-        assertTrue(Name.isValidName("jonny the man")); //contains number, alphabet and special char
+        assertTrue(Name.isValidName("jonny the man"));
 
     }
 }

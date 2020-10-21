@@ -4,6 +4,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.day.Weight;
 
+/**
+ * Represents a profile in the Person's records.
+ */
 public class Profile {
 
     // identity fields

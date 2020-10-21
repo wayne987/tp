@@ -3,6 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's heights in the profile.
+ * Guarantees: immutable; is valid as declared in {@link #isValidHeight(String)}
+ */
 public class Height {
 
     public static final String MESSAGE_CONSTRAINTS =

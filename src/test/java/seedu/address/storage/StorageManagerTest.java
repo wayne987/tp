@@ -12,7 +12,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Person;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyPerson;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -56,7 +56,7 @@ public class StorageManagerTest {
          */
         Person original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
+        ReadOnlyPerson retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new Person(retrieved));
     }
 
