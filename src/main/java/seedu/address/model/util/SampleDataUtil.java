@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.Person;
-import seedu.address.model.ReadOnlyPerson;
+import seedu.address.model.MyFitnessBuddy;
+import seedu.address.model.ReadOnlyMyFitnessBuddy;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
@@ -41,8 +41,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyPerson getSamplePerson() {
-        Person sampleAb = new Person();
+    public static ReadOnlyMyFitnessBuddy getSampleMyFitnessBuddy() {
+        MyFitnessBuddy sampleAb = new MyFitnessBuddy();
         for (Day sampleDay : getSampleDay()) {
             sampleAb.addDay(sampleDay);
         }

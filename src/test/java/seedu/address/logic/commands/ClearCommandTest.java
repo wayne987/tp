@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.Person;
+import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.UserPrefs;
 
 public class ClearCommandTest {
@@ -24,7 +24,7 @@ public class ClearCommandTest {
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setPerson(new Person());
+        expectedModel.setMyFitnessBuddy(new MyFitnessBuddy());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

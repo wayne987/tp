@@ -32,7 +32,7 @@ class CreateCommandTest {
         Profile validProfile = new Profile(new Name("Jon"), new ID("1234"), new Height("167"), new Weight("60"));
         CreateCommand createCommand = new CreateCommand(validProfile);
         String expectedMessage = String.format(CreateCommand.MESSAGE_SUCCESS, validProfile);
-        ModelManager expectedModel = new ModelManager(model.getPerson(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getMyFitnessBuddy(), new UserPrefs());
         expectedModel.setProfile(validProfile);
 
         assertCommandSuccess(createCommand, model, expectedMessage, expectedModel);
@@ -41,7 +41,7 @@ class CreateCommandTest {
     public void execute_createExistingProfileFail_throwsCommandException() throws Exception {
         Profile validProfile = new Profile(new Name("Jon"), new ID("1235"), new Height("167"), new Weight("60"));
         CreateCommand createCommand = new CreateCommand(validProfile);
-        ModelManager expectedModel = new ModelManager(model.getPerson(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getMyFitnessBuddy(), new UserPrefs());
         expectedModel.setProfile(validProfile);
         model.setProfile(validProfile);
 

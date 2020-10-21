@@ -15,12 +15,8 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.Person;
-import seedu.address.model.ReadOnlyPerson;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
+import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -48,7 +44,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing MyFitnessBuddy ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,7 +52,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getPersonFilePath());
+        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getMyFitnessBuddyFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
@@ -69,27 +65,27 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s person and {@code userPrefs}. <br>
-     * The data from the sample person will be used instead if {@code storage}'s person is not found,
+     * Returns a {@code ModelManager} with the data from {@code storage}'s records and {@code userPrefs}. <br>
+     * The data from the sample my fitness buddy records will be used instead if {@code storage}'s records is not found,
      * or an empty person
-     * will be used instead if errors occur when reading {@code storage}'s person
+     * will be used instead if errors occur when reading {@code storage}'s records for my fitness buddy.
      * .
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyPerson> personOptional;
-        ReadOnlyPerson initialData;
+        Optional<ReadOnlyMyFitnessBuddy> myFitnessBuddyOptionalOptional;
+        ReadOnlyMyFitnessBuddy initialData;
         try {
-            personOptional = storage.readAddressBook();
-            if (!personOptional.isPresent()) {
+            myFitnessBuddyOptionalOptional = storage.readAddressBook();
+            if (!myFitnessBuddyOptionalOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Person");
             }
-            initialData = personOptional.orElseGet(SampleDataUtil::getSamplePerson);
+            initialData = myFitnessBuddyOptionalOptional.orElseGet(SampleDataUtil::getSampleMyFitnessBuddy);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with a new Person");
-            initialData = new Person();
+            initialData = new MyFitnessBuddy();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with a new Person");
-            initialData = new Person();
+            initialData = new MyFitnessBuddy();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -153,7 +149,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty MyFitnessBuddy");
             initializedPrefs = new UserPrefs();
         }
 
@@ -169,13 +165,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting MyFitnessBuddy " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping person"
+        logger.info("============================ [ Stopping my fitness buddy"
                 +
                 " ] =============================");
         try {

@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyPerson;
+import seedu.address.model.ReadOnlyMyFitnessBuddy;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
@@ -32,7 +32,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public Optional<ReadOnlyPerson> readAddressBook() throws DataConversionException {
+    public Optional<ReadOnlyMyFitnessBuddy> readAddressBook() throws DataConversionException {
         return readAddressBook(filePath);
     }
 
@@ -42,7 +42,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyPerson> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyMyFitnessBuddy> readAddressBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
@@ -60,16 +60,16 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyPerson addressBook) throws IOException {
+    public void saveAddressBook(ReadOnlyMyFitnessBuddy addressBook) throws IOException {
         saveAddressBook(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyPerson)}.
+     * Similar to {@link #saveAddressBook(ReadOnlyMyFitnessBuddy)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyPerson addressBook, Path filePath) throws IOException {
+    public void saveAddressBook(ReadOnlyMyFitnessBuddy addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 

@@ -19,7 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditDayDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.Person;
+import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.day.Day;
 import seedu.address.testutil.DayBuilder;
@@ -40,7 +40,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_DAY_SUCCESS, editedDay);
 
-        Model expectedModel = new ModelManager(new Person(model.getPerson()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MyFitnessBuddy(model.getMyFitnessBuddy()), new UserPrefs());
         expectedModel.setDay(model.getFilteredDayList().get(0), editedDay);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -74,7 +74,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_DAY_SUCCESS, editedDay);
 
-        Model expectedModel = new ModelManager(new Person(model.getPerson()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MyFitnessBuddy(model.getMyFitnessBuddy()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -110,7 +110,7 @@ public class EditCommandTest {
         showDayAtIndex(model, INDEX_FIRST_DAY);
 
         // edit day in filtered list into a duplicate in address book
-        Day dayInList = model.getPerson().getDayList().get(INDEX_SECOND_DAY.getZeroBased());
+        Day dayInList = model.getMyFitnessBuddy().getPerson().getDayList().get(INDEX_SECOND_DAY.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_DAY,
                 new EditDayDescriptorBuilder(dayInList).build());
 
@@ -135,7 +135,7 @@ public class EditCommandTest {
         showDayAtIndex(model, INDEX_FIRST_DAY);
         Index outOfBoundIndex = INDEX_SECOND_DAY;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getPerson().getDayList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getMyFitnessBuddy().getPerson().getDayList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditDayDescriptorBuilder().withDate(VALID_DATE_2).build());

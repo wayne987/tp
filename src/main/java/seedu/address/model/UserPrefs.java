@@ -14,7 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path personFilePath = Paths.get("data" , "addressbook.json");
+    private Path myFitnessBuddyFilePath = Paths.get("data" , "addressbook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -35,7 +35,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setPersonFilePath(newUserPrefs.getPersonFilePath());
+        setMyFitnessBuddyFilePath(newUserPrefs.getMyFitnessBuddyFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -47,13 +47,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getPersonFilePath() {
-        return personFilePath;
+    public Path getMyFitnessBuddyFilePath() {
+        return myFitnessBuddyFilePath;
     }
 
-    public void setPersonFilePath(Path personFilePath) {
-        requireNonNull(personFilePath);
-        this.personFilePath = personFilePath;
+    public void setMyFitnessBuddyFilePath(Path myFitnessBuddyFilePath) {
+        requireNonNull(myFitnessBuddyFilePath);
+        this.myFitnessBuddyFilePath = myFitnessBuddyFilePath;
     }
 
     @Override
@@ -68,19 +68,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && personFilePath.equals(o.personFilePath);
+                && myFitnessBuddyFilePath.equals(o.myFitnessBuddyFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, personFilePath);
+        return Objects.hash(guiSettings, myFitnessBuddyFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + personFilePath);
+        sb.append("\nLocal data file location : " + myFitnessBuddyFilePath);
         return sb.toString();
     }
 

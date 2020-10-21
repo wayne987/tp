@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.NameContainsKeywordsPredicate;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.MyFitnessBuddyBuilder;
 
 public class ModelManagerTest {
 
@@ -28,7 +28,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new Person(), new Person(modelManager.getPerson()));
+        assertEquals(new MyFitnessBuddy(), new MyFitnessBuddy(modelManager.getMyFitnessBuddy()));
     }
 
     @Test
@@ -39,14 +39,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setPersonFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setMyFitnessBuddyFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setPersonFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setMyFitnessBuddyFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -64,14 +64,14 @@ public class ModelManagerTest {
 
     @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setPersonFilePath(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setMyFitnessBuddyFilePath(null));
     }
 
     @Test
     public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setPersonFilePath(path);
-        assertEquals(path, modelManager.getPersonFilePath());
+        modelManager.setMyFitnessBuddyFilePath(path);
+        assertEquals(path, modelManager.getMyFitnessBuddyFilePath());
     }
 
     @Test
@@ -103,8 +103,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Person addressBook = new PersonBuilder().withDay(ALICE).withDay(BENSON).build();
-        Person differentAddressBook = new Person();
+        MyFitnessBuddy addressBook = new MyFitnessBuddyBuilder().withDay(ALICE).withDay(BENSON).build();
+        MyFitnessBuddy differentAddressBook = new MyFitnessBuddy();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
@@ -134,7 +134,7 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setPersonFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setMyFitnessBuddyFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
     }
 }

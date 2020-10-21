@@ -33,7 +33,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, dayToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getPerson(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getMyFitnessBuddy(), new UserPrefs());
         expectedModel.deleteDay(dayToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,7 +56,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, dayToDelete);
 
-        Model expectedModel = new ModelManager(model.getPerson(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getMyFitnessBuddy(), new UserPrefs());
         expectedModel.deleteDay(dayToDelete);
         showNoPerson(expectedModel);
 
@@ -69,7 +69,7 @@ public class DeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_DAY;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getPerson().getDayList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getMyFitnessBuddy().getPerson().getDayList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
