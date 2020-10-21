@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -58,6 +59,9 @@ public class UniqueDayList implements Iterable<Day> {
         }
         */
         internalList.add(toAdd);
+
+        //sort test
+        Collections.sort(internalList, (x,y) -> x.getDate().get().compareTo(y.getDate().get()));
     }
 
     /**
@@ -78,6 +82,9 @@ public class UniqueDayList implements Iterable<Day> {
         }
         */
         internalList.set(index, editedDay);
+
+        //sort test
+        Collections.sort(internalList, (x,y) -> x.getDate().get().compareTo(y.getDate().get()));
     }
 
     /**
