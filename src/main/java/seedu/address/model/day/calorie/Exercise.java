@@ -21,9 +21,13 @@ public class Exercise {
         checkArgument(isValidExercise(exercise), MESSAGE_CONSTRAINTS);
         this.exercise = exercise;
     }
-
+    /**
+     * check if test is a valid exercise
+     *
+     * @param test
+     */
     public static boolean isValidExercise(String test) {
-        assert test != null : "test cannot be null";
+        assert test != null : "test must not be empty";
         return test.matches(VALIDATION_REGEX);
     }
 
