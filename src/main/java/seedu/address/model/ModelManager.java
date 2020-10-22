@@ -128,7 +128,6 @@ public class ModelManager implements Model {
     @Override
     public void setDay(Day target, Day editedDay) {
         requireAllNonNull(target, editedDay);
-
         myFitnessBuddy.setDay(target, editedDay);
     }
 
