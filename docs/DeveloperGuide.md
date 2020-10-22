@@ -154,12 +154,13 @@ It than utilise the RemoveCommand class to execute the actual removal of the cal
 from the uniqueDayList in which the calorie resides in and returns it.
 
 The CalorieManager of the particular Day class will then be retrieved using the `getCalorieManager` method to make the relevant changes. 
-CalorieManager contains a list of Input Calories and a list of Output Calories. `Type of Calorie` is then used to determined which list the calorie to be removed is in.
+CalorieManager contains a list of Input Calories and a list of Output Calories.
 
-Finally, the `getCalorieManager`
+Finally,`Type of Calorie` is then used to determined which list the calorie to be removed is in. It will utilise 
+the CalorieManager method `removeCalorieOutput` or `removeCalorieInput` depending on `Type of Calorie`. The method will than use `Index`
+to remove the calorie at the specific index in the corresponding list of Calories. 
 
-
-_{Diagram to be added}_
+![RemoveCalorieSequenceDiagram](images/RemoveCalorieSequenceDiagram.png)
 
 ### View Statistics feature
 
