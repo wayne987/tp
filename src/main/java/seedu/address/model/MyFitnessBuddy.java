@@ -61,8 +61,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      */
     public void resetData(ReadOnlyMyFitnessBuddy newData) {
         requireNonNull(newData);
-        setPerson(newData.getPerson());
-        //setDays(newData.getDayList());
+        setDays(newData.getPerson().getDayList());
     }
 
     /**
