@@ -37,7 +37,6 @@ class JsonAdaptedInput {
         calorieCount = source.getCalorieCount().calorieCount;
         time = source.getTime().time;
         food = source.getFood().food;
-
     }
 
 
@@ -47,7 +46,6 @@ class JsonAdaptedInput {
      * @throws IllegalValueException if there were any data constraints violated in the adapted day.
      */
     public Input toModelType() throws IllegalValueException {
-
         final CalorieCount modelCalorieCount = new CalorieCount(calorieCount);
         final Time modelTime = new Time(time);
         final Food modelFood = new Food(food);
