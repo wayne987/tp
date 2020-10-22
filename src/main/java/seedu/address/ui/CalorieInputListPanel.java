@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 
 import javafx.collections.ObservableList;
@@ -15,6 +16,8 @@ public class CalorieInputListPanel extends UiPart<Region> {
     @FXML
     private ListView<Input> calorieInputListView;
 
+    private ObservableList<Input> inputList;
+
     /**
      * Creates a {@code CalorieInputListPanel} with the given {@code ObservableList}.
      */
@@ -22,6 +25,8 @@ public class CalorieInputListPanel extends UiPart<Region> {
         super(FXML);
         calorieInputListView.setItems(inputList);
         calorieInputListView.setCellFactory(listView -> new CalorieInputListViewCell());
+        this.inputList = inputList;
+        inputList.addListener((ListChangeListener<Input>) (c -> System.out.println("hi")));
     }
 
     /**
