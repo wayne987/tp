@@ -6,12 +6,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Profile;
 
 /**
- * Creates a profile for the Person.
+ * Creates a profile for the Person in My Fitness Buddy.
  */
 public class CreateCommand extends Command {
 
@@ -33,6 +37,7 @@ public class CreateCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New profile created: %1$s";
     public static final String MESSAGE_ERROR = "There exists a profile. ";
     private final Profile profile;
+    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     /**
      * Creates a new {@code profile}.
@@ -50,6 +55,7 @@ public class CreateCommand extends Command {
             throw new CommandException(MESSAGE_ERROR);
         }
         model.setProfile(profile);
+        logger.info("---------------[USER COMMAND][Profile" + profile.toString() + " created]");
         return new CommandResult(String.format(MESSAGE_SUCCESS, profile));
     }
 

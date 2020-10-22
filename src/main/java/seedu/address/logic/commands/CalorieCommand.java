@@ -19,8 +19,6 @@ import seedu.address.model.day.calorie.Input;
 import seedu.address.model.day.calorie.Output;
 
 
-
-
 public class CalorieCommand extends Command {
 
     public static final String COMMAND_WORD = "calorie";

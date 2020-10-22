@@ -21,7 +21,7 @@ import seedu.address.model.day.calorie.Time;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code MyFitnessBuddy} with sample data.
  */
 public class SampleDataUtil {
     public static Day[] getSampleDay() {
