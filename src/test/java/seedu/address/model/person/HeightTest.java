@@ -21,7 +21,7 @@ class HeightTest {
         assertTrue(Height.isValidHeight("200"));
         assertFalse(Height.isValidHeight("1700"));
         assertFalse(Height.isValidHeight("17"));
-        assertFalse(Height.isValidHeight(""));
+        assertFalse(Height.isValidHeight(" "));
     }
 
 }

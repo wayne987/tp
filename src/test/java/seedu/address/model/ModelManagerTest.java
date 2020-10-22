@@ -63,12 +63,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setMyFitnessBuddyFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setMyFitnessBuddyFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setMyFitnessBuddyFilePath_validPath_setsMyFitnessBuddyFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setMyFitnessBuddyFilePath(path);
         assertEquals(path, modelManager.getMyFitnessBuddyFilePath());
@@ -86,12 +86,12 @@ public class ModelManagerTest {
 
 
     @Test
-    public void hasDay_dayNotInPersonDayList_returnsFalse() {
+    public void hasDay_dayNotInDayList_returnsFalse() {
         assertFalse(modelManager.hasDay(ALICE));
     }
 
     @Test
-    public void hasDay_dayInAddressBook_returnsTrue() {
+    public void hasDay_dayInMyFitnessBuddy_returnsTrue() {
         modelManager.addDay(ALICE);
         assertTrue(modelManager.hasDay(ALICE));
     }

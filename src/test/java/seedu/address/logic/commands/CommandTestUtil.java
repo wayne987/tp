@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
-//import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,22 +86,22 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered day list and selected day in {@code actualModel} remain unchanged
+     * - My Fitness Buddy, filtered day list and selected day in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        MyFitnessBuddy expectedAddressBook = new MyFitnessBuddy(actualModel.getMyFitnessBuddy());
+        MyFitnessBuddy myFitnessBuddy = new MyFitnessBuddy(actualModel.getMyFitnessBuddy());
         List<Day> expectedFilteredList = new ArrayList<>(actualModel.getFilteredDayList());
 
         //assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getMyFitnessBuddy());
+        assertEquals(myFitnessBuddy, actualModel.getMyFitnessBuddy());
         assertEquals(expectedFilteredList, actualModel.getFilteredDayList());
     }
     //error due to refactoring
     /**
      * Updates {@code model}'s filtered list to show only the day at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s My Fitness Buddy records.
      */
     public static void showDayAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredDayList().size());

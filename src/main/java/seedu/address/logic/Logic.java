@@ -34,7 +34,7 @@ public interface Logic {
     ObservableList<Day> getFilteredDayList();
 
     /**
-     * Returns the user prefs' My fitness Buddy file path.
+     * Returns the user prefs' My Fitness Buddy file path.
      */
     Path getMyFitnessBuddyFilePath();
 
