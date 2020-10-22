@@ -106,17 +106,20 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### 2.4 Model component
 
-![Structure of the Model Component](images/ModelClassDiagramNew.png)
+![Structure of the Model Component](images/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
-The model stores a `UserPref` object that represents the user’s preferences and stores the address book data.
+The model stores a `UserPref` object that represents the user’s preferences and stores the MyFitnessBuddy data.
 The model also exposes an unmodifiable `ObservableList<Day>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.  
 
-`Addressbook` is made up of a `UniqueDayList` which contains a list of `Day` objects. The `Day` class contains a `Date` and uses `CalorieManager` class as a data structure to store calorie `Input` and `Output`. `CalorieManager` also keeps track and can return the total calorie input and output. 
+`MyFitnessBuddy` is made up of a `UniqueDayList` which contains a list of `Day` objects. The `Day` class contains a `Date`, `Weight` and `CalorieManager`.
 
+The `Calorie` class contains a `Time` and `CalorieCount` which `Input` and `Output` inherits from.  `Input` contains an additional `Food` while `Output` contains an addition `Exercise`.
+
+`CalorieManager` is used `Day` as a data structure to contain `Input` and `Output`. It also keeps track and can return the total calorie input and output. 
 
 ### 2.5 Storage component
 

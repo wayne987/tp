@@ -33,6 +33,8 @@ Class Exercise
 Class Food
 }
 
+CalorieManager "*"-> Input
+CalorieManager "*"-> Output
 Calorie *--> Time
 Calorie *--> CalorieCount
 Calorie <|-- Input
