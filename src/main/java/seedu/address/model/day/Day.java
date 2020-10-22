@@ -11,7 +11,7 @@ import seedu.address.model.day.calorie.CalorieManager;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Day in the Person in MyFitnessBuddy.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Day {
@@ -68,8 +68,7 @@ public class Day {
 
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both days are of the same date and not the weight and tag field.
      */
     public boolean isSameDay(Day otherDay) {
         if (otherDay == this) {
@@ -81,7 +80,7 @@ public class Day {
     }
 
     /**
-     * Returns true if both days have the same identity and data fields.
+     * Returns true if both days have the same date and data fields.
      * This defines a stronger notion of equality between two days.
      */
     @Override

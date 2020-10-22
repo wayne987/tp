@@ -24,6 +24,7 @@ import seedu.address.model.day.calorie.Output;
 public class CalorieCommand extends Command {
 
     public static final String COMMAND_WORD = "calorie";
+
     public static final String NO_AVAILABLE_DAY =
             "Please add a new day entry for the date intended before adding calorie input/output";
     public static final String INVALID_DATE = "Please input a valid Date";
@@ -40,6 +41,7 @@ public class CalorieCommand extends Command {
             + PREFIX_TIME + "1230 "
             + PREFIX_EXERCISE + "RUNNING "
             + PREFIX_CALORIE_COUNT + "123";
+
     private Calorie calorie;
     private String type;
     private String date;
