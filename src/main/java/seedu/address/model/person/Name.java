@@ -34,6 +34,7 @@ public class Name {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String name) {
+        assert name != null;
         return name.matches(VALIDATION_REGEX);
     }
 

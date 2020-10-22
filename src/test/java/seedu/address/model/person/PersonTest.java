@@ -39,7 +39,7 @@ public class PersonTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyMyFitnessBuddy_replacesData() {
         MyFitnessBuddy newData = getTypicalMyFitnessBuddy();
         newData.setPerson(
                 new Person(new Profile(new Name("Jon"), new ID("1222"), new Height("177"), new Weight("76"))));
@@ -64,18 +64,18 @@ public class PersonTest {
     }
 
     @Test
-    public void hasDay_dayNotInAddressBook_returnsFalse() {
+    public void hasDay_dayNotInMyFitnessBuddy_returnsFalse() {
         assertFalse(myFitnessBuddy.hasDay(ALICE));
     }
 
     @Test
-    public void hasDay_dayInAddressBook_returnsTrue() {
+    public void hasDay_dayInMyFitnessBuddy_returnsTrue() {
         myFitnessBuddy.addDay(ALICE);
         assertTrue(myFitnessBuddy.hasDay(ALICE));
     }
 
     @Test
-    public void hasDay_dayWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasDay_dayWithSameIdentityFieldsInMyFitnessBuddy_returnsTrue() {
         myFitnessBuddy.addDay(ALICE);
         Day editedAlice = new DayBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();

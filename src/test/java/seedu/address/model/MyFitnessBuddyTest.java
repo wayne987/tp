@@ -39,7 +39,7 @@ public class MyFitnessBuddyTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyMyFitnessBuddy_replacesData() {
         MyFitnessBuddy newData = getTypicalMyFitnessBuddy();
         myFitnessBuddy.resetData(newData);
         assertEquals(newData, myFitnessBuddy);
@@ -62,18 +62,18 @@ public class MyFitnessBuddyTest {
     }
 
     @Test
-    public void hasDay_dayNotInAddressBook_returnsFalse() {
+    public void hasDay_dayNotInMyFitnessBuddy_returnsFalse() {
         assertFalse(myFitnessBuddy.getPerson().hasDay(ALICE));
     }
 
     @Test
-    public void hasDay_dayInAddressBook_returnsTrue() {
+    public void hasDay_dayInMyFitnessBuddy_returnsTrue() {
         myFitnessBuddy.addDay(ALICE);
         assertTrue(myFitnessBuddy.getPerson().hasDay(ALICE));
     }
 
     @Test
-    public void hasDay_dayWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasDay_dayWithSameIdentityFieldsInMyFitnessBuddy_returnsTrue() {
         myFitnessBuddy.addDay(ALICE);
         Day editedAlice = new DayBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -86,7 +86,7 @@ public class MyFitnessBuddyTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose days list can violate interface constraints.
+     * A stub ReadOnlyMyFitnessBuddy whose days list can violate interface constraints.
      */
     private static class MyFitnessBuddyStub implements ReadOnlyMyFitnessBuddy {
         private final ObservableList<Day> personList = FXCollections.observableArrayList();
@@ -97,7 +97,7 @@ public class MyFitnessBuddyTest {
         }
 
         /**
-         * Returns an unmodifiable view of the persons list.
+         * Returns an unmodifiable view of the days list.
          * This list will not contain any duplicate persons.
          */
         @Override
@@ -106,7 +106,7 @@ public class MyFitnessBuddyTest {
         }
 
         /**
-         * Returns the profile of a person.
+         * Returns the profile of a person in My Fitness Buddy.
          */
         @Override
         public Profile getProfile() {

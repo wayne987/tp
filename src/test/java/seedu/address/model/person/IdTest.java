@@ -15,7 +15,7 @@ class IdTest {
 
     @Test
     public void constructor_invalidID_throwsIllegalArgumentException() {
-        String invalidID = "";
+        String invalidID = "    ";
         assertThrows(IllegalArgumentException.class, () -> new ID(invalidID));
     }
 
@@ -25,8 +25,7 @@ class IdTest {
         assertThrows(NullPointerException.class, () -> ID.isValidId(null));
 
         // invalid Id
-        assertFalse(ID.isValidId("")); // empty string
-        assertFalse(ID.isValidId(" ")); // spaces only
+        assertFalse(ID.isValidId("    ")); // spaces only
         assertFalse(ID.isValidId("abc1"));
 
         // valid Id

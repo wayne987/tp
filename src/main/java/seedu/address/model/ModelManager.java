@@ -73,7 +73,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Sets the user prefs' person file path.
+     * Sets the user prefs' My Fitness Buddy file path.
      *
      * @param myFitnessBuddyFilePath
      */
@@ -136,7 +136,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Day} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedMyFitnessBuddy}
      */
     @Override
     public ObservableList<Day> getFilteredDayList() {

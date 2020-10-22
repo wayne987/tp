@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getMyFitnessBuddyFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        AddressBookStorage myFitnessBuddyStorage = new JsonAddressBookStorage(userPrefs.getMyFitnessBuddyFilePath());
+        storage = new StorageManager(myFitnessBuddyStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -169,13 +169,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting MyFitnessBuddy " + MainApp.VERSION);
+        logger.info("Starting My Fitness Buddy " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping my fitness buddy"
+        logger.info("============================ [ Stopping My Fitness Buddy"
                 +
                 " ] =============================");
         try {

@@ -22,7 +22,7 @@ class NameTest {
     @Test
     void isValidName() {
         // null Name
-        assertThrows(NullPointerException.class, () -> Name.isValidName(null));
+        assertThrows(AssertionError.class, () -> Name.isValidName(null));
 
         // invalid Name
         assertFalse(Name.isValidName("")); // empty string

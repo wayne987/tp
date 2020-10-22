@@ -50,11 +50,16 @@ public class Person {
         this.days = new UniqueDayList();
     }
 
+    /**
+     * Returns true if the profile is not changed from default.
+     */
     public boolean isDefaultProfile() {
+        assert profile != null;
         return getProfile().equals(defaultProfile);
     }
 
     public Profile getProfile() {
+        assert profile != null;
         return profile;
     }
 
@@ -67,10 +72,11 @@ public class Person {
     }
 
     /**
-     * Replaces the contents of the day list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the day list with {@code days}.
+     * {@code persons} must not contain duplicate days.
      */
     public void setDays(List<Day> days) {
+        assert days != null;
         this.days.setDays(days);
     }
 
@@ -78,6 +84,7 @@ public class Person {
      * Sets the profile information of current data to {@code profile}.
      */
     public void setProfile(Profile profile) {
+        assert profile != null;
         this.profile = profile;
     }
 
@@ -113,8 +120,9 @@ public class Person {
      * Adds a day to the my fitness buddy records.
      * The day must not already exist in the my fitness buddy records.
      */
-    public void addDay(Day p) {
-        days.add(p);
+    public void addDay(Day day) {
+        assert day != null;
+        days.add(day);
     }
 
     /**
