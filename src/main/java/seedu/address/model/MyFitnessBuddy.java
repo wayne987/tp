@@ -96,7 +96,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      */
     public boolean hasDay(LocalDate date) {
         requireNonNull(date);
-        return getDayList().contains(date);
+        return getPerson().getDays().contains(date);
     }
 
     /**
