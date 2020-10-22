@@ -24,6 +24,7 @@ public class CalorieCount {
     }
 
     public static boolean isValidCalorieCount(String test) {
+        assert test != null : "test cannot be null";
         return test.matches(VALIDATION_REGEX);
     }
 

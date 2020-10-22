@@ -24,6 +24,7 @@ public class Food {
     }
 
     public static boolean isValidFood(String test) {
+        assert test != null : "test cannot be null";
         return test.matches(VALIDATION_REGEX);
     }
 

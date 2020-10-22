@@ -26,6 +26,7 @@ public class Time {
      * Returns if a given string is a valid Time.
      */
     public static boolean isValidTime(String test) {
+        assert test != null : "test cannot be null";
         if (test.matches(VALIDATION_REGEX)) {
             int hour = Integer.parseInt(test.substring(0, 2));
             int min = Integer.parseInt(test.substring(2, 4));

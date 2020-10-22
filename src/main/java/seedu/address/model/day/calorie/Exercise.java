@@ -23,6 +23,7 @@ public class Exercise {
     }
 
     public static boolean isValidExercise(String test) {
+        assert test != null : "test cannot be null";
         return test.matches(VALIDATION_REGEX);
     }
 
