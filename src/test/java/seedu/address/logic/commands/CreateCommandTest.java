@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalDays.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalDays.getTypicalMyFitnessBuddy;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +20,7 @@ import seedu.address.model.person.Profile;
 
 class CreateCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalMyFitnessBuddy(), new UserPrefs());
 
     @Test
     public void constructor_nullDay_throwsNullPointerException() {

@@ -52,9 +52,9 @@ public class TypicalDays {
     private TypicalDays() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical days.
+     * Returns an {@code MyFitnessBuddy} with all the typical days.
      */
-    public static MyFitnessBuddy getTypicalAddressBook() {
+    public static MyFitnessBuddy getTypicalMyFitnessBuddy() {
         MyFitnessBuddy ab = new MyFitnessBuddy();
         for (Day day : getTypicalDays()) {
             ab.addDay(day);

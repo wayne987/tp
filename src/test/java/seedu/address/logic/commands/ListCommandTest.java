@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showDayAtIndex;
-import static seedu.address.testutil.TypicalDays.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalDays.getTypicalMyFitnessBuddy;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DAY;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +22,7 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalMyFitnessBuddy(), new UserPrefs());
         expectedModel = new ModelManager(model.getMyFitnessBuddy(), new UserPrefs());
     }
 

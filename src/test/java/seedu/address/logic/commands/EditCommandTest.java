@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_2;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showDayAtIndex;
-import static seedu.address.testutil.TypicalDays.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalDays.getTypicalMyFitnessBuddy;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DAY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_DAY;
 
@@ -30,7 +30,7 @@ import seedu.address.testutil.EditDayDescriptorBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalMyFitnessBuddy(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {

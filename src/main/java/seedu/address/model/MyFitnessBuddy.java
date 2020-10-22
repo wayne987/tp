@@ -22,8 +22,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
 
     //private final UniqueDayList days;
     //private Profile profile;
-    private Person person =
-            new Person(new Profile(new Name("Jon"), new ID("1234"), new Height("170"), new Weight("70")));
+    private Person person;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -57,7 +56,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
     }
 
     public void setPerson(Person p) {
-        this.person = new Person(new Profile(new Name("Jon"), new ID("1234"), new Height("170"), new Weight("70")));
+        this.person = p;
     }
 
     /**
@@ -66,7 +65,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
     public void resetData(ReadOnlyMyFitnessBuddy newData) {
         requireNonNull(newData);
         setPerson(newData.getPerson());
-        setProfile(newData.getProfile());
+        //setProfile(newData.getProfile());
         setDays(newData.getDayList());
     }
 

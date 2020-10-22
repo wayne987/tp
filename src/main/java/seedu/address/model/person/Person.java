@@ -10,6 +10,7 @@ import java.util.Objects;
 import javafx.collections.ObservableList;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.UniqueDayList;
+import seedu.address.model.day.Weight;
 
 /**
  * Represents a Person in the address book.
@@ -18,6 +19,8 @@ import seedu.address.model.day.UniqueDayList;
 public class Person {
 
     // Identity fields
+    private static Profile DEFAULT_PROFILE =
+            new Profile(new Name("Default"), new ID("0000"), new Height("170"), new Weight("70"));
     private Profile profile;
     private final UniqueDayList days;
 
@@ -33,10 +36,19 @@ public class Person {
     /**
      * Profile cannot be null and be present.
      */
+    public Person() {
+        this.profile = DEFAULT_PROFILE;
+        this.days = new UniqueDayList();
+    }
+
     public Person(Profile profile) {
         requireNonNull(profile);
         this.profile = profile;
         this.days = new UniqueDayList();
+    }
+
+    public boolean isDefaultProfile() {
+        return getProfile().equals(DEFAULT_PROFILE);
     }
 
     public Profile getProfile() {

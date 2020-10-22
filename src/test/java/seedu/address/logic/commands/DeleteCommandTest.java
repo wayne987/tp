@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showDayAtIndex;
-import static seedu.address.testutil.TypicalDays.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalDays.getTypicalMyFitnessBuddy;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DAY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_DAY;
 
@@ -24,7 +24,7 @@ import seedu.address.model.day.Day;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalMyFitnessBuddy(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
