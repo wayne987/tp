@@ -13,33 +13,34 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.day.Day;
+import seedu.address.model.person.Profile;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of My Fitness Buddy data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final MyFitnessBuddy myFitnessBuddy;
     private final UserPrefs userPrefs;
     private final FilteredList<Day> filteredDays;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given myFitnessBuddy and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyMyFitnessBuddy readOnlyMyFitnessBuddy, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(readOnlyMyFitnessBuddy, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with MyFitnessBuddy: " + readOnlyMyFitnessBuddy + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.myFitnessBuddy = new MyFitnessBuddy(readOnlyMyFitnessBuddy);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredDays = new FilteredList<>(this.addressBook.getDayList());
+        filteredDays = new FilteredList<>(this.myFitnessBuddy.getDayList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new MyFitnessBuddy(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -67,52 +68,60 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getMyFitnessBuddyFilePath() {
+        return userPrefs.getMyFitnessBuddyFilePath();
     }
 
+    /**
+     * Sets the user prefs' person file path.
+     *
+     * @param myFitnessBuddyFilePath
+     */
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setMyFitnessBuddyFilePath(Path myFitnessBuddyFilePath) {
+        requireNonNull(myFitnessBuddyFilePath);
+        userPrefs.setMyFitnessBuddyFilePath(myFitnessBuddyFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== My Fitness Buddy ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setMyFitnessBuddy(ReadOnlyMyFitnessBuddy myFitnessBuddy) {
+        this.myFitnessBuddy.resetData(myFitnessBuddy);
     }
 
+    /**
+     * Returns my fitness buddy
+     */
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyMyFitnessBuddy getMyFitnessBuddy() {
+        return myFitnessBuddy;
     }
 
     @Override
     public boolean hasDay(Day day) {
         requireNonNull(day);
-        return addressBook.hasDay(day);
+        return myFitnessBuddy.hasDay(day);
     }
 
     @Override
     public boolean hasDay(LocalDate date) {
-        return addressBook.hasDay(date);
+        return myFitnessBuddy.hasDay(date);
     }
 
     @Override
     public Day getDay(LocalDate date) {
-        return addressBook.getDay(date);
+        return myFitnessBuddy.getDay(date);
     }
 
     @Override
     public void deleteDay(Day target) {
-        addressBook.removeDay(target);
+        myFitnessBuddy.removeDay(target);
     }
 
     @Override
     public void addDay(Day day) {
-        addressBook.addDay(day);
+        myFitnessBuddy.addDay(day);
         updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
     }
 
@@ -120,13 +129,13 @@ public class ModelManager implements Model {
     public void setDay(Day target, Day editedDay) {
         requireAllNonNull(target, editedDay);
 
-        addressBook.setDay(target, editedDay);
+        myFitnessBuddy.setDay(target, editedDay);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Day List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Day} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -138,6 +147,16 @@ public class ModelManager implements Model {
     public void updateFilteredDayList(Predicate<Day> predicate) {
         requireNonNull(predicate);
         filteredDays.setPredicate(predicate);
+    }
+
+    @Override
+    public void setProfile(Profile profile) {
+        myFitnessBuddy.setProfile(profile);
+    }
+
+    @Override
+    public boolean isDefaultProfile() {
+        return myFitnessBuddy.isDefaultProfile();
     }
 
     @Override
@@ -154,7 +173,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return myFitnessBuddy.equals(other.myFitnessBuddy)
                 && userPrefs.equals(other.userPrefs)
                 && filteredDays.equals(other.filteredDays);
     }
