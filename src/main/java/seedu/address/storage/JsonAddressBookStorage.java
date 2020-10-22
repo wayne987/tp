@@ -73,7 +73,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        assert FileUtil.isFileExists(filePath): "Error creating new file";
+        assert FileUtil.isFileExists(filePath) : "Error creating new file";
         JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
         logger.info("Save completed");
     }
