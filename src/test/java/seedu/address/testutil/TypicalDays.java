@@ -67,7 +67,7 @@ public class TypicalDays {
      */
     public static MyFitnessBuddy getTypicalMyFitnessBuddy() {
         MyFitnessBuddy ab = new MyFitnessBuddy();
-        ab.setPerson(JONNY);
+        ab.setPerson(new Person(DEFAULT_PROFILE));
         for (Day day : getTypicalDays()) {
             ab.addDay(day);
         }
