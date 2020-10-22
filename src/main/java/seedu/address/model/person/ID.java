@@ -29,6 +29,7 @@ public class ID {
      * Returns true if a given string is a valid Id number.
      */
     public static boolean isValidId(String test) {
+        assert test.length() > 3;
         return test.matches(VALIDATION_REGEX);
     }
 

@@ -29,6 +29,7 @@ public class Profile {
     }
 
     public Name getName() {
+        assert name != null;
         return name;
     }
 

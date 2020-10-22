@@ -29,6 +29,7 @@ public class Height {
      * Returns true if a given string is a valid height number.
      */
     public static boolean isValidHeight(String test) {
+        assert test.length() > 0;
         return test.matches(VALIDATION_REGEX) && Integer.parseInt(test) > 100;
     }
 

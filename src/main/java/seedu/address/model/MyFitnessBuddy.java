@@ -11,7 +11,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Profile;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the My Fitness Buddy level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
@@ -35,7 +35,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
     public MyFitnessBuddy() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an MyFitnessBuddy using the data in the {@code toBeCopied}
      */
     public MyFitnessBuddy(ReadOnlyMyFitnessBuddy toBeCopied) {
         this();
@@ -45,8 +45,8 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the day list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the day list with {@code days}.
+     * {@code days} must not contain duplicate persons.
      */
     public void setDays(List<Day> days) {
         getPerson().setDays(days);
@@ -57,12 +57,11 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code MyFitnessBuddy} with {@code newData}.
      */
     public void resetData(ReadOnlyMyFitnessBuddy newData) {
         requireNonNull(newData);
-        setPerson(newData.getPerson());
-        //setDays(newData.getDayList());
+        setDays(newData.getPerson().getDayList());
     }
 
     /**
@@ -74,7 +73,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
     }
 
     /**
-     * Checks if the current data {@code Person } has a profile.
+     * Checks if the current data {@code Person} has a profile.
      */
 
     public boolean isDefaultProfile() {
@@ -84,7 +83,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
     //// day-level operations
 
     /**
-     * Returns true if a day with the same identity as {@code day} exists in the address book.
+     * Returns true if a day with the same identity as {@code day} exists in My Fitness Buddy.
      */
     public boolean hasDay(Day day) {
         requireNonNull(day);
@@ -92,22 +91,22 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
     }
 
     /**
-     * Returns true if a day in the address book with the same date as the current date.
+     * Returns true if a day in My Fitness Buddy with the same date as the current date.
      */
     public boolean hasDay(LocalDate date) {
         requireNonNull(date);
-        return getDayList().contains(date);
+        return getPerson().getDays().contains(date);
     }
 
     /**
-     * get a day in the address book with a specific date
+     * get a day in My Fitness Buddy with a specific date
      */
     public Day getDay(LocalDate date) {
         return getPerson().getDay(date);
     }
     /**
-     * Adds a day to the address book.
-     * The day must not already exist in the address book.
+     * Adds a day to My Fitness Buddy.
+     * The day must not already exist in My Fitness Buddy.
      */
     public void addDay(Day p) {
         getPerson().addDay(p);
@@ -115,8 +114,8 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
 
     /**
      * Replaces the given day {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The day identity of {@code editedPerson} must not be the same as another existing day in the address book.
+     * {@code target} must exist in My Fitness Buddy.
+     * The day identity of {@code editedPerson} must not be the same as another existing day in My Fitness Buddy.
      */
     public void setDay(Day target, Day editedDay) {
         requireNonNull(editedDay);
@@ -125,8 +124,8 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code MyFitnessBuddy}.
+     * {@code key} must exist in My Fitness Buddy.
      */
     public void removeDay(Day key) {
         getPerson().getDays().remove(key);

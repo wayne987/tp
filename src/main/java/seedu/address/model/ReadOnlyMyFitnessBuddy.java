@@ -6,12 +6,12 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Profile;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of My Fitness Buddy
  */
 public interface ReadOnlyMyFitnessBuddy {
 
     /**
-     * Returns an unmodifiable view of the persons list.
+     * Returns an unmodifiable view of the days list.
      * This list will not contain any duplicate persons.
      */
     ObservableList<Day> getDayList();
