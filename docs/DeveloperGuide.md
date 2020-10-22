@@ -106,7 +106,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### 2.4 Model component
 
-![Structure of the Model Component](images/ModelClassDiagramNew.png)
+![Structure of the Model Component](images/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -117,6 +117,9 @@ The model also exposes an unmodifiable `ObservableList<Day>` that can be 'observ
 
 `MyFitnessBuddy` is made up of a `UniqueDayList` which contains a list of `Day` objects. The `Day` class contains a `Date` and uses `CalorieManager` class as a data structure to store calorie `Input` and `Output`. `CalorieManager` also keeps track and can return the total calorie input and output. 
 
+The `Calorie` class contains a `Time` and `CalorieCount` which `Input` and `Output` inherits from.  `Input` contains an additional `Food` while `Output` contains an addition `Exercise`.
+
+`CalorieManager` is used by `Day` as a data structure to contain `Input` and `Output`. It also keeps track and can return the total calorie input and output. 
 
 ### 2.5 Storage component
 
@@ -137,6 +140,27 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **3. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Remove Calorie feature
+
+#### Implementation
+
+This feature allows user to remove a certain calorie from a particular day.
+
+The mechanism utilises the RemoveCommandParser Class to parse the input into `Type of Calorie` to be remove, `Date` of the
+day in which the calorie is in and `Index` of the particular calorie to be removed in the list. 
+
+It than utilise the RemoveCommand class to execute the actual removal of the calorie. It will call the method `getDate` which uses `Date` to locate the Day class
+from the uniqueDayList in which the calorie resides in and returns it.
+
+The CalorieManager of the particular Day class will then be retrieved using the `getCalorieManager` method to make the relevant changes. 
+CalorieManager contains a list of Input Calories and a list of Output Calories.
+
+Finally,`Type of Calorie` is then used to determined which list the calorie to be removed is in. It will utilise 
+the CalorieManager method `removeCalorieOutput` or `removeCalorieInput` depending on `Type of Calorie`. The method will than use `Index`
+to remove the calorie at the specific index in the corresponding list of Calories. 
+
+![RemoveCalorieSequenceDiagram](images/RemoveCalorieSequenceDiagram.png)
 
 ### View Statistics feature
 
