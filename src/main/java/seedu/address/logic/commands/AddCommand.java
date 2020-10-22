@@ -43,6 +43,9 @@ public class AddCommand extends Command {
         if (model.hasDay(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_DAY);
         }
+        if (model.isDefaultProfile()) { //no profile
+            throw new CommandException(CreateCommand.MESSAGE_NO_PROFILE);
+        }
 
         model.addDay(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

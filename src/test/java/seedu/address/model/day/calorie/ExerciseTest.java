@@ -20,9 +20,6 @@ public class ExerciseTest {
 
     @Test
     public void isValidExercise() {
-        // null Exercise
-        assertThrows(NullPointerException.class, () -> Exercise.isValidExercise(null));
-
         // invalid Exercise
         assertFalse(Exercise.isValidExercise("")); // empty string
         assertFalse(Exercise.isValidExercise(" ")); // spaces only

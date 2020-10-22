@@ -37,7 +37,6 @@ class JsonAdaptedOutput {
         calorieCount = source.getCalorieCount().calorieCount;
         time = source.getTime().time;
         exercise = source.getExercise().exercise;
-
     }
 
 
