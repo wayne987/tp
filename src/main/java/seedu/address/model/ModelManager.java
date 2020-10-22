@@ -16,7 +16,7 @@ import seedu.address.model.day.Day;
 import seedu.address.model.person.Profile;
 
 /**
- * Represents the in-memory model of the person data.
+ * Represents the in-memory model of My Fitness Buddy data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -26,13 +26,13 @@ public class ModelManager implements Model {
     private final FilteredList<Day> filteredDays;
 
     /**
-     * Initializes a ModelManager with the given person and userPrefs.
+     * Initializes a ModelManager with the given myFitnessBuddy and userPrefs.
      */
     public ModelManager(ReadOnlyMyFitnessBuddy readOnlyMyFitnessBuddy, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(readOnlyMyFitnessBuddy, userPrefs);
 
-        logger.fine("Initializing with person: " + readOnlyMyFitnessBuddy + " and user prefs " + userPrefs);
+        logger.fine("Initializing with MyFitnessBuddy: " + readOnlyMyFitnessBuddy + " and user prefs " + userPrefs);
 
         this.myFitnessBuddy = new MyFitnessBuddy(readOnlyMyFitnessBuddy);
         this.userPrefs = new UserPrefs(userPrefs);

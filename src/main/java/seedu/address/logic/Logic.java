@@ -24,17 +24,17 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the Person.
+     * Returns MyFitnessBuddy.
      *
      * @see seedu.address.model.Model#getMyFitnessBuddy()
      */
     ReadOnlyMyFitnessBuddy getMyFitnessBuddy();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of days */
     ObservableList<Day> getFilteredDayList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' My fitness Buddy file path.
      */
     Path getMyFitnessBuddyFilePath();
 

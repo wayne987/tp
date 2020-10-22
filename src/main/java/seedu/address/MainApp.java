@@ -76,19 +76,19 @@ public class MainApp extends Application {
      * .
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyMyFitnessBuddy> myFitnessBuddyOptionalOptional;
+        Optional<ReadOnlyMyFitnessBuddy> myFitnessBuddyOptional;
         ReadOnlyMyFitnessBuddy initialData;
         try {
-            myFitnessBuddyOptionalOptional = storage.readAddressBook();
-            if (!myFitnessBuddyOptionalOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample Person");
+            myFitnessBuddyOptional = storage.readAddressBook();
+            if (!myFitnessBuddyOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample MyFitnessBuddy");
             }
-            initialData = myFitnessBuddyOptionalOptional.orElseGet(SampleDataUtil::getSampleMyFitnessBuddy);
+            initialData = myFitnessBuddyOptional.orElseGet(SampleDataUtil::getSampleMyFitnessBuddy);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with a new Person");
+            logger.warning("Data file not in the correct format. Will be starting with a new MyFitnessBuddy");
             initialData = new MyFitnessBuddy();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with a new Person");
+            logger.warning("Problem while reading from the file. Will be starting with a new MyFitnessBuddy");
             initialData = new MyFitnessBuddy();
         }
 
