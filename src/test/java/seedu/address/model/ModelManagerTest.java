@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalDays.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+//import java.time.LocalDate;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -86,7 +87,7 @@ public class ModelManagerTest {
 
 
     @Test
-    public void hasDay_dayNotInAddressBook_returnsFalse() {
+    public void hasDay_dayNotInPersonDayList_returnsFalse() {
         assertFalse(modelManager.hasDay(ALICE));
     }
 

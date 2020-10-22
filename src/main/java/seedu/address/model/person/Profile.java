@@ -5,7 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.model.day.Weight;
 
 /**
- * Represents a profile in the Person's records.
+ * Represents a profile in My Fitness Buddy records.
  */
 public class Profile {
 
@@ -42,6 +42,22 @@ public class Profile {
 
     public Weight getTargetWeight() {
         return targetWeight;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Profile)) {
+            return false;
+        }
+        Profile otherProfile = (Profile) other;
+        return otherProfile.getId().equals(getId())
+                && otherProfile.getName().equals(getName())
+                && otherProfile.getHeight().equals(getHeight())
+                && otherProfile.getTargetWeight().equals(getTargetWeight());
     }
 
     @Override

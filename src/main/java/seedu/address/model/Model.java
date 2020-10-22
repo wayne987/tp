@@ -99,5 +99,5 @@ public interface Model {
     /**
      * Checks if the current data {@code Person} has a profile.
      */
-    boolean hasProfile();
+    boolean isDefaultProfile();
 }

@@ -19,8 +19,8 @@ import seedu.address.model.day.Weight;
 public class Person {
 
     // Identity fields
-    private static Profile DEFAULT_PROFILE =
-            new Profile(new Name("Default"), new ID("0000"), new Height("170"), new Weight("70"));
+    private static Profile defaultProfile =
+            new Profile(new Name("Default"), new ID("0000"), new Height("170"), new Weight("50"));
     private Profile profile;
     private final UniqueDayList days;
 
@@ -37,10 +37,13 @@ public class Person {
      * Profile cannot be null and be present.
      */
     public Person() {
-        this.profile = DEFAULT_PROFILE;
+        this.profile = defaultProfile;
         this.days = new UniqueDayList();
     }
 
+    /**
+     * Profile cannot be null and be present.
+     */
     public Person(Profile profile) {
         requireNonNull(profile);
         this.profile = profile;
@@ -48,7 +51,7 @@ public class Person {
     }
 
     public boolean isDefaultProfile() {
-        return getProfile().equals(DEFAULT_PROFILE);
+        return getProfile().equals(defaultProfile);
     }
 
     public Profile getProfile() {

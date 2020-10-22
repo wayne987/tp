@@ -75,15 +75,15 @@ public class ModelManager implements Model {
     /**
      * Sets the user prefs' person file path.
      *
-     * @param personFilePath
+     * @param myFitnessBuddyFilePath
      */
     @Override
-    public void setMyFitnessBuddyFilePath(Path personFilePath) {
-        requireNonNull(personFilePath);
-        userPrefs.setMyFitnessBuddyFilePath(personFilePath);
+    public void setMyFitnessBuddyFilePath(Path myFitnessBuddyFilePath) {
+        requireNonNull(myFitnessBuddyFilePath);
+        userPrefs.setMyFitnessBuddyFilePath(myFitnessBuddyFilePath);
     }
 
-    //=========== Person ================================================================================
+    //=========== My Fitness Buddy ================================================================================
 
     @Override
     public void setMyFitnessBuddy(ReadOnlyMyFitnessBuddy myFitnessBuddy) {
@@ -132,10 +132,10 @@ public class ModelManager implements Model {
         myFitnessBuddy.setDay(target, editedDay);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Day List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Day} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -155,8 +155,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasProfile() {
-        return myFitnessBuddy.hasProfile();
+    public boolean isDefaultProfile() {
+        return myFitnessBuddy.isDefaultProfile();
     }
 
     @Override

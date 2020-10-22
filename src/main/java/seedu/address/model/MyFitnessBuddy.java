@@ -7,10 +7,6 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.day.Day;
-import seedu.address.model.day.Weight;
-import seedu.address.model.person.Height;
-import seedu.address.model.person.ID;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Profile;
 
@@ -33,6 +29,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      */
     {
         //days = new UniqueDayList();
+        person = new Person();
     }
 
     public MyFitnessBuddy() {}
@@ -65,8 +62,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
     public void resetData(ReadOnlyMyFitnessBuddy newData) {
         requireNonNull(newData);
         setPerson(newData.getPerson());
-        //setProfile(newData.getProfile());
-        setDays(newData.getDayList());
+        //setDays(newData.getDayList());
     }
 
     /**
@@ -81,8 +77,8 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      * Checks if the current data {@code Person } has a profile.
      */
 
-    public boolean hasProfile() {
-        return getPerson().getProfile() != null;
+    public boolean isDefaultProfile() {
+        return getPerson().isDefaultProfile();
     }
 
     //// day-level operations
@@ -99,6 +95,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      * Returns true if a day in the address book with the same date as the current date.
      */
     public boolean hasDay(LocalDate date) {
+        requireNonNull(date);
         return getDayList().contains(date);
     }
 

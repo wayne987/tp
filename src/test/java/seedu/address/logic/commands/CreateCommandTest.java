@@ -17,9 +17,13 @@ import seedu.address.model.person.Height;
 import seedu.address.model.person.ID;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Profile;
+import seedu.address.testutil.TypicalDays;
 
 class CreateCommandTest {
 
+    private static final Profile validProfile = TypicalDays.JON;
+    private static Profile defaultProfile =
+            new Profile(new Name("Default"), new ID("0000"), new Height("170"), new Weight("50"));
     private Model model = new ModelManager(getTypicalMyFitnessBuddy(), new UserPrefs());
 
     @Test
@@ -29,11 +33,10 @@ class CreateCommandTest {
 
     @Test
     public void execute_createProfile_createSuccessful() throws Exception {
-        Profile validProfile = new Profile(new Name("Jon"), new ID("1234"), new Height("167"), new Weight("60"));
+        ModelManager expectedModel = new ModelManager(model.getMyFitnessBuddy(), new UserPrefs());
+        model.setProfile(defaultProfile);
         CreateCommand createCommand = new CreateCommand(validProfile);
         String expectedMessage = String.format(CreateCommand.MESSAGE_SUCCESS, validProfile);
-        ModelManager expectedModel = new ModelManager(model.getMyFitnessBuddy(), new UserPrefs());
-        expectedModel.setProfile(validProfile);
 
         assertCommandSuccess(createCommand, model, expectedMessage, expectedModel);
     }

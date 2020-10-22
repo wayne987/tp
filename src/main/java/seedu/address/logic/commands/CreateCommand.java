@@ -29,7 +29,7 @@ public class CreateCommand extends Command {
             + PREFIX_HEIGHT + "170 "
             + PREFIX_WEIGHT + "70 ";
 
-    public static final String MESSAGE_NO_PROFILE = "Create a profile before adding a day." + MESSAGE_USAGE;
+    public static final String MESSAGE_NO_PROFILE = "Create a profile before adding a day. " + MESSAGE_USAGE;
     public static final String MESSAGE_SUCCESS = "New profile created: %1$s";
     public static final String MESSAGE_ERROR = "There exists a profile. ";
     private final Profile profile;
@@ -46,7 +46,7 @@ public class CreateCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasProfile()) {
+        if (!model.isDefaultProfile()) {
             throw new CommandException(MESSAGE_ERROR);
         }
         model.setProfile(profile);

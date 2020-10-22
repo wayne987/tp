@@ -1,17 +1,18 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.day.Weight;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.day.Weight;
 
 class ProfileTest {
     private Name name = new Name("jon");
     private ID id = new ID("1222");
     private Height height = new Height("170");
     private Weight targetWeight = new Weight("70");
-    private Profile profile = new Profile(name, id, height,targetWeight);
+    private Profile profile = new Profile(name, id, height, targetWeight);
 
     @Test
     public void constructor_null_throwsNullPointerException() {

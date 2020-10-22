@@ -32,6 +32,7 @@ import seedu.address.testutil.EditDayDescriptorBuilder;
 public class MyFitnessBuddyParserTest {
 
     private final MyFitnessBuddyParser parser = new MyFitnessBuddyParser();
+    //error due to refactoring
     /*
     @Test
     public void parseCommand_add() throws Exception {

@@ -1,34 +1,34 @@
 package seedu.address.testutil;
 
-import seedu.address.model.MyFitnessBuddy;
-import seedu.address.model.day.Day;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Profile;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building Person objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code Person ab = new PersonBuilder().withProfile(profile).build();}
  */
 public class PersonBuilder {
 
-    private MyFitnessBuddy person;
+    private Person person;
 
     public PersonBuilder() {
-        person = new MyFitnessBuddy();
+        person = new Person();
     }
 
-    public PersonBuilder(MyFitnessBuddy person) {
+    public PersonBuilder(Person person) {
         this.person = person;
     }
 
     /**
      * Adds a new {@code Day} to the {@code AddressBook} that we are building.
      */
-    public PersonBuilder withDay(Day day) {
-        person.addDay(day);
+    public PersonBuilder withProfile(Profile profile) {
+        person.setProfile(profile);
         return this;
     }
 
-    public MyFitnessBuddy build() {
+    public Person build() {
         return person;
     }
 }
