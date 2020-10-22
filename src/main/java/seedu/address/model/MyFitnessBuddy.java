@@ -7,15 +7,18 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.day.Day;
-import seedu.address.model.day.UniqueDayList;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Profile;
 
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
 
-    private final UniqueDayList days;
+    //private final UniqueDayList days;
+    //private Profile profile;
+    private Person person;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,15 +28,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        days = new UniqueDayList();
+        //days = new UniqueDayList();
+        person = new Person();
     }
 
-    public AddressBook() {}
+    public MyFitnessBuddy() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public MyFitnessBuddy(ReadOnlyMyFitnessBuddy toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -45,16 +49,36 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code persons} must not contain duplicate persons.
      */
     public void setDays(List<Day> days) {
-        this.days.setDays(days);
+        getPerson().setDays(days);
+    }
+
+    public void setPerson(Person p) {
+        this.person = p;
     }
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyMyFitnessBuddy newData) {
         requireNonNull(newData);
+        setPerson(newData.getPerson());
+        //setDays(newData.getDayList());
+    }
 
-        setDays(newData.getDayList());
+    /**
+     * Sets the profile information of current data to {@code profile}.
+     */
+
+    public void setProfile(Profile profile) {
+        getPerson().setProfile(profile);
+    }
+
+    /**
+     * Checks if the current data {@code Person } has a profile.
+     */
+
+    public boolean isDefaultProfile() {
+        return getPerson().isDefaultProfile();
     }
 
     //// day-level operations
@@ -64,28 +88,29 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasDay(Day day) {
         requireNonNull(day);
-        return days.contains(day);
+        return getPerson().getDays().contains(day);
     }
 
     /**
      * Returns true if a day in the address book with the same date as the current date.
      */
     public boolean hasDay(LocalDate date) {
-        return days.contains(date);
+        requireNonNull(date);
+        return getDayList().contains(date);
     }
 
     /**
      * get a day in the address book with a specific date
      */
     public Day getDay(LocalDate date) {
-        return days.getDate(date);
+        return getPerson().getDay(date);
     }
     /**
      * Adds a day to the address book.
      * The day must not already exist in the address book.
      */
     public void addDay(Day p) {
-        days.add(p);
+        getPerson().addDay(p);
     }
 
     /**
@@ -96,7 +121,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setDay(Day target, Day editedDay) {
         requireNonNull(editedDay);
 
-        days.setDay(target, editedDay);
+        getPerson().setDay(target, editedDay);
     }
 
     /**
@@ -104,31 +129,40 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeDay(Day key) {
-        days.remove(key);
+        getPerson().getDays().remove(key);
     }
 
     //// util methods
 
     @Override
-    public String toString() {
-        return days.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
+    public ObservableList<Day> getDayList() {
+        return getPerson().getDayList();
     }
 
     @Override
-    public ObservableList<Day> getDayList() {
-        return days.asUnmodifiableObservableList();
+    public Profile getProfile() {
+        return getPerson().getProfile();
+    }
+
+    public Person getPerson() {
+        return person;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && days.equals(((AddressBook) other).days));
+                || (other instanceof MyFitnessBuddy // instanceof handles nulls
+                && getDayList().equals(((MyFitnessBuddy) other).getDayList()));
     }
 
     @Override
     public int hashCode() {
-        return days.hashCode();
+        return getPerson().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return getPerson().getDayList().size() + " persons";
+        // TODO: refine later
     }
 }
