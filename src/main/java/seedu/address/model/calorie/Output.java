@@ -31,6 +31,13 @@ public class Output extends Calorie {
         return builder.toString();
     }
 
+    /**
+     * Returns true if the current output happens after the input output
+     */
+    public boolean happenAfter(Output output) {
+        return this.getTime().isAfter(output.getTime());
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

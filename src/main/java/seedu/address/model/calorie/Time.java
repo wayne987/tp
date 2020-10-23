@@ -35,6 +35,13 @@ public class Time {
         }
     }
 
+    /**
+     * Returns true if the current time is after the input time
+     */
+    public boolean isAfter(Time inputTime) {
+        return Integer.parseInt(this.time) >= Integer.parseInt(inputTime.toString());
+    }
+
     @Override
     public String toString() {
         return time;
