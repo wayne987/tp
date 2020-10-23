@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Scene?>
+<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,16 +15,16 @@
     <scene>
         <Scene stylesheets="@DarkChartTheme.css">
             <AnchorPane prefHeight="450.0" prefWidth="620.0">
-                <children>
-                    <LineChart fx:id="lineChart" prefHeight="450.0" prefWidth="620.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                        <xAxis>
-                            <CategoryAxis side="BOTTOM" fx:id="xAxis" />
-                        </xAxis>
-                        <yAxis>
-                            <NumberAxis side="LEFT" />
-                        </yAxis>
-                    </LineChart>
-                </children></AnchorPane>
+            <children>
+               <BarChart fx:id="barChart" layoutX="49.0" layoutY="25.0" prefHeight="450.0" prefWidth="620.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                 <xAxis>
+                   <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+                 </xAxis>
+                 <yAxis>
+                   <NumberAxis side="LEFT" />
+                 </yAxis>
+               </BarChart>
+            </children></AnchorPane>
         </Scene>
     </scene>
 </fx:root>

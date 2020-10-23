@@ -70,14 +70,6 @@ public class UniqueDayList implements Iterable<Day> {
                 internalList.add(0, toAdd);
             }
         }
-<<<<<<< HEAD
-        */
-        internalList.add(toAdd);
-
-        //sort test
-        Collections.sort(internalList, (x,y) -> x.getDate().get().compareTo(y.getDate().get()));
-=======
->>>>>>> branch-ViewStats
     }
 
     /**
