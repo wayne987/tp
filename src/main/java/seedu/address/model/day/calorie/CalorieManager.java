@@ -91,18 +91,38 @@ public class CalorieManager {
 
 
     /**
-     * add a calorie input into the calorieInputList and update the total calorie input
+     * add a calorie input into an already sorted calorieInputList and update the total calorie input
      */
     public void addCalorieInput(Input calorieInput) {
-        calorieInputList.add(calorieInput);
+        boolean isAdded = false;
+        for (int index = calorieInputList.size() - 1; index >= 0; index -= 1) {
+            if (calorieInput.happenAfter(calorieInputList.get(index))) {
+                calorieInputList.add(index + 1, calorieInput);
+                isAdded = true;
+                break;
+            }
+        }
+        if (isAdded == false) {
+            calorieInputList.add(0, calorieInput);
+        }
         addTotalCalorieInput(calorieInput.getCalorieCount());
     }
 
     /**
-     * add a calorie output into the calorieOutputList and update the total calorie output
+     * add a calorie output into an already sorted calorieOutputList and update the total calorie output
      */
     public void addCalorieOutput(Output calorieOutput) {
-        calorieOutputList.add(calorieOutput);
+        boolean isAdded = false;
+        for (int index = calorieOutputList.size() - 1; index >= 0; index -= 1) {
+            if (calorieOutput.happenAfter(calorieOutputList.get(index))) {
+                calorieOutputList.add(index + 1, calorieOutput);
+                isAdded = true;
+                break;
+            }
+        }
+        if (isAdded == false) {
+            calorieOutputList.add(0, calorieOutput);
+        }
         addTotalCalorieOut(calorieOutput.getCalorieCount());
     }
 }

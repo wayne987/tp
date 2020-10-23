@@ -17,10 +17,6 @@ import seedu.address.model.day.Day;
 
 /**
  * The controller for the weight statistics window.
- *
- * @author Marco Jakob - Adapted
- * Adapted from https://code.makery.ch/library/javafx-tutorial/part6/
- * with major modifications for this app context.
  */
 public class WeightStatsWindow extends UiPart<Stage> {
 
@@ -53,6 +49,9 @@ public class WeightStatsWindow extends UiPart<Stage> {
      */
     public WeightStatsWindow(ObservableList<Day> dayList) {
         this(new Stage());
+
+        assert dayList != null;
+
         this.dayList = dayList;
 
         initialize(dayList);
@@ -63,12 +62,14 @@ public class WeightStatsWindow extends UiPart<Stage> {
     }
 
     /**
-     * Initializes the Line Chart.
+     * Initializes the X-Axis (dates from dayList) of Line Chart.
      *
      * @param dayList dayList from seedu.address.logic.Logic
      */
     @FXML
     private void initialize(ObservableList<Day> dayList) {
+        assert dayList != null;
+
         String[] datesString = dayList.stream().map(x -> x.getDate().get().toString())
                 .toArray(String[]::new);
 
@@ -84,6 +85,7 @@ public class WeightStatsWindow extends UiPart<Stage> {
      * @param dayList dayList from seedu.address.logic.Logic
      */
     public void setWeightData(ObservableList<Day> dayList) {
+        assert dayList != null;
 
         XYChart.Series<String, Integer> weights = new XYChart.Series<>();
         weights.setName("Weight");
@@ -102,7 +104,10 @@ public class WeightStatsWindow extends UiPart<Stage> {
     private void updateChart() {
         //clear all data points and xAxis
         lineChart.getData().clear();
+        assert lineChart.getData().isEmpty();
+
         dates.clear();
+        assert dates.isEmpty();
 
         //re-initialize the xAxis
         initialize(dayList);
