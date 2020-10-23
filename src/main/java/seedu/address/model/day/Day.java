@@ -80,7 +80,6 @@ public class Day {
     }
 
     /**
-<<<<<<< HEAD
      * Returns true if the date of this day is after otherDay
      */
     public boolean isAfter(Day otherDay) {
@@ -88,10 +87,7 @@ public class Day {
     }
 
     /**
-     * Returns true if both days have the same identity and data fields.
-=======
      * Returns true if both days have the same date and data fields.
->>>>>>> Team_Repo/master
      * This defines a stronger notion of equality between two days.
      */
     @Override

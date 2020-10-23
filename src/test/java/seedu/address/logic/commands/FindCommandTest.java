@@ -70,13 +70,9 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate("2020-01-23 2020-09-12 2020-03-01");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredDayList(predicate);
-<<<<<<< HEAD
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, FIONA, ELLE), model.getFilteredDayList());
-=======
         //assertCommandSuccess(command, model, expectedMessage, expectedModel);
         //assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredDayList());
->>>>>>> Team_Repo/master
+
     }
 
     /**
