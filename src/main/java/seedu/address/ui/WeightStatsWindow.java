@@ -53,6 +53,7 @@ public class WeightStatsWindow extends UiPart<Stage> {
 
         this.dayList = dayList;
 
+        lineChart.setTitle("Daily Weight Statistics");
         initialize(dayList);
         setWeightData(dayList);
 

@@ -53,6 +53,7 @@ public class CalorieStatsWindow extends UiPart<Stage> {
 
         this.dayList = dayList;
 
+        barChart.setTitle("Daily Calorie Statistics");
         initialize(dayList);
         setCalorieData(dayList);
 
