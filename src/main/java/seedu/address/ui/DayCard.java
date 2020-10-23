@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.day.Day;
 import seedu.address.model.calorie.CalorieManager;
+import seedu.address.model.day.Day;
 
 /**
  * An UI component that displays information of a {@code Person}.
