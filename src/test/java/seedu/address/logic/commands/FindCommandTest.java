@@ -72,6 +72,7 @@ public class FindCommandTest {
         expectedModel.updateFilteredDayList(predicate);
         //assertCommandSuccess(command, model, expectedMessage, expectedModel);
         //assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredDayList());
+
     }
 
     /**
