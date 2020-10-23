@@ -43,6 +43,13 @@ public class Date {
         }
     }
 
+    /**
+     * Returns true if a date is after the other date
+     */
+    public boolean dateAfter(Date otherDate) {
+        return this.get().isAfter(otherDate.get());
+    }
+
     @Override
     public String toString() {
         return value;
