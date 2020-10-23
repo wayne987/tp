@@ -21,6 +21,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.StatsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.NameContainsKeywordsPredicate;
@@ -99,5 +100,11 @@ public class MyFitnessBuddyParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_stats() throws Exception {
+        StatsCommand command = (StatsCommand) parser.parseCommand(StatsCommand.COMMAND_WORD + " v/all");
+        assertEquals(new StatsCommand(true, true), command);
     }
 }

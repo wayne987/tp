@@ -42,4 +42,12 @@ public class StatsCommand extends Command {
             return new CommandResult(SHOWING_ALL_STATS_MESSAGE, false, false, true, false, false);
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this //short circuit if same object
+                || (other instanceof StatsCommand //instanceof handles nulls
+                && showCalorie == ((StatsCommand) other).showCalorie
+                && showWeight == ((StatsCommand) other).showWeight);
+    }
 }
