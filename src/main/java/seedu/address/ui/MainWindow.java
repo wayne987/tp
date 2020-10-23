@@ -145,7 +145,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        System.out.println(logic.getFilteredDayList());
         dayListPanel = new DayListPanel(logic.getFilteredDayList(), this);
         personListPanelPlaceholder.getChildren().add(dayListPanel.getRoot());
 
