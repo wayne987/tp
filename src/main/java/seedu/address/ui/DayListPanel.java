@@ -30,6 +30,7 @@ public class DayListPanel extends UiPart<Region> {
         personListView.setItems(dayList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
         this.mainWindow = mainWindow;
+        logger.info("DayListPanel created");
     }
 
     /**
@@ -46,7 +47,6 @@ public class DayListPanel extends UiPart<Region> {
             } else {
                 setGraphic(new DayCard(day, getIndex() + 1, mainWindow).getRoot());
             }
-            logger.info("DayCard added to DayListPanel");
         }
     }
 
