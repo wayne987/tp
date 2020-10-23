@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.day.Day;
 
 /**
- * Deletes a day identified using it's displayed index from the address book.
+ * Deletes a day identified using it's displayed index from My Fitness Buddy.
  */
 public class DeleteCommand extends Command {
 

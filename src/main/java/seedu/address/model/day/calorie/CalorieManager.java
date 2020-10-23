@@ -2,6 +2,9 @@ package seedu.address.model.day.calorie;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 
 /**
  * Represents a Calorie Manager.
@@ -12,6 +15,7 @@ public class CalorieManager {
     private List<Output> calorieOutputList;
     private int totalCalorieIn;
     private int totalCalorieOut;
+    private final Logger logger = LogsCenter.getLogger(CalorieManager.class);
 
     /**
      * Constructor for Manager that manage calorie input/output
@@ -58,12 +62,26 @@ public class CalorieManager {
         }
     }
 
-    public void addTotalCalorieOut(CalorieCount calorieCount) {
-        totalCalorieOut += Integer.parseInt(calorieCount.toString());
+    /**
+     * A method to update TotalCalorieOut
+     * @param calorieOutput amount of calorie output to be updated
+     */
+    public void addTotalCalorieOut(CalorieCount calorieOutput) {
+        int previousTotalCalorieOut = totalCalorieOut;
+        totalCalorieOut += Integer.parseInt(calorieOutput.toString());
+        logger.info("----------update total calorie output----------");
+        logger.info(previousTotalCalorieOut + "+" + calorieOutput.toString() + "=" + totalCalorieOut);
     }
 
+    /**
+     * A method to update TotalCalorieIn
+     * @param calorieInput amount of calorie Input to be updated
+     */
     public void addTotalCalorieInput(CalorieCount calorieInput) {
+        int previousTotalCalorieIn = totalCalorieIn;
         totalCalorieIn += Integer.parseInt(calorieInput.toString());
+        logger.info("----------update total calorie Input----------");
+        logger.info(previousTotalCalorieIn + "+" + calorieInput.toString() + "=" + totalCalorieIn);
     }
 
     public List<Output> getCalorieOutputList() {

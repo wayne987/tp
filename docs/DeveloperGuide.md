@@ -1,21 +1,32 @@
 ---
 layout: page
-title: Developer Guide
+title: My Fitness Buddy Developer Guide
 ---
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **1. Introduction**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+### 1.1 About the application
+
+My Fitness Buddy is a desktop application that helps users keep track of their weight and calorie input/output.
+
+### 1.2 Purpose
+
+This document specifies the architecture, implementation and design decisions for
+the application, My Fitness Buddy.
+
+### 1.3 Intended Audience
+This Developer Guide is for anyone who are interested in the implementation of My Fitness Buddy,
+as well as future developers that are interested in further developing of our application.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **2. Design**
 
-### Architecture
+### 2.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -57,7 +68,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+### 2.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -73,14 +84,14 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 2.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `MyFitnessBuddyParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a day).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -93,7 +104,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 2.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -101,37 +112,114 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 The `Model`,
 
-* stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+The model stores a `UserPref` object that represents the user’s preferences and stores My Fitness Buddy data.
+The model also exposes an unmodifiable `ObservableList<Day>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.  
 
+`MyFitnessBuddy` is made up of a `UniqueDayList` which contains a list of `Day` objects. The `Day` class contains a `Date` and uses `CalorieManager` class as a data structure to store calorie `Input` and `Output`. `CalorieManager` also keeps track and can return the total calorie input and output. 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+The `Calorie` class contains a `Time` and `CalorieCount` which `Input` and `Output` inherits from.  `Input` contains an additional `Food` while `Output` contains an addition `Exercise`.
 
-</div>
+`CalorieManager` is used by `Day` as a data structure to contain `Input` and `Output`. It also keeps track and can return the total calorie input and output. 
 
+### 2.5 Storage component
 
-### Storage component
-
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+![Structure of the Storage Component](images/StorageClassDiagramNew.png)
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save My Fitness Buddy data in json format and read it back.
 
-### Common classes
+### 2.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **3. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Remove Calorie feature
+
+#### Implementation
+
+This feature allows user to remove a certain calorie from a particular day.
+
+The mechanism utilises the RemoveCommandParser Class to parse the input into `Type of Calorie` to be remove, `Date` of the
+day in which the calorie is in and `Index` of the particular calorie to be removed in the list. 
+
+It than utilise the RemoveCommand class to execute the actual removal of the calorie. It will call the method `getDate` which uses `Date` to locate the Day class
+from the uniqueDayList in which the calorie resides in and returns it.
+
+The CalorieManager of the particular Day class will then be retrieved using the `getCalorieManager` method to make the relevant changes. 
+CalorieManager contains a list of Input Calories and a list of Output Calories.
+
+Finally,`Type of Calorie` is then used to determined which list the calorie to be removed is in. It will utilise 
+the CalorieManager method `removeCalorieOutput` or `removeCalorieInput` depending on `Type of Calorie`. The method will than use `Index`
+to remove the calorie at the specific index in the corresponding list of Calories. 
+
+![RemoveCalorieSequenceDiagram](images/RemoveCalorieSequenceDiagram.png)
+
+### View Statistics feature
+
+#### Implementation
+
+This feature allows users to view their daily calorie input, 
+calorie output and weight in the form of a line chart generated using JavaFX
+`LineChart` and `XYChart`.
+
+The mechanism utilises the `Logic#getFilteredDayList` method to get all
+daily records of calorie input/output and weight to be used
+as data points and axis of the chart. 
+
+It also utilises JavaFX `ListChangeListner` to listen for any changes
+to the list when the user adds or modifies any data, and updates the chart 
+instantly.
+
+This feature comprises the `CalorieStatsWindow` and `WeightStatsWindow` classes
+and have the same behaviour, with the only difference is the type of data (calorie input/output, weight)
+used to generate the chart. Given below is a diagram...
+
+_{Diagram to be added}_
+
+### View all calorie inputs and calorie outputs of a day feature
+
+#### Implementation
+
+This feature allows users to view each of their calorie inputs and calorie 
+outputs for a particular day when that day is double clicked. When a `DayCard` gets 
+double clicked, the `MainWindow#fillCaloriePlaceHolders` method gets called. The 
+list of calorie inputs and calorie outputs of that day would be then used to fill up 
+the JavaFX `ListView`. The `ListView` is then used to replace the placeholders on the 
+right side of the app in `MainWindow`. 
+
+{More details to be added in terms of updating the list when a new calorie is added}
+
+_{Diagram to be added}_
+
+### Creates a new Person to My Fitness Buddy
+
+#### Implementations
+
+This feature allows users to create a new `Profile`, consisting of their *Name*, *ID*, *Height* and *TargetWeight*,
+and a new `UniqueDayList` for daily calorie entries. Upon initialising My Fitness Buddy application, a default `Person` object 
+will be created and its `Profile` will be recreated by users. Once the profile has been set for `Person`, the user can now add
+daily entries to My Fitness Buddy's `UniqueDayList`. 
+
+_{Diagram to be added}_
+
+### Edits a profile in My Fitness Buddy
+
+#### Implementations
+
+This feature allows users to edit an existing `Profile`, consisting of their *Name*, *ID*, *Height* and *TargetWeight*.
+`UniqueDayList` that records the daily entries will remain unchanged.
+
+{More details to be added in terms of updating the profile in the next iteration}
+
+_{Diagram to be added}_
 
 ### \[Proposed\] Undo/redo feature
 
@@ -151,7 +239,7 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th day in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th day in My Fitness Buddy. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of My Fitness Buddy after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
@@ -159,11 +247,11 @@ Step 3. The user executes `add n/David …​` to add a new day. The `add` comma
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so My Fitness Buddy state will not be saved into the `addressBookStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the day was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the day was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores My Fitness Buddy to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -180,13 +268,13 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores My Fitness Buddy to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify My Fitness Buddy, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -220,7 +308,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **4. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -230,13 +318,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **5. Appendix: Requirements**
 
 ### Product scope
 
 **Target user profile**:
 
-* has a need to manage their calorie intake and weight loss
+* has a need to manage their calorie input and weight loss
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -284,14 +372,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
 
-**Use case: Add a calorie intake**
+**Use case: Add a calorie input**
 
 **MSS**
 
-1.  User requests to add calorie intake
-2.  User selects the date that he/she wants to add a calorie intake
-3.  User inputs the calorie intake
-4.  User sees the newly updated calorie intake of the day
+1.  User requests to add calorie input
+2.  User selects the date that he/she wants to add a calorie input
+3.  User inputs the calorie input
+4.  User sees the newly updated calorie input of the day
 
     Use case ends.
     
@@ -325,14 +413,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Calorie Input**: The amount of energy eaten from food eaten by the user
 * **Calorie Output**: The amount of energy used by the user from exercises
-* **Calorie History**: A collection of calorie intake and output for the past months
+* **Calorie History**: A collection of calorie input and output for the past months
 * **Daily Weight**: The weight of the user for a specific day
 
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **6. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 

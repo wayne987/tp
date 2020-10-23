@@ -1,7 +1,10 @@
-# User Guide
+---
+layout: page
+title: My Fitness Buddy User Guide
+---
 
 My Fitness Buddy helps Full-Time National Servicemen with PES ‘BP’ Status to track their overall change in fitness level 
-by managing their daily calorie intake/output and weight changes during Basic Military Training. 
+by managing their daily calorie input/output and weight changes during Basic Military Training. 
 
 * **Table of Contents**
     * Quick Start
@@ -58,7 +61,7 @@ Format: `edit INDEX w/WEIGHT`
 Examples:  
 `edit 1 w/65`
 
-### Adding a calorie intake : `calorie tp/in`
+### Adding a calorie input : `calorie tp/in`
 Add calorie input to the calorie tracker.
 
 Format: `calorie tp/in t/TIME f/FOOD c/CALORIE COUNT`
@@ -76,11 +79,25 @@ Examples:
 `calorie tp/out t/1200 e/running c/500`  
 `calorie tp/out t/1800 e/swimming c/250`
 
+### Creating a new profile : `create`
+Create a new profile for a Person.
 
-### Listing past entries: `view`
-Shows a list of all entries including calorie input, calorie output and daily weight.
+Format: `create n/NAME id/ID_NUM h/HEIGHT w/TARGET_WEIGHT`
 
-Format: `view`
+Examples:  
+`create n/Johnny id/1234 h/170 w/68` 
+
+### View all calorie inputs and outputs of a day: `Double click on a day`
+Shows a list of all entries of calorie inputs and calorie outputs of a particular day.
+
+Image: `image to be added`
+
+### View Statistics: `Command to be added`
+Shows all the weight and calorie statistics in a line chart.
+
+![weight_stats_chart](images/weight_stats_chart.png)
+
+Format: `cmd to be added`
 
 ### Deleting an input : `delete /in`
 Deletes the calorie input at the specified index.  
@@ -125,6 +142,7 @@ My Fitness Buddy data are saved in the hard disk automatically after any command
 
 Action | Format
 --------|------------------
+**Create profile** | `create n/NAME id/ID_NUM h/HEIGHT w/WEIGHT`
 **Add a new weight record** | `add d/DATE w/WEIGHT`
 **Edit a weight record** | `edit INDEX w/WEIGHT`
 **Add input** | `calorie tp/in t/TIME f/FOOD c/CALORIE_COUNT`
