@@ -12,10 +12,13 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Weight;
-import seedu.address.model.day.calorie.CalorieCount;
-import seedu.address.model.day.calorie.Exercise;
-import seedu.address.model.day.calorie.Food;
-import seedu.address.model.day.calorie.Time;
+import seedu.address.model.calorie.CalorieCount;
+import seedu.address.model.calorie.Exercise;
+import seedu.address.model.calorie.Food;
+import seedu.address.model.calorie.Time;
+import seedu.address.model.person.Height;
+import seedu.address.model.person.ID;
+import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -190,5 +193,44 @@ public class ParserUtil {
         } else {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
+    }
+
+    /**
+     * Parses a {@code String name} into @code Name.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Name parseName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String id} into @code ID.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static ID parseID(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedID = id.trim();
+        if (!ID.isValidId(trimmedID)) {
+            throw new ParseException(ID.MESSAGE_CONSTRAINTS);
+        }
+        return new ID(trimmedID);
+    }
+
+    /**
+     * Parses a {@code String height} into @code Height.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Height parseHeight(String height) throws ParseException {
+        requireNonNull(height);
+        String trimmedHeight = height.trim();
+        if (!Height.isValidHeight(trimmedHeight)) {
+            throw new ParseException(Height.MESSAGE_CONSTRAINTS);
+        }
+        return new Height(trimmedHeight);
     }
 }

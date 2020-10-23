@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.day.calorie.CalorieCount;
-import seedu.address.model.day.calorie.Food;
-import seedu.address.model.day.calorie.Input;
-import seedu.address.model.day.calorie.Time;
+import seedu.address.model.calorie.CalorieCount;
+import seedu.address.model.calorie.Food;
+import seedu.address.model.calorie.Input;
+import seedu.address.model.calorie.Time;
 
 
 /**
- * Jackson-friendly version of {@link seedu.address.model.day.calorie.Calorie}.
+ * Jackson-friendly version of {@link seedu.address.model.calorie.Calorie}.
  */
 class JsonAdaptedInput {
 
@@ -37,7 +37,6 @@ class JsonAdaptedInput {
         calorieCount = source.getCalorieCount().calorieCount;
         time = source.getTime().time;
         food = source.getFood().food;
-
     }
 
 
@@ -47,7 +46,6 @@ class JsonAdaptedInput {
      * @throws IllegalValueException if there were any data constraints violated in the adapted day.
      */
     public Input toModelType() throws IllegalValueException {
-
         final CalorieCount modelCalorieCount = new CalorieCount(calorieCount);
         final Time modelTime = new Time(time);
         final Food modelFood = new Food(food);

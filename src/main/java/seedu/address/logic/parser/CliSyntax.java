@@ -17,4 +17,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_FOOD = new Prefix("f/");
 
     public static final Prefix PREFIX_INDEX = new Prefix("i/");
+
+    public static final Prefix PREFIX_NAME = new Prefix("n/");
+    public static final Prefix PREFIX_ID = new Prefix("id/");
+    public static final Prefix PREFIX_HEIGHT = new Prefix("h/");
 }

@@ -13,13 +13,13 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.CalorieCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.day.calorie.Calorie;
-import seedu.address.model.day.calorie.CalorieCount;
-import seedu.address.model.day.calorie.Exercise;
-import seedu.address.model.day.calorie.Food;
-import seedu.address.model.day.calorie.Input;
-import seedu.address.model.day.calorie.Output;
-import seedu.address.model.day.calorie.Time;
+import seedu.address.model.calorie.Calorie;
+import seedu.address.model.calorie.CalorieCount;
+import seedu.address.model.calorie.Exercise;
+import seedu.address.model.calorie.Food;
+import seedu.address.model.calorie.Input;
+import seedu.address.model.calorie.Output;
+import seedu.address.model.calorie.Time;
 
 
 public class CalorieCommandParser implements Parser<CalorieCommand> {

@@ -6,22 +6,22 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.MyFitnessBuddy;
+import seedu.address.model.ReadOnlyMyFitnessBuddy;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
-import seedu.address.model.day.calorie.CalorieCount;
-import seedu.address.model.day.calorie.CalorieManager;
-import seedu.address.model.day.calorie.Exercise;
-import seedu.address.model.day.calorie.Food;
-import seedu.address.model.day.calorie.Input;
-import seedu.address.model.day.calorie.Output;
-import seedu.address.model.day.calorie.Time;
+import seedu.address.model.calorie.CalorieCount;
+import seedu.address.model.calorie.CalorieManager;
+import seedu.address.model.calorie.Exercise;
+import seedu.address.model.calorie.Food;
+import seedu.address.model.calorie.Input;
+import seedu.address.model.calorie.Output;
+import seedu.address.model.calorie.Time;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code MyFitnessBuddy} with sample data.
  */
 public class SampleDataUtil {
     public static Day[] getSampleDay() {
@@ -41,8 +41,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyMyFitnessBuddy getSampleMyFitnessBuddy() {
+        MyFitnessBuddy sampleAb = new MyFitnessBuddy();
         for (Day sampleDay : getSampleDay()) {
             sampleAb.addDay(sampleDay);
         }

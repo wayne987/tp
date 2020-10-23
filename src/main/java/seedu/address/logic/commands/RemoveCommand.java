@@ -8,15 +8,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DAYS;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.calorie.Calorie;
+import seedu.address.model.calorie.CalorieManager;
 import seedu.address.model.day.Day;
-import seedu.address.model.day.calorie.Input;
-import seedu.address.model.day.calorie.Output;
 
 
 public class RemoveCommand extends Command {
@@ -58,23 +57,18 @@ public class RemoveCommand extends Command {
         }
 
         Day editDay = model.getDay(date);
+        CalorieManager calorieManager = editDay.getCalorieManager();
 
-        if (type.equals("out")) {
-            List<Output> listOfCalorie = editDay.getCalorieManager().getCalorieOutputList();
-            if (targetIndex.getZeroBased() >= listOfCalorie.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_DAY_DISPLAYED_INDEX);
-            }
-            editDay.getCalorieManager().removeCalorieOutput(targetIndex);
-        } else {
-            List<Input> listOfCalorie = editDay.getCalorieManager().getCalorieInputList();
-            if (targetIndex.getZeroBased() >= listOfCalorie.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_DAY_DISPLAYED_INDEX);
-            }
-            editDay.getCalorieManager().removeCalorieInput(targetIndex);
+        if (targetIndex.getZeroBased() >= calorieManager.getListSize(type)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DAY_DISPLAYED_INDEX);
         }
+
+        Calorie remove = calorieManager.getCalorie(type, targetIndex);
+        editDay.getCalorieManager().removeCalorie(type, targetIndex);
+
         model.setDay(model.getDay(date), editDay);
         model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
-        return new CommandResult(String.format(MESSAGE_DELETE_CALORIE_SUCCESS, editDay));
+        return new CommandResult(String.format(MESSAGE_DELETE_CALORIE_SUCCESS, remove));
     }
 
     @Override
