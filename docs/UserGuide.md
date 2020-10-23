@@ -1,4 +1,7 @@
-# User Guide
+---
+layout: page
+title: My Fitness Buddy User Guide
+---
 
 My Fitness Buddy helps Full-Time National Servicemen with PES ‘BP’ Status to track their overall change in fitness level 
 by managing their daily calorie input/output and weight changes during Basic Military Training. 
@@ -77,6 +80,14 @@ Examples:
 `calorie tp/out t/1200 e/running c/500`  
 `calorie tp/out t/1800 e/swimming c/250`
 
+### Creating a new profile : `create`
+Create a new profile for a Person.
+
+Format: `create n/NAME id/ID_NUM h/HEIGHT w/TARGET_WEIGHT`
+
+Examples:  
+`create n/Johnny id/1234 h/170 w/68` 
+
 ### View all calorie inputs and outputs of a day: `Double click on a day`
 Shows a list of all entries of calorie inputs and calorie outputs of a particular day.
 
@@ -136,6 +147,7 @@ Action | Format
 **Edit a weight record** | `edit INDEX w/WEIGHT`
 **Add input** | `calorie tp/in t/TIME f/FOOD c/CALORIE_COUNT`
 **Add output** | `calorie tp/out t/TIME d/DURATION (MINUTES) c/CALORIE_BURNT`
+**Create profile** | `create n/NAME id/ID_NUM h/HEIGHT w/WEIGHT`
 **Delete input** | `delete /in i/INDEX`
 **Delete output** | `delete /out i/INDEX`
 **Exit** | `exit`

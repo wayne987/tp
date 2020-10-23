@@ -45,21 +45,6 @@ class JsonAdaptedDay {
         calorieManager = new JsonAdaptedCalorieManager(inputList, outputList);
     }
 
-    /*
-    @JsonCreator
-    public JsonAdaptedDay(@JsonProperty("date") String date, @JsonProperty("weight") String weight,
-                          @JsonProperty("email") String email, @JsonProperty("address") String address,
-                          @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.date = date;
-        this.weight = weight;
-        this.email = email;
-        this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
-    }
-*/
-
     /**
      * Converts a given {@code Date} into this class for Jackson use.
      */
