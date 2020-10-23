@@ -8,6 +8,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.model.day.calorie.Output;
 
+/**
+ * Panel containing a list of Outputs.
+ */
 public class CalorieOutputListPanel extends UiPart<Region> {
 
     private static final String FXML = "CalorieOutputListPanel.fxml";
@@ -20,6 +23,7 @@ public class CalorieOutputListPanel extends UiPart<Region> {
      */
     public CalorieOutputListPanel(ObservableList<Output> outputList) {
         super(FXML);
+        assert outputList != null;
         calorieOutputListView.setItems(outputList);
         calorieOutputListView.setCellFactory(listView -> new CalorieOutputListViewCell());
     }

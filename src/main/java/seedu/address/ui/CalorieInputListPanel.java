@@ -9,6 +9,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.model.day.calorie.Input;
 
+/**
+ * Panel containing a list of Inputs.
+ */
 public class CalorieInputListPanel extends UiPart<Region> {
 
     private static final String FXML = "CalorieInputListPanel.fxml";
@@ -23,6 +26,7 @@ public class CalorieInputListPanel extends UiPart<Region> {
      */
     public CalorieInputListPanel(ObservableList<Input> inputList) {
         super(FXML);
+        assert inputList != null;
         calorieInputListView.setItems(inputList);
         calorieInputListView.setCellFactory(listView -> new CalorieInputListViewCell());
         this.inputList = inputList;

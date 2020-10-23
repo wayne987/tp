@@ -7,6 +7,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.day.calorie.Output;
 
+/**
+ * An UI component that displays information of a {@code Output}.
+ */
 public class CalorieOutputCard extends UiPart<Region> {
 
     private static final String FXML = "CalorieOutputListCard.fxml";

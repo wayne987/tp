@@ -7,6 +7,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.day.calorie.Input;
 
+/**
+ * An UI component that displays information of a {@code Input}.
+ */
 public class CalorieInputCard extends UiPart<Region> {
 
     private static final String FXML = "CalorieInputListCard.fxml";

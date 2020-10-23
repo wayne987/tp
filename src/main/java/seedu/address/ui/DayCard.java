@@ -8,7 +8,7 @@ import seedu.address.model.day.Day;
 import seedu.address.model.day.calorie.CalorieManager;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Day}.
  */
 public class DayCard extends UiPart<Region> {
 
@@ -52,9 +52,16 @@ public class DayCard extends UiPart<Region> {
         totalCalorieIn.setText("Total Calories In: " + cm.getTotalInputCalorie() + " calories");
         totalCalorieOut.setText("Total Calories Out: " + cm.getTotalOutputCalorie() + " calories");
         this.mainWindow = mainWindow;
+
+        // Fills the calorie placeholders when a DayCard is double clicked
         cardPane.setOnMouseClicked(x -> displayCalories(day));
     }
 
+    /**
+     * Displays the list of calorie inputs and outputs.
+     *
+     * @param day
+     */
     private void displayCalories(Day day) {
         this.mainWindow.fillCaloriePlaceholders(day);
     }
