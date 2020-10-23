@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -86,8 +87,10 @@ public class UniqueDayList implements Iterable<Day> {
         if (!target.isSameDay(editedDay) && contains(editedDay)) {
             throw new DuplicateDayException();
         }
+
         internalList.remove(target);
         this.add(editedDay);
+
     }
 
     /**

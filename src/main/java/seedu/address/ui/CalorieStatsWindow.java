@@ -7,8 +7,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -25,7 +25,7 @@ public class CalorieStatsWindow extends UiPart<Stage> {
     private ObservableList<Day> dayList;
 
     @FXML
-    private LineChart<String, Integer> lineChart;
+    private BarChart<String, Integer> barChart;
 
     @FXML
     private CategoryAxis xAxis;
@@ -100,8 +100,8 @@ public class CalorieStatsWindow extends UiPart<Stage> {
                     .add(new XYChart.Data<>(dates.get(i), dayList.get(i).getCalorieManager().getTotalOutputCalorie()));
         }
 
-        lineChart.getData().add(calorieIn);
-        lineChart.getData().add(calorieOut);
+        barChart.getData().add(calorieIn);
+        barChart.getData().add(calorieOut);
     }
 
     /**
@@ -109,8 +109,8 @@ public class CalorieStatsWindow extends UiPart<Stage> {
      */
     private void updateChart() {
         //clear all data points and xAxis
-        lineChart.getData().clear();
-        assert lineChart.getData().isEmpty();
+        barChart.getData().clear();
+        assert barChart.getData().isEmpty();
 
         dates.clear();
         assert dates.isEmpty();
