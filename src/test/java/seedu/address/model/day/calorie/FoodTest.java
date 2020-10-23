@@ -20,9 +20,6 @@ public class FoodTest {
 
     @Test
     public void isValidFood() {
-        // null Food
-        assertThrows(NullPointerException.class, () -> Food.isValidFood(null));
-
         // invalid Food
         assertFalse(Food.isValidFood("")); // empty string
         assertFalse(Food.isValidFood(" ")); // spaces only

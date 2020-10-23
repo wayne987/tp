@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.day.Day;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of days.
  */
 public class DayListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
@@ -30,7 +30,7 @@ public class DayListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Day} using a {@code DayCard}.
      */
     class PersonListViewCell extends ListCell<Day> {
         @Override
@@ -43,6 +43,7 @@ public class DayListPanel extends UiPart<Region> {
             } else {
                 setGraphic(new DayCard(day, getIndex() + 1).getRoot());
             }
+            logger.info("DayCard added to DayListPanel");
         }
     }
 

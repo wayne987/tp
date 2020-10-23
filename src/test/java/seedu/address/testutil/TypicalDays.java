@@ -11,8 +11,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.day.Day;
+import seedu.address.model.day.Weight;
+import seedu.address.model.person.Height;
+import seedu.address.model.person.ID;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Profile;
 
 /**
  * A utility class containing a list of {@code Day} objects to be used in tests.
@@ -46,16 +52,22 @@ public class TypicalDays {
     public static final Day BOB = new DayBuilder().withDate(VALID_DATE_2).withWeight(VALID_WEIGHT_2)
            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
+    public static final Profile JON = new Profile(new Name("Jon"), new ID("1111"),
+            new Height("170"), new Weight("50"));
+    public static final Person JONNY = new PersonBuilder().withProfile(JON).build();
+    public static final Profile DEFAULT_PROFILE =
+            new Profile(new Name("Default"), new ID("0000"), new Height("170"), new Weight("50"));
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalDays() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical days.
+     * Returns an {@code MyFitnessBuddy} with all the typical days.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static MyFitnessBuddy getTypicalMyFitnessBuddy() {
+        MyFitnessBuddy ab = new MyFitnessBuddy();
+        ab.setPerson(new Person(DEFAULT_PROFILE));
         for (Day day : getTypicalDays()) {
             ab.addDay(day);
         }

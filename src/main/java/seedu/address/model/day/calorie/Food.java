@@ -23,7 +23,13 @@ public class Food {
         this.food = food;
     }
 
+    /**
+     * Checks if input is valid
+     *
+     * @param test
+     */
     public static boolean isValidFood(String test) {
+        assert test != null : "test must be not be empty";
         return test.matches(VALIDATION_REGEX);
     }
 
