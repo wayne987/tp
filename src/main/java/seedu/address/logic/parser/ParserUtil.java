@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,12 +10,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.calorie.CalorieCount;
+import seedu.address.model.calorie.Exercise;
+import seedu.address.model.calorie.Food;
+import seedu.address.model.calorie.Time;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Weight;
-import seedu.address.model.day.calorie.CalorieCount;
-import seedu.address.model.day.calorie.Exercise;
-import seedu.address.model.day.calorie.Food;
-import seedu.address.model.day.calorie.Time;
 import seedu.address.model.person.Height;
 import seedu.address.model.person.ID;
 import seedu.address.model.person.Name;
@@ -162,6 +163,38 @@ public class ParserUtil {
         }
         return new Food(trimmedFood);
     }
+
+    /**
+     * Check if {@code String type} is of correct type.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static String parseType(String type) throws ParseException {
+        requireNonNull(type);
+        String trimmedType = type.trim();
+        switch (trimmedType) {
+        case "out":
+            return "out";
+        case "in":
+            return "in";
+        default:
+            throw new ParseException("type can only be either in/out");
+        }
+    }
+
+    /**
+     * Parse {@code String date} into LocalDate
+     */
+    public static LocalDate parseLocalDate(String date) throws ParseException {
+        requireNonNull(date);
+        String toCheck = date.trim();
+
+        if (Date.isValidDate(toCheck)) {
+            return LocalDate.parse(toCheck);
+        } else {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+    }
+
     /**
      * Parses a {@code String name} into @code Name.
      * Leading and trailing whitespaces will be trimmed.

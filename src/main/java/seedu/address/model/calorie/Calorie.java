@@ -1,4 +1,4 @@
-package seedu.address.model.day.calorie;
+package seedu.address.model.calorie;
 
 public abstract class Calorie {
     // Identity fields

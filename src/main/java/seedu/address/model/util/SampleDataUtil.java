@@ -10,16 +10,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.ReadOnlyMyFitnessBuddy;
+import seedu.address.model.calorie.CalorieCount;
+import seedu.address.model.calorie.CalorieManager;
+import seedu.address.model.calorie.Exercise;
+import seedu.address.model.calorie.Food;
+import seedu.address.model.calorie.Input;
+import seedu.address.model.calorie.Output;
+import seedu.address.model.calorie.Time;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
-import seedu.address.model.day.calorie.CalorieCount;
-import seedu.address.model.day.calorie.CalorieManager;
-import seedu.address.model.day.calorie.Exercise;
-import seedu.address.model.day.calorie.Food;
-import seedu.address.model.day.calorie.Input;
-import seedu.address.model.day.calorie.Output;
-import seedu.address.model.day.calorie.Time;
 import seedu.address.model.tag.Tag;
 
 /**

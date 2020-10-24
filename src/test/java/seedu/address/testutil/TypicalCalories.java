@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.day.calorie.Input;
-import seedu.address.model.day.calorie.Output;
+import seedu.address.model.calorie.Input;
+import seedu.address.model.calorie.Output;
 
 public class TypicalCalories {
 

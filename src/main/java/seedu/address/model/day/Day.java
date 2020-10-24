@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.day.calorie.CalorieManager;
+import seedu.address.model.calorie.CalorieManager;
 import seedu.address.model.tag.Tag;
 
 /**

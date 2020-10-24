@@ -9,16 +9,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.day.calorie.CalorieManager;
-import seedu.address.model.day.calorie.Input;
-import seedu.address.model.day.calorie.Output;
+import seedu.address.model.calorie.CalorieManager;
+import seedu.address.model.calorie.Input;
+import seedu.address.model.calorie.Output;
 
 
 
 
 
 /**
- * Jackson-friendly version of {@link seedu.address.model.day.calorie.Calorie}.
+ * Jackson-friendly version of {@link seedu.address.model.calorie.Calorie}.
  */
 class JsonAdaptedCalorieManager {
 

@@ -16,6 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.calorie.CalorieManager;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
@@ -85,8 +86,9 @@ public class EditCommand extends Command {
         Date updatedDate = editDayDescriptor.getDate().orElse(dayToEdit.getDate());
         Weight updatedWeight = editDayDescriptor.getWeight().orElse(dayToEdit.getWeight());
         Set<Tag> updatedTags = editDayDescriptor.getTags().orElse(dayToEdit.getTags());
+        CalorieManager calorieManager = dayToEdit.getCalorieManager();
 
-        return new Day(updatedDate, updatedWeight, updatedTags);
+        return new Day(updatedDate, updatedWeight, updatedTags, calorieManager);
     }
 
     @Override

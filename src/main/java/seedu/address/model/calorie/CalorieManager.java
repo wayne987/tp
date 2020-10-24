@@ -1,4 +1,4 @@
-package seedu.address.model.day.calorie;
+package seedu.address.model.calorie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +7,10 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 
 /**
- * Represents a Calorie Manager.
+ * Stores and handles operation related to calories
  */
 public class CalorieManager {
 
@@ -86,6 +87,22 @@ public class CalorieManager {
         logger.info(previousTotalCalorieIn + "+" + calorieInput.toString() + "=" + totalCalorieIn);
     }
 
+    /**
+     * delete calorie output from the calorieOutputList and update the total calorie output.
+     */
+    public void deleteTotalCalorieOutput(int index) {
+        CalorieCount calorieCount = getCalorieOutputList().get(index).getCalorieCount();
+        totalCalorieOut -= Integer.parseInt(calorieCount.toString());
+    }
+
+    /**
+     * delete calorie input from the calorieInputList and update the total calorie input.
+     */
+    public void deleteTotalCalorieInput(int index) {
+        CalorieCount calorieCount = getCalorieInputList().get(index).getCalorieCount();
+        totalCalorieIn -= Integer.parseInt(calorieCount.toString());
+    }
+
     public ObservableList<Output> getCalorieOutputList() {
         return calorieOutputList;
     }
@@ -93,7 +110,6 @@ public class CalorieManager {
     public ObservableList<Input> getCalorieInputList() {
         return calorieInputList;
     }
-
 
     /**
      * add a calorie input into an already sorted calorieInputList and update the total calorie input
@@ -129,5 +145,46 @@ public class CalorieManager {
             calorieOutputList.add(0, calorieOutput);
         }
         addTotalCalorieOut(calorieOutput.getCalorieCount());
+    }
+
+    /**
+     * removes a calorie from the List and update the total calorie input
+     */
+    public void removeCalorie(String type, Index targetIndex) {
+        int index = targetIndex.getZeroBased();
+        if (type.equals("in")) {
+            deleteTotalCalorieInput(index);
+            calorieInputList.remove(index);
+        } else {
+            deleteTotalCalorieOutput(index);
+            calorieOutputList.remove(index);
+        }
+    }
+    /**
+     * Get size of list depending on type
+     * @param type of calorie
+     */
+    public int getListSize(String type) {
+        assert type.equals("in") | type.equals("out") : "type can only be in/out";
+
+        if (type.equals("in")) {
+            return calorieInputList.size();
+        } else {
+            return calorieOutputList.size();
+        }
+    }
+
+    /**
+     * Get a calorie of a certain type and index
+     * @param type
+     * @param index
+     */
+    public Calorie getCalorie(String type, Index index) {
+        assert type.equals("in") | type.equals("out") : "type can only be in/out";
+        if (type.equals("in")) {
+            return calorieInputList.get(index.getZeroBased());
+        } else {
+            return calorieOutputList.get(index.getZeroBased());
+        }
     }
 }
