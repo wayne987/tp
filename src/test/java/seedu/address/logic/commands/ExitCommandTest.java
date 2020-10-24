@@ -18,4 +18,11 @@ public class ExitCommandTest {
                 new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false, false, false);
         assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel);
     }
+
+    @Test
+    public void execute_exitOverloadedConstructor_success() {
+        CommandResult expectedCommandResult =
+                new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
+        assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel);
+    }
 }
