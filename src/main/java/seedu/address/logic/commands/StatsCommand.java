@@ -35,11 +35,11 @@ public class StatsCommand extends Command {
     @Override
     public CommandResult execute (Model model) {
         if (showCalorie && !showWeight) { /* Show calorie statistics only*/
-            return new CommandResult(SHOWING_CALORIE_STATS_MESSAGE, false, false, false, true, false);
+            return new CommandResult(SHOWING_CALORIE_STATS_MESSAGE, false, true, false);
         } else if (!showCalorie && showWeight) { /* Show weight statistics only*/
-            return new CommandResult(SHOWING_WEIGHT_STATS_MESSAGE, false, false, false, false, true);
+            return new CommandResult(SHOWING_WEIGHT_STATS_MESSAGE, false, false, true);
         } else { /* Show both statistics */
-            return new CommandResult(SHOWING_ALL_STATS_MESSAGE, false, false, true, false, false);
+            return new CommandResult(SHOWING_ALL_STATS_MESSAGE, true, false, false);
         }
     }
 
