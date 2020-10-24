@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
+import seedu.address.model.day.calorie.CalorieManager;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -85,8 +86,9 @@ public class EditCommand extends Command {
         Date updatedDate = editDayDescriptor.getDate().orElse(dayToEdit.getDate());
         Weight updatedWeight = editDayDescriptor.getWeight().orElse(dayToEdit.getWeight());
         Set<Tag> updatedTags = editDayDescriptor.getTags().orElse(dayToEdit.getTags());
+        CalorieManager calorieManager = dayToEdit.getCalorieManager();
 
-        return new Day(updatedDate, updatedWeight, updatedTags);
+        return new Day(updatedDate, updatedWeight, updatedTags, calorieManager);
     }
 
     @Override
