@@ -3,10 +3,10 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.calorie.CalorieManager;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
-import seedu.address.model.day.calorie.CalorieManager;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 

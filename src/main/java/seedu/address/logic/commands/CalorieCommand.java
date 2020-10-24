@@ -12,13 +12,15 @@ import java.time.LocalDate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.calorie.Calorie;
+import seedu.address.model.calorie.Input;
+import seedu.address.model.calorie.Output;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
-import seedu.address.model.day.calorie.Calorie;
-import seedu.address.model.day.calorie.Input;
-import seedu.address.model.day.calorie.Output;
 
-
+/**
+ * Add a certain calorie input/output for a particular day
+ */
 public class CalorieCommand extends Command {
 
     public static final String COMMAND_WORD = "calorie";
