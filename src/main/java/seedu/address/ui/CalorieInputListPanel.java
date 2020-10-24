@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+
 import javafx.fxml.FXML;
 
 import javafx.collections.ObservableList;
@@ -18,12 +20,20 @@ public class CalorieInputListPanel extends UiPart<Region> {
     @FXML
     private ListView<Input> calorieInputListView;
 
+    public CalorieInputListPanel() {
+        super(FXML);
+    }
     /**
      * Creates a {@code CalorieInputListPanel} with the given {@code ObservableList}.
      */
     public CalorieInputListPanel(ObservableList<Input> inputList) {
         super(FXML);
         assert inputList != null;
+        calorieInputListView.setItems(inputList);
+        calorieInputListView.setCellFactory(listView -> new CalorieInputListViewCell());
+    }
+
+    public void update(ObservableList<Input> inputList) {
         calorieInputListView.setItems(inputList);
         calorieInputListView.setCellFactory(listView -> new CalorieInputListViewCell());
     }

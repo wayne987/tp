@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import seedu.address.model.day.calorie.Calorie;
 import seedu.address.model.day.calorie.Output;
 
 /**
@@ -18,12 +19,20 @@ public class CalorieOutputListPanel extends UiPart<Region> {
     @FXML
     private ListView<Output> calorieOutputListView;
 
+    public CalorieOutputListPanel() {
+        super(FXML);
+    }
     /**
      * Creates a {@code CalorieOutputListPanel} with the given {@code ObservableList}.
      */
     public CalorieOutputListPanel(ObservableList<Output> outputList) {
         super(FXML);
         assert outputList != null;
+        calorieOutputListView.setItems(outputList);
+        calorieOutputListView.setCellFactory(listView -> new CalorieOutputListViewCell());
+    }
+
+    public void update(ObservableList<Output> outputList) {
         calorieOutputListView.setItems(outputList);
         calorieOutputListView.setCellFactory(listView -> new CalorieOutputListViewCell());
     }

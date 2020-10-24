@@ -18,7 +18,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.day.Day;
 import seedu.address.model.day.calorie.Input;
 import seedu.address.model.day.calorie.Output;
 
@@ -131,14 +130,12 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
-    void fillCaloriePlaceholders(Day day) {
-        ObservableList<Input> oListInput = FXCollections.observableArrayList(day.getCalorieManager().getCalorieInputList());
-        calorieInputListPanel = new CalorieInputListPanel(oListInput);
-        calorieInputListPanelPlaceholder.getChildren().add(calorieInputListPanel.getRoot());
+    void fillCaloriePlaceholders(int index) {
+        ObservableList<Input> oListInput = FXCollections.observableArrayList(logic.getFilteredDayList().get(index).getCalorieManager().getCalorieInputList());
+        calorieInputListPanel.update(oListInput);
 
-        ObservableList<Output> oListOutput = FXCollections.observableArrayList(day.getCalorieManager().getCalorieOutputList());
-        calorieOutputListPanel = new CalorieOutputListPanel(oListOutput);
-        calorieOutputListPanelPlaceholder.getChildren().add(calorieOutputListPanel.getRoot());
+        ObservableList<Output> oListOutput = FXCollections.observableArrayList(logic.getFilteredDayList().get(index).getCalorieManager().getCalorieOutputList());
+        calorieOutputListPanel.update(oListOutput);
     }
 
     /**
@@ -147,6 +144,11 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         dayListPanel = new DayListPanel(logic.getFilteredDayList(), this);
         personListPanelPlaceholder.getChildren().add(dayListPanel.getRoot());
+
+        calorieInputListPanel = new CalorieInputListPanel();
+        calorieInputListPanelPlaceholder.getChildren().add(calorieInputListPanel.getRoot());
+        calorieOutputListPanel = new CalorieOutputListPanel();
+        calorieOutputListPanelPlaceholder.getChildren().add(calorieOutputListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

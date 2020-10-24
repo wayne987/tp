@@ -54,16 +54,16 @@ public class DayCard extends UiPart<Region> {
         this.mainWindow = mainWindow;
 
         // Fills the calorie placeholders when a DayCard is double clicked
-        cardPane.setOnMouseClicked(x -> displayCalories(day));
+        cardPane.setOnMouseClicked(x -> displayCalories(displayedIndex - 1));
     }
 
     /**
      * Displays the list of calorie inputs and outputs.
      *
-     * @param day
+     * @param displayedIndex
      */
-    private void displayCalories(Day day) {
-        this.mainWindow.fillCaloriePlaceholders(day);
+    private void displayCalories(int displayedIndex) {
+        this.mainWindow.fillCaloriePlaceholders(displayedIndex);
     }
 
     @Override
