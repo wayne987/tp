@@ -25,6 +25,12 @@ import seedu.address.model.calorie.Time;
  * Parses input arguments and creates a new CalorieCommand object
  */
 public class CalorieCommandParser implements Parser<CalorieCommand> {
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the CalorieCommand
+     * and returns a CalorieCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     @Override
     public CalorieCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
