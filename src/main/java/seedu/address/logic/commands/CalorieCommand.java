@@ -18,7 +18,9 @@ import seedu.address.model.calorie.Output;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 
-
+/**
+ * Add a certain calorie input/output for a particular day
+ */
 public class CalorieCommand extends Command {
 
     public static final String COMMAND_WORD = "calorie";

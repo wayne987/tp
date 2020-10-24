@@ -7,6 +7,9 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 
+/**
+ * Stores and handles operation related to calories
+ */
 public class CalorieManager {
 
     private List<Input> calorieInputList;

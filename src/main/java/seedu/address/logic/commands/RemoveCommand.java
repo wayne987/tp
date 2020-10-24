@@ -17,7 +17,9 @@ import seedu.address.model.calorie.Calorie;
 import seedu.address.model.calorie.CalorieManager;
 import seedu.address.model.day.Day;
 
-
+/**
+ * Removes a certain calorie input/output from a particular day
+ */
 public class RemoveCommand extends Command {
 
     public static final String COMMAND_WORD = "remove";
