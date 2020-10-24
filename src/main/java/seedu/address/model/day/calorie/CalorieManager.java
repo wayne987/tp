@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 
 /**
@@ -11,8 +13,8 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class CalorieManager {
 
-    private List<Input> calorieInputList;
-    private List<Output> calorieOutputList;
+    private ObservableList<Input> calorieInputList;
+    private ObservableList<Output> calorieOutputList;
     private int totalCalorieIn;
     private int totalCalorieOut;
     private final Logger logger = LogsCenter.getLogger(CalorieManager.class);
@@ -21,14 +23,14 @@ public class CalorieManager {
      * Constructor for Manager that manage calorie input/output
      */
     public CalorieManager() {
-        this.calorieOutputList = new ArrayList<>();
-        this.calorieInputList = new ArrayList<>();
+        this.calorieOutputList = FXCollections.observableArrayList();
+        this.calorieInputList = FXCollections.observableArrayList();
     }
 
     /**
      * Constructor for Manager that manage calorie input/output
      */
-    public CalorieManager(List<Input> inputList, List<Output> outputList) {
+    public CalorieManager(ObservableList<Input> inputList, ObservableList<Output> outputList) {
         this.calorieInputList = inputList;
         this.calorieOutputList = outputList;
         updateTotalCalorieCounts(inputList, outputList);
@@ -84,11 +86,11 @@ public class CalorieManager {
         logger.info(previousTotalCalorieIn + "+" + calorieInput.toString() + "=" + totalCalorieIn);
     }
 
-    public List<Output> getCalorieOutputList() {
+    public ObservableList<Output> getCalorieOutputList() {
         return calorieOutputList;
     }
 
-    public List<Input> getCalorieInputList() {
+    public ObservableList<Input> getCalorieInputList() {
         return calorieInputList;
     }
 

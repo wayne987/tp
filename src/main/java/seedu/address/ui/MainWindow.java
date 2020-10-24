@@ -131,10 +131,10 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void fillCaloriePlaceholders(int index) {
-        ObservableList<Input> oListInput = FXCollections.observableArrayList(logic.getFilteredDayList().get(index).getCalorieManager().getCalorieInputList());
+        ObservableList<Input> oListInput = logic.getFilteredDayList().get(index).getCalorieManager().getCalorieInputList();
         calorieInputListPanel.update(oListInput);
 
-        ObservableList<Output> oListOutput = FXCollections.observableArrayList(logic.getFilteredDayList().get(index).getCalorieManager().getCalorieOutputList());
+        ObservableList<Output> oListOutput = logic.getFilteredDayList().get(index).getCalorieManager().getCalorieOutputList();
         calorieOutputListPanel.update(oListOutput);
     }
 

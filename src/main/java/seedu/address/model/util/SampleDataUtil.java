@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.ReadOnlyMyFitnessBuddy;
 import seedu.address.model.day.Date;
@@ -27,9 +29,9 @@ public class SampleDataUtil {
     public static Day[] getSampleDay() {
         List<Input> emptyInput = new ArrayList<>();
         List<Output> emptyOutput = new ArrayList<>();
-        List<Input> sampleInput = new ArrayList<>();
+        ObservableList<Input> sampleInput = FXCollections.observableArrayList();
         sampleInput.add(new Input(new Time("1230"), new Food("Laksa"), new CalorieCount("800")));
-        List<Output> sampleOutput = new ArrayList<>();
+        ObservableList<Output> sampleOutput = FXCollections.observableArrayList();
         sampleOutput.add(new Output(new Time("1800"), new Exercise("Run"), new CalorieCount("200")));
         CalorieManager cm = new CalorieManager(sampleInput, sampleOutput);
 
