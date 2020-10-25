@@ -133,6 +133,11 @@ Format: `delete /out i/INDEX`
 Examples:  
 `delete /out 2`
 
+### Clearing all entries : `clear`
+Clears all entries in MyFitnessBuddy.
+
+Format: `clear`
+
 
 ### Exiting the program : `exit`
 Exits the program.
@@ -165,6 +170,8 @@ Action | Format
 **Add output** | `calorie tp/out t/TIME d/DURATION (MINUTES) c/CALORIE_BURNT`
 **Delete input** | `delete /in i/INDEX`
 **Delete output** | `delete /out i/INDEX`
-**Exit** | `exit`
 **View entries** | `view`
+**Clear entries** | `clear`
 **Help** | `help`
+**Exit** | `exit`
+
