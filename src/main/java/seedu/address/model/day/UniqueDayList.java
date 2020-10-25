@@ -42,6 +42,7 @@ public class UniqueDayList implements Iterable<Day> {
      * Returns true if the list contains the a day with an LocalDate same as toCheck.
      */
     public boolean contains(LocalDate toCheck) {
+        assert toCheck != null : "toCheckDate cannot be null";
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(x->x.getDate().get().equals(toCheck));
     }
@@ -49,15 +50,25 @@ public class UniqueDayList implements Iterable<Day> {
     /**
      * Adds a day to the list.
      * The day must not already exist in the list.
+     * Adds it according to the order of dates.
      */
     public void add(Day toAdd) {
         requireNonNull(toAdd);
-        /*
         if (contains(toAdd)) {
             throw new DuplicateDayException();
+        } else {
+            boolean isAdded = false;
+            for (int index = internalList.size() - 1; index >= 0; index -= 1) {
+                if (toAdd.isAfter(internalList.get(index))) {
+                    internalList.add(index + 1, toAdd);
+                    isAdded = true;
+                    break;
+                }
+            }
+            if (isAdded == false) {
+                internalList.add(0, toAdd);
+            }
         }
-        */
-        internalList.add(toAdd);
     }
 
     /**
@@ -72,12 +83,13 @@ public class UniqueDayList implements Iterable<Day> {
         if (index == -1) {
             throw new DayNotFoundException();
         }
-        /*
         if (!target.isSameDay(editedDay) && contains(editedDay)) {
             throw new DuplicateDayException();
         }
-        */
-        internalList.set(index, editedDay);
+
+        internalList.remove(target);
+        this.add(editedDay);
+
     }
 
     /**
@@ -92,6 +104,7 @@ public class UniqueDayList implements Iterable<Day> {
     }
 
     public Day getDate(LocalDate date) {
+        assert date != null : "getDate cannot be null";
         requireNonNull(date);
         return internalList.stream().filter(x->x.getDate().get().equals(date)).reduce((x, y)->x).get();
     }

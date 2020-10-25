@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.day.calorie.CalorieCount;
-import seedu.address.model.day.calorie.Exercise;
-import seedu.address.model.day.calorie.Output;
-import seedu.address.model.day.calorie.Time;
+import seedu.address.model.calorie.CalorieCount;
+import seedu.address.model.calorie.Exercise;
+import seedu.address.model.calorie.Output;
+import seedu.address.model.calorie.Time;
 
 
 /**
- * Jackson-friendly version of {@link seedu.address.model.day.calorie.Calorie}.
+ * Jackson-friendly version of {@link seedu.address.model.calorie.Calorie}.
  */
 class JsonAdaptedOutput {
 
@@ -37,7 +37,6 @@ class JsonAdaptedOutput {
         calorieCount = source.getCalorieCount().calorieCount;
         time = source.getTime().time;
         exercise = source.getExercise().exercise;
-
     }
 
 

@@ -16,13 +16,14 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.calorie.CalorieManager;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing day in the address book.
+ * Edits the details of an existing day in My Fitness Buddy.
  */
 public class EditCommand extends Command {
 
@@ -38,14 +39,14 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_DAY_SUCCESS = "Edited Day: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_DAY = "This day already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_DAY = "This day already exists in My Fitness Buddy.";
 
     private final Index index;
     private final EditDayDescriptor editDayDescriptor;
 
     /**
-     * @param index of the day in the filtered day list to edit
-     * @param editDayDescriptor details to edit the day with
+     * @param index of the day in the filtered day list to edit.
+     * @param editDayDescriptor details to edit the day with.
      */
     public EditCommand(Index index, EditDayDescriptor editDayDescriptor) {
         requireNonNull(index);
@@ -58,8 +59,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Day> lastShownList = model.getFilteredDayList();
-
+        List<Day> lastShownList = model.getMyFitnessBuddy().getDayList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_DAY_DISPLAYED_INDEX);
         }
@@ -86,8 +86,9 @@ public class EditCommand extends Command {
         Date updatedDate = editDayDescriptor.getDate().orElse(dayToEdit.getDate());
         Weight updatedWeight = editDayDescriptor.getWeight().orElse(dayToEdit.getWeight());
         Set<Tag> updatedTags = editDayDescriptor.getTags().orElse(dayToEdit.getTags());
+        CalorieManager calorieManager = dayToEdit.getCalorieManager();
 
-        return new Day(updatedDate, updatedWeight, updatedTags);
+        return new Day(updatedDate, updatedWeight, updatedTags, calorieManager);
     }
 
     @Override

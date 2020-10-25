@@ -34,6 +34,8 @@ public class MainWindow extends UiPart<Stage> {
     private DayListPanel dayListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private WeightStatsWindow weightStatsWindow;
+    private CalorieStatsWindow calorieStatsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +51,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private MenuItem weightStatsMenuItem;
+
+    @FXML
+    private MenuItem calorieStatsMenuItem;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +74,10 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        weightStatsWindow = new WeightStatsWindow(logic.getFilteredDayList());
+
+        calorieStatsWindow = new CalorieStatsWindow(logic.getFilteredDayList());
     }
 
     public Stage getPrimaryStage() {
@@ -116,7 +128,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMyFitnessBuddyFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -147,6 +159,30 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the weight stats window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleWeightStats() {
+        if (!weightStatsWindow.isShowing()) {
+            weightStatsWindow.show();
+        } else {
+            weightStatsWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the calorie stats window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleCalorieStats() {
+        if (!calorieStatsWindow.isShowing()) {
+            calorieStatsWindow.show();
+        } else {
+            calorieStatsWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -160,6 +196,8 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        weightStatsWindow.hide();
+        calorieStatsWindow.hide();
         primaryStage.hide();
     }
 
@@ -184,6 +222,19 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowAllStats()) {
+                handleCalorieStats();
+                handleWeightStats();
+            }
+
+            if (commandResult.isShowCalorieStats()) {
+                handleCalorieStats();
+            }
+
+            if (commandResult.isShowWeightStats()) {
+                handleWeightStats();
             }
 
             return commandResult;
