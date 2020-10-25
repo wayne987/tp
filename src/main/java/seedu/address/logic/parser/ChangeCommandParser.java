@@ -28,14 +28,14 @@ public class ChangeCommandParser {
                 ArgumentTokenizer.tokenize(args, PREFIX_CALORIE_TYPE, PREFIX_DATE, PREFIX_FOOD,
                         PREFIX_EXERCISE, PREFIX_DATE, PREFIX_TIME, PREFIX_CALORIE_COUNT, PREFIX_INDEX);
 
-        if (!argMultimap.getPreamble().isEmpty() & !argMultimap.getValue(PREFIX_DATE).isPresent()) {
+        if (argMultimap.getPreamble().isEmpty() & !argMultimap.getValue(PREFIX_DATE).isPresent()) {
             throw new ParseException("Either input a date or an index to specify which "
                     + "date the calorie to be edited is present but not both");
         }
 
         Index index = null;
 
-        if (argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.getPreamble().isEmpty()) {
             try {
                 index = ParserUtil.parseIndex(argMultimap.getPreamble());
             } catch (ParseException pe) {
@@ -44,7 +44,9 @@ public class ChangeCommandParser {
         }
 
         LocalDate date = null;
-        date = ParserUtil.parseLocalDate(argMultimap.getValue(PREFIX_DATE).get());
+        if (index == null) {
+            date = ParserUtil.parseLocalDate(argMultimap.getValue(PREFIX_DATE).get());
+        }
 
         ChangeCommand.ChangeCalorieDescriptor changeCalorieDescriptor = new ChangeCommand.ChangeCalorieDescriptor();
 
@@ -70,6 +72,7 @@ public class ChangeCommandParser {
         if (argMultimap.getValue(PREFIX_CALORIE_COUNT).isPresent()) {
             changeCalorieDescriptor
                     .setCalorieCount(ParserUtil.parseCalorieCount(argMultimap.getValue(PREFIX_CALORIE_COUNT).get()));
+            System.out.println("hello");
         }
 
         if (argMultimap.getValue(PREFIX_EXERCISE).isPresent()) {

@@ -75,6 +75,7 @@ public class ChangeCommand extends Command {
             if (index.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_DAY_DISPLAYED_INDEX);
             } else {
+                System.out.println(index.getZeroBased());
                 editDay = lastShownList.get(index.getZeroBased());
             }
         } else {
@@ -145,7 +146,8 @@ public class ChangeCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(time, food) && (food != null & !(exercise != null));
+            System.out.println();
+            return CollectionUtil.isAnyNonNull(time, calorieCount, food, exercise);
         }
 
         public void setIsOut(Boolean isOut) {
@@ -181,7 +183,7 @@ public class ChangeCommand extends Command {
         }
 
         public void setCalorieCount(CalorieCount calorieCount) {
-            this.exercise = exercise;
+            this.calorieCount = calorieCount;
         }
         public Optional<CalorieCount> getCalorieCount() {
             return Optional.ofNullable(calorieCount);

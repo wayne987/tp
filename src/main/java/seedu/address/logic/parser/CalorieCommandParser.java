@@ -56,7 +56,7 @@ public class CalorieCommandParser implements Parser<CalorieCommand> {
         CalorieCount calorieCount = ParserUtil.parseCalorieCount(argMultimap.getValue(PREFIX_CALORIE_COUNT).get());
 
         Calorie calorie;
-        if (isOut) {
+        if (!isOut) {
             if (!arePrefixesPresent(argMultimap, PREFIX_FOOD)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalorieCommand.MESSAGE_USAGE));
             }
