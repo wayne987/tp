@@ -158,12 +158,12 @@ public class ParserUtil {
         requireNonNull(type);
         String trimmedType = type.trim().toLowerCase();
         switch (trimmedType) {
-            case "out":
-                return true;
-            case "in":
-                return false;
-            default:
-                throw new ParseException("type can only be either in/out");
+        case "out":
+            return true;
+        case "in":
+            return false;
+        default:
+            throw new ParseException("type can only be either in/out");
         }
     }
 

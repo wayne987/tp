@@ -1,19 +1,16 @@
 package seedu.address.model.calorie;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.day.exceptions.DayNotFoundException;
-import seedu.address.model.day.exceptions.DuplicateDayException;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 
 /**
  * Stores and handles operation related to calories

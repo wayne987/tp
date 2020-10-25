@@ -2,11 +2,16 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE_COUNT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ChangeCommand;
 import seedu.address.logic.commands.EditCommand;

@@ -1,5 +1,10 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DAYS;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -10,15 +15,19 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.calorie.*;
+import seedu.address.model.calorie.Calorie;
+import seedu.address.model.calorie.CalorieCount;
+import seedu.address.model.calorie.CalorieManager;
+import seedu.address.model.calorie.Exercise;
+import seedu.address.model.calorie.Food;
+import seedu.address.model.calorie.Input;
+import seedu.address.model.calorie.Output;
+import seedu.address.model.calorie.Time;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
 import seedu.address.model.tag.Tag;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DAYS;
 
 
 public class ChangeCommand extends Command {
