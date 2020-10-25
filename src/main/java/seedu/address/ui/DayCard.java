@@ -23,6 +23,7 @@ public class DayCard extends UiPart<Region> {
      */
 
     public final Day day;
+    private MainWindow mainWindow;
 
     @FXML
     private HBox cardPane;
@@ -37,10 +38,8 @@ public class DayCard extends UiPart<Region> {
     @FXML
     private Label totalCalorieOut;
 
-    private MainWindow mainWindow;
-
     /**
-     * Creates a {@code DayCard} with the given {@code Day} and index to display.
+     * Creates a {@code DayCard} with the given {@code Day} and index to display and the given {@code MainWindow}.
      */
     public DayCard(Day day, int displayedIndex, MainWindow mainWindow) {
         super(FXML);
@@ -63,7 +62,7 @@ public class DayCard extends UiPart<Region> {
      * @param index the index of the day that was clicked.
      */
     private void displayCalories(int index) {
-        this.mainWindow.fillCaloriePlaceholders(index);
+        this.mainWindow.fillCaloriePanels(index);
     }
 
     @Override

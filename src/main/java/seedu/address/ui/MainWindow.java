@@ -127,10 +127,11 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Fills up the calorie placeholders with calorie values.
+     * Fills up the calorie panels with calorie values of the day that is clicked.
+     *
      * @param index the index of the day that is clicked
      */
-    void fillCaloriePlaceholders(int index) {
+    void fillCaloriePanels(int index) {
         calorieInputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager().getCalorieInputList());
         calorieOutputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager().getCalorieOutputList());
     }

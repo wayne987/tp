@@ -23,7 +23,7 @@ public class DayListPanel extends UiPart<Region> {
     private MainWindow mainWindow;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code DayListPanel} with the given {@code ObservableList} and given {@code MainWindow}.
      */
     public DayListPanel(ObservableList<Day> dayList, MainWindow mainWindow) {
         super(FXML);
