@@ -20,13 +20,17 @@ public class DayListPanel extends UiPart<Region> {
     @FXML
     private ListView<Day> personListView;
 
+    private MainWindow mainWindow;
+
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code DayListPanel} with the given {@code ObservableList} and given {@code MainWindow}.
      */
-    public DayListPanel(ObservableList<Day> dayList) {
+    public DayListPanel(ObservableList<Day> dayList, MainWindow mainWindow) {
         super(FXML);
         personListView.setItems(dayList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+        this.mainWindow = mainWindow;
+        logger.info("DayListPanel created");
     }
 
     /**
@@ -41,9 +45,8 @@ public class DayListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new DayCard(day, getIndex() + 1).getRoot());
+                setGraphic(new DayCard(day, getIndex() + 1, mainWindow).getRoot());
             }
-            logger.info("DayCard added to DayListPanel");
         }
     }
 

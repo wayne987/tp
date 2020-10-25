@@ -2,10 +2,11 @@ package seedu.address.model.calorie;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -17,8 +18,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
  */
 public class CalorieManager {
 
-    private List<Input> calorieInputList;
-    private List<Output> calorieOutputList;
+    private ObservableList<Input> calorieInputList;
+    private ObservableList<Output> calorieOutputList;
     private int totalCalorieIn;
     private int totalCalorieOut;
     private final Logger logger = LogsCenter.getLogger(CalorieManager.class);
@@ -27,14 +28,14 @@ public class CalorieManager {
      * Constructor for Manager that manage calorie input/output
      */
     public CalorieManager() {
-        this.calorieOutputList = new ArrayList<>();
-        this.calorieInputList = new ArrayList<>();
+        this.calorieOutputList = FXCollections.observableArrayList();
+        this.calorieInputList = FXCollections.observableArrayList();
     }
 
     /**
      * Constructor for Manager that manage calorie input/output
      */
-    public CalorieManager(List<Input> inputList, List<Output> outputList) {
+    public CalorieManager(ObservableList<Input> inputList, ObservableList<Output> outputList) {
         this.calorieInputList = inputList;
         this.calorieOutputList = outputList;
         updateTotalCalorieCounts(inputList, outputList);
@@ -106,14 +107,13 @@ public class CalorieManager {
         totalCalorieIn -= Integer.parseInt(calorieCount.toString());
     }
 
-    public List<Output> getCalorieOutputList() {
+    public ObservableList<Output> getCalorieOutputList() {
         return calorieOutputList;
     }
 
-    public List<Input> getCalorieInputList() {
+    public ObservableList<Input> getCalorieInputList() {
         return calorieInputList;
     }
-
 
     /**
      * add a calorie input into an already sorted calorieInputList and update the total calorie input
