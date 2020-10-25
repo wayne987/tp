@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.day.calorie.Input;
+import seedu.address.model.calorie.Input;
 
 /**
  * An UI component that displays information of a {@code Input}.

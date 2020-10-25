@@ -60,10 +60,10 @@ public class DayCard extends UiPart<Region> {
     /**
      * Displays the list of calorie inputs and outputs.
      *
-     * @param displayedIndex
+     * @param index the index of the day that was clicked.
      */
-    private void displayCalories(int displayedIndex) {
-        this.mainWindow.fillCaloriePlaceholders(displayedIndex);
+    private void displayCalories(int index) {
+        this.mainWindow.fillCaloriePlaceholders(index);
     }
 
     @Override
