@@ -5,6 +5,7 @@ title: My Fitness Buddy User Guide
 
 * **Table of Contents**
     * Introduction
+    * About
     * Quick Start
     * Features
     * FAQ
