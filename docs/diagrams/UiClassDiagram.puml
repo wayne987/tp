@@ -46,6 +46,8 @@ MainWindow *-down-> StatusBarFooter
 MainWindow *-down-> CalorieInputListPanel
 MainWindow *-down-> CalorieOutputListPanel
 
+DayCard *-down-> MainWindow
+
 
 DayListPanel -down--> DayCard
 CalorieInputListPanel -down--> CalorieInputCard
