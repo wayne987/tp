@@ -11,12 +11,12 @@ import static seedu.address.testutil.TypicalDays.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.day.calorie.CalorieCount;
-import seedu.address.model.day.calorie.Exercise;
-import seedu.address.model.day.calorie.Food;
-import seedu.address.model.day.calorie.Input;
-import seedu.address.model.day.calorie.Output;
-import seedu.address.model.day.calorie.Time;
+import seedu.address.model.calorie.CalorieCount;
+import seedu.address.model.calorie.Exercise;
+import seedu.address.model.calorie.Food;
+import seedu.address.model.calorie.Input;
+import seedu.address.model.calorie.Output;
+import seedu.address.model.calorie.Time;
 import seedu.address.testutil.DayBuilder;
 
 public class DayTest {

@@ -86,8 +86,10 @@ public class UniqueDayList implements Iterable<Day> {
         if (!target.isSameDay(editedDay) && contains(editedDay)) {
             throw new DuplicateDayException();
         }
+
         internalList.remove(target);
         this.add(editedDay);
+
     }
 
     /**

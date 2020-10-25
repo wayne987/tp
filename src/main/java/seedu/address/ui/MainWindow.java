@@ -32,8 +32,12 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private DayListPanel dayListPanel;
+    private CalorieInputListPanel calorieInputListPanel;
+    private CalorieOutputListPanel calorieOutputListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private WeightStatsWindow weightStatsWindow;
+    private CalorieStatsWindow calorieStatsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -45,10 +49,22 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane calorieInputListPanelPlaceholder;
+
+    @FXML
+    private StackPane calorieOutputListPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private MenuItem weightStatsMenuItem;
+
+    @FXML
+    private MenuItem calorieStatsMenuItem;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +82,10 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        weightStatsWindow = new WeightStatsWindow(logic.getFilteredDayList());
+
+        calorieStatsWindow = new CalorieStatsWindow(logic.getFilteredDayList());
     }
 
     public Stage getPrimaryStage() {
@@ -107,11 +127,26 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Fills up the calorie panels with calorie values of the day that is clicked.
+     *
+     * @param index the index of the day that is clicked
+     */
+    void fillCaloriePanels(int index) {
+        calorieInputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager().getCalorieInputList());
+        calorieOutputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager().getCalorieOutputList());
+    }
+
+    /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        dayListPanel = new DayListPanel(logic.getFilteredDayList());
+        dayListPanel = new DayListPanel(logic.getFilteredDayList(), this);
         personListPanelPlaceholder.getChildren().add(dayListPanel.getRoot());
+
+        calorieInputListPanel = new CalorieInputListPanel();
+        calorieInputListPanelPlaceholder.getChildren().add(calorieInputListPanel.getRoot());
+        calorieOutputListPanel = new CalorieOutputListPanel();
+        calorieOutputListPanelPlaceholder.getChildren().add(calorieOutputListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -147,6 +182,30 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the weight stats window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleWeightStats() {
+        if (!weightStatsWindow.isShowing()) {
+            weightStatsWindow.show();
+        } else {
+            weightStatsWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the calorie stats window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleCalorieStats() {
+        if (!calorieStatsWindow.isShowing()) {
+            calorieStatsWindow.show();
+        } else {
+            calorieStatsWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -158,8 +217,11 @@ public class MainWindow extends UiPart<Stage> {
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
+        System.out.println(primaryStage.getHeight());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        weightStatsWindow.hide();
+        calorieStatsWindow.hide();
         primaryStage.hide();
     }
 
@@ -184,6 +246,19 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowAllStats()) {
+                handleCalorieStats();
+                handleWeightStats();
+            }
+
+            if (commandResult.isShowCalorieStats()) {
+                handleCalorieStats();
+            }
+
+            if (commandResult.isShowWeightStats()) {
+                handleWeightStats();
             }
 
             return commandResult;
