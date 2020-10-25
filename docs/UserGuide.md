@@ -3,16 +3,31 @@ layout: page
 title: My Fitness Buddy User Guide
 ---
 
-My Fitness Buddy helps Full-Time National Servicemen with PES ‘BP’ Status to track their overall change in fitness level 
-by managing their daily calorie input/output and weight changes during Basic Military Training. 
-
 * **Table of Contents**
+    * Introduction
     * Quick Start
     * Features
     * FAQ
     * Command Summary 
 
 --------------------------------------------------------------------------------------------------------------------
+## Introduction
+
+### About the application
+
+My Fitness Buddy is a desktop application that helps Full-Time National Servicemen with PES ‘BP’ Status track 
+their overall change in fitness level by managing their daily calorie input/output and weight changes during Basic Military 
+Training. 
+
+
+### Purpose
+
+This document specifies the quick start guide, features and the command summary of
+the application, My Fitness Buddy.
+
+### Intended Audience
+
+This User Guide is for any Full-Time National Servicemen that uses the MyFitnessBuddy application. 
 
 ## Quick start
 
