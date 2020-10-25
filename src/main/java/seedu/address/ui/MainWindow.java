@@ -216,6 +216,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
+        System.out.println(primaryStage.getHeight());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         weightStatsWindow.hide();

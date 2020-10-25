@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600.0" minWidth="450.0" onCloseRequest="#handleExit" title="My Fitness Buddy" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="570.0" minWidth="550.0" onCloseRequest="#handleExit" title="My Fitness Buddy" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -41,7 +41,7 @@
         </MenuBar>
         <SplitPane dividerPositions="0.29797979797979796" prefHeight="340.0" prefWidth="340.0">
           <items>
-            <AnchorPane minHeight="0.0" minWidth="110.0" prefHeight="330.0" prefWidth="245.0">
+            <AnchorPane minHeight="0.0" minWidth="210.0" prefHeight="330.0" prefWidth="245.0">
               <children>
                 <VBox fx:id="dayList" minWidth="340" prefHeight="158.0" prefWidth="348.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <padding>
@@ -51,7 +51,7 @@
                 </VBox>
               </children>
             </AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="110.0" prefHeight="330.0" prefWidth="245.0">
+            <AnchorPane minHeight="0.0" minWidth="210.0" prefHeight="330.0" prefWidth="245.0">
               <children>
                 <VBox fx:id="inputList" minWidth="340" prefHeight="158.0" prefWidth="348.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <padding>
@@ -61,7 +61,7 @@
                 </VBox>
               </children>
             </AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="110.0" prefHeight="330.0" prefWidth="245.0">
+            <AnchorPane minHeight="0.0" minWidth="210.0" prefHeight="330.0" prefWidth="245.0">
               <children>
                 <VBox fx:id="outputList" minWidth="340" prefHeight="158.0" prefWidth="348.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <padding>
@@ -74,7 +74,7 @@
           </items>
         </SplitPane>
 
-        <StackPane fx:id="commandBoxPlaceholder" prefHeight="30.0" prefWidth="505.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="commandBoxPlaceholder" prefHeight="30.0" prefWidth="505.0" minHeight="35" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
