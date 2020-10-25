@@ -13,12 +13,13 @@ title: My Fitness Buddy User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 
-### About the application
+### Product overview
 
 My Fitness Buddy is a desktop application that helps Full-Time National Servicemen with PES ‘BP’ Status track 
 their overall change in fitness level by managing their daily calorie input/output and weight changes during Basic Military 
 Training. 
 
+## About
 
 ### Purpose
 
@@ -53,13 +54,13 @@ This User Guide is for any Full-Time National Servicemen that uses the MyFitness
 
 </div>
 
-### Viewing help : `help`
+### Creating a new profile : `create`
+Create a new profile for a Person.
 
-Shows a message explaning how to access the help page.
+Format: `create n/NAME id/ID_NUM h/HEIGHT w/TARGET_WEIGHT`
 
-![help message](images/helpMessage.png)
-
-Format: `help`
+Examples:  
+`create n/Johnny id/1234 h/170 w/68` 
 
 ### Adding a daily weight record : `add d/DATE w/WEIGHT`
 Add a new daily weight record.
@@ -67,7 +68,7 @@ Add a new daily weight record.
 Format: `add d/DATE w/WEIGHT`
 
 Examples:  
-`add d/2020-10-16 w/70`  
+`add d/2020-10-16 w/70` 
 
 ### Editing a daily weight record : `edit INDEX w/WEIGHT`
 Edit a new daily weight record.
@@ -75,7 +76,7 @@ Edit a new daily weight record.
 Format: `edit INDEX w/WEIGHT`
 
 Examples:  
-`edit 1 w/65`
+`edit 1 w/65` 
 
 ### Adding a calorie input : `calorie tp/in`
 Add calorie input to the calorie tracker.
@@ -95,13 +96,13 @@ Examples:
 `calorie tp/out t/1200 e/running c/500`  
 `calorie tp/out t/1800 e/swimming c/250`
 
-### Creating a new profile : `create`
-Create a new profile for a Person.
+### Viewing help : `help`
 
-Format: `create n/NAME id/ID_NUM h/HEIGHT w/TARGET_WEIGHT`
+Shows a message explaning how to access the help page.
 
-Examples:  
-`create n/Johnny id/1234 h/170 w/68` 
+![help message](images/helpMessage.png)
+
+Format: `help`
 
 ### View all calorie inputs and outputs of a day: `Double click on a day`
 Shows a list of all entries of calorie inputs and calorie outputs of a particular day.
