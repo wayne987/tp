@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -10,7 +11,10 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.calorie.*;
+import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
+import seedu.address.model.day.Weight;
+import seedu.address.model.tag.Tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
@@ -86,9 +90,16 @@ public class ChangeCommand extends Command {
         Calorie calorieToEdit = calorieManager.getCalorie(changeCalorieDescriptor.getIsOut(), calorieIndex);
 
         Calorie editedCalorie = createEditedCalorie(calorieToEdit, changeCalorieDescriptor);
-        calorieManager.setCalorie(calorieIndex, changeCalorieDescriptor.getIsOut(), editedCalorie);
+        CalorieManager cm = calorieManager.setCalorie(calorieIndex, changeCalorieDescriptor.getIsOut(), editedCalorie);
 
+        Date date = editDay.getDate();
+        Weight weight = editDay.getWeight();
+        Set<Tag> tag = editDay.getTags();
+        Day editedDay = new Day(date, weight, tag, cm);
+
+        model.setDay(editDay, editedDay);
         model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
+
         return new CommandResult(String.format(MESSAGE_EDIT_DAY_SUCCESS, editedCalorie));
     }
 

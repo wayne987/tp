@@ -103,7 +103,8 @@ public class Day {
         Day otherDay = (Day) other;
         return otherDay.getDate().equals(getDate())
                 && otherDay.getWeight().equals(getWeight())
-                && otherDay.getTags().equals(getTags());
+                && otherDay.getTags().equals(getTags())
+                && otherDay.getCalorieManager().equals(getCalorieManager());
     }
 
     @Override

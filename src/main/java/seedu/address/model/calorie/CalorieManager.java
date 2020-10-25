@@ -6,7 +6,10 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.day.exceptions.DayNotFoundException;
 import seedu.address.model.day.exceptions.DuplicateDayException;
 
@@ -181,15 +184,21 @@ public class CalorieManager {
      * @param isOut is the calorie type Output?
      * @param index
      */
-    public Calorie getCalorie(Boolean isOut, Index index) {
+    public Calorie getCalorie(Boolean isOut, Index index) throws CommandException {
         if (!isOut) {
+            if (calorieInputList.size() <= index.getZeroBased()) {
+                throw new CommandException("please give an valid index");
+            }
             return calorieInputList.get(index.getZeroBased());
         } else {
+            if (calorieOutputList.size() <= index.getZeroBased()) {
+                throw new CommandException("please give an valid index");
+            }
             return calorieOutputList.get(index.getZeroBased());
         }
     }
 
-    public void setCalorie(Index index, Boolean isOut, Calorie editedCalorie) {
+    public CalorieManager setCalorie(Index index, Boolean isOut, Calorie editedCalorie) {
         requireAllNonNull(index, isOut, editedCalorie);
         if (isOut) {
             calorieOutputList.remove(index.getZeroBased());
@@ -198,6 +207,7 @@ public class CalorieManager {
             calorieInputList.remove(index.getZeroBased());
             calorieInputList.add((Input) editedCalorie);
         }
+        return new CalorieManager(getCalorieInputList(), getCalorieOutputList());
     }
 }
 
