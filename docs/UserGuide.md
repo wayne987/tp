@@ -33,7 +33,6 @@ This User Guide is for any Full-Time National Servicemen that uses the MyFitness
 ## Quick start
 
 1. Ensure you have Java11 or above installed in your Computer.  
-
 2. Download the latest *MyFitnessBuddy.jar*.  
 3. Copy the file to the folder you want to use as the home folder for My Fitness Buddy.   
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.    					
@@ -84,8 +83,8 @@ Add calorie input to the calorie tracker.
 Format: `calorie tp/in t/TIME f/FOOD c/CALORIE COUNT`
 
 Examples:  
-`calorie tp/in t/1200 f/Laksa c/290`  
-`calorie tp/in t/1800 f/Drumstick c/76`
+`calorie tp/in t/1200 f/laksa c/290`  
+`calorie tp/in t/1800 f/drumstick c/76`
 
 ### Adding a calorie output : `calorie tp/out`
 Add calorie output to the calorie tracker.
@@ -159,11 +158,11 @@ My Fitness Buddy data are saved in the hard disk automatically after any command
 
 Action | Format
 --------|------------------
+**Create profile** | `create n/NAME id/ID_NUM h/HEIGHT w/WEIGHT`
 **Add a new weight record** | `add d/DATE w/WEIGHT`
 **Edit a weight record** | `edit INDEX w/WEIGHT`
 **Add input** | `calorie tp/in t/TIME f/FOOD c/CALORIE_COUNT`
 **Add output** | `calorie tp/out t/TIME d/DURATION (MINUTES) c/CALORIE_BURNT`
-**Create profile** | `create n/NAME id/ID_NUM h/HEIGHT w/WEIGHT`
 **Delete input** | `delete /in i/INDEX`
 **Delete output** | `delete /out i/INDEX`
 **Exit** | `exit`
