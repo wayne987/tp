@@ -198,11 +198,11 @@ public class CalorieManager {
     public CalorieManager setCalorie(Index index, Boolean isOut, Calorie editedCalorie) {
         requireAllNonNull(index, isOut, editedCalorie);
         if (isOut) {
+            addCalorieOutput((Output) editedCalorie);
             calorieOutputList.remove(index.getZeroBased());
-            calorieOutputList.add((Output) editedCalorie);
         } else {
+            addCalorieInput((Input) editedCalorie);
             calorieInputList.remove(index.getZeroBased());
-            calorieInputList.add((Input) editedCalorie);
         }
         return new CalorieManager(getCalorieInputList(), getCalorieOutputList());
     }
