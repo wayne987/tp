@@ -6,6 +6,11 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.parser.Parser;
+import seedu.address.model.day.exceptions.DayNotFoundException;
+import seedu.address.model.day.exceptions.DuplicateDayException;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Stores and handles operation related to calories
@@ -149,9 +154,9 @@ public class CalorieManager {
     /**
      * removes a calorie from the List and update the total calorie input
      */
-    public void removeCalorie(String type, Index targetIndex) {
+    public void removeCalorie(Boolean isOut, Index targetIndex) {
         int index = targetIndex.getZeroBased();
-        if (type.equals("in")) {
+        if (!isOut) {
             deleteTotalCalorieInput(index);
             calorieInputList.remove(index);
         } else {
@@ -161,12 +166,10 @@ public class CalorieManager {
     }
     /**
      * Get size of list depending on type
-     * @param type of calorie
+     * @param isOut is the calorie type Output?
      */
-    public int getListSize(String type) {
-        assert type.equals("in") | type.equals("out") : "type can only be in/out";
-
-        if (type.equals("in")) {
+    public int getListSize(Boolean isOut) {
+        if (!isOut) {
             return calorieInputList.size();
         } else {
             return calorieOutputList.size();
@@ -175,15 +178,26 @@ public class CalorieManager {
 
     /**
      * Get a calorie of a certain type and index
-     * @param type
+     * @param isOut is the calorie type Output?
      * @param index
      */
-    public Calorie getCalorie(String type, Index index) {
-        assert type.equals("in") | type.equals("out") : "type can only be in/out";
-        if (type.equals("in")) {
+    public Calorie getCalorie(Boolean isOut, Index index) {
+        if (!isOut) {
             return calorieInputList.get(index.getZeroBased());
         } else {
             return calorieOutputList.get(index.getZeroBased());
         }
     }
+
+    public void setCalorie(Index index, Boolean isOut, Calorie editedCalorie) {
+        requireAllNonNull(index, isOut, editedCalorie);
+        if (isOut) {
+            calorieOutputList.remove(index.getZeroBased());
+            calorieOutputList.add((Output) editedCalorie);
+        } else {
+            calorieInputList.remove(index.getZeroBased());
+            calorieInputList.add((Input) editedCalorie);
+        }
+    }
 }
+

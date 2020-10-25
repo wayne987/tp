@@ -42,10 +42,10 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE), pe);
         }
 
-        String type = ParserUtil.parseType(argMultimap.getValue(PREFIX_CALORIE_TYPE).get());
+        Boolean isOut = ParserUtil.parseType(argMultimap.getValue(PREFIX_CALORIE_TYPE).get());
 
         LocalDate date = ParserUtil.parseLocalDate(argMultimap.getValue(PREFIX_DATE).get());
-        return new RemoveCommand(index, type, date);
+        return new RemoveCommand(index, isOut, date);
     }
 
     /**

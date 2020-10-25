@@ -99,20 +99,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String CalorieType} into an different type.
-     * Leading and trailing whitespaces will be trimmed.
-     */
-    public static String parseCalorieType(String type) throws ParseException {
-        requireNonNull(type);
-        String trimmedType = type.trim();
-        if (trimmedType.equals("in") || trimmedType.equals("out")) {
-            return trimmedType;
-        } else {
-            throw new ParseException("wrong calorie type");
-        }
-    }
-
-    /**
      * Parses a {@code String time} into @code Time.
      * Leading and trailing whitespaces will be trimmed.
      */
@@ -168,16 +154,16 @@ public class ParserUtil {
      * Check if {@code String type} is of correct type.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static String parseType(String type) throws ParseException {
+    public static boolean parseType(String type) throws ParseException {
         requireNonNull(type);
-        String trimmedType = type.trim();
+        String trimmedType = type.trim().toLowerCase();
         switch (trimmedType) {
-        case "out":
-            return "out";
-        case "in":
-            return "in";
-        default:
-            throw new ParseException("type can only be either in/out");
+            case "out":
+                return true;
+            case "in":
+                return false;
+            default:
+                throw new ParseException("type can only be either in/out");
         }
     }
 

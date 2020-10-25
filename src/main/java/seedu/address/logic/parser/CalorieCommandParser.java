@@ -34,13 +34,13 @@ public class CalorieCommandParser implements Parser<CalorieCommand> {
     @Override
     public CalorieCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_CALORIE_TYPE, PREFIX_DATE, PREFIX_TIME,
-                    PREFIX_EXERCISE, PREFIX_FOOD, PREFIX_CALORIE_COUNT);
+                ArgumentTokenizer.tokenize(args, PREFIX_CALORIE_TYPE, PREFIX_DATE, PREFIX_TIME,
+                        PREFIX_EXERCISE, PREFIX_FOOD, PREFIX_CALORIE_COUNT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CALORIE_TYPE) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalorieCommand.MESSAGE_USAGE));
         }
-        String type = ParserUtil.parseCalorieType(argMultimap.getValue(PREFIX_CALORIE_TYPE).get());
+        Boolean isOut = ParserUtil.parseType(argMultimap.getValue(PREFIX_CALORIE_TYPE).get());
 
         String date;
         if (arePrefixesPresent(argMultimap, PREFIX_DATE)) {
@@ -56,7 +56,7 @@ public class CalorieCommandParser implements Parser<CalorieCommand> {
         CalorieCount calorieCount = ParserUtil.parseCalorieCount(argMultimap.getValue(PREFIX_CALORIE_COUNT).get());
 
         Calorie calorie;
-        if (type.equals("in")) {
+        if (isOut) {
             if (!arePrefixesPresent(argMultimap, PREFIX_FOOD)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalorieCommand.MESSAGE_USAGE));
             }
@@ -69,7 +69,7 @@ public class CalorieCommandParser implements Parser<CalorieCommand> {
             Exercise exercise = ParserUtil.parseExercise(argMultimap.getValue(PREFIX_EXERCISE).get());
             calorie = new Output(time, exercise, calorieCount);
         }
-        return new CalorieCommand(calorie, type, date);
+        return new CalorieCommand(calorie, isOut, date);
     }
 
     /**

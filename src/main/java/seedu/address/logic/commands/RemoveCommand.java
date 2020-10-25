@@ -36,17 +36,18 @@ public class RemoveCommand extends Command {
 
     private final Index targetIndex;
 
-    private final String type;
+    private final Boolean isOut;
 
     private final LocalDate date;
 
     /**
      * @param targetIndex of the calorie in the day to delete
-     * @param type of the calorie to be deleted
+     * @param isOut if the calorie is Output calorie
+     * @param date of the day that the calorie belongs to
      */
-    public RemoveCommand(Index targetIndex, String type, LocalDate date) {
+    public RemoveCommand(Index targetIndex, Boolean isOut, LocalDate date) {
         this.targetIndex = targetIndex;
-        this.type = type;
+        this.isOut = isOut;
         this.date = date;
     }
 
@@ -61,12 +62,12 @@ public class RemoveCommand extends Command {
         Day editDay = model.getDay(date);
         CalorieManager calorieManager = editDay.getCalorieManager();
 
-        if (targetIndex.getZeroBased() >= calorieManager.getListSize(type)) {
+        if (targetIndex.getZeroBased() >= calorieManager.getListSize(isOut)) {
             throw new CommandException(Messages.MESSAGE_INVALID_DAY_DISPLAYED_INDEX);
         }
 
-        Calorie remove = calorieManager.getCalorie(type, targetIndex);
-        editDay.getCalorieManager().removeCalorie(type, targetIndex);
+        Calorie remove = calorieManager.getCalorie(isOut, targetIndex);
+        editDay.getCalorieManager().removeCalorie(isOut, targetIndex);
 
         model.setDay(model.getDay(date), editDay);
         model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
@@ -78,6 +79,6 @@ public class RemoveCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof RemoveCommand // instanceof handles nulls
                 && targetIndex.equals(((RemoveCommand) other).targetIndex) // state check
-                && type.equals(((RemoveCommand) other).type));
+                && isOut.equals(((RemoveCommand) other).isOut));
     }
 }

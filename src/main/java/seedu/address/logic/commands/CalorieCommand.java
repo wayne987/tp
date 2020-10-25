@@ -43,15 +43,15 @@ public class CalorieCommand extends Command {
             + PREFIX_CALORIE_COUNT + "123";
 
     private Calorie calorie;
-    private String type;
+    private Boolean isOut;
     private String date;
 
     /**
      * Creates an CalorieCommand to add the specified {@code Calorie}
      */
-    public CalorieCommand(Calorie calorie, String type, String date) {
+    public CalorieCommand(Calorie calorie, Boolean isOut, String date) {
         this.calorie = calorie;
-        this.type = type;
+        this.isOut = isOut;
         this.date = date;
     }
 
@@ -74,7 +74,7 @@ public class CalorieCommand extends Command {
         LocalDate date = getDate(this.date);
         if (model.hasDay(date)) {
             Day editDay = model.getDay(date);
-            if (type.equals("in")) {
+            if (!isOut) {
                 editDay.getCalorieManager().addCalorieInput((Input) calorie);
             } else {
                 editDay.getCalorieManager().addCalorieOutput((Output) calorie);
