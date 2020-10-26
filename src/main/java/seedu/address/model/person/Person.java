@@ -13,10 +13,13 @@ import seedu.address.model.day.UniqueDayList;
 import seedu.address.model.day.Weight;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in My Fitness Buddy.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
+
+    // if a person has DEFAULT_PROFILE, it means that the profile has not been set by user so no
+    // daily records can be added.
 
     // Identity fields
     private static Profile defaultProfile =
@@ -55,18 +58,27 @@ public class Person {
      */
     public boolean isDefaultProfile() {
         assert profile != null;
-        return getProfile().equals(defaultProfile);
+        return profile.equals(defaultProfile);
     }
 
+    /**
+     * Returns the profile of a Person instance.
+     */
     public Profile getProfile() {
         assert profile != null;
         return profile;
     }
 
+    /**
+     * Returns an unmodifiable day list.
+     */
     public ObservableList<Day> getDayList() {
         return days.asUnmodifiableObservableList();
     }
 
+    /**
+     * Returns the UniqueDayList that can be modified.
+     */
     public UniqueDayList getDays() {
         return days;
     }
@@ -89,11 +101,12 @@ public class Person {
     }
 
     /**
-     * Checks if the current data {@code Person } has a profile.
+     * Checks if the current data {@code Person } has a deafault profile.
      */
     public boolean hasProfile() {
-        return profile != null;
+        return profile != defaultProfile;
     }
+
     /**
      * Returns true if a day with the same identity as {@code day} exists in the my fitness buddy records.
      */
@@ -110,7 +123,7 @@ public class Person {
     }
 
     /**
-     * get a day in the my fitness buddy records with a specific date
+     * Gets a day in the my fitness buddy records with a specific date.
      */
     public Day getDay(LocalDate date) {
         return days.getDate(date);
@@ -155,7 +168,8 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getProfile().getId().equals(getProfile().getId()); // check is same id
+                && otherPerson.getProfile().getId().equals(getProfile().getId())
+                && otherPerson.getProfile().getName().equals(profile.getName()); // check is same id and name
     }
 
     /**

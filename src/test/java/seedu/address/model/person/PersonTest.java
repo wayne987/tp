@@ -5,7 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalDays.ALICE;
+import static seedu.address.testutil.TypicalDays.DAY1;
+import static seedu.address.testutil.TypicalDays.DEFAULT_PROFILE;
 import static seedu.address.testutil.TypicalDays.getTypicalMyFitnessBuddy;
 
 import java.util.Arrays;
@@ -20,9 +21,8 @@ import javafx.collections.ObservableList;
 import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.ReadOnlyMyFitnessBuddy;
 import seedu.address.model.day.Day;
-import seedu.address.model.day.Weight;
-//import seedu.address.model.day.exceptions.DuplicateDayException;
 import seedu.address.testutil.DayBuilder;
+import seedu.address.testutil.TypicalProfiles;
 
 public class PersonTest {
 
@@ -41,18 +41,18 @@ public class PersonTest {
     @Test
     public void resetData_withValidReadOnlyMyFitnessBuddy_replacesData() {
         MyFitnessBuddy newData = getTypicalMyFitnessBuddy();
-        newData.setPerson(
-                new Person(new Profile(new Name("Jon"), new ID("1222"), new Height("177"), new Weight("76"))));
         myFitnessBuddy.resetData(newData);
         assertEquals(newData, myFitnessBuddy);
     }
-    //error due to refactoring
+    //error: i cannot seem to make up a person w duplicated days lol
+    // unless i setInternalList directly in UniqueDayList class
     @Test
     public void resetData_withDuplicateDays_throwsDuplicateDayException() {
         // Two days with the same identity fields
-        Day editedAlice = new DayBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        myFitnessBuddy.setProfile(DEFAULT_PROFILE);
+        Day editedDay1 = new DayBuilder(DAY1).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Day> newDays = Arrays.asList(ALICE, editedAlice);
+        List<Day> newDays = Arrays.asList(DAY1, editedDay1);
         MyFitnessBuddyStub newData = new MyFitnessBuddyStub(newDays);
 
         //assertThrows(DuplicateDayException.class, () -> myFitnessBuddy.resetData(newData));
@@ -65,19 +65,19 @@ public class PersonTest {
 
     @Test
     public void hasDay_dayNotInMyFitnessBuddy_returnsFalse() {
-        assertFalse(myFitnessBuddy.hasDay(ALICE));
+        assertFalse(myFitnessBuddy.hasDay(DAY1));
     }
 
     @Test
     public void hasDay_dayInMyFitnessBuddy_returnsTrue() {
-        myFitnessBuddy.addDay(ALICE);
-        assertTrue(myFitnessBuddy.hasDay(ALICE));
+        myFitnessBuddy.addDay(DAY1);
+        assertTrue(myFitnessBuddy.hasDay(DAY1));
     }
 
     @Test
     public void hasDay_dayWithSameIdentityFieldsInMyFitnessBuddy_returnsTrue() {
-        myFitnessBuddy.addDay(ALICE);
-        Day editedAlice = new DayBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        myFitnessBuddy.addDay(DAY1);
+        Day editedAlice = new DayBuilder(DAY1).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(myFitnessBuddy.hasDay(editedAlice));
     }
@@ -88,11 +88,11 @@ public class PersonTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose days list can violate interface constraints.
+     * A stub ReadOnlyMyFitnessBuddy whose days list can violate interface constraints.
      */
     private static class MyFitnessBuddyStub implements ReadOnlyMyFitnessBuddy {
         private final ObservableList<Day> days = FXCollections.observableArrayList();
-        private Profile profile = new Profile(new Name("Jon"), new ID("1222"), new Height("177"), new Weight("76"));
+        private Profile profile = TypicalProfiles.JON;
         private Person person;
 
         MyFitnessBuddyStub(Collection<Day> days) {
@@ -107,12 +107,12 @@ public class PersonTest {
 
         @Override
         public Profile getProfile() {
-            return profile;
+            return person.getProfile();
         }
 
         @Override
         public Person getPerson() {
-            return null;
+            return person;
         }
     }
 
