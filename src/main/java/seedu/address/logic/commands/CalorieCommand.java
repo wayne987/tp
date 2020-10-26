@@ -98,4 +98,14 @@ public class CalorieCommand extends Command {
         }
         return new CommandResult(calorie.toString());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        CalorieCommand oC = (CalorieCommand) other;
+        return other == this // short circuit if same object
+                || (other instanceof CalorieCommand // instanceof handles nulls
+                && isOut.equals(((CalorieCommand) other).isOut))
+                && date.equals(((CalorieCommand) other).date)
+                && calorie.toString().equals(oC.calorie.toString());
+    }
 }

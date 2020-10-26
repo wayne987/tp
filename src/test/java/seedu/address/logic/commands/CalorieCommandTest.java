@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCalories.INPUT_A;
+import static seedu.address.testutil.TypicalCalories.INPUT_B;
 import static seedu.address.testutil.TypicalDays.getAnotherMyFitnessBuddy;
 
 import java.time.LocalDate;
@@ -62,5 +63,15 @@ public class CalorieCommandTest {
         } catch (CommandException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void equals() {
+
+        CalorieCommand testA = new CalorieCommand(INPUT_A, true, "2020-10-10");
+        CalorieCommand testB = new CalorieCommand(INPUT_B, true, "2020-10-10");
+
+        assertEquals(testA.equals(testA), true);
+        assertEquals(testA.equals(testB), false);
     }
 }

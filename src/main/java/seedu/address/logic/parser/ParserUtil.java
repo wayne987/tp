@@ -163,7 +163,6 @@ public class ParserUtil {
     public static boolean parseType(String type) throws ParseException {
         requireNonNull(type);
         String trimmedType = type.trim().toLowerCase();
-        System.out.println(trimmedType);
         switch (trimmedType) {
         case "out":
             return true;
