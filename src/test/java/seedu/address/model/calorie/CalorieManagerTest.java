@@ -1,4 +1,4 @@
-package seedu.address.model.day.calorie;
+package seedu.address.model.calorie;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.testutil.TypicalCalories;
 
 
@@ -91,5 +92,35 @@ public class CalorieManagerTest {
                                                 TypicalCalories.getTypicalOutputList());
         assertEquals(calorieManager.getTotalInputCalorie(), 603);
         assertEquals(calorieManager.getTotalOutputCalorie(), 666);
+    }
+
+    @Test
+    void getCalorie() {
+        CalorieManager calorieManager = new CalorieManager();
+        calorieManager.addCalorieOutput(OUTPUT_A);
+        calorieManager.addCalorieOutput(OUTPUT_B);
+        calorieManager.addCalorieOutput(OUTPUT_C);
+        calorieManager.addCalorieInput(INPUT_A);
+        calorieManager.addCalorieInput(INPUT_B);
+        calorieManager.addCalorieInput(INPUT_C);
+
+        assertEquals(calorieManager.getCalorie("in", Index.fromOneBased(2)), INPUT_B);
+        assertEquals(calorieManager.getCalorie("out", Index.fromOneBased(2)), OUTPUT_B);
+    }
+
+    @Test
+    void removeCalorie() {
+        CalorieManager calorieManager = new CalorieManager();
+        calorieManager.addCalorieOutput(OUTPUT_A);
+        calorieManager.addCalorieOutput(OUTPUT_B);
+        calorieManager.addCalorieOutput(OUTPUT_C);
+        calorieManager.addCalorieInput(INPUT_A);
+        calorieManager.addCalorieInput(INPUT_B);
+        calorieManager.addCalorieInput(INPUT_C);
+
+        calorieManager.removeCalorie("in", Index.fromOneBased(2));
+        assertEquals(402, calorieManager.getTotalInputCalorie());
+        calorieManager.removeCalorie("out", Index.fromOneBased(2));
+        assertEquals(444, calorieManager.getTotalOutputCalorie());
     }
 }

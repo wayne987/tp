@@ -3,21 +3,37 @@ layout: page
 title: My Fitness Buddy User Guide
 ---
 
-My Fitness Buddy helps Full-Time National Servicemen with PES ‘BP’ Status to track their overall change in fitness level 
-by managing their daily calorie input/output and weight changes during Basic Military Training. 
-
 * **Table of Contents**
+    * Introduction
+    * About
     * Quick Start
     * Features
     * FAQ
     * Command Summary 
 
 --------------------------------------------------------------------------------------------------------------------
+## Introduction
+
+### Product overview
+
+My Fitness Buddy is a desktop application that helps Full-Time National Servicemen with PES ‘BP’ Status track 
+their overall change in fitness level by managing their daily calorie input/output and weight changes during Basic Military 
+Training. 
+
+## About
+
+### Purpose
+
+This document specifies the quick start guide, features and the command summary of
+the application, My Fitness Buddy.
+
+### Intended Audience
+
+This User Guide is for any Full-Time National Servicemen that uses the MyFitnessBuddy application. 
 
 ## Quick start
 
 1. Ensure you have Java11 or above installed in your Computer.  
-
 2. Download the latest *MyFitnessBuddy.jar*.  
 3. Copy the file to the folder you want to use as the home folder for My Fitness Buddy.   
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.    					
@@ -38,13 +54,13 @@ by managing their daily calorie input/output and weight changes during Basic Mil
 
 </div>
 
-### Viewing help : `help`
+### Creating a new profile : `create`
+Create a new profile for a Person.
 
-Shows a message explaning how to access the help page.
+Format: `create n/NAME id/ID_NUM h/HEIGHT w/TARGET_WEIGHT`
 
-![help message](images/helpMessage.png)
-
-Format: `help`
+Examples:  
+`create n/Johnny id/1234 h/170 w/68` 
 
 ### Adding a daily weight record : `add d/DATE w/WEIGHT`
 Add a new daily weight record.
@@ -52,7 +68,7 @@ Add a new daily weight record.
 Format: `add d/DATE w/WEIGHT`
 
 Examples:  
-`add d/2020-10-16 w/70`  
+`add d/2020-10-16 w/70` 
 
 ### Editing a daily weight record : `edit INDEX w/WEIGHT`
 Edit a new daily weight record.
@@ -60,7 +76,7 @@ Edit a new daily weight record.
 Format: `edit INDEX w/WEIGHT`
 
 Examples:  
-`edit 1 w/65`
+`edit 1 w/65` 
 
 ### Adding a calorie input : `calorie tp/in`
 Add calorie input to the calorie tracker.
@@ -68,8 +84,8 @@ Add calorie input to the calorie tracker.
 Format: `calorie tp/in t/TIME f/FOOD c/CALORIE COUNT`
 
 Examples:  
-`calorie tp/in t/1200 f/Laksa c/290`  
-`calorie tp/in t/1800 f/Drumstick c/76`
+`calorie tp/in t/1200 f/laksa c/290`  
+`calorie tp/in t/1800 f/drumstick c/76`
 
 ### Adding a calorie output : `calorie tp/out`
 Add calorie output to the calorie tracker.
@@ -80,13 +96,13 @@ Examples:
 `calorie tp/out t/1200 e/running c/500`  
 `calorie tp/out t/1800 e/swimming c/250`
 
-### Creating a new profile : `create`
-Create a new profile for a Person.
+### Viewing help : `help`
 
-Format: `create n/NAME id/ID_NUM h/HEIGHT w/TARGET_WEIGHT`
+Shows a message explaning how to access the help page.
 
-Examples:  
-`create n/Johnny id/1234 h/170 w/68` 
+![help message](images/helpMessage.png)
+
+Format: `help`
 
 ### View all calorie inputs and outputs of a day: `Double click on a day`
 Shows a list of all entries of calorie inputs and calorie outputs of a particular day.
@@ -118,6 +134,11 @@ Format: `delete /out i/INDEX`
 Examples:  
 `delete /out 2`
 
+### Clearing all entries : `clear`
+Clears all entries in MyFitnessBuddy.
+
+Format: `clear`
+
 
 ### Exiting the program : `exit`
 Exits the program.
@@ -143,13 +164,15 @@ My Fitness Buddy data are saved in the hard disk automatically after any command
 
 Action | Format
 --------|------------------
+**Create profile** | `create n/NAME id/ID_NUM h/HEIGHT w/WEIGHT`
 **Add a new weight record** | `add d/DATE w/WEIGHT`
 **Edit a weight record** | `edit INDEX w/WEIGHT`
 **Add input** | `calorie tp/in t/TIME f/FOOD c/CALORIE_COUNT`
 **Add output** | `calorie tp/out t/TIME d/DURATION (MINUTES) c/CALORIE_BURNT`
-**Create profile** | `create n/NAME id/ID_NUM h/HEIGHT w/WEIGHT`
 **Delete input** | `delete /in i/INDEX`
 **Delete output** | `delete /out i/INDEX`
-**Exit** | `exit`
 **View entries** | `view`
+**Clear entries** | `clear`
 **Help** | `help`
+**Exit** | `exit`
+

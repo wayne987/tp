@@ -13,16 +13,24 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.CalorieCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.day.calorie.Calorie;
-import seedu.address.model.day.calorie.CalorieCount;
-import seedu.address.model.day.calorie.Exercise;
-import seedu.address.model.day.calorie.Food;
-import seedu.address.model.day.calorie.Input;
-import seedu.address.model.day.calorie.Output;
-import seedu.address.model.day.calorie.Time;
+import seedu.address.model.calorie.Calorie;
+import seedu.address.model.calorie.CalorieCount;
+import seedu.address.model.calorie.Exercise;
+import seedu.address.model.calorie.Food;
+import seedu.address.model.calorie.Input;
+import seedu.address.model.calorie.Output;
+import seedu.address.model.calorie.Time;
 
-
+/**
+ * Parses input arguments and creates a new CalorieCommand object
+ */
 public class CalorieCommandParser implements Parser<CalorieCommand> {
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the CalorieCommand
+     * and returns a CalorieCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     @Override
     public CalorieCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -64,6 +72,10 @@ public class CalorieCommandParser implements Parser<CalorieCommand> {
         return new CalorieCommand(calorie, type, date);
     }
 
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }

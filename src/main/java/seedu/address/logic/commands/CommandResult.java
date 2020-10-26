@@ -17,13 +17,22 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Statistics should be shown to the user */
+    private final boolean showAllStats;
+    private final boolean showCalorieStats;
+    private final boolean showWeightStats;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean showAllStats, boolean showCalorieStats, boolean showWeightStats) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showAllStats = showAllStats;
+        this.showCalorieStats = showCalorieStats;
+        this.showWeightStats = showWeightStats;
     }
 
     /**
@@ -31,8 +40,27 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false, false, false);
     }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser, showAllStats, showCalorieStats,
+     * showWeightStats},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean showAllStats, boolean showCalorieStats,
+                         boolean showWeightStats) {
+        this(feedbackToUser, false, false, showAllStats, showCalorieStats, showWeightStats);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser, showHelp, exit},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this(feedbackToUser, showHelp, exit, false, false, false);
+    }
+
 
     public String getFeedbackToUser() {
         return feedbackToUser;
@@ -44,6 +72,18 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowAllStats() {
+        return showAllStats;
+    }
+
+    public boolean isShowCalorieStats() {
+        return showCalorieStats;
+    }
+
+    public boolean isShowWeightStats() {
+        return showWeightStats;
     }
 
     @Override
@@ -60,12 +100,15 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && showAllStats == otherCommandResult.showAllStats
+                && showCalorieStats == otherCommandResult.showCalorieStats
+                && showWeightStats == otherCommandResult.showWeightStats;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, showAllStats, showCalorieStats, showWeightStats);
     }
 
 }

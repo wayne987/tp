@@ -1,4 +1,4 @@
-package seedu.address.model.day.calorie;
+package seedu.address.model.calorie;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 

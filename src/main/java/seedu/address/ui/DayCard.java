@@ -4,11 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.calorie.CalorieManager;
 import seedu.address.model.day.Day;
-import seedu.address.model.day.calorie.CalorieManager;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Day}.
  */
 public class DayCard extends UiPart<Region> {
 
@@ -23,6 +23,7 @@ public class DayCard extends UiPart<Region> {
      */
 
     public final Day day;
+    private MainWindow mainWindow;
 
     @FXML
     private HBox cardPane;
@@ -38,9 +39,9 @@ public class DayCard extends UiPart<Region> {
     private Label totalCalorieOut;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code DayCard} with the given {@code Day} and index to display and the given {@code MainWindow}.
      */
-    public DayCard(Day day, int displayedIndex) {
+    public DayCard(Day day, int displayedIndex, MainWindow mainWindow) {
         super(FXML);
         this.day = day;
         CalorieManager cm = day.getCalorieManager();
@@ -49,6 +50,19 @@ public class DayCard extends UiPart<Region> {
         weight.setText("Weight: " + day.getWeight().value + " kg");
         totalCalorieIn.setText("Total Calories In: " + cm.getTotalInputCalorie() + " calories");
         totalCalorieOut.setText("Total Calories Out: " + cm.getTotalOutputCalorie() + " calories");
+        this.mainWindow = mainWindow;
+
+        // Fills the calorie placeholders when a DayCard is double clicked
+        cardPane.setOnMouseClicked(x -> displayCalories(displayedIndex - 1));
+    }
+
+    /**
+     * Displays the list of calorie inputs and outputs.
+     *
+     * @param index the index of the day that was clicked.
+     */
+    private void displayCalories(int index) {
+        this.mainWindow.fillCaloriePanels(index);
     }
 
     @Override
