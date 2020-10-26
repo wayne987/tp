@@ -11,16 +11,16 @@ import javafx.scene.paint.Color;
  * @@author jewelsea-adapted
  * Adapted from https://gist.github.com/jewelsea/4681797 with modifications
  *
- * A node which displays a value when the mouse cursor hovers over it.
+ * A node which displays a value when the mouse cursor hovers over it for weight chart.
  */
-public class HoveredThresholdNode extends StackPane {
+public class HoveredWeightNode extends StackPane {
 
     /**
      * Creates a new Hovered Node for the data point
      * @param priorValue the value of the previous data point
      * @param value the current value of the data point
      */
-    public HoveredThresholdNode(int priorValue, int value) {
+    public HoveredWeightNode(int priorValue, int value) {
         setPrefSize(10, 10);
 
         final Label label = createDataThresholdLabel(priorValue, value);

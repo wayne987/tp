@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -29,6 +30,9 @@ public class CalorieStatsWindow extends UiPart<Stage> {
 
     @FXML
     private CategoryAxis xAxis;
+
+    @FXML
+    private NumberAxis yAxis;
 
     private ObservableList<String> dates = FXCollections.observableArrayList();
 
@@ -75,8 +79,14 @@ public class CalorieStatsWindow extends UiPart<Stage> {
 
         dates.addAll(Arrays.asList(datesString));
 
-        // Assign the dates as categories for the horizontal axis.
+        //Assign the dates as categories and add label for x-Axis
         xAxis.setCategories(dates);
+        xAxis.setLabel("Dates");
+
+        //Assign label to y-Axis
+        yAxis.setLabel("Calories (kcal)");
+
+
     }
 
     /**
@@ -99,18 +109,18 @@ public class CalorieStatsWindow extends UiPart<Stage> {
             calorieInSeries.getData().add(calorieInData);
 
             //set the data nodes to allow display of values when the mouse hovers over it
-            //calorieInData.setNode(new HoveredThresholdNode(
-            //        dayList.get((i == 0) ? 0 : i - 1).getCalorieManager().getTotalInputCalorie(),
-            //        dayList.get(i).getCalorieManager().getTotalInputCalorie()));
+            calorieInData.setNode(new HoveredCalorieNode(
+                    dayList.get((i == 0) ? 0 : i - 1).getCalorieManager().getTotalInputCalorie(),
+                    dayList.get(i).getCalorieManager().getTotalInputCalorie()));
 
             XYChart.Data<String, Integer> calorieOutData = new XYChart.Data<>(dates.get(i),
                     dayList.get(i).getCalorieManager().getTotalOutputCalorie());
             calorieOutSeries.getData().add(calorieOutData);
 
             //set the data nodes to allow display of values when the mouse hovers over it
-            //calorieOutData.setNode(new HoveredThresholdNode(
-            //        dayList.get((i == 0) ? 0 : i - 1).getCalorieManager().getTotalOutputCalorie(),
-            //        dayList.get(i).getCalorieManager().getTotalOutputCalorie()));
+            calorieOutData.setNode(new HoveredCalorieNode(
+                    dayList.get((i == 0) ? 0 : i - 1).getCalorieManager().getTotalOutputCalorie(),
+                    dayList.get(i).getCalorieManager().getTotalOutputCalorie()));
         }
 
         barChart.getData().add(calorieInSeries);

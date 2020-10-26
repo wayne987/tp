@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -29,6 +30,9 @@ public class WeightStatsWindow extends UiPart<Stage> {
 
     @FXML
     private CategoryAxis xAxis;
+
+    @FXML
+    private NumberAxis yAxis;
 
     private ObservableList<String> dates = FXCollections.observableArrayList();
 
@@ -75,8 +79,12 @@ public class WeightStatsWindow extends UiPart<Stage> {
 
         dates.addAll(Arrays.asList(datesString));
 
-        // Assign the dates as categories for the horizontal axis.
+        //Assign the dates as categories and label to x-Axis.
         xAxis.setCategories(dates);
+        xAxis.setLabel("Dates");
+
+        //Assign label to y-Axis
+        yAxis.setLabel("Weight (kg)");
     }
 
     /**
@@ -97,7 +105,7 @@ public class WeightStatsWindow extends UiPart<Stage> {
             weightsSeries.getData().add(weightData);
 
             //set the data nodes to allow display of values when the mouse hovers over it
-            weightData.setNode(new HoveredThresholdNode(
+            weightData.setNode(new HoveredWeightNode(
                     Integer.parseInt(dayList.get((i == 0) ? 0 : i - 1).getWeight().value),
                     Integer.parseInt(dayList.get(i).getWeight().value)));
         }
