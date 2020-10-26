@@ -8,6 +8,9 @@ public class Food {
     public static final String MESSAGE_CONSTRAINTS =
             "Food can take any values, and it should not be blank";
 
+    public static final String MESSAGE_CONSTRAINTS_WRONG_TYPE =
+            "Food can only be used with Calorie Type: Input";
+
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String food;

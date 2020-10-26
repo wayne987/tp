@@ -55,9 +55,10 @@ public class ChangeCommandParser {
 
         ChangeCommand.ChangeCalorieDescriptor changeCalorieDescriptor = new ChangeCommand.ChangeCalorieDescriptor();
 
+        boolean isOut;
         if (argMultimap.getValue(PREFIX_CALORIE_TYPE).isPresent()) {
-            changeCalorieDescriptor
-                    .setIsOut(ParserUtil.parseType(argMultimap.getValue(PREFIX_CALORIE_TYPE).get()));
+            isOut = ParserUtil.parseType(argMultimap.getValue(PREFIX_CALORIE_TYPE).get());
+            changeCalorieDescriptor.setIsOut(isOut);
         } else {
             throw new ParseException("Calorie type field cannot be empty");
         }
@@ -81,8 +82,14 @@ public class ChangeCommandParser {
         }
 
         if (argMultimap.getValue(PREFIX_EXERCISE).isPresent()) {
-            changeCalorieDescriptor.setTime(ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get()));
+            changeCalorieDescriptor
+                    .setExercise(ParserUtil.parseExercise(argMultimap.getValue(PREFIX_EXERCISE).get(), isOut));
         }
+
+        if (argMultimap.getValue(PREFIX_FOOD).isPresent()) {
+            changeCalorieDescriptor.setFood(ParserUtil.parseFood(argMultimap.getValue(PREFIX_FOOD).get(), isOut));
+        }
+
         if (!changeCalorieDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }

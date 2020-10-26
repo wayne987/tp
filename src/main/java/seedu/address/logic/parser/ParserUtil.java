@@ -115,9 +115,12 @@ public class ParserUtil {
      * Parses a {@code String exercise} into @code Exercise.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Exercise parseExercise(String exercise) throws ParseException {
+    public static Exercise parseExercise(String exercise, Boolean isOut) throws ParseException {
         requireNonNull(exercise);
         String trimmedExercise = exercise.trim();
+        if (!isOut) {
+            throw new ParseException(Exercise.MESSAGE_CONSTRAINTS_WRONG_TYPE);
+        }
         if (!Exercise.isValidExercise(trimmedExercise)) {
             throw new ParseException(Exercise.MESSAGE_CONSTRAINTS);
         }
@@ -141,9 +144,12 @@ public class ParserUtil {
      * Parses a {@code String food} into @code Food.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Food parseFood(String food) throws ParseException {
+    public static Food parseFood(String food, Boolean isOut) throws ParseException {
         requireNonNull(food);
         String trimmedFood = food.trim();
+        if (isOut) {
+            throw new ParseException(Food.MESSAGE_CONSTRAINTS_WRONG_TYPE);
+        }
         if (!Food.isValidFood(trimmedFood)) {
             throw new ParseException(Food.MESSAGE_CONSTRAINTS);
         }

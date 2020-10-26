@@ -4,6 +4,8 @@ public abstract class Calorie {
     // Identity fields
     private CalorieCount calorieCount;
     private Time time;
+
+
     /**
      * Every field must be present and not null.
      */

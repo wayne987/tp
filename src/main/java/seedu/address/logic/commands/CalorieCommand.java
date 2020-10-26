@@ -28,19 +28,22 @@ public class CalorieCommand extends Command {
     public static final String NO_AVAILABLE_DAY =
             "Please add a new day entry for the date intended before adding calorie input/output";
     public static final String INVALID_DATE = "Please input a valid Date";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a calorie to a particular day. "
-            + "Parameters: "
+    public static final String MESSAGE_PARAMETERS = "Parameters: "
             + PREFIX_CALORIE_TYPE + "IN/OUT"
             + PREFIX_DATE + "(OPTIONAL) 2020-10-14"
             + PREFIX_TIME + "TIME"
             + PREFIX_EXERCISE + "(IN) EXERCISE"
             + PREFIX_FOOD + "(OUT) FOOD"
-            + PREFIX_CALORIE_COUNT + "CALORIE COUNT"
+            + PREFIX_CALORIE_COUNT + "CALORIE COUNT\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CALORIE_TYPE + "out "
             + PREFIX_TIME + "1230 "
             + PREFIX_EXERCISE + "RUNNING "
             + PREFIX_CALORIE_COUNT + "123";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a calorie to a particular day. \n"
+            + MESSAGE_PARAMETERS;
+    public static final String MESSAGE_USAGE_2 = "There can only be f/FOOD field for tp/in and e/EXERCISE for tp/out \n"
+            + MESSAGE_PARAMETERS;
 
     private Calorie calorie;
     private Boolean isOut;
