@@ -1,5 +1,7 @@
 package seedu.address.model.calorie;
 
+import java.util.Objects;
+
 public abstract class Calorie {
     // Identity fields
     private CalorieCount calorieCount;
@@ -19,5 +21,25 @@ public abstract class Calorie {
 
     public Time getTime() {
         return time;
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(time);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Calorie)) {
+            return false;
+        }
+        Calorie otherCalorie = (Calorie) other;
+
+        return otherCalorie.getTime().time.equals(getTime().time);
     }
 }

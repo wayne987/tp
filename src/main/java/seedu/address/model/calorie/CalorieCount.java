@@ -32,6 +32,5 @@ public class CalorieCount {
         return calorieCount;
     }
 
-
 }
 

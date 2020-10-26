@@ -27,6 +27,8 @@ public class CalorieCommand extends Command {
 
     public static final String NO_AVAILABLE_DAY =
             "Please add a new day entry for the date intended before adding calorie input/output";
+    public static final String DUPLICATE_TIME =
+            "A calorie record with the same time already exist";
     public static final String INVALID_DATE = "Please input a valid Date";
     public static final String MESSAGE_PARAMETERS = "Parameters: "
             + PREFIX_CALORIE_TYPE + "IN/OUT"
@@ -77,6 +79,9 @@ public class CalorieCommand extends Command {
         LocalDate date = getDate(this.date);
         if (model.hasDay(date)) {
             Day editDay = model.getDay(date);
+            if (editDay.getCalorieManager().contains(calorie, isOut)) {
+                throw new CommandException(DUPLICATE_TIME);
+            }
             if (!isOut) {
                 editDay.getCalorieManager().addCalorieInput((Input) calorie);
             } else {

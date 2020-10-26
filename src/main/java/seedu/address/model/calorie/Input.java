@@ -38,23 +38,4 @@ public class Input extends Calorie {
         return this.getTime().isAfter(input.getTime());
     }
 
-    /**
-     * Returns true if both Input have the same identity and data fields.
-     * This defines a stronger notion of equality between two Input.
-     */
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Input)) {
-            return false;
-        }
-
-        Input otherInput = (Input) other;
-        return otherInput.getCalorieCount().equals(getCalorieCount())
-                && otherInput.getTime().equals(getTime())
-                && otherInput.getFood().equals(getFood());
-    }
 }

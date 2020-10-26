@@ -1,5 +1,6 @@
 package seedu.address.model.calorie;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
@@ -10,7 +11,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-
 
 
 /**
@@ -206,5 +206,20 @@ public class CalorieManager {
         }
         return new CalorieManager(getCalorieInputList(), getCalorieOutputList());
     }
+
+    /**
+     * Check if there is a calorie in the list with the same time as param
+     * @param toCheck
+     * @param isOut determines which list to check
+     */
+    public boolean contains(Calorie toCheck, Boolean isOut) {
+        requireNonNull(toCheck);
+        if (isOut) {
+            return calorieOutputList.stream().anyMatch(toCheck::equals);
+        } else {
+            return calorieInputList.stream().anyMatch(toCheck::equals);
+        }
+    }
+
 }
 
