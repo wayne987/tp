@@ -78,7 +78,6 @@ public class ChangeCommandParser {
         if (argMultimap.getValue(PREFIX_CALORIE_COUNT).isPresent()) {
             changeCalorieDescriptor
                     .setCalorieCount(ParserUtil.parseCalorieCount(argMultimap.getValue(PREFIX_CALORIE_COUNT).get()));
-            System.out.println("hello");
         }
 
         if (argMultimap.getValue(PREFIX_EXERCISE).isPresent()) {

@@ -88,7 +88,6 @@ public class ChangeCommand extends Command {
             if (index.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_DAY_DISPLAYED_INDEX);
             } else {
-                System.out.println(index.getZeroBased());
                 editDay = lastShownList.get(index.getZeroBased());
             }
         } else {
