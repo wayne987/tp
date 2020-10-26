@@ -23,8 +23,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class ChangeCommandParser {
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the CalorieCommand
+     * and returns an CalorieCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ChangeCommand parse(String args) throws ParseException {

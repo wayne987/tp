@@ -29,7 +29,9 @@ import seedu.address.model.day.Weight;
 import seedu.address.model.tag.Tag;
 
 
-
+/**
+ * Edit a certain calorie input/output for a particular day
+ */
 public class ChangeCommand extends Command {
 
     public static final String COMMAND_WORD = "change";
@@ -133,8 +135,8 @@ public class ChangeCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Day} with the details of {@code dayToEdit}
-     * edited with {@code editDayDescriptor}.
+     * Creates and returns a {@code Calorie} with the details of {@code dayToEdit}
+     * edited with {@code editCalorieDescriptor}.
      */
     private static Calorie createEditedCalorie(Calorie calorieToEdit,
                                                ChangeCommand.ChangeCalorieDescriptor changeCalorieDescriptor) {

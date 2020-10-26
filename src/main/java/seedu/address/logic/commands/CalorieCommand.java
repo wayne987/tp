@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE_COUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
@@ -55,12 +56,14 @@ public class CalorieCommand extends Command {
      * Creates an CalorieCommand to add the specified {@code Calorie}
      */
     public CalorieCommand(Calorie calorie, Boolean isOut, String date) {
+        requireNonNull(calorie);
+        requireNonNull(isOut);
         this.calorie = calorie;
         this.isOut = isOut;
         this.date = date;
     }
 
-    private LocalDate getDate(String date) throws CommandException {
+    public LocalDate getDate(String date) throws CommandException {
         LocalDate addDate;
         if (date.isEmpty()) {
             addDate = LocalDate.now();
@@ -73,6 +76,7 @@ public class CalorieCommand extends Command {
         }
         return addDate;
     }
+
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
