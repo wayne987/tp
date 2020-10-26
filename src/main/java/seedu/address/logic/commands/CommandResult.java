@@ -22,17 +22,22 @@ public class CommandResult {
     private final boolean showCalorieStats;
     private final boolean showWeightStats;
 
+    private final boolean clear;
+    private final boolean delete;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean showAllStats, boolean showCalorieStats, boolean showWeightStats) {
+                         boolean showAllStats, boolean showCalorieStats, boolean showWeightStats, boolean clear, boolean delete) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showAllStats = showAllStats;
         this.showCalorieStats = showCalorieStats;
         this.showWeightStats = showWeightStats;
+        this.clear = clear;
+        this.delete = delete;
     }
 
     /**
@@ -40,7 +45,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false, false);
+        this(feedbackToUser, false, false, false, false, false, false, false);
     }
 
     /**
@@ -50,17 +55,16 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, boolean showAllStats, boolean showCalorieStats,
                          boolean showWeightStats) {
-        this(feedbackToUser, false, false, showAllStats, showCalorieStats, showWeightStats);
+        this(feedbackToUser, false, false, showAllStats, showCalorieStats, showWeightStats, false, false);
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser, showHelp, exit},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, false, false, false);
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean clear, boolean delete) {
+        this(feedbackToUser, showHelp, exit, false, false, false, clear, delete);
     }
-
 
     public String getFeedbackToUser() {
         return feedbackToUser;
@@ -84,6 +88,14 @@ public class CommandResult {
 
     public boolean isShowWeightStats() {
         return showWeightStats;
+    }
+
+    public boolean isClear() {
+        return clear;
+    }
+
+    public boolean isDelete() {
+        return delete;
     }
 
     @Override

@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -206,6 +207,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    @FXML
+    public void handleClear() {
+        calorieInputListPanel.update(FXCollections.observableArrayList());
+        calorieOutputListPanel.update(FXCollections.observableArrayList());
+    }
+
+    @FXML
+    public void handleDelete() {
+        calorieInputListPanel.update(FXCollections.observableArrayList());
+        calorieOutputListPanel.update(FXCollections.observableArrayList());
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -259,6 +272,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowWeightStats()) {
                 handleWeightStats();
+            }
+
+            if (commandResult.isClear()) {
+                handleClear();
+            }
+
+            if (commandResult.isDelete()) {
+                handleDelete();
             }
 
             return commandResult;
