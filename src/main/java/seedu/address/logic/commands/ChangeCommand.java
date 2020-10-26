@@ -34,6 +34,8 @@ public class ChangeCommand extends Command {
 
     public static final String COMMAND_WORD = "change";
 
+    public static final String DUPLICATE_TIME = "There exist a calorie with the same time";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the calorie identified "
             + "by the index number used in the displayed calorie list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -43,6 +45,8 @@ public class ChangeCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_EDIT_DAY_SUCCESS = "Edited Calorie: %1$s";
+
+    public static final String MESSAGE_NOT_EDITED = "Please edit at least one of the calorie field";
 
 
     private Index index;
@@ -94,12 +98,29 @@ public class ChangeCommand extends Command {
             editDay = model.getDay(date);
         }
 
+        Boolean isOut = changeCalorieDescriptor.getIsOut();
         CalorieManager calorieManager = editDay.getCalorieManager();
-        Calorie calorieToEdit = calorieManager.getCalorie(changeCalorieDescriptor.getIsOut(), calorieIndex);
 
+        Calorie calorieToEdit = calorieManager.getCalorie(isOut, calorieIndex);
         Calorie editedCalorie = createEditedCalorie(calorieToEdit, changeCalorieDescriptor);
-        CalorieManager cm = calorieManager.setCalorie(calorieIndex, changeCalorieDescriptor.getIsOut(), editedCalorie);
 
+        if (isOut) {
+            Output toEdit = (Output) calorieToEdit;
+            Output edited = (Output) editedCalorie;
+            if (toEdit.isSameOutput(edited)) {
+                throw new CommandException(MESSAGE_NOT_EDITED);
+            }
+        }
+
+        if (!isOut) {
+            Input toEdit = (Input) calorieToEdit;
+            Input edited = (Input) editedCalorie;
+            if (toEdit.isSameInput(edited)) {
+                throw new CommandException(MESSAGE_NOT_EDITED);
+            }
+        }
+
+        CalorieManager cm = calorieManager.setCalorie(calorieIndex, changeCalorieDescriptor.getIsOut(), editedCalorie);
         Date date = editDay.getDate();
         Weight weight = editDay.getWeight();
         Set<Tag> tag = editDay.getTags();
@@ -120,6 +141,7 @@ public class ChangeCommand extends Command {
         assert changeCalorieDescriptor != null;
 
         Time updatedTime = changeCalorieDescriptor.getTime().orElse(calorieToEdit.getTime());
+
         CalorieCount updatedCalorieCount = changeCalorieDescriptor.getCalorieCount()
                 .orElse(calorieToEdit.getCalorieCount());
 

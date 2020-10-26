@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public abstract class Calorie {
     // Identity fields
-    private CalorieCount calorieCount;
-    private Time time;
+    protected CalorieCount calorieCount;
+    protected Time time;
 
 
     /**

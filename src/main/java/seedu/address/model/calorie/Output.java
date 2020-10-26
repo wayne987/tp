@@ -37,4 +37,14 @@ public class Output extends Calorie {
     public boolean happenAfter(Output output) {
         return this.getTime().isAfter(output.getTime());
     }
+
+    /**
+     * Returns true if a otherOutput has the same attributes as this Output
+     * @param otherOutput that is being checked with
+     */
+    public boolean isSameOutput(Output otherOutput) {
+        return otherOutput.getExercise().exercise.equals(this.exercise.toString())
+                && otherOutput.getTime().time.equals(this.time.toString())
+                && otherOutput.getCalorieCount().calorieCount.equals(this.calorieCount.toString());
+    }
 }

@@ -38,4 +38,14 @@ public class Input extends Calorie {
         return this.getTime().isAfter(input.getTime());
     }
 
+    /**
+     * Returns true if a otherInput has the same attributes as this Input
+     * @param otherInput that is being checked with
+     */
+    public boolean isSameInput(Input otherInput) {
+        return otherInput.getFood().food.equals(this.food.toString())
+               && otherInput.getTime().time.equals(this.time.toString())
+               && otherInput.getCalorieCount().calorieCount.equals(this.calorieCount.toString());
+    }
+
 }

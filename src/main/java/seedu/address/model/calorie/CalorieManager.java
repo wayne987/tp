@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.ChangeCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 
 
@@ -179,7 +180,7 @@ public class CalorieManager {
     /**
      * Get a calorie of a certain type and index
      * @param isOut is the calorie type Output?
-     * @param index
+     * @param index of the calorie to be retrieved
      */
     public Calorie getCalorie(Boolean isOut, Index index) throws CommandException {
         if (!isOut) {
@@ -195,21 +196,29 @@ public class CalorieManager {
         }
     }
 
-    public CalorieManager setCalorie(Index index, Boolean isOut, Calorie editedCalorie) {
+    public CalorieManager setCalorie(Index index, Boolean isOut, Calorie editedCalorie) throws CommandException {
         requireAllNonNull(index, isOut, editedCalorie);
         if (isOut) {
+            Output temp = calorieOutputList.remove(index.getZeroBased());
+            if (contains(editedCalorie, true)) {
+                calorieOutputList.add(temp);
+                throw new CommandException(ChangeCommand.DUPLICATE_TIME);
+            }
             addCalorieOutput((Output) editedCalorie);
-            calorieOutputList.remove(index.getZeroBased());
         } else {
+            Input temp = calorieInputList.remove(index.getZeroBased());
+            if (contains(editedCalorie, false)) {
+                calorieInputList.add(temp);
+                throw new CommandException(ChangeCommand.DUPLICATE_TIME);
+            }
             addCalorieInput((Input) editedCalorie);
-            calorieInputList.remove(index.getZeroBased());
         }
         return new CalorieManager(getCalorieInputList(), getCalorieOutputList());
     }
 
     /**
      * Check if there is a calorie in the list with the same time as param
-     * @param toCheck
+     * @param toCheck if the list contains this calorie entry
      * @param isOut determines which list to check
      */
     public boolean contains(Calorie toCheck, Boolean isOut) {
