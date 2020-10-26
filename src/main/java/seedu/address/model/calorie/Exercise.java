@@ -36,4 +36,22 @@ public class Exercise {
         return exercise;
     }
 
+    /**
+     * Returns true if both Exercises have the same exercise string.
+     * This defines a stronger notion of equality between two Exercises.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Exercise)) {
+            return false;
+        }
+
+        Exercise otherExercise = (Exercise) other;
+        return otherExercise.exercise.equals(this.exercise);
+    }
+
 }

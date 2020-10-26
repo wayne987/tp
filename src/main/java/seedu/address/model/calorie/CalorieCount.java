@@ -32,6 +32,23 @@ public class CalorieCount {
         return calorieCount;
     }
 
+    /**
+     * Returns true if both Calories have the same calorie string.
+     * This defines a stronger notion of equality between two calories.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof CalorieCount)) {
+            return false;
+        }
+
+        CalorieCount otherCalorieCount = (CalorieCount) other;
+        return otherCalorieCount.calorieCount.equals(this.calorieCount);
+    }
 
 }
 

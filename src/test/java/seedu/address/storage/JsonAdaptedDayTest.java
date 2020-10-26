@@ -25,7 +25,6 @@ public class JsonAdaptedDayTest {
     private static final String VALID_DATE = BENSON.getDate().toString();
     private static final String VALID_WEIGHT = BENSON.getWeight().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
-
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 

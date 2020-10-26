@@ -11,12 +11,12 @@ import seedu.address.model.ReadOnlyMyFitnessBuddy;
 /**
  * Represents a storage for {@link MyFitnessBuddy}.
  */
-public interface AddressBookStorage {
+public interface MyFitnessBuddyStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getMyFitnessBuddyFilePath();
 
     /**
      * Returns AddressBook data as a {@link ReadOnlyMyFitnessBuddy}.
@@ -24,23 +24,23 @@ public interface AddressBookStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyMyFitnessBuddy> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyMyFitnessBuddy> readFitnessBuddy() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getMyFitnessBuddyFilePath()
      */
-    Optional<ReadOnlyMyFitnessBuddy> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyMyFitnessBuddy> readFitnessBuddy(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyMyFitnessBuddy} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyMyFitnessBuddy addressBook) throws IOException;
+    void saveFitnessBuddy(ReadOnlyMyFitnessBuddy addressBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyMyFitnessBuddy)
+     * @see #saveFitnessBuddy(ReadOnlyMyFitnessBuddy)
      */
-    void saveAddressBook(ReadOnlyMyFitnessBuddy addressBook, Path filePath) throws IOException;
+    void saveFitnessBuddy(ReadOnlyMyFitnessBuddy addressBook, Path filePath) throws IOException;
 
 }

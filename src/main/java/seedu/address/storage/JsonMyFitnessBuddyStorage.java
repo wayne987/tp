@@ -17,41 +17,41 @@ import seedu.address.model.ReadOnlyMyFitnessBuddy;
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonMyFitnessBuddyStorage implements MyFitnessBuddyStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonMyFitnessBuddyStorage.class);
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonMyFitnessBuddyStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getMyFitnessBuddyFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyMyFitnessBuddy> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyMyFitnessBuddy> readFitnessBuddy() throws DataConversionException {
+        return readFitnessBuddy(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readFitnessBuddy()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyMyFitnessBuddy> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyMyFitnessBuddy> readFitnessBuddy(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        Optional<JsonSerializableMyFitnessBuddy> jsonFitnessBuddy = JsonUtil.readJsonFile(
+                filePath, JsonSerializableMyFitnessBuddy.class);
+        if (!jsonFitnessBuddy.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonFitnessBuddy.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -59,22 +59,22 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyMyFitnessBuddy addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveFitnessBuddy(ReadOnlyMyFitnessBuddy addressBook) throws IOException {
+        saveFitnessBuddy(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyMyFitnessBuddy)}.
+     * Similar to {@link #saveFitnessBuddy(ReadOnlyMyFitnessBuddy)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyMyFitnessBuddy addressBook, Path filePath) throws IOException {
+    public void saveFitnessBuddy(ReadOnlyMyFitnessBuddy addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
         assert FileUtil.isFileExists(filePath) : "Error creating new file";
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableMyFitnessBuddy(addressBook), filePath);
         logger.info("Save completed");
     }
 

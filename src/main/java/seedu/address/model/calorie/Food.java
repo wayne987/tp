@@ -38,4 +38,22 @@ public class Food {
         return food;
     }
 
+    /**
+     * Returns true if both Foods have the same food string.
+     * This defines a stronger notion of equality between two foods.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Food)) {
+            return false;
+        }
+
+        Food otherFood = (Food) other;
+        return otherFood.food.equals(this.food);
+    }
+
 }
