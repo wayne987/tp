@@ -111,7 +111,7 @@ public class CalorieStatsWindow extends UiPart<Stage> {
             //set the data nodes to allow display of values when the mouse hovers over it
             calorieInData.setNode(new HoveredCalorieNode(
                     dayList.get((i == 0) ? 0 : i - 1).getCalorieManager().getTotalInputCalorie(),
-                    dayList.get(i).getCalorieManager().getTotalInputCalorie()));
+                    dayList.get(i).getCalorieManager().getTotalInputCalorie(), true));
 
             XYChart.Data<String, Integer> calorieOutData = new XYChart.Data<>(dates.get(i),
                     dayList.get(i).getCalorieManager().getTotalOutputCalorie());
@@ -120,7 +120,7 @@ public class CalorieStatsWindow extends UiPart<Stage> {
             //set the data nodes to allow display of values when the mouse hovers over it
             calorieOutData.setNode(new HoveredCalorieNode(
                     dayList.get((i == 0) ? 0 : i - 1).getCalorieManager().getTotalOutputCalorie(),
-                    dayList.get(i).getCalorieManager().getTotalOutputCalorie()));
+                    dayList.get(i).getCalorieManager().getTotalOutputCalorie(), false));
         }
 
         barChart.getData().add(calorieInSeries);

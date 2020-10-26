@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import javafx.event.EventHandler;
-import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
@@ -29,7 +28,6 @@ public class HoveredWeightNode extends StackPane {
         setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent mouseEvent) {
                 getChildren().setAll(label);
-                setCursor(Cursor.NONE);
                 toFront();
             }
         });
@@ -43,7 +41,7 @@ public class HoveredWeightNode extends StackPane {
     }
 
     /**
-     * Creates a label to display the value of the data node.
+     * Creates a label to display the value of the data node for weight.
      *
      * @param priorValue the data value of the previous node.
      * @param value the data value of the current node in focus.
@@ -56,15 +54,15 @@ public class HoveredWeightNode extends StackPane {
         if (priorValue == 0 || priorValue == value) {
             //Value will be displayed in grey if there is no change between
             //the prior and current value or the current node is the first node
-            //For e.g. when there is no weight gain or loss
+            //To indicate no change in weight
             label.setTextFill(Color.GRAY);
         } else if (value < priorValue) {
             //Value will be displayed in green if current value is smaller than prior value
-            //For e.g. to indicate weight loss
+            //To indicate weight loss
             label.setTextFill(Color.FORESTGREEN);
         } else {
             //Value will be displayed in red if current value is greater than prior value
-            //For e.g. to indicate weight gain
+            //To indicate weight gain
             label.setTextFill(Color.FIREBRICK);
         }
 

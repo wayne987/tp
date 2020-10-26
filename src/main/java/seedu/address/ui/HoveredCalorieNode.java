@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import javafx.event.EventHandler;
-import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
@@ -11,7 +10,7 @@ import javafx.scene.paint.Color;
  * @@author jewelsea-adapted
  * Adapted from https://gist.github.com/jewelsea/4681797 with modifications
  *
- * A node which displays a value when the mouse cursor hovers over it.
+ * A node which displays a value when the mouse cursor hovers over it for calorie chart.
  */
 public class HoveredCalorieNode extends StackPane {
 
@@ -20,16 +19,21 @@ public class HoveredCalorieNode extends StackPane {
      * @param priorValue the value of the previous data point
      * @param value the current value of the data point
      */
-    public HoveredCalorieNode(int priorValue, int value) {
+    public HoveredCalorieNode(int priorValue, int value, boolean isCalorieIn) {
         setPrefSize(10, 10);
 
-        final Label label = createDataThresholdLabel(priorValue, value);
+        final Label label;
+
+        if (isCalorieIn) {
+            label = createCalorieInDataThresholdLabel(priorValue, value);
+        } else {
+            label = createCalorieOutDataThresholdLabel(priorValue, value);
+        }
 
         //Displays the data value label when the mouse cursor hovers at the data node of the chart.
         setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent mouseEvent) {
                 getChildren().setAll(label);
-                setCursor(Cursor.NONE);
                 toFront();
             }
         });
@@ -43,12 +47,12 @@ public class HoveredCalorieNode extends StackPane {
     }
 
     /**
-     * Creates a label to display the value of the data node.
+     * Creates a label to display the value of the data node for calorie in.
      *
      * @param priorValue the data value of the previous node.
      * @param value the data value of the current node in focus.
      */
-    private Label createDataThresholdLabel(int priorValue, int value) {
+    private Label createCalorieInDataThresholdLabel(int priorValue, int value) {
         final Label label = new Label(value + "");
         label.getStyleClass().addAll("default-color0", "chart-line-symbol", "chart-series-line");
         label.setStyle("-fx-font-size: 20; -fx-font-weight: bold");
@@ -56,15 +60,45 @@ public class HoveredCalorieNode extends StackPane {
         if (priorValue == 0 || priorValue == value) {
             //Value will be displayed in grey if there is no change between
             //the prior and current value or the current node is the first node
-            //For e.g. when there is no weight gain or loss
+            //To indicate no change in calorie input
             label.setTextFill(Color.GRAY);
         } else if (value < priorValue) {
             //Value will be displayed in green if current value is smaller than prior value
-            //For e.g. to indicate weight loss
+            //To indicate decrease in calorie input
             label.setTextFill(Color.FORESTGREEN);
         } else {
             //Value will be displayed in red if current value is greater than prior value
-            //For e.g. to indicate weight gain
+            //To indicate increase in calorie input
+            label.setTextFill(Color.FIREBRICK);
+        }
+
+        label.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
+        return label;
+    }
+
+    /**
+     * Creates a label to display the value of the data node for calorie out.
+     *
+     * @param priorValue the data value of the previous node.
+     * @param value the data value of the current node in focus.
+     */
+    private Label createCalorieOutDataThresholdLabel(int priorValue, int value) {
+        final Label label = new Label(value + "");
+        label.getStyleClass().addAll("default-color1", "chart-line-symbol", "chart-series-line");
+        label.setStyle("-fx-font-size: 20; -fx-font-weight: bold");
+
+        if (priorValue == 0 || priorValue == value) {
+            //Value will be displayed in grey if there is no change between
+            //the prior and current value or the current node is the first node
+            //To indicate no change in calorie output
+            label.setTextFill(Color.GRAY);
+        } else if (value > priorValue) {
+            //Value will be displayed in green if current value is bigger than prior value
+            //To indicate increase in calorie output
+            label.setTextFill(Color.FORESTGREEN);
+        } else {
+            //Value will be displayed in red if current value is greater than prior value
+            //To indicate decrease in calorie output
             label.setTextFill(Color.FIREBRICK);
         }
 
