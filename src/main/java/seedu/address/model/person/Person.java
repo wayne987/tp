@@ -101,7 +101,7 @@ public class Person {
     }
 
     /**
-     * Checks if the current data {@code Person } has a deafault profile.
+     * Checks if the current data {@code Person } has a default profile.
      */
     public boolean hasProfile() {
         return profile != defaultProfile;
