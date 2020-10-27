@@ -31,6 +31,7 @@
           </Menu>
                <Menu mnemonicParsing="false" text="Statistics">
                  <items>
+                     <MenuItem fx:id="allStatsMenuItem" mnemonicParsing="false" onAction="#handleAllStats" text="Show All Stats" />
                    <MenuItem fx:id="weightStatsMenuItem" mnemonicParsing="false" onAction="#handleWeightStats" text="Show Weight Stats" />
                      <MenuItem fx:id="calorieStatsMenuItem" mnemonicParsing="false" onAction="#handleCalorieStats" text="Show Calorie Stats" />
                  </items>
