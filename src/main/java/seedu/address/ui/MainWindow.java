@@ -212,11 +212,19 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Removes the items shown in the calorie lists if any.
+     */
     @FXML
     public void handleClear() {
         fillCaloriePanels(0);
     }
 
+    /**
+     * Removes the items shown in the calorie lists if the day being shown is deleted.
+     *
+     * @param index index of the item that is deleted.
+     */
     @FXML
     public void handleDelete(int index) {
        fillCaloriePanels(index - 1);

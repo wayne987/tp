@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
-import java.util.concurrent.ConcurrentMap;
 
 /**
  * Represents the result of a command execution.
@@ -23,9 +22,11 @@ public class CommandResult {
     private final boolean showCalorieStats;
     private final boolean showWeightStats;
 
+    /** All lists should be cleared */
     private final boolean clear;
-    private final boolean delete;
 
+    /** If the index matches the current day's calories being shown, remove them */
+    private final boolean delete;
     private final int index;
 
     /**
@@ -70,10 +71,18 @@ public class CommandResult {
         this(feedbackToUser, showHelp, exit, false, false, false, false, false, 0);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser, clear},
+     * and other fields set to their default value.
+     */
     public CommandResult(String feedbackToUser, boolean clear) {
         this(feedbackToUser, false, false, false, false, false, clear, false, 0);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser, delete, index},
+     * and other fields set to their default value.
+     */
     public CommandResult(String feedbackToUser, boolean delete, int index) {
         this(feedbackToUser, false, false, false, false, false, false, delete, index);
     }
@@ -131,12 +140,15 @@ public class CommandResult {
                 && exit == otherCommandResult.exit
                 && showAllStats == otherCommandResult.showAllStats
                 && showCalorieStats == otherCommandResult.showCalorieStats
-                && showWeightStats == otherCommandResult.showWeightStats;
+                && showWeightStats == otherCommandResult.showWeightStats
+                && clear == otherCommandResult.clear
+                && delete == otherCommandResult.delete
+                && index == otherCommandResult.index;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, showAllStats, showCalorieStats, showWeightStats);
+        return Objects.hash(feedbackToUser, showHelp, exit, showAllStats, showCalorieStats, showWeightStats, clear, delete, index);
     }
 
 }
