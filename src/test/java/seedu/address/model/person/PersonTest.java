@@ -6,13 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDays.DAY1;
-import static seedu.address.testutil.TypicalDays.DEFAULT_PROFILE;
 import static seedu.address.testutil.TypicalDays.getTypicalMyFitnessBuddy;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -43,19 +40,6 @@ public class PersonTest {
         MyFitnessBuddy newData = getTypicalMyFitnessBuddy();
         myFitnessBuddy.resetData(newData);
         assertEquals(newData, myFitnessBuddy);
-    }
-    //error: i cannot seem to make up a person w duplicated days lol
-    // unless i setInternalList directly in UniqueDayList class
-    @Test
-    public void resetData_withDuplicateDays_throwsDuplicateDayException() {
-        // Two days with the same identity fields
-        myFitnessBuddy.setProfile(DEFAULT_PROFILE);
-        Day editedDay1 = new DayBuilder(DAY1).withTags(VALID_TAG_HUSBAND)
-                .build();
-        List<Day> newDays = Arrays.asList(DAY1, editedDay1);
-        MyFitnessBuddyStub newData = new MyFitnessBuddyStub(newDays);
-
-        //assertThrows(DuplicateDayException.class, () -> myFitnessBuddy.resetData(newData));
     }
 
     @Test
