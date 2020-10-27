@@ -11,7 +11,7 @@ import seedu.address.model.calorie.Time;
 
 
 /**
- * Jackson-friendly version of {@link seedu.address.model.calorie.Calorie}.
+ * Jackson-friendly version of {@link seedu.address.model.calorie.Input}.
  */
 class JsonAdaptedInput {
 
@@ -31,7 +31,7 @@ class JsonAdaptedInput {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code Input} into this class for Jackson use.
      */
     public JsonAdaptedInput(Input source) {
         calorieCount = source.getCalorieCount().calorieCount;
@@ -41,13 +41,22 @@ class JsonAdaptedInput {
 
 
     /**
-     * Converts this Jackson-friendly adapted day object into the model's {@code Day} object.
+     * Converts this Jackson-friendly adapted Input object into the model's {@code Input} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted day.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted Input.
      */
     public Input toModelType() throws IllegalValueException {
+        if (!CalorieCount.isValidCalorieCount(calorieCount)) {
+            throw new IllegalValueException(String.format(CalorieCount.MESSAGE_CONSTRAINTS));
+        }
         final CalorieCount modelCalorieCount = new CalorieCount(calorieCount);
+        if (!Time.isValidTime(time)) {
+            throw new IllegalValueException(String.format(Time.MESSAGE_CONSTRAINTS));
+        }
         final Time modelTime = new Time(time);
+        if (!Food.isValidFood(food)) {
+            throw new IllegalValueException(String.format(Food.MESSAGE_CONSTRAINTS));
+        }
         final Food modelFood = new Food(food);
         return new Input(modelTime, modelFood, modelCalorieCount);
     }

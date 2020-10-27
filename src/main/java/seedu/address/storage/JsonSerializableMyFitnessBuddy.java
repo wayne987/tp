@@ -11,17 +11,15 @@ import seedu.address.model.person.Person;
 
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable My Fitness Buddy that is serializable to JSON format.
  */
 @JsonRootName(value = "My Fitness Buddy")
 class JsonSerializableMyFitnessBuddy {
 
-    public static final String MESSAGE_DUPLICATE_DAY = "Days list contains duplicate day(s).";
-
     private final JsonAdaptedPerson person;
 
     /**
-     * Constructs a {@code JsonSerializableMyFitnessBuddy} with the given days.
+     * Constructs a {@code JsonSerializableMyFitnessBuddy} with the given persons.
      */
     @JsonCreator
     public JsonSerializableMyFitnessBuddy(@JsonProperty("person") JsonAdaptedPerson person) {
@@ -29,7 +27,7 @@ class JsonSerializableMyFitnessBuddy {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyMyFitnessBuddy} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableMyFitnessBuddy}.
      */
@@ -38,7 +36,7 @@ class JsonSerializableMyFitnessBuddy {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code MyFitnessBuddy} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

@@ -47,7 +47,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ My Fitness Buddy methods ==============================
 
     @Override
     public Path getMyFitnessBuddyFilePath() {
@@ -67,14 +67,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveFitnessBuddy(ReadOnlyMyFitnessBuddy addressBook) throws IOException {
-        saveFitnessBuddy(addressBook, myFitnessBuddyStorage.getMyFitnessBuddyFilePath());
+    public void saveFitnessBuddy(ReadOnlyMyFitnessBuddy myFitnessBuddy) throws IOException {
+        saveFitnessBuddy(myFitnessBuddy, myFitnessBuddyStorage.getMyFitnessBuddyFilePath());
     }
 
     @Override
-    public void saveFitnessBuddy(ReadOnlyMyFitnessBuddy addressBook, Path filePath) throws IOException {
+    public void saveFitnessBuddy(ReadOnlyMyFitnessBuddy myFitnessBuddy, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        myFitnessBuddyStorage.saveFitnessBuddy(addressBook, filePath);
+        myFitnessBuddyStorage.saveFitnessBuddy(myFitnessBuddy, filePath);
     }
 
 }

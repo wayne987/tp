@@ -9,9 +9,8 @@ import seedu.address.model.calorie.Exercise;
 import seedu.address.model.calorie.Output;
 import seedu.address.model.calorie.Time;
 
-
 /**
- * Jackson-friendly version of {@link seedu.address.model.calorie.Calorie}.
+ * Jackson-friendly version of {@link seedu.address.model.calorie.Output}.
  */
 class JsonAdaptedOutput {
 
@@ -31,7 +30,7 @@ class JsonAdaptedOutput {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code Output} into this class for Jackson use.
      */
     public JsonAdaptedOutput(Output source) {
         calorieCount = source.getCalorieCount().calorieCount;
@@ -41,14 +40,23 @@ class JsonAdaptedOutput {
 
 
     /**
-     * Converts this Jackson-friendly adapted day object into the model's {@code Day} object.
+     * Converts this Jackson-friendly adapted output object into the model's {@code Output} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted day.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted output.
      */
     public Output toModelType() throws IllegalValueException {
 
+        if (!CalorieCount.isValidCalorieCount(calorieCount)) {
+            throw new IllegalValueException(String.format(CalorieCount.MESSAGE_CONSTRAINTS));
+        }
         final CalorieCount modelCalorieCount = new CalorieCount(calorieCount);
+        if (!Time.isValidTime(time)) {
+            throw new IllegalValueException(String.format(Time.MESSAGE_CONSTRAINTS));
+        }
         final Time modelTime = new Time(time);
+        if (!Exercise.isValidExercise(exercise)) {
+            throw new IllegalValueException(String.format(Exercise.MESSAGE_CONSTRAINTS));
+        }
         final Exercise modelExercise = new Exercise(exercise);
         return new Output(modelTime, modelExercise, modelCalorieCount);
     }

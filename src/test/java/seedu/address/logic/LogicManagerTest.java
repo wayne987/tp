@@ -152,7 +152,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveFitnessBuddy(ReadOnlyMyFitnessBuddy addressBook, Path filePath) throws IOException {
+        public void saveFitnessBuddy(ReadOnlyMyFitnessBuddy myFitnessBuddy, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

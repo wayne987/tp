@@ -13,11 +13,10 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Profile;
 
 /**
- * Jackson-friendly version of {@link Day}.
+ * Jackson-friendly version of {@link Person}.
  */
 class JsonAdaptedPerson {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
     public static final String MESSAGE_DUPLICATE_DAY = "Day list contains duplicate days(s).";
 
     private final JsonAdaptedProfile profile;
@@ -25,7 +24,7 @@ class JsonAdaptedPerson {
 
 
     /**
-     * Constructs a {@code JsonAdaptedDay} with the given day details.
+     * Constructs a {@code JsonAdaptedPerson} with the given day details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("profile") JsonAdaptedProfile profile,
@@ -35,7 +34,7 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts a given {@code Date} into this class for Jackson use.
+     * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
         profile = new JsonAdaptedProfile(source.getProfile());
@@ -45,7 +44,7 @@ class JsonAdaptedPerson {
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted day.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted Person.
      */
     public Person toModelType() throws IllegalValueException {
         Profile modelProfile = profile.toModelType();

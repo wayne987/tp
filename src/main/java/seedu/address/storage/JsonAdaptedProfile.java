@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.day.Date;
-import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
 import seedu.address.model.person.Height;
 import seedu.address.model.person.ID;
@@ -15,7 +14,7 @@ import seedu.address.model.person.Profile;
 
 
 /**
- * Jackson-friendly version of {@link Day}.
+ * Jackson-friendly version of {@link Profile}.
  */
 class JsonAdaptedProfile {
 
@@ -27,7 +26,7 @@ class JsonAdaptedProfile {
 
 
     /**
-     * Constructs a {@code JsonAdaptedDay} with the given day details.
+     * Constructs a {@code JsonAdaptedProfile} with the given day details.
      */
     @JsonCreator
     public JsonAdaptedProfile(@JsonProperty("name") String name, @JsonProperty("id") String id,
@@ -39,7 +38,7 @@ class JsonAdaptedProfile {
     }
 
     /**
-     * Converts a given {@code Date} into this class for Jackson use.
+     * Converts a given {@code Profile} into this class for Jackson use.
      */
     public JsonAdaptedProfile(Profile source) {
         name = source.getName().fullName;
@@ -49,7 +48,7 @@ class JsonAdaptedProfile {
     }
 
     /**
-     * Converts this Jackson-friendly adapted day object into the model's {@code Day} object.
+     * Converts this Jackson-friendly adapted profile object into the model's {@code Profile} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted day.
      */
@@ -57,9 +56,7 @@ class JsonAdaptedProfile {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
-
         final Name modelName = new Name(name);
-
         if (id == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName()));
         }

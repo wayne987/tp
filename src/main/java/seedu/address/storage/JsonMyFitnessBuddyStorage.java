@@ -15,7 +15,7 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyMyFitnessBuddy;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access My Fitness Buddy data stored as a json file on the hard disk.
  */
 public class JsonMyFitnessBuddyStorage implements MyFitnessBuddyStorage {
 
@@ -68,13 +68,12 @@ public class JsonMyFitnessBuddyStorage implements MyFitnessBuddyStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveFitnessBuddy(ReadOnlyMyFitnessBuddy addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveFitnessBuddy(ReadOnlyMyFitnessBuddy myFitnessBuddy, Path filePath) throws IOException {
+        requireNonNull(myFitnessBuddy);
         requireNonNull(filePath);
-
         FileUtil.createIfMissing(filePath);
         assert FileUtil.isFileExists(filePath) : "Error creating new file";
-        JsonUtil.saveJsonFile(new JsonSerializableMyFitnessBuddy(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableMyFitnessBuddy(myFitnessBuddy), filePath);
         logger.info("Save completed");
     }
 

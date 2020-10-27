@@ -27,6 +27,6 @@ public interface Storage extends MyFitnessBuddyStorage, UserPrefsStorage {
     Optional<ReadOnlyMyFitnessBuddy> readFitnessBuddy() throws DataConversionException, IOException;
 
     @Override
-    void saveFitnessBuddy(ReadOnlyMyFitnessBuddy addressBook) throws IOException;
+    void saveFitnessBuddy(ReadOnlyMyFitnessBuddy myFitnessBuddy) throws IOException;
 
 }
