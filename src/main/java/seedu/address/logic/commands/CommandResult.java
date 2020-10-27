@@ -22,17 +22,27 @@ public class CommandResult {
     private final boolean showCalorieStats;
     private final boolean showWeightStats;
 
+    /** All lists should be cleared */
+    private final boolean clear;
+
+    /** If the index matches the current day's calories being shown, remove them */
+    private final boolean delete;
+    private final int index;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean showAllStats, boolean showCalorieStats, boolean showWeightStats) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showAllStats,
+                         boolean showCalorieStats, boolean showWeightStats, boolean clear, boolean delete, int index) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showAllStats = showAllStats;
         this.showCalorieStats = showCalorieStats;
         this.showWeightStats = showWeightStats;
+        this.clear = clear;
+        this.delete = delete;
+        this.index = index;
     }
 
     /**
@@ -40,7 +50,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false, false);
+        this(feedbackToUser, false, false, false, false, false, false, false, 0);
     }
 
     /**
@@ -50,7 +60,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, boolean showAllStats, boolean showCalorieStats,
                          boolean showWeightStats) {
-        this(feedbackToUser, false, false, showAllStats, showCalorieStats, showWeightStats);
+        this(feedbackToUser, false, false, showAllStats, showCalorieStats, showWeightStats, false, false, 0);
     }
 
     /**
@@ -58,9 +68,24 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, false, false, false);
+        this(feedbackToUser, showHelp, exit, false, false, false, false, false, 0);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser, clear},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean clear) {
+        this(feedbackToUser, false, false, false, false, false, clear, false, 0);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser, delete, index},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean delete, int index) {
+        this(feedbackToUser, false, false, false, false, false, false, delete, index);
+    }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
@@ -86,6 +111,18 @@ public class CommandResult {
         return showWeightStats;
     }
 
+    public boolean isClear() {
+        return clear;
+    }
+
+    public boolean isDelete() {
+        return delete;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -103,12 +140,16 @@ public class CommandResult {
                 && exit == otherCommandResult.exit
                 && showAllStats == otherCommandResult.showAllStats
                 && showCalorieStats == otherCommandResult.showCalorieStats
-                && showWeightStats == otherCommandResult.showWeightStats;
+                && showWeightStats == otherCommandResult.showWeightStats
+                && clear == otherCommandResult.clear
+                && delete == otherCommandResult.delete
+                && index == otherCommandResult.index;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, showAllStats, showCalorieStats, showWeightStats);
+        return Objects.hash(feedbackToUser, showHelp, exit, showAllStats, showCalorieStats,
+                showWeightStats, clear, delete, index);
     }
 
 }
