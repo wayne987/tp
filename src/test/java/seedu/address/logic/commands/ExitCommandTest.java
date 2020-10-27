@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
 
@@ -16,7 +15,8 @@ public class ExitCommandTest {
     @Test
     public void execute_exit_success() {
         CommandResult expectedCommandResult =
-                new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false, false, false, false, false, 0);
+                new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false,
+                        false, false, false, false, 0);
         assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel);
     }
 

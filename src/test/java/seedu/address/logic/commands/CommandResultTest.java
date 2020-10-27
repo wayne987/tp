@@ -14,7 +14,8 @@ public class CommandResultTest {
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false, false, false, false, false, false, 0)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", false, false,
+                false, false, false, false, false, 0)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -29,28 +30,36 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, false, false, false, false, false, 0)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", true, false,
+                false, false, false, false, false, 0)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false, false, false, false, false, 0)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, true,
+                false, false, false, false, false, 0)));
 
         //different showAllStats value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true, false, false, false, false, 0)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
+                true, false, false, false, false, 0)));
 
         //different showCalorieStats value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, false, true, false, false, false, 0)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
+                false, true, false, false, false, 0)));
 
         //different showWeightStats value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, false, false, true, false, false, 0)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
+                false, false, true, false, false, 0)));
 
         //different clear value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, false, false, false, true, false, 0)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
+                false, false, false, true, false, 0)));
 
         //different delete value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, false, false, false, false, true, 1)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
+                false, false, false, false, true, 1)));
 
         //different index value -> return false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, false, false, false, false, false, 1)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
+                false, false, false, false, false, 1)));
     }
 
     @Test

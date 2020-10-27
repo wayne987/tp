@@ -137,8 +137,10 @@ public class MainWindow extends UiPart<Stage> {
             calorieInputListPanel.update(FXCollections.observableArrayList());
             calorieOutputListPanel.update(FXCollections.observableArrayList());
         } else {
-            calorieInputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager().getCalorieInputList());
-            calorieOutputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager().getCalorieOutputList());
+            calorieInputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager()
+                    .getCalorieInputList());
+            calorieOutputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager()
+                    .getCalorieOutputList());
         }
     }
 
@@ -227,7 +229,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleDelete(int index) {
-       fillCaloriePanels(index - 1);
+        fillCaloriePanels(index - 1);
     }
 
     void show() {

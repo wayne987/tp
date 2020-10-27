@@ -32,8 +32,8 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean showAllStats, boolean showCalorieStats, boolean showWeightStats, boolean clear, boolean delete, int index) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showAllStats,
+                         boolean showCalorieStats, boolean showWeightStats, boolean clear, boolean delete, int index) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -148,7 +148,8 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, showAllStats, showCalorieStats, showWeightStats, clear, delete, index);
+        return Objects.hash(feedbackToUser, showHelp, exit, showAllStats, showCalorieStats,
+                showWeightStats, clear, delete, index);
     }
 
 }
