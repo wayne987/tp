@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="570.0" minWidth="550.0" onCloseRequest="#handleExit" title="My Fitness Buddy" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="570.0" minWidth="650.0" maxHeight="750" maxWidth="900" onCloseRequest="#handleExit" title="My Fitness Buddy" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -40,7 +40,7 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-        <SplitPane dividerPositions="0.29797979797979796" prefHeight="340.0" prefWidth="340.0">
+        <SplitPane dividerPositions="0.29797979797979796" prefHeight="540.0" prefWidth="340.0">
           <items>
             <AnchorPane minHeight="0.0" minWidth="210.0" prefHeight="330.0" prefWidth="245.0">
               <children>
