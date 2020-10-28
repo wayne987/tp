@@ -99,20 +99,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String CalorieType} into an different type.
-     * Leading and trailing whitespaces will be trimmed.
-     */
-    public static String parseCalorieType(String type) throws ParseException {
-        requireNonNull(type);
-        String trimmedType = type.trim();
-        if (trimmedType.equals("in") || trimmedType.equals("out")) {
-            return trimmedType;
-        } else {
-            throw new ParseException("wrong calorie type");
-        }
-    }
-
-    /**
      * Parses a {@code String time} into @code Time.
      * Leading and trailing whitespaces will be trimmed.
      */
@@ -129,9 +115,12 @@ public class ParserUtil {
      * Parses a {@code String exercise} into @code Exercise.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Exercise parseExercise(String exercise) throws ParseException {
+    public static Exercise parseExercise(String exercise, Boolean isOut) throws ParseException {
         requireNonNull(exercise);
         String trimmedExercise = exercise.trim();
+        if (!isOut) {
+            throw new ParseException(Exercise.MESSAGE_CONSTRAINTS_WRONG_TYPE);
+        }
         if (!Exercise.isValidExercise(trimmedExercise)) {
             throw new ParseException(Exercise.MESSAGE_CONSTRAINTS);
         }
@@ -155,9 +144,12 @@ public class ParserUtil {
      * Parses a {@code String food} into @code Food.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Food parseFood(String food) throws ParseException {
+    public static Food parseFood(String food, Boolean isOut) throws ParseException {
         requireNonNull(food);
         String trimmedFood = food.trim();
+        if (isOut) {
+            throw new ParseException(Food.MESSAGE_CONSTRAINTS_WRONG_TYPE);
+        }
         if (!Food.isValidFood(trimmedFood)) {
             throw new ParseException(Food.MESSAGE_CONSTRAINTS);
         }
@@ -168,14 +160,14 @@ public class ParserUtil {
      * Check if {@code String type} is of correct type.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static String parseType(String type) throws ParseException {
+    public static boolean parseType(String type) throws ParseException {
         requireNonNull(type);
-        String trimmedType = type.trim();
+        String trimmedType = type.trim().toLowerCase();
         switch (trimmedType) {
         case "out":
-            return "out";
+            return true;
         case "in":
-            return "in";
+            return false;
         default:
             throw new ParseException("type can only be either in/out");
         }
