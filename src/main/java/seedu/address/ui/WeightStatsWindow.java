@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -29,6 +30,9 @@ public class WeightStatsWindow extends UiPart<Stage> {
 
     @FXML
     private CategoryAxis xAxis;
+
+    @FXML
+    private NumberAxis yAxis;
 
     private ObservableList<String> dates = FXCollections.observableArrayList();
 
@@ -53,6 +57,7 @@ public class WeightStatsWindow extends UiPart<Stage> {
 
         this.dayList = dayList;
 
+        lineChart.setTitle("Daily Weight Statistics");
         initialize(dayList);
         setWeightData(dayList);
 
@@ -74,8 +79,12 @@ public class WeightStatsWindow extends UiPart<Stage> {
 
         dates.addAll(Arrays.asList(datesString));
 
-        // Assign the dates as categories for the horizontal axis.
+        //Assign the dates as categories and label to x-Axis.
         xAxis.setCategories(dates);
+        xAxis.setLabel("Dates");
+
+        //Assign label to y-Axis
+        yAxis.setLabel("Weight (kg)");
     }
 
     /**
@@ -86,15 +95,22 @@ public class WeightStatsWindow extends UiPart<Stage> {
     public void setWeightData(ObservableList<Day> dayList) {
         assert dayList != null;
 
-        XYChart.Series<String, Integer> weights = new XYChart.Series<>();
-        weights.setName("Weight");
+        XYChart.Series<String, Integer> weightsSeries = new XYChart.Series<>();
+        weightsSeries.setName("Weight");
 
         //Get the weight data from all the days in dayList.
         for (int i = 0; i < dayList.size(); i++) {
-            weights.getData().add(new XYChart.Data<>(dates.get(i), Integer.parseInt(dayList.get(i).getWeight().value)));
+            XYChart.Data<String, Integer> weightData = new XYChart.Data<>(dates.get(i),
+                    Integer.parseInt(dayList.get(i).getWeight().value));
+            weightsSeries.getData().add(weightData);
+
+            //set the data nodes to allow display of values when the mouse hovers over it
+            weightData.setNode(new HoveredWeightNode(
+                    Integer.parseInt(dayList.get((i == 0) ? 0 : i - 1).getWeight().value),
+                    Integer.parseInt(dayList.get(i).getWeight().value)));
         }
 
-        lineChart.getData().add(weights);
+        lineChart.getData().add(weightsSeries);
     }
 
     /**

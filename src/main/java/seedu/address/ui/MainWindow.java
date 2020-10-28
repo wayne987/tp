@@ -67,6 +67,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private MenuItem calorieStatsMenuItem;
 
+    @FXML
+    private MenuItem allStatsMenuItem;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -207,11 +210,23 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleCalorieStats() {
-        if (!calorieStatsWindow.isShowing()) {
+        if (!calorieStatsWindow.isShowing() && !weightStatsWindow.isShowing()) {
             calorieStatsWindow.show();
+        } else if (!calorieStatsWindow.isShowing() && weightStatsWindow.isShowing()) {
+            calorieStatsWindow.show();
+            //prevent both windows stacking over each other when opened at the same time
+            calorieStatsWindow.getRoot().setY(weightStatsWindow.getRoot().getY() + 100);
         } else {
             calorieStatsWindow.focus();
         }
+    }
+
+    /**
+     * Opens both stats window or focuses on it if it's already opened.
+     */
+    public void handleAllStats() {
+        handleWeightStats();
+        handleCalorieStats();
     }
 
     /**
@@ -275,8 +290,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowAllStats()) {
-                handleCalorieStats();
-                handleWeightStats();
+                handleAllStats();
             }
 
             if (commandResult.isShowCalorieStats()) {
