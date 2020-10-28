@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.List;
+
+import seedu.address.model.day.Day;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Profile;
 
@@ -21,10 +24,18 @@ public class PersonBuilder {
     }
 
     /**
-     * Adds a new {@code Day} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Profile} to the {@code MyFitnessBuddy} that we are building.
      */
     public PersonBuilder withProfile(Profile profile) {
         person.setProfile(profile);
+        return this;
+    }
+
+    /**
+     * Builds a person with specified days.
+     */
+    public PersonBuilder withDays(List<Day> days) {
+        person.setDays(days);
         return this;
     }
 

@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -29,6 +30,9 @@ public class CalorieStatsWindow extends UiPart<Stage> {
 
     @FXML
     private CategoryAxis xAxis;
+
+    @FXML
+    private NumberAxis yAxis;
 
     private ObservableList<String> dates = FXCollections.observableArrayList();
 
@@ -53,6 +57,7 @@ public class CalorieStatsWindow extends UiPart<Stage> {
 
         this.dayList = dayList;
 
+        barChart.setTitle("Daily Calorie Statistics");
         initialize(dayList);
         setCalorieData(dayList);
 
@@ -74,8 +79,14 @@ public class CalorieStatsWindow extends UiPart<Stage> {
 
         dates.addAll(Arrays.asList(datesString));
 
-        // Assign the dates as categories for the horizontal axis.
+        //Assign the dates as categories and add label for x-Axis
         xAxis.setCategories(dates);
+        xAxis.setLabel("Dates");
+
+        //Assign label to y-Axis
+        yAxis.setLabel("Calories (kcal)");
+
+
     }
 
     /**
@@ -86,22 +97,34 @@ public class CalorieStatsWindow extends UiPart<Stage> {
     public void setCalorieData(ObservableList<Day> dayList) {
         assert dayList != null;
 
-        XYChart.Series<String, Integer> calorieIn = new XYChart.Series<>();
-        XYChart.Series<String, Integer> calorieOut = new XYChart.Series<>();
-        calorieIn.setName("Calorie In");
-        calorieOut.setName("Calorie Out");
+        XYChart.Series<String, Integer> calorieInSeries = new XYChart.Series<>();
+        XYChart.Series<String, Integer> calorieOutSeries = new XYChart.Series<>();
+        calorieInSeries.setName("Calorie In");
+        calorieOutSeries.setName("Calorie Out");
 
         //Get the calorie data of all the days.
         for (int i = 0; i < dayList.size(); i++) {
-            calorieIn.getData()
-                    .add(new XYChart.Data<>(dates.get(i), dayList.get(i).getCalorieManager().getTotalInputCalorie()));
+            XYChart.Data<String, Integer> calorieInData = new XYChart.Data<>(dates.get(i),
+                    dayList.get(i).getCalorieManager().getTotalInputCalorie());
+            calorieInSeries.getData().add(calorieInData);
 
-            calorieOut.getData()
-                    .add(new XYChart.Data<>(dates.get(i), dayList.get(i).getCalorieManager().getTotalOutputCalorie()));
+            //set the data nodes to allow display of values when the mouse hovers over it
+            calorieInData.setNode(new HoveredCalorieNode(
+                    dayList.get((i == 0) ? 0 : i - 1).getCalorieManager().getTotalInputCalorie(),
+                    dayList.get(i).getCalorieManager().getTotalInputCalorie(), true));
+
+            XYChart.Data<String, Integer> calorieOutData = new XYChart.Data<>(dates.get(i),
+                    dayList.get(i).getCalorieManager().getTotalOutputCalorie());
+            calorieOutSeries.getData().add(calorieOutData);
+
+            //set the data nodes to allow display of values when the mouse hovers over it
+            calorieOutData.setNode(new HoveredCalorieNode(
+                    dayList.get((i == 0) ? 0 : i - 1).getCalorieManager().getTotalOutputCalorie(),
+                    dayList.get(i).getCalorieManager().getTotalOutputCalorie(), false));
         }
 
-        barChart.getData().add(calorieIn);
-        barChart.getData().add(calorieOut);
+        barChart.getData().add(calorieInSeries);
+        barChart.getData().add(calorieOutSeries);
     }
 
     /**
