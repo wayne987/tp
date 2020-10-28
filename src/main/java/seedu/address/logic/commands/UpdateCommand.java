@@ -20,6 +20,9 @@ import seedu.address.model.person.ID;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Profile;
 
+/**
+ * Updates the profile in My Fitness Buddy
+ */
 public class UpdateCommand extends Command {
 
     public static final String COMMAND_WORD = "update";
