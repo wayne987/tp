@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -20,6 +21,9 @@ public class DayListPanel extends UiPart<Region> {
     @FXML
     private ListView<Day> personListView;
 
+    @FXML
+    private Label dateLabel;
+
     private MainWindow mainWindow;
 
     /**
@@ -31,6 +35,10 @@ public class DayListPanel extends UiPart<Region> {
         personListView.setCellFactory(listView -> new PersonListViewCell());
         this.mainWindow = mainWindow;
         logger.info("DayListPanel created");
+    }
+
+    public void setDateLabel(String date) {
+        dateLabel.setText(":   " + date);
     }
 
     /**

@@ -144,6 +144,10 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    void setDateLabel(String date) {
+        dayListPanel.setDateLabel(date);
+    }
+
     /**
      * Fills up all the placeholders of this window.
      */
