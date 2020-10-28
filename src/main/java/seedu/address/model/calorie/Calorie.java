@@ -2,6 +2,9 @@ package seedu.address.model.calorie;
 
 import java.util.Objects;
 
+/**
+ * abstract class that input and output extends from
+ */
 public abstract class Calorie {
     // Identity fields
     protected CalorieCount calorieCount;

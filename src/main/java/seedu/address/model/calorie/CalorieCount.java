@@ -3,6 +3,9 @@ package seedu.address.model.calorie;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Input's/Output's calorie count in the record
+ */
 public class CalorieCount {
 
     public static final String MESSAGE_CONSTRAINTS =

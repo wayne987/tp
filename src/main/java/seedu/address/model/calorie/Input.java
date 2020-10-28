@@ -2,6 +2,9 @@ package seedu.address.model.calorie;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+/**
+ * Class to store the relevant information for any calorie input
+ */
 public class Input extends Calorie {
 
     private Food food;
