@@ -32,7 +32,7 @@ public class DeleteCommandTest {
         Day dayToDelete = model.getFilteredDayList().get(INDEX_FIRST_DAY.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_DAY);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, dayToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_DAY_SUCCESS, dayToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getMyFitnessBuddy(), new UserPrefs());
         expectedModel.deleteDay(dayToDelete);
@@ -54,7 +54,7 @@ public class DeleteCommandTest {
         Day dayToDelete = model.getFilteredDayList().get(INDEX_FIRST_DAY.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_DAY);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, dayToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_DAY_SUCCESS, dayToDelete);
 
         Model expectedModel = new ModelManager(model.getMyFitnessBuddy(), new UserPrefs());
         expectedModel.deleteDay(dayToDelete);

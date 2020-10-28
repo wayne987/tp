@@ -63,7 +63,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
         requireNonNull(newData);
         setProfile(newData.getProfile());
         setDays(newData.getPerson().getDayList());
-        setPerson(newData.getPerson());
+        //setPerson(newData.getPerson());
     }
 
     /**

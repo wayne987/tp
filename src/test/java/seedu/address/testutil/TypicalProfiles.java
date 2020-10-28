@@ -10,7 +10,7 @@ import seedu.address.model.person.Profile;
 public class TypicalProfiles {
 
     public static final Profile DEFAULT_PROFILE =
-            new Profile(new Name("Default"), new ID("0000"), new Height("170"), new Weight("50"));
+            new Profile(new Name("Default"), new ID("1111"), new Height("170"), new Weight("50"));
     public static final Profile JON =
             new Profile(new Name("Jon"), new ID("1111"), new Height("170"), new Weight("50"));
 }

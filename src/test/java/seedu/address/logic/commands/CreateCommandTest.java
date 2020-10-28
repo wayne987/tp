@@ -22,8 +22,7 @@ import seedu.address.testutil.TypicalProfiles;
 class CreateCommandTest {
 
     private static final Profile JON = TypicalProfiles.JON;
-    private static Profile defaultProfile =
-            new Profile(new Name("Default"), new ID("0000"), new Height("170"), new Weight("50"));
+    private static Profile defaultProfile = TypicalProfiles.DEFAULT_PROFILE;
     private Model model = new ModelManager(getTypicalMyFitnessBuddy(), new UserPrefs());
 
     @Test
@@ -42,7 +41,7 @@ class CreateCommandTest {
     }
     @Test
     public void execute_createExistingProfileFail_throwsCommandException() throws Exception {
-        Profile validProfile = new Profile(new Name("Jon"), new ID("1235"), new Height("167"), new Weight("60"));
+        Profile validProfile = TypicalProfiles.JON;
         CreateCommand createCommand = new CreateCommand(validProfile);
         ModelManager expectedModel = new ModelManager(model.getMyFitnessBuddy(), new UserPrefs());
         expectedModel.setProfile(validProfile);
@@ -53,8 +52,8 @@ class CreateCommandTest {
 
     @Test
     public void equals() {
-        Profile alice = new Profile(new Name("John"), new ID("1234"), new Height("170"), new Weight("68"));
-        Profile bob = new Profile(new Name("Johnny"), new ID("1324"), new Height("170"), new Weight("68"));
+        Profile alice = new Profile(new Name("John"), new ID("1219"), new Height("170"), new Weight("68"));
+        Profile bob = new Profile(new Name("Johnny"), new ID("1318"), new Height("170"), new Weight("68"));
         CreateCommand addAliceCommand = new CreateCommand(alice);
         CreateCommand addBobCommand = new CreateCommand(bob);
 

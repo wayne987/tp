@@ -27,10 +27,26 @@ class IdTest {
         // invalid Id
         assertFalse(ID.isValidId("    ")); // spaces only
         assertFalse(ID.isValidId("abc1"));
+        assertFalse(ID.isValidId("ab 1"));
+
+        // invalid first 2 digits
+        assertFalse(ID.isValidId("0111"));
+        assertFalse(ID.isValidId("1011"));
+        assertFalse(ID.isValidId("0011"));
+        assertFalse(ID.isValidId("5411"));
+        assertFalse(ID.isValidId("4511"));
+
+        // invalid last 2 digits
+        assertFalse(ID.isValidId("1234"));
+        assertFalse(ID.isValidId("1200"));
+        assertFalse(ID.isValidId("1221"));
 
         // valid Id
-        assertTrue(ID.isValidId("1234"));
-        assertTrue(ID.isValidId("0123"));
+        assertTrue(ID.isValidId("1101"));
+        assertTrue(ID.isValidId("1120"));
+        assertTrue(ID.isValidId("4120"));
+        assertTrue(ID.isValidId("4420"));
+        assertTrue(ID.isValidId("4401"));
 
     }
 }

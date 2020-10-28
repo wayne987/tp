@@ -23,7 +23,7 @@ public class Person {
 
     // Identity fields
     private static Profile defaultProfile =
-            new Profile(new Name("Default"), new ID("0000"), new Height("170"), new Weight("50"));
+            new Profile(new Name("Default"), new ID("1111"), new Height("170"), new Weight("50"));
     private Profile profile;
     private final UniqueDayList days;
 
@@ -98,13 +98,6 @@ public class Person {
     public void setProfile(Profile profile) {
         assert profile != null;
         this.profile = profile;
-    }
-
-    /**
-     * Checks if the current data {@code Person } has a default profile.
-     */
-    public boolean hasProfile() {
-        return profile != defaultProfile;
     }
 
     /**
