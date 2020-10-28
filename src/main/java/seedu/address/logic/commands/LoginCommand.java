@@ -20,7 +20,7 @@ public class LoginCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
 
         List<Person> ul = model.getMyFitnessBuddy().getPersons();
-        if (ul.size() < i || ul.size() == 0) {
+        if (ul.size() <= i || ul.size() == 0) {
             throw new CommandException("not valid index");
         }
         Person toChange = ul.get(i);
