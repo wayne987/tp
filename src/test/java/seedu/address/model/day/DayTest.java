@@ -86,14 +86,6 @@ public class DayTest {
         // different date -> returns false
         Day editedAlice = new DayBuilder(DAY1).withDate(VALID_DATE_2).build();
         assertFalse(DAY1.equals(editedAlice));
-
-        // different weight -> returns false
-        editedAlice = new DayBuilder(DAY1).withWeight(VALID_WEIGHT_2).build();
-        assertTrue(DAY1.equals(editedAlice));
-
-        // different tags -> returns false
-        editedAlice = new DayBuilder(DAY1).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(DAY1.equals(editedAlice));
     }
 
 }
