@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -65,6 +66,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem calorieStatsMenuItem;
+
+    @FXML
+    private MenuItem allStatsMenuItem;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -132,8 +136,15 @@ public class MainWindow extends UiPart<Stage> {
      * @param index the index of the day that is clicked
      */
     void fillCaloriePanels(int index) {
-        calorieInputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager().getCalorieInputList());
-        calorieOutputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager().getCalorieOutputList());
+        if (logic.getFilteredDayList().isEmpty() || index == logic.getFilteredDayList().size()) {
+            calorieInputListPanel.update(FXCollections.observableArrayList());
+            calorieOutputListPanel.update(FXCollections.observableArrayList());
+        } else {
+            calorieInputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager()
+                    .getCalorieInputList());
+            calorieOutputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager()
+                    .getCalorieOutputList());
+        }
     }
 
     /**
@@ -199,11 +210,41 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleCalorieStats() {
-        if (!calorieStatsWindow.isShowing()) {
+        if (!calorieStatsWindow.isShowing() && !weightStatsWindow.isShowing()) {
             calorieStatsWindow.show();
+        } else if (!calorieStatsWindow.isShowing() && weightStatsWindow.isShowing()) {
+            calorieStatsWindow.show();
+            //prevent both windows stacking over each other when opened at the same time
+            calorieStatsWindow.getRoot().setY(weightStatsWindow.getRoot().getY() + 100);
         } else {
             calorieStatsWindow.focus();
         }
+    }
+
+    /**
+     * Opens both stats window or focuses on it if it's already opened.
+     */
+    public void handleAllStats() {
+        handleWeightStats();
+        handleCalorieStats();
+    }
+
+    /**
+     * Removes the items shown in the calorie lists if any.
+     */
+    @FXML
+    public void handleClear() {
+        fillCaloriePanels(0);
+    }
+
+    /**
+     * Removes the items shown in the calorie lists if the day being shown is deleted.
+     *
+     * @param index index of the item that is deleted.
+     */
+    @FXML
+    public void handleDelete(int index) {
+        fillCaloriePanels(index - 1);
     }
 
     void show() {
@@ -249,8 +290,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowAllStats()) {
-                handleCalorieStats();
-                handleWeightStats();
+                handleAllStats();
             }
 
             if (commandResult.isShowCalorieStats()) {
@@ -259,6 +299,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowWeightStats()) {
                 handleWeightStats();
+            }
+
+            if (commandResult.isClear()) {
+                handleClear();
+            }
+
+            if (commandResult.isDelete()) {
+                handleDelete(commandResult.getIndex());
             }
 
             return commandResult;

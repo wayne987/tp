@@ -19,7 +19,7 @@ import seedu.address.testutil.TypicalDays;
 
 
 public class CalorieCommandTest {
-    private static final Profile validProfile = TypicalDays.JON;
+    private static final Profile validProfile = TypicalDays.DEFAULT_PROFILE;
 
 
     @Test

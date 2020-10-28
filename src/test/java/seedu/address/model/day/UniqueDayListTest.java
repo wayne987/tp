@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalDays.ALICE;
-import static seedu.address.testutil.TypicalDays.BOB;
+import static seedu.address.testutil.TypicalDays.DAY1;
+import static seedu.address.testutil.TypicalDays.MDAY2;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,13 +28,13 @@ public class UniqueDayListTest {
 
     @Test
     public void contains_dayNotInList_returnsFalse() {
-        assertFalse(uniqueDayList.contains(ALICE));
+        assertFalse(uniqueDayList.contains(DAY1));
     }
 
     @Test
     public void contains_dayInList_returnsTrue() {
-        uniqueDayList.add(ALICE);
-        assertTrue(uniqueDayList.contains(ALICE));
+        uniqueDayList.add(DAY1);
+        assertTrue(uniqueDayList.contains(DAY1));
     }
 
     /*
@@ -61,25 +61,25 @@ public class UniqueDayListTest {
 
     @Test
     public void setDay_nullTargetDay_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueDayList.setDay(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueDayList.setDay(null, DAY1));
     }
 
     @Test
     public void setDay_nullEditedDay_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueDayList.setDay(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueDayList.setDay(DAY1, null));
     }
 
     @Test
     public void setDay_targetDayNotInList_throwsDayNotFoundException() {
-        assertThrows(DayNotFoundException.class, () -> uniqueDayList.setDay(ALICE, ALICE));
+        assertThrows(DayNotFoundException.class, () -> uniqueDayList.setDay(DAY1, DAY1));
     }
 
     @Test
     public void setDay_editedDayIsSameDay_success() {
-        uniqueDayList.add(ALICE);
-        uniqueDayList.setDay(ALICE, ALICE);
+        uniqueDayList.add(DAY1);
+        uniqueDayList.setDay(DAY1, DAY1);
         UniqueDayList expectedUniqueDayList = new UniqueDayList();
-        expectedUniqueDayList.add(ALICE);
+        expectedUniqueDayList.add(DAY1);
         assertEquals(expectedUniqueDayList, uniqueDayList);
     }
 
@@ -98,10 +98,10 @@ public class UniqueDayListTest {
 
     @Test
     public void setDay_editedDayHasDifferentIdentity_success() {
-        uniqueDayList.add(ALICE);
-        uniqueDayList.setDay(ALICE, BOB);
+        uniqueDayList.add(DAY1);
+        uniqueDayList.setDay(DAY1, MDAY2);
         UniqueDayList expectedUniqueDayList = new UniqueDayList();
-        expectedUniqueDayList.add(BOB);
+        expectedUniqueDayList.add(MDAY2);
         assertEquals(expectedUniqueDayList, uniqueDayList);
     }
     /*
@@ -119,13 +119,13 @@ public class UniqueDayListTest {
 
     @Test
     public void remove_dayDoesNotExist_throwsDayNotFoundException() {
-        assertThrows(DayNotFoundException.class, () -> uniqueDayList.remove(ALICE));
+        assertThrows(DayNotFoundException.class, () -> uniqueDayList.remove(DAY1));
     }
 
     @Test
     public void remove_existingDay_removesDay() {
-        uniqueDayList.add(ALICE);
-        uniqueDayList.remove(ALICE);
+        uniqueDayList.add(DAY1);
+        uniqueDayList.remove(DAY1);
         UniqueDayList expectedUniqueDayList = new UniqueDayList();
         assertEquals(expectedUniqueDayList, uniqueDayList);
     }
@@ -137,9 +137,9 @@ public class UniqueDayListTest {
 
     @Test
     public void setDays_uniqueDayList_replacesOwnListWithProvidedUniqueDayList() {
-        uniqueDayList.add(ALICE);
+        uniqueDayList.add(DAY1);
         UniqueDayList expectedUniqueDayList = new UniqueDayList();
-        expectedUniqueDayList.add(BOB);
+        expectedUniqueDayList.add(MDAY2);
         uniqueDayList.setDays(expectedUniqueDayList);
         assertEquals(expectedUniqueDayList, uniqueDayList);
     }
@@ -151,17 +151,17 @@ public class UniqueDayListTest {
 
     @Test
     public void setDays_list_replacesOwnListWithProvidedList() {
-        uniqueDayList.add(ALICE);
-        List<Day> dayList = Collections.singletonList(BOB);
+        uniqueDayList.add(DAY1);
+        List<Day> dayList = Collections.singletonList(MDAY2);
         uniqueDayList.setDays(dayList);
         UniqueDayList expectedUniqueDayList = new UniqueDayList();
-        expectedUniqueDayList.add(BOB);
+        expectedUniqueDayList.add(MDAY2);
         assertEquals(expectedUniqueDayList, uniqueDayList);
     }
 
     @Test
     public void setDays_listWithDuplicateDays_throwsDuplicateDayException() {
-        List<Day> listWithDuplicateDays = Arrays.asList(ALICE, ALICE);
+        List<Day> listWithDuplicateDays = Arrays.asList(DAY1, DAY1);
         assertThrows(DuplicateDayException.class, () -> uniqueDayList.setDays(listWithDuplicateDays));
     }
 
