@@ -10,6 +10,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class LoginCommandParser implements Parser<LoginCommand> {
 
 
+    /**
+     * Parse userInput into index and returns a LoginCommand
+     * @param userInput
+     */
     @Override
     public LoginCommand parse(String userInput) throws ParseException {
 

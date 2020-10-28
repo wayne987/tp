@@ -32,7 +32,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private DayListPanel dayListPanel;
     private CalorieInputListPanel calorieInputListPanel;
     private CalorieOutputListPanel calorieOutputListPanel;
@@ -55,9 +54,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane calorieOutputListPanelPlaceholder;
-
-    @FXML
-    private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -157,8 +153,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        //        personListPanel = new PersonListPanel(logic.getMyFitnessBuddy().getPersonList(), this);
-        //        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         dayListPanel = new DayListPanel(logic.getFilteredDayList(), this);
         dayListPanelPlaceholder.getChildren().add(dayListPanel.getRoot());

@@ -14,6 +14,10 @@ public class LoginCommand extends Command {
     public static final String COMMAND_WORD = "login";
     private final int i;
 
+    /**
+     * 換使用者指令构造构造函数
+     * @param i
+     */
     public LoginCommand(Index i) {
         this.i = i.getZeroBased();
     }
