@@ -12,9 +12,15 @@ public interface ReadOnlyMyFitnessBuddy {
 
     /**
      * Returns an unmodifiable view of the days list.
-     * This list will not contain any duplicate persons.
+     * This list will not contain any duplicate days.
      */
     ObservableList<Day> getDayList();
+
+    /**
+     * Returns an unmodifiable view of the persons list.
+     * This list will not contain any duplicate persons.
+     */
+    ObservableList<Person> getPersonList();
 
     /**
      * Returns the profile of a person.
@@ -22,4 +28,6 @@ public interface ReadOnlyMyFitnessBuddy {
     Profile getProfile();
 
     Person getPerson();
+
+    ObservableList<Person> getPersons();
 }

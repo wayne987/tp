@@ -12,10 +12,11 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Profile;
 
 /**
- * Creates a profile for the Person in My Fitness Buddy.
+ * Creates a profile for the new Person and add it into My Fitness Buddy.
  */
 public class CreateCommand extends Command {
 
@@ -50,12 +51,15 @@ public class CreateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (!model.isDefaultProfile()) {
+        Person newPerson = new Person(profile);
+        if (model.hasPerson(newPerson)) {
             throw new CommandException(MESSAGE_ERROR);
         }
-        model.setProfile(profile);
+
+        model.addPerson(newPerson);
+        model.updateDay();
         logger.info("---------------[USER COMMAND][Profile" + profile.toString() + " created]");
+        model.getMyFitnessBuddy().getPersonList().stream().forEach(x-> System.out.println(x));
         return new CommandResult(String.format(MESSAGE_SUCCESS, profile));
     }
 
