@@ -89,19 +89,11 @@ public class DayTest {
 
         // different weight -> returns false
         editedAlice = new DayBuilder(DAY1).withWeight(VALID_WEIGHT_2).build();
-        assertFalse(DAY1.equals(editedAlice));
-
-        // different email -> returns false
-        editedAlice = new DayBuilder(DAY1).build();
-        //assertFalse(ALICE.equals(editedAlice));
-
-        // different address -> returns false
-        editedAlice = new DayBuilder(DAY1).build();
-        // assertFalse(ALICE.equals(editedAlice));
+        assertTrue(DAY1.equals(editedAlice));
 
         // different tags -> returns false
         editedAlice = new DayBuilder(DAY1).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DAY1.equals(editedAlice));
+        assertTrue(DAY1.equals(editedAlice));
     }
 
 }
