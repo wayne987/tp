@@ -41,6 +41,10 @@ public class DayListPanel extends UiPart<Region> {
         dateLabel.setText(":   " + date);
     }
 
+    public void clearDateLabel() {
+        dateLabel.setText("");
+    }
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Day} using a {@code DayCard}.
      */

@@ -224,6 +224,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleClear() {
         fillCaloriePanels(0);
+        dayListPanel.clearDateLabel();
     }
 
     /**
