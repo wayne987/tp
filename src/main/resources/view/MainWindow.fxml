@@ -48,7 +48,7 @@
                   <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                   </padding>
-                  <StackPane fx:id="personListPanelPlaceholder" prefHeight="308.0" prefWidth="394.0" VBox.vgrow="ALWAYS" />
+                  <StackPane fx:id="dayListPanelPlaceholder" prefHeight="308.0" prefWidth="394.0" VBox.vgrow="ALWAYS" />
                 </VBox>
               </children>
             </AnchorPane>
@@ -87,7 +87,7 @@
           </padding>
         </StackPane>
 
-        <StackPane fx:id="statusbarPlaceholder" prefHeight="5.0" prefWidth="505.0" VBox.vgrow="NEVER" />
+        <StackPane fx:id="statusBarPlaceholder" prefHeight="5.0" prefWidth="505.0" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>

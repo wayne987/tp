@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 //import seedu.address.commons.exceptions.IllegalValueException;
 //import seedu.address.commons.util.JsonUtil;
 
+
 public class JsonSerializableMyFitnessBuddyTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableMyFitnessBuddyTest");
@@ -32,8 +33,9 @@ public class JsonSerializableMyFitnessBuddyTest {
                 JsonSerializableMyFitnessBuddy.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
-    */
-    /*
+
+
+
     @Test
     public void toModelType_duplicateDays_throwsIllegalValueException() throws Exception {
         JsonSerializableMyFitnessBuddy dataFromFile = JsonUtil.readJsonFile(DUPLICATE_DAY_FILE,
@@ -41,5 +43,5 @@ public class JsonSerializableMyFitnessBuddyTest {
         assertThrows(IllegalValueException.class, JsonSerializableMyFitnessBuddy.MESSAGE_DUPLICATE_DAY,
                 dataFromFile::toModelType);
     }
-*/
+    */
 }

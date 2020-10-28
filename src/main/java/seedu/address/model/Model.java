@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.day.Day;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Profile;
 
 /**
@@ -106,4 +107,29 @@ public interface Model {
      * Checks if the current data {@code MyFitnessBuddy} has a profile.
      */
     boolean isDefaultProfile();
+
+    /**
+     * Sets the currentPerson pointer to toSet
+     */
+    void setCurrentPerson(Person toSet);
+
+    /**
+     * Checks if a person is in the list
+     */
+    boolean hasPerson(Person toCheck);
+
+    /**
+     * Update day
+     */
+    void updateDay();
+
+    /**
+     * Add new person
+     */
+    void addPerson(Person toAdd);
+
+    /**
+     * Add new person
+     */
+    void resetPersons();
 }
