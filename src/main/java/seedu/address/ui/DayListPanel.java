@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.day.Day;
@@ -22,7 +23,7 @@ public class DayListPanel extends UiPart<Region> {
     private ListView<Day> personListView;
 
     @FXML
-    private Label dateLabel;
+    private TextField dateLabel;
 
     private MainWindow mainWindow;
 
@@ -35,14 +36,6 @@ public class DayListPanel extends UiPart<Region> {
         personListView.setCellFactory(listView -> new PersonListViewCell());
         this.mainWindow = mainWindow;
         logger.info("DayListPanel created");
-    }
-
-    public void setDateLabel(String date) {
-        dateLabel.setText(":   " + date);
-    }
-
-    public void clearDateLabel() {
-        dateLabel.setText("");
     }
 
     /**

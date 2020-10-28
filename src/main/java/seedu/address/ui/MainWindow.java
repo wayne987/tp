@@ -39,12 +39,16 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private WeightStatsWindow weightStatsWindow;
     private CalorieStatsWindow calorieStatsWindow;
+    private StatusBarDaySelected statusBarDaySelected;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane statusbarDaySelectedPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -136,22 +140,30 @@ public class MainWindow extends UiPart<Stage> {
         if (logic.getFilteredDayList().isEmpty() || index == logic.getFilteredDayList().size()) {
             calorieInputListPanel.update(FXCollections.observableArrayList());
             calorieOutputListPanel.update(FXCollections.observableArrayList());
+
+            statusBarDaySelected.clearDateLabel();
         } else {
             calorieInputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager()
                     .getCalorieInputList());
             calorieOutputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager()
                     .getCalorieOutputList());
+
+            statusBarDaySelected.setDateSelectedLabel(logic.getFilteredDayList().get(index).getDate().get().toString());
         }
     }
 
     void setDateLabel(String date) {
-        dayListPanel.setDateLabel(date);
+        statusBarDaySelected.setDateSelectedLabel(date);
+
     }
 
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        statusBarDaySelected = new StatusBarDaySelected();
+        statusbarDaySelectedPlaceholder.getChildren().add(statusBarDaySelected.getRoot());
+
         dayListPanel = new DayListPanel(logic.getFilteredDayList(), this);
         personListPanelPlaceholder.getChildren().add(dayListPanel.getRoot());
 
@@ -224,7 +236,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleClear() {
         fillCaloriePanels(0);
-        dayListPanel.clearDateLabel();
+//        dayListPanel.clearDateLabel();
+        statusBarDaySelected.clearDateLabel();
     }
 
     /**
