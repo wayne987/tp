@@ -16,8 +16,17 @@ public class ClearCommandTest {
     public void execute_emptyMyFitnessBuddy_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
+        CommandResult expectedCommandResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS, false, false,
+                false, false, false, true, false, 0);
+        assertCommandSuccess(new ClearCommand(), model, expectedCommandResult, expectedModel);
+    }
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+    @Test
+    public void execute_overloadedConstructorSuccess() {
+        Model model = new ModelManager();
+        Model expectedModel = new ModelManager();
+        CommandResult expectedCommandResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS, true);
+        assertCommandSuccess(new ClearCommand(), model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -25,8 +34,9 @@ public class ClearCommandTest {
         Model model = new ModelManager(getTypicalMyFitnessBuddy(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalMyFitnessBuddy(), new UserPrefs());
         expectedModel.setMyFitnessBuddy(new MyFitnessBuddy());
-
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS, false, false,
+                false, false, false, true, false, 0);
+        assertCommandSuccess(new ClearCommand(), model, expectedCommandResult, expectedModel);
     }
 
 }

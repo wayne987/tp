@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedDay.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalDays.BENSON;
+import static seedu.address.testutil.TypicalDays.DAY2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,16 +22,16 @@ public class JsonAdaptedDayTest {
 
     private static final List<JsonAdaptedInput> VALID_INPUT = new ArrayList<JsonAdaptedInput>();
     private static final List<JsonAdaptedOutput> VALID_OUTPUT = new ArrayList<JsonAdaptedOutput>();
-    private static final String VALID_DATE = BENSON.getDate().toString();
-    private static final String VALID_WEIGHT = BENSON.getWeight().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final String VALID_DATE = DAY2.getDate().toString();
+    private static final String VALID_WEIGHT = DAY2.getWeight().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = DAY2.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validDayDetails_returnsDay() throws Exception {
-        JsonAdaptedDay day = new JsonAdaptedDay(BENSON);
-        assertEquals(BENSON, day.toModelType());
+        JsonAdaptedDay day = new JsonAdaptedDay(DAY2);
+        assertEquals(DAY2, day.toModelType());
     }
 
     @Test

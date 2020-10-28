@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -8,57 +9,49 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.ReadOnlyMyFitnessBuddy;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.day.Day;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Profile;
 import seedu.address.testutil.DayBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.TypicalDays;
 
 public class AddCommandTest {
-
-    private static final Profile validProfile = TypicalDays.JON;
 
     @Test
     public void constructor_nullDay_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
-    //error due to calling of isDefaultProfile: I feel like this method needs to be called to check if there's profile
-    //before adding a day -- can remove this test?
-    //this is a stub test
+
     @Test
     public void execute_dayAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingDayAdded modelStub = new ModelStubAcceptingDayAdded();
         Day validDay = new DayBuilder().build();
-        Person validPerson = new PersonBuilder().withProfile(validProfile).build();
 
-        //CommandResult commandResult = new AddCommand(validDay).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validDay).execute(modelStub);
 
-        //assertThrows(AssertionError.class, () -> new AddCommand(validDay).execute(modelStub));
-        //assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validDay), commandResult.getFeedbackToUser());
-        //assertEquals(Arrays.asList(validDay), modelStub.daysAdded);
+        assertThrows(CommandException.class, () -> new AddCommand(validDay).execute(modelStub));
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validDay), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validDay), modelStub.daysAdded);
     }
-    //error due to reasoning similar to above
+
     @Test
     public void execute_duplicateDay_throwsCommandException() throws Exception {
         Day validDay = new DayBuilder().build();
         MyFitnessBuddy p = new MyFitnessBuddy();
         AddCommand addCommand = new AddCommand(validDay);
         ModelStub modelStub = new ModelStubWithDay(validDay);
-        //CommandResult commandResult = addCommand.execute(modelStub);
 
-        //assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_DAY, () -> addCommand.execute(modelStub));
-        //assertEquals(String.format(AddCommand.MESSAGE_DUPLICATE_DAY), commandResult);
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_DAY, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -174,6 +167,9 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        /**
+         * Checks if the current data {@code MyFitnessBuddy} has a profile.
+         */
         @Override
         public boolean isDefaultProfile() {
             throw new AssertionError("This method should not be called.");
@@ -214,6 +210,11 @@ public class AddCommandTest {
         public void addDay(Day day) {
             requireNonNull(day);
             daysAdded.add(day);
+        }
+
+        @Override
+        public boolean isDefaultProfile() {
+            return false;
         }
 
         @Override

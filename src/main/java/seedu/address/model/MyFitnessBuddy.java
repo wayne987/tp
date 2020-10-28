@@ -46,7 +46,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
 
     /**
      * Replaces the contents of the day list with {@code days}.
-     * {@code days} must not contain duplicate persons.
+     * {@code days} must not contain duplicate days.
      */
     public void setDays(List<Day> days) {
         getPerson().setDays(days);
@@ -63,6 +63,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
         requireNonNull(newData);
         setProfile(newData.getProfile());
         setDays(newData.getPerson().getDayList());
+        setPerson(newData.getPerson());
     }
 
     /**

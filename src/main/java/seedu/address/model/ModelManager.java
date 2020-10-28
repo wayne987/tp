@@ -91,7 +91,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns my fitness buddy
+     * Returns my fitness buddy.
      */
     @Override
     public ReadOnlyMyFitnessBuddy getMyFitnessBuddy() {
@@ -153,7 +153,6 @@ public class ModelManager implements Model {
         myFitnessBuddy.setProfile(profile);
     }
 
-    @Override
     public boolean isDefaultProfile() {
         return myFitnessBuddy.isDefaultProfile();
     }
