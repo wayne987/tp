@@ -65,7 +65,29 @@ public class TypicalDays {
         return myFitnessBuddy;
     }
 
+    /**
+     * Returns an {@code getAnotherFitnessBuddy} with all the typical days and calories in them.
+     */
+    public static MyFitnessBuddy getAnotherMyFitnessBuddy() {
+        MyFitnessBuddy ab = new MyFitnessBuddy();
+        ab.setPerson(new Person(DEFAULT_PROFILE));
+        for (Day day : getTypicalDays()) {
+            ab.addDay(day);
+        }
+        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_A));
+        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_B));
+        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_C));
+        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_A));
+        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_B));
+        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_C));
+        return ab;
+    }
+
     public static List<Day> getTypicalDays() {
         return new ArrayList<>(Arrays.asList(DAY1, DAY2, DAY3, DAY4, DAY5, DAY6, DAY7));
+    }
+
+    public static void main(String[] args) {
+        getAnotherMyFitnessBuddy();
     }
 }

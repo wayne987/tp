@@ -34,13 +34,13 @@ public class CalorieCommandParser implements Parser<CalorieCommand> {
     @Override
     public CalorieCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_CALORIE_TYPE, PREFIX_DATE, PREFIX_TIME,
-                    PREFIX_EXERCISE, PREFIX_FOOD, PREFIX_CALORIE_COUNT);
+                ArgumentTokenizer.tokenize(args, PREFIX_CALORIE_TYPE, PREFIX_DATE, PREFIX_TIME,
+                        PREFIX_EXERCISE, PREFIX_FOOD, PREFIX_CALORIE_COUNT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CALORIE_TYPE) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalorieCommand.MESSAGE_USAGE));
         }
-        String type = ParserUtil.parseCalorieType(argMultimap.getValue(PREFIX_CALORIE_TYPE).get());
+        Boolean isOut = ParserUtil.parseType(argMultimap.getValue(PREFIX_CALORIE_TYPE).get());
 
         String date;
         if (arePrefixesPresent(argMultimap, PREFIX_DATE)) {
@@ -52,24 +52,29 @@ public class CalorieCommandParser implements Parser<CalorieCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_TIME, PREFIX_CALORIE_COUNT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalorieCommand.MESSAGE_USAGE));
         }
+
         Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
         CalorieCount calorieCount = ParserUtil.parseCalorieCount(argMultimap.getValue(PREFIX_CALORIE_COUNT).get());
 
         Calorie calorie;
-        if (type.equals("in")) {
-            if (!arePrefixesPresent(argMultimap, PREFIX_FOOD)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalorieCommand.MESSAGE_USAGE));
-            }
-            Food food = ParserUtil.parseFood(argMultimap.getValue(PREFIX_FOOD).get());
+        if (arePrefixesPresent(argMultimap, PREFIX_FOOD) && arePrefixesPresent(argMultimap, PREFIX_EXERCISE)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalorieCommand.MESSAGE_USAGE_2));
+        }
+
+        if ((!arePrefixesPresent(argMultimap, PREFIX_EXERCISE) && !isOut)
+                || (!arePrefixesPresent(argMultimap, PREFIX_FOOD) && isOut)) {
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalorieCommand.MESSAGE_USAGE));
+        }
+
+        if (!isOut) {
+            Food food = ParserUtil.parseFood(argMultimap.getValue(PREFIX_FOOD).get(), isOut);
             calorie = new Input(time, food, calorieCount);
         } else {
-            if (!arePrefixesPresent(argMultimap, PREFIX_EXERCISE)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalorieCommand.MESSAGE_USAGE));
-            }
-            Exercise exercise = ParserUtil.parseExercise(argMultimap.getValue(PREFIX_EXERCISE).get());
+            Exercise exercise = ParserUtil.parseExercise(argMultimap.getValue(PREFIX_EXERCISE).get(), isOut);
             calorie = new Output(time, exercise, calorieCount);
         }
-        return new CalorieCommand(calorie, type, date);
+        return new CalorieCommand(calorie, isOut, date);
     }
 
     /**
