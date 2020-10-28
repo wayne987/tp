@@ -22,7 +22,7 @@ public class StatusBarDaySelected extends UiPart<Region> {
         dateSelectedLabel.setText("   Date selected: " + dateSelected);
     }
 
-    public void clearDateLabel() {
+    public void clear() {
         dateSelectedLabel.setText("");
     }
 

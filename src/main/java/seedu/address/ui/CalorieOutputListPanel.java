@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -31,6 +32,11 @@ public class CalorieOutputListPanel extends UiPart<Region> {
      */
     public void update(ObservableList<Output> outputList) {
         calorieOutputListView.setItems(outputList);
+        calorieOutputListView.setCellFactory(listView -> new CalorieOutputListViewCell());
+    }
+
+    public void clear() {
+        calorieOutputListView.setItems(FXCollections.observableArrayList());
         calorieOutputListView.setCellFactory(listView -> new CalorieOutputListViewCell());
     }
 

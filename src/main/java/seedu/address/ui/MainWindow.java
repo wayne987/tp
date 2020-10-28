@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -135,29 +134,44 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Fills up the calorie panels with calorie values of the day that is clicked.
+     * Updates the calorie panels with calorie values of the day that is clicked.
      *
      * @param index the index of the day that is clicked
      */
-    void fillCaloriePanels(int index) {
-        if (logic.getFilteredDayList().isEmpty() || index == logic.getFilteredDayList().size()) {
-            calorieInputListPanel.update(FXCollections.observableArrayList());
-            calorieOutputListPanel.update(FXCollections.observableArrayList());
-
-            statusBarDaySelected.clearDateLabel();
+    void updateCaloriePanels(int index) {
+        // first i need to check if the current calorie lists that are showing is the one being deleted.
+        boolean isLastDayInList = index == logic.getFilteredDayList().size();
+        if (isLastDayInList) {
+            clearCaloriePanels();
         } else {
             calorieInputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager()
                     .getCalorieInputList());
             calorieOutputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager()
                     .getCalorieOutputList());
-
-            statusBarDaySelected.setDateSelectedLabel(logic.getFilteredDayList().get(index).getDate().get().toString());
         }
+    }
+
+    void clearCaloriePanels() {
+        calorieInputListPanel.clear();
+        calorieOutputListPanel.clear();
     }
 
     void setDateLabel(String date) {
         statusBarDaySelected.setDateSelectedLabel(date);
+    }
 
+    void updateDateLabel(int index) {
+        boolean isLastDayInList = index == logic.getFilteredDayList().size();
+        if (isLastDayInList) {
+            clearDateLabel();
+        } else {
+            String dateStringOfNextDay = logic.getFilteredDayList().get(index).getDate().get().toString();
+            setDateLabel(dateStringOfNextDay);
+        }
+    }
+
+    void clearDateLabel() {
+        statusBarDaySelected.clear();
     }
 
     /**
@@ -250,9 +264,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleClear() {
-        fillCaloriePanels(0);
-//        dayListPanel.clearDateLabel();
-        statusBarDaySelected.clearDateLabel();
+        clearCaloriePanels();
+        clearDateLabel();
     }
 
     /**
@@ -262,7 +275,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleDelete(int index) {
-        fillCaloriePanels(index - 1);
+        updateCaloriePanels(index - 1);
+        updateDateLabel(index - 1);
     }
 
     void show() {

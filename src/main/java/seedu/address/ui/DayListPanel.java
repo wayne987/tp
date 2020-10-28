@@ -22,9 +22,6 @@ public class DayListPanel extends UiPart<Region> {
     @FXML
     private ListView<Day> personListView;
 
-    @FXML
-    private TextField dateLabel;
-
     private MainWindow mainWindow;
 
     /**

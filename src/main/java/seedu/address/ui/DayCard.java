@@ -52,10 +52,10 @@ public class DayCard extends UiPart<Region> {
         totalCalorieOut.setText("Total Calories Out: " + cm.getTotalOutputCalorie() + " calories");
         this.mainWindow = mainWindow;
 
-        // Fills the calorie placeholders when a DayCard is double clicked
+        // Fills the calorie placeholders and updates the status bar when a DayCard is double clicked
         cardPane.setOnMouseClicked(x -> {
             displayCalories(displayedIndex - 1);
-            sendDateTextToMainWindow(day.getDate().get().toString());
+            sendDateToMainWindow(day.getDate().get().toString());
         });
     }
 
@@ -65,10 +65,15 @@ public class DayCard extends UiPart<Region> {
      * @param index the index of the day that was clicked.
      */
     private void displayCalories(int index) {
-        this.mainWindow.fillCaloriePanels(index);
+        this.mainWindow.updateCaloriePanels(index);
     }
 
-    private void sendDateTextToMainWindow(String date) {
+    /**
+     * Sends the date string to {@code MainWindow} so that it can update the {@code StatusBarDaySelected}.
+     *
+     * @param date the date string of the day that was clicked.
+     */
+    private void sendDateToMainWindow(String date) {
         this.mainWindow.setDateLabel(date);
     }
 
