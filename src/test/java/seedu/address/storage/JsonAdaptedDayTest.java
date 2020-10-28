@@ -25,7 +25,6 @@ public class JsonAdaptedDayTest {
     private static final String VALID_DATE = DAY2.getDate().toString();
     private static final String VALID_WEIGHT = DAY2.getWeight().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = DAY2.getTags().stream()
-
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
