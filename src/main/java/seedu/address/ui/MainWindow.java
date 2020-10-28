@@ -157,8 +157,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getMyFitnessBuddy().getPersonList(), this);
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        //        personListPanel = new PersonListPanel(logic.getMyFitnessBuddy().getPersonList(), this);
+        //        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         dayListPanel = new DayListPanel(logic.getFilteredDayList(), this);
         dayListPanelPlaceholder.getChildren().add(dayListPanel.getRoot());
