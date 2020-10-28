@@ -210,4 +210,12 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Returns true if the date of this day is after otherDay
+     */
+    public boolean isAfter(Person otherPerson) {
+        int thisPerson = Integer.parseInt(this.profile.id.value);
+        int otherPer = Integer.parseInt(otherPerson.profile.id.value);
+        return thisPerson > otherPer;
+    }
 }

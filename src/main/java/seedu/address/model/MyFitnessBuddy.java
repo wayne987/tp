@@ -198,7 +198,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
 
     @Override
     public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+        return this.persons.asUnmodifiableObservableList();
     }
 
     @Override

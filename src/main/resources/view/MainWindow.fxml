@@ -44,11 +44,21 @@
           <items>
             <AnchorPane minHeight="0.0" minWidth="210.0" prefHeight="330.0" prefWidth="245.0">
               <children>
-                <VBox fx:id="dayList" minWidth="340" prefHeight="158.0" prefWidth="348.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <VBox fx:id="personList" minWidth="340" prefHeight="158.0" prefWidth="348.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                   </padding>
                   <StackPane fx:id="personListPanelPlaceholder" prefHeight="308.0" prefWidth="394.0" VBox.vgrow="ALWAYS" />
+                </VBox>
+              </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="210.0" prefHeight="330.0" prefWidth="245.0">
+              <children>
+                <VBox fx:id="dayList" minWidth="340" prefHeight="158.0" prefWidth="348.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <padding>
+                    <Insets bottom="10" left="10" right="10" top="10" />
+                  </padding>
+                  <StackPane fx:id="dayListPanelPlaceholder" prefHeight="308.0" prefWidth="394.0" VBox.vgrow="ALWAYS" />
                 </VBox>
               </children>
             </AnchorPane>
@@ -87,7 +97,7 @@
           </padding>
         </StackPane>
 
-        <StackPane fx:id="statusbarPlaceholder" prefHeight="5.0" prefWidth="505.0" VBox.vgrow="NEVER" />
+        <StackPane fx:id="statusBarPlaceholder" prefHeight="5.0" prefWidth="505.0" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>

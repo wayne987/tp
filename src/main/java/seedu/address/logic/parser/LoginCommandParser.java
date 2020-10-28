@@ -4,6 +4,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * 解析輸入參數並且製造換人指令模型
+ */
 public class LoginCommandParser implements Parser<LoginCommand> {
 
 

@@ -8,27 +8,27 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.day.Day;
+import seedu.address.model.person.Person;
 
 /**
- * Panel containing the list of days.
+ * Panel containing the list of persons.
  */
-public class DayListPanel extends UiPart<Region> {
-    private static final String FXML = "DayListPanel.fxml";
+public class PersonListPanel extends UiPart<Region> {
+    private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(DayListPanel.class);
 
     @FXML
-    private ListView<Day> dayListView;
+    private ListView<Person> personListView;
 
     private MainWindow mainWindow;
 
     /**
      * Creates a {@code DayListPanel} with the given {@code ObservableList} and given {@code MainWindow}.
      */
-    public DayListPanel(ObservableList<Day> dayList, MainWindow mainWindow) {
+    public PersonListPanel(ObservableList<Person> personList, MainWindow mainWindow) {
         super(FXML);
-        dayListView.setItems(dayList);
-        dayListView.setCellFactory(listView -> new DayListViewCell());
+        personListView.setItems(personList);
+        personListView.setCellFactory(listView -> new PersonListViewCell());
         this.mainWindow = mainWindow;
         logger.info("DayListPanel created");
     }
@@ -36,16 +36,16 @@ public class DayListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Day} using a {@code DayCard}.
      */
-    class DayListViewCell extends ListCell<Day> {
+    class PersonListViewCell extends ListCell<Person> {
         @Override
-        protected void updateItem(Day day, boolean empty) {
-            super.updateItem(day, empty);
+        protected void updateItem(Person person, boolean empty) {
+            super.updateItem(person, empty);
 
-            if (empty || day == null) {
+            if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new DayCard(day, getIndex() + 1, mainWindow).getRoot());
+                setGraphic(new PersonCard(person, getIndex() + 1, mainWindow).getRoot());
             }
         }
     }

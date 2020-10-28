@@ -4,15 +4,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.calorie.CalorieManager;
-import seedu.address.model.day.Day;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Profile;
 
 /**
- * An UI component that displays information of a {@code Day}.
+ * An UI component that displays information of a {@code Person}.
  */
-public class DayCard extends UiPart<Region> {
+public class PersonCard extends UiPart<Region> {
 
-    private static final String FXML = "DayListCard.fxml";
+    private static final String FXML = "PersonListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -22,36 +22,37 @@ public class DayCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Day day;
+    public final Person person;
     private MainWindow mainWindow;
 
     @FXML
     private HBox cardPane;
     @FXML
-    private Label date;
+    private Label name;
     @FXML
     private Label id;
     @FXML
+    private Label fourD;
+    @FXML
+    private Label height;
+    @FXML
     private Label weight;
-    @FXML
-    private Label totalCalorieIn;
-    @FXML
-    private Label totalCalorieOut;
-    @FXML
-    private HBox profile;
+
+
 
     /**
      * Creates a {@code DayCard} with the given {@code Day} and index to display and the given {@code MainWindow}.
      */
-    public DayCard(Day day, int displayedIndex, MainWindow mainWindow) {
+    public PersonCard(Person person, int displayedIndex, MainWindow mainWindow) {
         super(FXML);
-        this.day = day;
-        CalorieManager cm = day.getCalorieManager();
+        System.out.println(person);
+        this.person = person;
+        Profile profile = person.getProfile();
         id.setText(displayedIndex + ". ");
-        date.setText("Date: " + day.getDate().get());
-        weight.setText("Weight: " + day.getWeight().value + " kg");
-        totalCalorieIn.setText("Total Calories In: " + cm.getTotalInputCalorie() + " calories");
-        totalCalorieOut.setText("Total Calories Out: " + cm.getTotalOutputCalorie() + " calories");
+        name.setText("Name: " + profile.getName().fullName);
+        fourD.setText("ID: " + profile.getId().value);
+        height.setText("Height: " + profile.getHeight().value);
+        weight.setText("Weight: " + profile.getTargetWeight().value + " kg");
         this.mainWindow = mainWindow;
 
         // Fills the calorie placeholders when a DayCard is double clicked
@@ -80,8 +81,8 @@ public class DayCard extends UiPart<Region> {
         }
 
         // state check
-        DayCard card = (DayCard) other;
+        PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
-                && day.equals(card.day);
+                && person.equals(card.person);
     }
 }

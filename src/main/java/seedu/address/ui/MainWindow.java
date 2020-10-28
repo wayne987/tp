@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private PersonListPanel personListPanel;
     private DayListPanel dayListPanel;
     private CalorieInputListPanel calorieInputListPanel;
     private CalorieOutputListPanel calorieOutputListPanel;
@@ -47,7 +48,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane dayListPanelPlaceholder;
 
     @FXML
     private StackPane calorieInputListPanelPlaceholder;
@@ -56,10 +57,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane calorieOutputListPanelPlaceholder;
 
     @FXML
+    private StackPane personListPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane statusBarPlaceholder;
 
     @FXML
     private MenuItem weightStatsMenuItem;
@@ -147,12 +151,17 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+
+
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        personListPanel = new PersonListPanel(logic.getMyFitnessBuddy().getPersonList(), this);
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
         dayListPanel = new DayListPanel(logic.getFilteredDayList(), this);
-        personListPanelPlaceholder.getChildren().add(dayListPanel.getRoot());
+        dayListPanelPlaceholder.getChildren().add(dayListPanel.getRoot());
 
         calorieInputListPanel = new CalorieInputListPanel();
         calorieInputListPanelPlaceholder.getChildren().add(calorieInputListPanel.getRoot());
@@ -163,7 +172,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMyFitnessBuddyFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
