@@ -1,5 +1,8 @@
 package seedu.address.model.calorie;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -7,6 +10,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.ChangeCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
+
 
 /**
  * Stores and handles operation related to calories
@@ -149,9 +155,9 @@ public class CalorieManager {
     /**
      * removes a calorie from the List and update the total calorie input
      */
-    public void removeCalorie(String type, Index targetIndex) {
+    public void removeCalorie(Boolean isOut, Index targetIndex) {
         int index = targetIndex.getZeroBased();
-        if (type.equals("in")) {
+        if (!isOut) {
             deleteTotalCalorieInput(index);
             calorieInputList.remove(index);
         } else {
@@ -161,12 +167,10 @@ public class CalorieManager {
     }
     /**
      * Get size of list depending on type
-     * @param type of calorie
+     * @param isOut is the calorie type Output?
      */
-    public int getListSize(String type) {
-        assert type.equals("in") | type.equals("out") : "type can only be in/out";
-
-        if (type.equals("in")) {
+    public int getListSize(Boolean isOut) {
+        if (!isOut) {
             return calorieInputList.size();
         } else {
             return calorieOutputList.size();
@@ -175,15 +179,56 @@ public class CalorieManager {
 
     /**
      * Get a calorie of a certain type and index
-     * @param type
-     * @param index
+     * @param isOut is the calorie type Output?
+     * @param index of the calorie to be retrieved
      */
-    public Calorie getCalorie(String type, Index index) {
-        assert type.equals("in") | type.equals("out") : "type can only be in/out";
-        if (type.equals("in")) {
+    public Calorie getCalorie(Boolean isOut, Index index) throws CommandException {
+        if (!isOut) {
+            if (calorieInputList.size() <= index.getZeroBased()) {
+                throw new CommandException("please give an valid index");
+            }
             return calorieInputList.get(index.getZeroBased());
         } else {
+            if (calorieOutputList.size() <= index.getZeroBased()) {
+                throw new CommandException("please give an valid index");
+            }
             return calorieOutputList.get(index.getZeroBased());
         }
     }
+
+    public CalorieManager setCalorie(Index index, Boolean isOut, Calorie editedCalorie) throws CommandException {
+        requireAllNonNull(index, isOut, editedCalorie);
+        if (isOut) {
+            Output temp = calorieOutputList.remove(index.getZeroBased());
+            if (contains(editedCalorie, true)) {
+                calorieOutputList.add(temp);
+                throw new CommandException(ChangeCommand.DUPLICATE_TIME);
+            }
+            addCalorieOutput((Output) editedCalorie);
+        } else {
+            Input temp = calorieInputList.remove(index.getZeroBased());
+            if (contains(editedCalorie, false)) {
+                calorieInputList.add(temp);
+                throw new CommandException(ChangeCommand.DUPLICATE_TIME);
+            }
+            addCalorieInput((Input) editedCalorie);
+        }
+        return new CalorieManager(getCalorieInputList(), getCalorieOutputList());
+    }
+
+    /**
+     * Check if there is a calorie in the list with the same time as param
+     * @param toCheck if the list contains this calorie entry
+     * @param isOut determines which list to check
+     */
+    public boolean contains(Calorie toCheck, Boolean isOut) {
+        requireNonNull(toCheck);
+        if (isOut) {
+            return calorieOutputList.stream().anyMatch(toCheck::equals);
+        } else {
+            return calorieInputList.stream().anyMatch(toCheck::equals);
+        }
+    }
+
 }
+

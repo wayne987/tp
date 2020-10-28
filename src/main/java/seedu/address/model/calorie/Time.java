@@ -3,6 +3,9 @@ package seedu.address.model.calorie;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the time of the activity for a Input/Output
+ */
 public class Time {
     public static final String MESSAGE_CONSTRAINTS =
             "Time should be in the format of HHMM and it should not be blank";
