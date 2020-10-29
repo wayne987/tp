@@ -330,6 +330,8 @@ Example: `stats v/all`
 
 This command will display both charts in their respective pop-up windows.
 
+_:bulb:TIP: You can hover your mouse over the data point to see the actual value_
+
 Weight Chart:
 ![weight_stats_chart](images/weight_stats_chart.png)
 Calorie Chart:
