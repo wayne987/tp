@@ -18,8 +18,8 @@ import static seedu.address.logic.commands.CommandTestUtil.WEIGHT_DESC_1;
 import static seedu.address.logic.commands.CommandTestUtil.WEIGHT_DESC_2;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalDays.AMY;
-import static seedu.address.testutil.TypicalDays.BOB;
+import static seedu.address.testutil.TypicalDays.MDAY1;
+import static seedu.address.testutil.TypicalDays.MDAY2;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +35,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Day expectedDay = new DayBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Day expectedDay = new DayBuilder(MDAY2).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + DATE_DESC_2 + WEIGHT_DESC_2
@@ -50,7 +50,7 @@ public class AddCommandParserTest {
                 + TAG_DESC_FRIEND, new AddCommand(expectedDay));
 
         // multiple tags - all accepted
-        Day expectedDayMultipleTags = new DayBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Day expectedDayMultipleTags = new DayBuilder(MDAY2).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, DATE_DESC_2 + WEIGHT_DESC_2 + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND, new AddCommand(expectedDayMultipleTags));
@@ -59,7 +59,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Day expectedDay = new DayBuilder(AMY).withTags().build();
+        Day expectedDay = new DayBuilder(MDAY1).withTags().build();
         assertParseSuccess(parser, DATE_DESC_1 + WEIGHT_DESC_1,
                 new AddCommand(expectedDay));
     }

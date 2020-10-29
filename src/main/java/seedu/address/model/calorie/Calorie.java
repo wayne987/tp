@@ -1,9 +1,16 @@
 package seedu.address.model.calorie;
 
+import java.util.Objects;
+
+/**
+ * abstract class that input and output extends from
+ */
 public abstract class Calorie {
     // Identity fields
-    private CalorieCount calorieCount;
-    private Time time;
+    protected CalorieCount calorieCount;
+    protected Time time;
+
+
     /**
      * Every field must be present and not null.
      */
@@ -17,5 +24,25 @@ public abstract class Calorie {
 
     public Time getTime() {
         return time;
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(time);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Calorie)) {
+            return false;
+        }
+        Calorie otherCalorie = (Calorie) other;
+
+        return otherCalorie.getTime().time.equals(getTime().time);
     }
 }

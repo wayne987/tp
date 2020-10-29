@@ -3,6 +3,9 @@ package seedu.address.model.calorie;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Input's/Output's calorie count in the record
+ */
 public class CalorieCount {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -32,6 +35,22 @@ public class CalorieCount {
         return calorieCount;
     }
 
+    /**
+     * Returns true if both Calories have the same calorie string.
+     * This defines a stronger notion of equality between two calories.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
 
+        if (!(other instanceof CalorieCount)) {
+            return false;
+        }
+
+        CalorieCount otherCalorieCount = (CalorieCount) other;
+        return otherCalorieCount.calorieCount.equals(this.calorieCount);
+    }
 }
 

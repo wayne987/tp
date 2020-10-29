@@ -18,7 +18,7 @@ import seedu.address.model.calorie.Output;
 
 
 /**
- * Jackson-friendly version of {@link seedu.address.model.calorie.Calorie}.
+ * Jackson-friendly version of {@link seedu.address.model.calorie.CalorieManager}.
  */
 class JsonAdaptedCalorieManager {
 
@@ -26,7 +26,7 @@ class JsonAdaptedCalorieManager {
     private final List<JsonAdaptedOutput> outputList = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonCalorieManager} with the given day details.
+     * Constructs a {@code JsonCalorieManager} with the given CalorieManager details.
      */
     @JsonCreator
     public JsonAdaptedCalorieManager(@JsonProperty("inputList") List<JsonAdaptedInput> inputList,
@@ -51,7 +51,7 @@ class JsonAdaptedCalorieManager {
      * Converts this Jackson-friendly adapted CalorieManager
      * object into the CalorieManager {@code CalorieManager} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted day.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted CalorieManager.
      */
     public CalorieManager toModelType() throws IllegalValueException {
         final ObservableList<Input> dayInputs = FXCollections.observableArrayList();

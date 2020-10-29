@@ -13,7 +13,9 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.day.Day;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Profile;
+
 
 /**
  * Represents the in-memory model of My Fitness Buddy data.
@@ -91,7 +93,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns my fitness buddy
+     * Returns my fitness buddy.
      */
     @Override
     public ReadOnlyMyFitnessBuddy getMyFitnessBuddy() {
@@ -126,6 +128,15 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addPerson(Person toAdd) {
+        myFitnessBuddy.addPerson(toAdd);
+    }
+
+    @Override
+    public void setCurrentPerson(Person toSet) {
+        myFitnessBuddy.setCurrentPerson(toSet);
+    }
+    @Override
     public void setDay(Day target, Day editedDay) {
         requireAllNonNull(target, editedDay);
         myFitnessBuddy.setDay(target, editedDay);
@@ -154,8 +165,22 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void resetPersons() {
+        myFitnessBuddy.resetPersons();
+    }
+
     public boolean isDefaultProfile() {
         return myFitnessBuddy.isDefaultProfile();
+    }
+
+    @Override
+    public boolean hasPerson(Person toCheck) {
+        return myFitnessBuddy.hasPerson(toCheck);
+    }
+
+    @Override
+    public void updateDay() {
+        myFitnessBuddy.updateDay();
     }
 
     @Override
