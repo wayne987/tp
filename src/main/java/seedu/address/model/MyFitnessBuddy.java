@@ -73,10 +73,14 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
         //        setProfile(newData.getProfile());
         //        setDays(newData.getPerson().getDayList());
         //        setPerson(newData.getPerson());
-        Person defaultPerson = new Person();
-        if (!newData.getPerson().equals(defaultPerson)) {
-            addPerson(newData.getPerson());
+        List<Person> personList = newData.getPersonList();
+        if (personList.size() > 0) {
+            personList.forEach(x -> addPerson(x));
+            setCurrentPerson(personList.get(0));
         }
+//        if (!newData.getPerson().equals(defaultPerson)) {
+//            addPerson(newData.getPerson());
+//
     }
 
     /**
