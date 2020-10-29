@@ -1,9 +1,16 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Profile;
 
@@ -15,8 +22,9 @@ public class ProfileCard extends UiPart<Region> {
     //displayed Index fx:id is renamed -> fx:id=index to remove ambiguity with id of Profile
     private static final String FXML = "ProfileListCard.fxml";
 
-    public final Profile profile;
+    private static final double LENGTH = 1000;
 
+    public final Profile profile;
 
     @FXML
     private HBox cardPane;
@@ -30,6 +38,10 @@ public class ProfileCard extends UiPart<Region> {
     private Label targetWeight;
     @FXML
     private Label height;
+    @FXML
+    private ImageView profilePicture;
+    @FXML
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/RandomDude.png"));
 
     /**
      * Creates a {@code ProfileCard} with the given {@code Person} and index to display.
@@ -42,6 +54,8 @@ public class ProfileCard extends UiPart<Region> {
         id.setText("ID: " + profile.getId().toString());
         targetWeight.setText("Target Weight: " + profile.getTargetWeight().toString());
         height.setText("Height: " + profile.getHeight().toString());
+        profilePicture.setImage(userImage);
+        circleClip(profilePicture);
     }
 
     /**
@@ -56,6 +70,22 @@ public class ProfileCard extends UiPart<Region> {
         id.setText("ID: " + profile.getId().toString());
         targetWeight.setText("Target Weight: " + profile.getTargetWeight().toString());
         height.setText("Height: " + profile.getHeight().toString());
+    }
+
+    /**
+     * Clips the image into a circle
+     */
+    private void circleClip(ImageView imageView) {
+        Circle circle = new Circle(LENGTH / 2);
+        circle.setCenterY(imageView.getY() + LENGTH / 2);
+        circle.setCenterX(imageView.getX() + LENGTH / 2);
+        imageView.setClip(circle);
+        SnapshotParameters parameters = new SnapshotParameters();
+        parameters.setFill(Color.TRANSPARENT);
+        WritableImage image = imageView.snapshot(parameters, null);
+        imageView.setClip(null);
+        imageView.setEffect(new DropShadow(20, Color.HOTPINK));
+        imageView.setImage(image);
     }
 
     @Override
