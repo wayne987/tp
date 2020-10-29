@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -31,24 +30,6 @@ public class ProfileListPanel extends UiPart<Region> {
         profileListView.setCellFactory(listView -> new ProfileListViewCell());
         logger.info("ProfileListPanel created");
     }
-
-//    /**
-//     * Updates the {@code ProfileListPanel} with the given {@code ObservableList}.
-//     *
-//     * @param profileList the list of Profiles to be displayed.
-//     */
-//    public void update(ObservableList<Profile> profileList) {
-//        profileListView.setItems(profileList);
-//        profileListView.setCellFactory(listView -> new ProfileListPanel.ProfileListViewCell());
-//    }
-
-//    /**
-//     * Clears the {@code CalorieInputListPanel} with an empty {@code ObservableList}.
-//     */
-//    public void clear() {
-//        profileListView.setItems(FXCollections.observableArrayList());
-//        profileListView.setCellFactory(listView -> new ProfileListPanel.ProfileListViewCell());
-//    }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Profile} using a {@code ProfileCard}.

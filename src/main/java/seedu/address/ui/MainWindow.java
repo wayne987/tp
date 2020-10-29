@@ -235,7 +235,6 @@ public class MainWindow extends UiPart<Stage> {
         statusbarDaySelectedPlaceholder.getChildren().add(statusBarDaySelected.getRoot());
 
         profileCardPanel = new ProfileCardPanel(logic.getMyFitnessBuddy().getPerson());
-        System.out.println(logic.getMyFitnessBuddy().getPerson());
         profileCardPlaceholder.getChildren().add(profileCardPanel.getRoot());
 
         profileListPanel = new ProfileListPanel(logic.getMyFitnessBuddy().getPersonList());

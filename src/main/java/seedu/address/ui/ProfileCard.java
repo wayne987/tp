@@ -37,13 +37,17 @@ public class ProfileCard extends UiPart<Region> {
     public ProfileCard(Person person, int displayedIndex) {
         super(FXML);
         this.profile = person.getProfile();
-        index.setText(displayedIndex + ".");
+        index.setText(displayedIndex + ". ");
         name.setText("Name: " + profile.getName().toString());
         id.setText("ID: " + profile.getId().toString());
         targetWeight.setText("Target Weight: " + profile.getTargetWeight().toString());
         height.setText("Height: " + profile.getHeight().toString());
     }
 
+    /**
+     * Creates a {@code ProfileCard} with the given {@code Person}.
+     * To display the current loaded profile.
+     */
     public ProfileCard(Person person) {
         super(FXML);
         this.profile = person.getProfile();
