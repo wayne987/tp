@@ -42,6 +42,8 @@ public class MainWindow extends UiPart<Stage> {
     private WeightStatsWindow weightStatsWindow;
     private CalorieStatsWindow calorieStatsWindow;
     private StatusBarDaySelected statusBarDaySelected;
+    private ProfileListPanel profileListPanel;
+    private ProfileCardPanel profileCardPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -75,6 +77,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem allStatsMenuItem;
+
+    @FXML
+    private StackPane profileListPlaceholder;
+
+    @FXML
+    private StackPane profileCardPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -225,6 +233,13 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         statusBarDaySelected = new StatusBarDaySelected();
         statusbarDaySelectedPlaceholder.getChildren().add(statusBarDaySelected.getRoot());
+
+        profileCardPanel = new ProfileCardPanel(logic.getMyFitnessBuddy().getPerson());
+        System.out.println(logic.getMyFitnessBuddy().getPerson());
+        profileCardPlaceholder.getChildren().add(profileCardPanel.getRoot());
+
+        profileListPanel = new ProfileListPanel(logic.getMyFitnessBuddy().getPersonList());
+        profileListPlaceholder.getChildren().add(profileListPanel.getRoot());
 
         dayListPanel = new DayListPanel(logic.getFilteredDayList(), this);
         dayListPanelPlaceholder.getChildren().add(dayListPanel.getRoot());
