@@ -43,13 +43,11 @@ public class JsonMyFitnessBuddyStorage implements MyFitnessBuddyStorage {
      */
     public Optional<ReadOnlyMyFitnessBuddy> readFitnessBuddy(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
-
         Optional<JsonSerializableMyFitnessBuddy> jsonFitnessBuddy = JsonUtil.readJsonFile(
                 filePath, JsonSerializableMyFitnessBuddy.class);
         if (!jsonFitnessBuddy.isPresent()) {
             return Optional.empty();
         }
-
         try {
             return Optional.of(jsonFitnessBuddy.get().toModelType());
         } catch (IllegalValueException ive) {
