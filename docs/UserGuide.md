@@ -98,7 +98,7 @@ Create a new profile for a new Person.
 
 Format: `create n/NAME id/ID_NUM h/HEIGHT w/TARGET_WEIGHT`
 
-:warning: Warning: For valid ID_NUM, the first two digits must be from 1 - 4, 
+:warning: For valid ID_NUM, the first two digits must be from 1 - 4, 
 while the last two digits must be from 1 - 20. A valid ID_NUM has only four digits. 
 
 
