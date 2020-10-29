@@ -89,30 +89,51 @@ Examples:
 `profile edit n/John id/1233 h/170 w/70`
 
 ### 4.2 Day commands
+Commands in this section are useful in tracking of daily weight records. You should use these commands to log your weight for 
+a new day before adding calorie related information and edit your weight if you made a mistake. 
 
 #### 4.2.1 Adding a daily weight record : `add d/DATE w/WEIGHT`
-Add a new daily weight record.
+Adds a new daily weight record.
 
 Format: `add d/DATE w/WEIGHT`
 
-Examples:  
-`add d/2020-10-16 w/70` 
+Example:  
+`add d/2020-10-29 w/72` 
+
+Meaning:
+Adds a new day, 29 October 2020, with a weight of 72kg.
+
+_TIP: Always add a day before adding a calorie information. `DATE` has to be in the YYYY-MM-DD format._
+
+![AddDay](images/AddDay.png)
 
 #### 4.2.2 Editing a daily weight record : `edit INDEX w/WEIGHT`
-Edit a daily weight record.
+Edits a daily weight record.
 
 Format: `edit INDEX w/WEIGHT`
 
-Examples:  
-`edit 1 w/65` 
+Example:  
+`edit 3 w/70` 
+
+Meaning:
+Edits a day at index 3 with a new weight of 70kg.
+
+_TIP: `WEIGHT` should be in KG._
+
+![EditDay](images/EditDay.png)
 
 #### 4.2.3 Deleting a daily record: `delete INDEX`
 Deletes a daily record at INDEX.
 
 Format: `delete INDEX`
 
-Examples:
+Example:
 `delete 2`
+
+Meaning:
+Deletes a day at index 2.
+
+![DeleteDay](images/DeleteDay.png)
 
 ### 4.3 Calorie Commands
 Commands in this section are useful in keeping track of the various calorie content.
