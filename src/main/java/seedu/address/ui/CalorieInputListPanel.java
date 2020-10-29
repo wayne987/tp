@@ -35,6 +35,9 @@ public class CalorieInputListPanel extends UiPart<Region> {
         calorieInputListView.setCellFactory(listView -> new CalorieInputListViewCell());
     }
 
+    /**
+     * Clears the {@code CalorieInputListPanel} with an empty {@code ObservableList}.
+     */
     public void clear() {
         calorieInputListView.setItems(FXCollections.observableArrayList());
         calorieInputListView.setCellFactory(listView -> new CalorieInputListViewCell());

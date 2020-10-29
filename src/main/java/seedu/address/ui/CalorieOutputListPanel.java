@@ -35,6 +35,9 @@ public class CalorieOutputListPanel extends UiPart<Region> {
         calorieOutputListView.setCellFactory(listView -> new CalorieOutputListViewCell());
     }
 
+    /**
+     * Clears the {@code CalorieOutputListPanel} with an empty {@code ObservableList}.
+     */
     public void clear() {
         calorieOutputListView.setItems(FXCollections.observableArrayList());
         calorieOutputListView.setCellFactory(listView -> new CalorieOutputListViewCell());

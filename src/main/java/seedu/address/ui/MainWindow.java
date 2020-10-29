@@ -205,7 +205,8 @@ public class MainWindow extends UiPart<Stage> {
             if (isLastDayBeingDeleted) {
                 clearDateLabel();
             } else {
-                String dateStringOfNextDay = logic.getFilteredDayList().get(indexOfDayDeleted).getDate().get().toString();
+                String dateStringOfNextDay = logic.getFilteredDayList().get(indexOfDayDeleted)
+                        .getDate().get().toString();
                 setDateLabel(dateStringOfNextDay);
             }
         }
