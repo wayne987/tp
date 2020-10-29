@@ -60,7 +60,7 @@ public class CreateCommand extends Command {
         model.updateDay();
         logger.info("---------------[USER COMMAND][Profile" + profile.toString() + " created]");
         //        model.getMyFitnessBuddy().getPersonList().stream().forEach(x-> System.out.println(x));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, profile));
+        return new CommandResult(true, String.format(MESSAGE_SUCCESS, profile));
     }
 
     @Override
