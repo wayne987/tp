@@ -2,39 +2,34 @@
 layout: page
 title: My Fitness Buddy User Guide
 ---
-Welcome to My Fitness Buddy User Guide! Choose a topic from the [Table of Contents](#table-of-contents)
-below to get step-by-step instructions and answers.
+ ![logo](images/logo.png)
+#### Welcome to My Fitness Buddy User Guide!
+
+Just enlisted under PES ‘B’ Pending and worried about the next few months of Basic Military Training (BMT)?  
+Worry no more, My Fitness Buddy is here to accompany you through BMT and help you keep track of your weight loss journey!  
+This user guide serves to provide you with the necessary instructions on how to set up and use our application. With that said, let’s get started!    
+
+Choose a topic from the [Table of Contents](#table-of-contents) below.
 
 ## Table of Contents
 * Table of Contents
-{:toc}
+{:toc}  
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. Introduction
+### 1.1 Application overview
+My Fitness Buddy `v1.3` is a desktop application that helps you to track your overall change in fitness level by allowing you to add daily records of your weight and calorie input/output.  
+My Fitness Buddy also allows users to create a profile and can generate visual charts based on these records so that you can monitor your daily progress and help you achieve your goals.  
+This application is optimized for use through a *Command Line Interface (CLI)*, meaning that you operate the application by typing commands into a command box.
 
-### 1.1 Product overview
+### 1.2 Target Audience
+My Fitness Buddy is designed for PES ‘B’ Pending (BP) soldiers who have just enlisted and are starting their initial 10 weeks of fitness training in BMT. Our features revolve around providing a visual and convenient way to keep track of factors that affect weight loss.
 
-My Fitness Buddy `v1.3` is a desktop application that helps you to track 
-your overall change in fitness level by managing your daily calorie input/output and weight changes during Basic Military 
-Training (BMT).
-
-You can add daily records of your weight and calorie input/output into the application. My Fitness Buddy will generate
-visual charts based on these records so that you can monitor your daily progress and make better choices to
-achieve your goals.
-
---------------------------------------------------------------------------------------------------------------------
-
-## 2. About
-
-### 2.1 Purpose
-
-This document specifies the quick start guide, features and the command summary of
-the application, My Fitness Buddy.
-
-### 2.2 Intended Audience
-
-This User Guide is for any Full-Time National Servicemen that uses the MyFitnessBuddy application.
+### 1.3 Rationale
+ Before this application was developed, PES BP soldiers had weekly weighing and had to record down their weights on a form kept by their commanders. This method was not only time consuming, it was also ineffective in tracking the soldiers' overall fitness levels. For instance, if a soldier's weight did not decrease over the weeks, he would be unable to pinpoint the reason why this is so.   
+ My Fitness Buddy was developed so that soldiers would be able to see the fluctuations in their fitness level through factors such as calorie intake from consumption, calorie output from exercise, and daily weight records. Those records would be available by day and can even be viewed as  a graph.  
+ We hope that through the use of this application, soldiers can take charge of their own fitness and achieve the results they strive for. 
 
 
 --------------------------------------------------------------------------------------------------------------------
