@@ -159,9 +159,6 @@ public class Day {
         double differenceWithEnd = currentBmi - endBmi;
         double percentageChange = 1 - (differenceWithEnd / totalBmiToChange);
 
-        System.out.println(weight);
-        System.out.println(height);
-        System.out.println(currentBmi);
         if (percentageChange > 1) {
             percentageChange = 1;
         }

@@ -70,6 +70,7 @@ public class DayCard extends UiPart<Region> {
         totalCalorieOut.setText("Total Calories Out: " + cm.getTotalOutputCalorie() + " calories");
         surplus.setText("Surplus : " + day.getSurplus());
         isLosing.setImage(day.isLosing() ? tick : cross);
+        System.out.println(day.getProgress() + "1111");
         progress.setProgress(day.getProgress());
         this.mainWindow = mainWindow;
 
