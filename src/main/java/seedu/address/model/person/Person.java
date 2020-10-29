@@ -22,8 +22,8 @@ public class Person {
     // daily records can be added.
 
     // Identity fields
-    public static final Profile DEFAULT_PROFILE =
-            new Profile(new Name("Default"), new ID("0000"), new Height("170"), new Weight("50"));
+    private static Profile defaultProfile =
+            new Profile(new Name("Default"), new ID("1111"), new Height("170"), new Weight("50"));
     private Profile profile;
     private final UniqueDayList days;
 
@@ -40,7 +40,7 @@ public class Person {
      * Profile cannot be null and be present.
      */
     public Person() {
-        this.profile = DEFAULT_PROFILE;
+        this.profile = defaultProfile;
         this.days = new UniqueDayList();
     }
 
@@ -58,7 +58,7 @@ public class Person {
      */
     public boolean isDefaultProfile() {
         assert profile != null;
-        return profile.equals(DEFAULT_PROFILE);
+        return profile.equals(defaultProfile);
     }
 
     /**
@@ -98,13 +98,6 @@ public class Person {
     public void setProfile(Profile profile) {
         assert profile != null;
         this.profile = profile;
-    }
-
-    /**
-     * Checks if the current data {@code Person } has a default profile.
-     */
-    public boolean hasProfile() {
-        return profile != DEFAULT_PROFILE;
     }
 
     /**

@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -9,7 +10,7 @@ import seedu.address.model.day.Weight;
 
 class ProfileTest {
     private Name name = new Name("jon");
-    private ID id = new ID("1222");
+    private ID id = new ID("1219");
     private Height height = new Height("170");
     private Weight targetWeight = new Weight("70");
     private Profile profile = new Profile(name, id, height, targetWeight);
@@ -43,5 +44,11 @@ class ProfileTest {
     @Test
     void getTargetWeight() {
         assertTrue(targetWeight.equals(profile.getTargetWeight()));
+    }
+
+    @Test
+    void testEquals() {
+        assertTrue(profile.equals(new Profile(name, id, height, targetWeight)));
+        assertFalse(profile.equals(targetWeight));
     }
 }
