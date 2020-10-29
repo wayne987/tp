@@ -15,7 +15,7 @@
 
 <fx:root maxHeight="750" maxWidth="1024.0" minHeight="560.0" minWidth="1024.0" onCloseRequest="#handleExit" title="My Fitness Buddy" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/MyFitnessBuddy_icon.png" />
   </icons>
   <scene>
     <Scene>

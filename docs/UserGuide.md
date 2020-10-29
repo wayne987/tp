@@ -2,41 +2,64 @@
 layout: page
 title: My Fitness Buddy User Guide
 ---
-Welcome to My Fitness Buddy User Guide! Choose a topic from the [Table of Contents](#table-of-contents)
-below to get step-by-step instructions and answers.
+ ![logo](images/logo.png)  
+   
+Welcome to My Fitness Buddy User Guide!  
+
+Just enlisted under PES ‘B’ Pending and worried about the next few months of Basic Military Training (BMT)?  
+Worry no more, My Fitness Buddy is here to accompany you through BMT and help you keep track of your weight loss journey!  
+This user guide serves to provide you with the necessary instructions on how to set up and use our application. With that said, let’s get started!    
+
+Choose a topic from the [Table of Contents](#table-of-contents) below.
 
 ## Table of Contents
 * Table of Contents
-{:toc}
+{:toc}  
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. Introduction
+### 1.1 Application Overview
+My Fitness Buddy `v1.3` is a desktop application that helps you to track your overall change in fitness level by allowing you to add daily records of your weight and calorie input/output.  
+My Fitness Buddy also allows users to create a profile and can generate visual charts based on these records so that you can monitor your daily progress and help you achieve your goals.  
+This application is optimized for use through a *Command Line Interface (CLI)*, meaning that you operate the application by typing commands into a command box.
 
-### 1.1 Product overview
+### 1.2 Target Audience
+My Fitness Buddy is designed for PES ‘B’ Pending (BP) soldiers who have just enlisted and are starting their initial 10 weeks of fitness training in BMT. Our features revolve around providing a visual and convenient way to keep track of factors that affect weight loss.
 
-My Fitness Buddy `v1.3` is a desktop application that helps you to track 
-your overall change in fitness level by managing your daily calorie input/output and weight changes during Basic Military 
-Training (BMT).
-
-You can add daily records of your weight and calorie input/output into the application. My Fitness Buddy will generate
-visual charts based on these records so that you can monitor your daily progress and make better choices to
-achieve your goals.
+### 1.3 Rationale
+ Before this application was developed, PES BP soldiers had weekly weighing and had to record down their weights on a form kept by their commanders. This method was not only time consuming, it was also ineffective in tracking the soldiers' overall fitness levels. For instance, if a soldier's weight did not decrease over the weeks, he would be unable to pinpoint the reason why this is so.   
+ My Fitness Buddy was developed so that soldiers would be able to see the fluctuations in their fitness level through factors such as calorie intake from consumption, calorie output from exercise, and daily weight records. Those records would be available by day and can even be viewed as  a graph.  
+ We hope that through the use of this application, soldiers can take charge of their own fitness and achieve the results they strive for. 
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## 2. About
+### 2.1 Using this User Guide
+This User Guide has been structured such that users can easily find and understand what they need.
+[Section 2](#2-about) contains useful tips and information on reading this document.
+[Section 3](#3-getting-started) consists of instructions to set up this application
+[Section 4](#4-features) includes the details of the 4 main features of My Fitness Buddy which are
+* Profile page
+* List of days
+* Calorie input and output
+* Statistics
 
-### 2.1 Purpose
+### 2.2 Symbols and Syntax
+The table below explains the general symbols and syntax used throughout the document.
 
-This document specifies the quick start guide, features and the command summary of
-the application, My Fitness Buddy.
+Symbol/syntax | Meaning
+--------|------------------
+`command` | This indicates a command to be entered into the input box. More information can be found at [Command Format](#23-command-format).
+:bulb: | This indicates a tip.
+:warning: | This indicates a warning.
 
-### 2.2 Intended Audience
-
-This User Guide is for any Full-Time National Servicemen that uses the MyFitnessBuddy application.
-
-
+### 2.3 Command Format
+Commands are used to tell My Fitness Buddy to perform specific tasks.  
+All commands in the following sections follow the same format.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.
+	* Example: in `add d/DATE w/WEIGHT`, `DATE` and `WEIGHT` are parameters to be replaced by the user. 
+	 e.g. `add d/2020-10-25 w/70`
+	
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Getting Started
@@ -47,9 +70,9 @@ Thank you for using My Fitness Buddy! Here's a quick start guide to get you star
 1. Download the latest *MyFitnessBuddy_`v1.3`*.jar [here](https://github.com/AY2021S1-CS2103T-W11-3/tp/releases)
 1. Copy the file to the folder you want to use as the *home folder* for My Fitness Buddy.  
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
-![GUI](images/GUI.png)                   
+![GUI](images/Ui.png)                   
 1. If the app doesn’t start right away, try opening a command terminal in the folder and enter  
-`java -jar MyFitnessBuddy.jar`
+`java -jar MyFitnessBuddy_v1.3.jar`
 1. You can type a command in the command box and press <kbd>Enter</kbd> to execute it.<br>
 Here are some basic commands you can try:
     * `create n/Johnny id/1234 h/170 w/68`: Creates a profile named `Johnny`.
@@ -65,28 +88,44 @@ Here are some basic commands you can try:
 
 ## 4. Features
 
-**Notes about the command format:**  
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.
-	* e.g. in `add f/FOOD`, `FOOD` is a parameter and should be replaced with the name of the food like `f/Laksa`
-
 ### 4.1 Profile commands
 
+Commands in this section are useful for allowing multiple users to use this app. 
+Multiple users can create their own profiles and add their own records to it.  
+
 #### 4.1.1 Creating a new profile : `create`
-Create a new profile for a Person.
+Create a new profile for a new Person.
 
 Format: `create n/NAME id/ID_NUM h/HEIGHT w/TARGET_WEIGHT`
+
+:warning: For valid ID_NUM, the first two digits must be from 1 - 4, 
+while the last two digits must be from 1 - 20. A valid ID_NUM has only four digits. 
+
 
 Examples:  
 `create n/Johnny id/1234 h/170 w/68` 
 
-#### 4.1.2 Editing an existing profile: `profile edit`
-Edit an existing profile.
+#### 4.1.2 Editing an existing profile: `update`
+update an existing profile.
 
-Format: `profile edit n/NAME id/ID_NUM h/HEIGHT w/TARGET_WEIGHT`
+Format: `update [optional] n/NAME id/ID_NUM h/HEIGHT w/TARGET_WEIGHT`
 
 Examples:
-`profile edit n/John id/1233 h/170 w/70`
+`update n/Jonhhy`
+
+Meaning:`update the name of current profile that you are looking to Johnny`
+
+Warning:`must update at least one of the field and it cannot be the same as the current one`
+
+#### 4.1.3 viewing another profile: `login`
+Changes the profile that you are currently looking at to another profile
+
+Format: `update [index]`
+
+Examples:
+`login 2`
+
+Meaning:`changes the current profile that you are looking at to the profile in the profile list with an index of 2`
 
 ### 4.2 Day commands
 Commands in this section are useful in tracking of daily weight records. You should use these commands to log your weight for 
@@ -259,17 +298,25 @@ _TIP: Instead of using d/DATE to specify the date of the log in which the calori
 can be used instead_
 
 ### 4.4 Data Visualization
+
+Commands in this section are useful to view the graphical representations of the
+daily weights and calorie input/output records generated by My Fitness Buddy.
+
+These features help you to monitor your daily progress easily and allows you to understand
+certain trends so that you can make better choices during your weight loss journey!
+
 #### 4.4.1 View all calorie inputs and outputs of a day: `Double click on a day`
 Shows a list of all entries of calorie inputs and calorie outputs of a particular day.
 
-Image: `image to be added`
+Image of when day is clicked:
+
+![day_clicked_chart](images/day_clicked.png)
 
 #### 4.4.2 View Statistics: `stats`
 
 Shows the charts generated from the daily entries of weight and calorie input/output in a pop-up window.
 
 Format: `stats v/[CHART_TO_BE_VIEWED]`
-
 
 You can select which charts to view:
 
@@ -281,19 +328,22 @@ Prefix/Parameter | Meaning
 
 Example: `stats v/all`
 
+This command will display both charts in their respective pop-up windows.
+
+_:bulb:TIP: You can hover your mouse over the data point to see the actual value_
+
 Weight Chart:
 ![weight_stats_chart](images/weight_stats_chart.png)
 Calorie Chart:
 ![calorie_stats_chart](images/calorie_stats_chart.png)
 
-_TIP: Charts can be viewed alternatively by going to the menu bar, click on `Statistics` and select the 
+_:bulb:TIP: Charts can be viewed alternatively by going to the menu bar, click on `Statistics` and select the 
  chart that you want to view._
 
 ![chart_menu_bar](images/chart_menu_bar.png)
 
-
-
 ### 4.5 General commands
+
 #### 4.5.1 Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -304,6 +354,12 @@ Format: `help`
 
 
 #### 4.5.2 Clearing all entries : `clear`
+
+|              :warning: :warning: WARNING :warning: :warning:              |
+|:--------------------------------------------------------------------------|
+| This command will clear all data in My Fitness Buddy, even the saved file!|
+
+
 Clears all saved entries in MyFitnessBuddy.
 
 Format: `clear`
@@ -348,8 +404,6 @@ Action | Format
 **Clear entries** | `clear`
 **Help** | `help`
 **Exit** | `exit`
-
-
 
 
 

@@ -49,9 +49,17 @@ public class SampleDataUtil {
         return samplePerson;
     }
 
+    public static Person getSamplePerson2() {
+        Profile sampleProfile = new Profile(new Name("Sample Person 2"),
+                new ID("2104"), new Height("170"), new Weight("60"));
+        Person samplePerson = new Person(sampleProfile, getSampleDays());
+        return samplePerson;
+    }
+
     public static ReadOnlyMyFitnessBuddy getSampleMyFitnessBuddy() {
         MyFitnessBuddy sampleMyFitnessBuddy = new MyFitnessBuddy();
-        sampleMyFitnessBuddy.setPerson(getSamplePerson());
+        sampleMyFitnessBuddy.addPerson(getSamplePerson());
+        sampleMyFitnessBuddy.addPerson(getSamplePerson2());
         return sampleMyFitnessBuddy;
     }
 
