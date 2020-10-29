@@ -47,7 +47,7 @@ MainWindow *-down-> CalorieInputListPanel
 MainWindow *-down-> CalorieOutputListPanel
 
 DayCard *-down-> MainWindow
-DayListPanel *-down-> MainWindow
+
 
 DayListPanel -down--> DayCard
 CalorieInputListPanel -down--> CalorieInputCard
