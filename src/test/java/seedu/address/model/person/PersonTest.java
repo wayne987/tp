@@ -11,10 +11,8 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.day.Day;
 import seedu.address.testutil.DayBuilder;
-import seedu.address.testutil.MyFitnessBuddyBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalProfiles;
 
@@ -58,11 +56,10 @@ public class PersonTest {
 
     @Test
     public void isDefaultProfile() {
-        MyFitnessBuddy mfb = new MyFitnessBuddyBuilder().build();
-        mfb.setProfile(TypicalProfiles.JON);
+        Person personA = new PersonBuilder().withProfile(TypicalProfiles.JON).build();
 
         assertTrue(person.isDefaultProfile());
-        assertFalse(mfb.isDefaultProfile());
+        assertFalse(personA.isDefaultProfile());
     }
 
     @Test
