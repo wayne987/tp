@@ -135,7 +135,7 @@ public class Day {
     }
 
     public int getSurplus() {
-        if (height == null) {
+        if (height == null || weight == null) {
             return -1;
         } else {
             int bmr = CalorieBudget.calculateBasalMetabolic(height, weight, age);
@@ -144,6 +144,10 @@ public class Day {
             System.out.println(bmr + " " + calorieIn + " " + calorieOut);
             return CalorieBudget.calculateCalorieSurplus(bmr, calorieIn, calorieOut);
         }
+    }
+
+    public boolean isLosing() {
+        return getSurplus() >= 0;
     }
 
 }
