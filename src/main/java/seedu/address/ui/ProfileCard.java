@@ -22,7 +22,7 @@ public class ProfileCard extends UiPart<Region> {
     //displayed Index fx:id is renamed -> fx:id=index to remove ambiguity with id of Profile
     private static final String FXML = "ProfileListCard.fxml";
 
-    private static final double LENGTH = 1000;
+    private static final double LENGTH = 200;
 
     public final Profile profile;
 
@@ -41,7 +41,8 @@ public class ProfileCard extends UiPart<Region> {
     @FXML
     private ImageView profilePicture;
     @FXML
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/RandomDude.png"));
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/User.png"));
+
 
     /**
      * Creates a {@code ProfileCard} with the given {@code Person} and index to display.
@@ -54,7 +55,7 @@ public class ProfileCard extends UiPart<Region> {
         id.setText("ID: " + profile.getId().toString());
         targetWeight.setText("Target Weight: " + profile.getTargetWeight().toString());
         height.setText("Height: " + profile.getHeight().toString());
-        profilePicture.setImage(userImage);
+        profilePicture.setImage(user);
         circleClip(profilePicture);
     }
 
@@ -70,6 +71,9 @@ public class ProfileCard extends UiPart<Region> {
         id.setText("ID: " + profile.getId().toString());
         targetWeight.setText("Target Weight: " + profile.getTargetWeight().toString());
         height.setText("Height: " + profile.getHeight().toString());
+        profilePicture.setImage(user);
+        System.out.println(user.getWidth());
+        System.out.println(user.getHeight());
     }
 
     /**
@@ -80,12 +84,6 @@ public class ProfileCard extends UiPart<Region> {
         circle.setCenterY(imageView.getY() + LENGTH / 2);
         circle.setCenterX(imageView.getX() + LENGTH / 2);
         imageView.setClip(circle);
-        SnapshotParameters parameters = new SnapshotParameters();
-        parameters.setFill(Color.TRANSPARENT);
-        WritableImage image = imageView.snapshot(parameters, null);
-        imageView.setClip(null);
-        imageView.setEffect(new DropShadow(20, Color.HOTPINK));
-        imageView.setImage(image);
     }
 
     @Override
