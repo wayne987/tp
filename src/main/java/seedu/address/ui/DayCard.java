@@ -38,6 +38,8 @@ public class DayCard extends UiPart<Region> {
     @FXML
     private Label totalCalorieOut;
     @FXML
+    private Label surplus;
+    @FXML
     private HBox profile;
 
     /**
@@ -52,6 +54,7 @@ public class DayCard extends UiPart<Region> {
         weight.setText("Weight: " + day.getWeight().value + " kg");
         totalCalorieIn.setText("Total Calories In: " + cm.getTotalInputCalorie() + " calories");
         totalCalorieOut.setText("Total Calories Out: " + cm.getTotalOutputCalorie() + " calories");
+        surplus.setText("Surplus : " + day.getSurplus());
         this.mainWindow = mainWindow;
 
         // Fills the calorie placeholders and updates the status bar when a DayCard is double clicked

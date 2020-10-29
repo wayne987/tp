@@ -26,6 +26,8 @@ public class Person {
             new Profile(new Name("Default"), new ID("1111"), new Height("170"), new Weight("50"));
     private Profile profile;
     private final UniqueDayList days;
+    private final int age = 20;
+    //    private double currentBmi = -1;
 
     /**
      * Every field must be present and not null.
@@ -128,6 +130,8 @@ public class Person {
      */
     public void addDay(Day day) {
         assert day != null;
+        day.setAge(this.age);
+        day.setHeight(profile.height);
         days.add(day);
     }
 

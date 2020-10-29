@@ -7,7 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.Calculator.CalorieBudget;
 import seedu.address.model.calorie.CalorieManager;
+import seedu.address.model.person.Height;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -20,6 +22,9 @@ public class Day {
     private final Date date;
     private final Weight weight;
     private final CalorieManager calorieManager;
+    private int age = 0;
+    private Height height = null;
+    private int surplus = getSurplus();
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -86,6 +91,14 @@ public class Day {
         return this.getDate().dateAfter(otherDay.getDate());
     }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setHeight(Height height) {
+        this.height = height;
+    }
+
     /**
      * Returns true if both days have the same date and data fields.
      * This defines a stronger notion of equality between two days.
@@ -119,6 +132,18 @@ public class Day {
         //        .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
+    }
+
+    public int getSurplus() {
+        if (height == null) {
+            return -1;
+        } else {
+            int bmr = CalorieBudget.calculateBasalMetabolic(height, weight, age);
+            int calorieIn = calorieManager.getTotalInputCalorie();
+            int calorieOut = getCalorieManager().getTotalOutputCalorie();
+            System.out.println(bmr + " " + calorieIn + " " + calorieOut);
+            return CalorieBudget.calculateCalorieSurplus(bmr, calorieIn, calorieOut);
+        }
     }
 
 }

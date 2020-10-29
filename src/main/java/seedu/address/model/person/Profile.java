@@ -16,6 +16,7 @@ public class Profile {
     // data fields
     public final Height height;
     private Weight targetWeight;
+    private final int age = 20;
 
     /**
      * Creates a profile.
@@ -43,6 +44,10 @@ public class Profile {
 
     public Weight getTargetWeight() {
         return targetWeight;
+    }
+
+    public int getAge() {
+        return this.age;
     }
 
     @Override

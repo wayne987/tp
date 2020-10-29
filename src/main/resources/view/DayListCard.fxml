@@ -30,6 +30,7 @@
             <Label fx:id="weight" styleClass="cell_small_label" text="\$weight" />
             <Label fx:id="totalCalorieIn" styleClass="cell_small_label" text="\$totalCalorieIn" />
             <Label fx:id="totalCalorieOut" styleClass="cell_small_label" text="\$totalCalorieOut" />
+            <Label fx:id="surplus" styleClass="cell_small_label" text="\$surplus" />
         </VBox>
     </GridPane>
 </HBox>
