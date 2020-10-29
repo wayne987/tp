@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="570.0" minWidth="650.0" maxHeight="750" maxWidth="900" onCloseRequest="#handleExit" title="My Fitness Buddy" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="750" maxWidth="1024.0" minHeight="560.0" minWidth="1024.0" onCloseRequest="#handleExit" title="My Fitness Buddy" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -41,8 +41,40 @@
           </Menu>
         </MenuBar>
         <StackPane fx:id="statusbarDaySelectedPlaceholder" prefHeight="5.0" prefWidth="505.0" VBox.vgrow="NEVER" />
-        <SplitPane dividerPositions="0.29797979797979796" prefHeight="540.0" prefWidth="340.0">
+        <SplitPane dividerPositions="0.29797979797979796, 0.5, 0.5" prefHeight="540.0" prefWidth="340.0">
           <items>
+                  <AnchorPane minHeight="0.0" minWidth="210.0" prefHeight="330.0" prefWidth="245.0">
+                     <children>
+                        <SplitPane dividerPositions="0.2" orientation="VERTICAL" prefHeight="330.0" prefWidth="210.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="208.0">
+                                 <children>
+                                    <VBox fx:id="profileCard" minWidth="340" prefHeight="160.0" prefWidth="208.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <padding>
+                                          <Insets bottom="10" left="10" right="10" top="10" />
+                                       </padding>
+                                       <children>
+                                          <StackPane fx:id="profileCardPlaceholder" prefHeight="308.0" prefWidth="394.0" VBox.vgrow="ALWAYS" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <VBox fx:id="profileList" minWidth="340" prefHeight="160.0" prefWidth="208.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <padding>
+                                          <Insets bottom="10" left="10" right="10" top="10" />
+                                       </padding>
+                                       <children>
+                                          <StackPane fx:id="profileListPlaceholder" prefHeight="308.0" prefWidth="394.0" VBox.vgrow="ALWAYS" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="210.0" prefHeight="330.0" prefWidth="245.0">
               <children>
                 <VBox fx:id="dayList" minWidth="340" prefHeight="158.0" prefWidth="348.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -76,7 +108,7 @@
           </items>
         </SplitPane>
 
-        <StackPane fx:id="commandBoxPlaceholder" prefHeight="30.0" prefWidth="505.0" minHeight="35" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="commandBoxPlaceholder" minHeight="35" prefHeight="30.0" prefWidth="505.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
