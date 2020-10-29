@@ -18,6 +18,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.StatsCommand;
 import seedu.address.logic.commands.UpdateCommand;
@@ -91,6 +92,9 @@ public class MyFitnessBuddyParser {
 
         case UpdateCommand.COMMAND_WORD:
             return new UpdateCommandParser().parse(arguments);
+
+        case LoginCommand.COMMAND_WORD:
+            return new LoginCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

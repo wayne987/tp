@@ -126,10 +126,16 @@
     -fx-text-fill: #FFFFFF;
 }
 
-.titles {
+.title_panel {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 18px;
     -fx-text-fill: #FFFFFF;
+}
+
+.title_date {
+        -fx-font-family: "Segoe UI Semibold";
+        -fx-font-size: 16px;
+        -fx-text-fill: #ffffff;
 }
 
 .cell_small_label {

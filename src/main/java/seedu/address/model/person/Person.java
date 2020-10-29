@@ -40,7 +40,7 @@ public class Person {
      * Profile cannot be null and be present.
      */
     public Person() {
-        this.profile = defaultProfile;
+        this.profile = DEFAULT_PROFILE;
         this.days = new UniqueDayList();
     }
 
@@ -58,7 +58,7 @@ public class Person {
      */
     public boolean isDefaultProfile() {
         assert profile != null;
-        return profile.equals(defaultProfile);
+        return profile.equals(DEFAULT_PROFILE);
     }
 
     /**
@@ -98,6 +98,13 @@ public class Person {
     public void setProfile(Profile profile) {
         assert profile != null;
         this.profile = profile;
+    }
+
+    /**
+     * Checks if the current data {@code Person } has a default profile.
+     */
+    public boolean hasProfile() {
+        return profile != DEFAULT_PROFILE;
     }
 
     /**
@@ -203,4 +210,12 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Returns true if the date of this day is after otherDay
+     */
+    public boolean isAfter(Person otherPerson) {
+        int thisPerson = Integer.parseInt(this.profile.id.value);
+        int otherPer = Integer.parseInt(otherPerson.profile.id.value);
+        return thisPerson > otherPer;
+    }
 }
