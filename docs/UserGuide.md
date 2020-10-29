@@ -73,20 +73,34 @@ Here are some basic commands you can try:
 ### 4.1 Profile commands
 
 #### 4.1.1 Creating a new profile : `create`
-Create a new profile for a Person.
+Create a new profile for a new Person.
 
 Format: `create n/NAME id/ID_NUM h/HEIGHT w/TARGET_WEIGHT`
 
 Examples:  
 `create n/Johnny id/1234 h/170 w/68` 
 
-#### 4.1.2 Editing an existing profile: `profile edit`
-Edit an existing profile.
+#### 4.1.2 Editing an existing profile: `update`
+update an existing profile.
 
-Format: `profile edit n/NAME id/ID_NUM h/HEIGHT w/TARGET_WEIGHT`
+Format: `update [optional] n/NAME id/ID_NUM h/HEIGHT w/TARGET_WEIGHT`
 
 Examples:
-`profile edit n/John id/1233 h/170 w/70`
+`update n/Jonhhy`
+
+Meaning:`update the name of current profile that you are looking to Johnny`
+
+Warning:`must update at least one of the field and it cannot be the same as the current one`
+
+#### 4.1.3 viewing another profile: `login`
+Changes the profile that you are currently looking at to another profile
+
+Format: `update [index]`
+
+Examples:
+`login 2`
+
+Meaning:`changes the current profile that you are looking at to the profile in the profile list with an index of 2`
 
 ### 4.2 Day commands
 Commands in this section are useful in tracking of daily weight records. You should use these commands to log your weight for 
@@ -348,8 +362,6 @@ Action | Format
 **Clear entries** | `clear`
 **Help** | `help`
 **Exit** | `exit`
-
-
 
 
 
