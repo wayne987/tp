@@ -153,7 +153,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     void updateCaloriePanelsWhenClicked(int indexOfDayClicked) {
         indexOfDayCurrentlyShowingCalories = indexOfDayClicked;
-        System.out.println("indexOfDayCurrentlyShowingCalories: " + indexOfDayCurrentlyShowingCalories);
         calorieInputListPanel.update(logic.getFilteredDayList().get(indexOfDayClicked).getCalorieManager()
                 .getCalorieInputList());
         calorieOutputListPanel.update(logic.getFilteredDayList().get(indexOfDayClicked).getCalorieManager()
@@ -349,7 +348,6 @@ public class MainWindow extends UiPart<Stage> {
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
-        System.out.println(primaryStage.getHeight());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         weightStatsWindow.hide();
