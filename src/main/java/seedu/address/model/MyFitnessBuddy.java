@@ -70,12 +70,10 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      */
     public void resetData(ReadOnlyMyFitnessBuddy newData) {
         requireNonNull(newData);
-        //        setProfile(newData.getProfile());
-        //        setDays(newData.getPerson().getDayList());
-        //        setPerson(newData.getPerson());
-        Person defaultPerson = new Person();
-        if (!newData.getPerson().equals(defaultPerson)) {
-            addPerson(newData.getPerson());
+        List<Person> personList = newData.getPersonList();
+        if (personList.size() > 0) {
+            personList.forEach(x -> addPerson(x));
+            setCurrentPerson(personList.get(0));
         }
     }
 
@@ -110,7 +108,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      */
     public boolean hasDay(Day day) {
         requireNonNull(day);
-        return getPerson().getDays().contains(day);
+        return getPerson().hasDay(day);
     }
 
     /**
@@ -118,7 +116,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      */
     public boolean hasDay(LocalDate date) {
         requireNonNull(date);
-        return getPerson().getDays().contains(date);
+        return getPerson().hasDay(date);
     }
 
     /**
