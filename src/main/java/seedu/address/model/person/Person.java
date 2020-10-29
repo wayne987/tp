@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.Calculator.Bmi;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.UniqueDayList;
 import seedu.address.model.day.Weight;
@@ -214,5 +215,22 @@ public class Person {
         int thisPerson = Integer.parseInt(this.profile.id.value);
         int otherPer = Integer.parseInt(otherPerson.profile.id.value);
         return thisPerson > otherPer;
+    }
+
+    /**
+     * Returns current bmi
+     */
+    public double getCurrentBmi() {
+        List<Day> list = days.asUnmodifiableObservableList();
+        int size = list.size();
+        if (size == 0) {
+            System.out.println(profile.height + " " + profile.getTargetWeight());
+            return Bmi.calculateBmi(profile.height, profile.getTargetWeight());
+        } else {
+            Day currentDay = list.get(size - 1);
+            Weight currentWeight = currentDay.getWeight();
+            Height currentHeight = profile.height;
+            return Bmi.calculateBmi(currentHeight, currentWeight);
+        }
     }
 }

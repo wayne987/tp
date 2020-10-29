@@ -23,7 +23,7 @@ public class CalorieBudget {
      * @param totalCalorieIn
      * @param totalCalorieOut
      * @param basalMetabolic
-     * @return
+     * @return calorie surplus that user can afford to consume
      */
     public static int calculateCalorieSurplus(int totalCalorieIn, int totalCalorieOut, int basalMetabolic) {
         return totalCalorieIn + basalMetabolic - totalCalorieOut;
