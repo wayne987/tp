@@ -90,10 +90,17 @@ Here are some basic commands you can try:
 
 ### 4.1 Profile commands
 
+Commands in this section are useful for allowing multiple users to use this app. 
+Multiple users can create their own profiles and add their own records to it.  
+
 #### 4.1.1 Creating a new profile : `create`
 Create a new profile for a new Person.
 
 Format: `create n/NAME id/ID_NUM h/HEIGHT w/TARGET_WEIGHT`
+
+:warning: For valid ID_NUM, the first two digits must be from 1 - 4, 
+while the last two digits must be from 1 - 20. A valid ID_NUM has only four digits. 
+
 
 Examples:  
 `create n/Johnny id/1234 h/170 w/68` 
@@ -301,14 +308,15 @@ certain trends so that you can make better choices during your weight loss journ
 #### 4.4.1 View all calorie inputs and outputs of a day: `Double click on a day`
 Shows a list of all entries of calorie inputs and calorie outputs of a particular day.
 
-Image: `image to be added`
+Image of when day is clicked:
+
+![day_clicked_chart](images/day_clicked.png)
 
 #### 4.4.2 View Statistics: `stats`
 
 Shows the charts generated from the daily entries of weight and calorie input/output in a pop-up window.
 
 Format: `stats v/[CHART_TO_BE_VIEWED]`
-
 
 You can select which charts to view:
 
