@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.ProgressBar?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -33,6 +34,7 @@
             <Label fx:id="totalCalorieIn" styleClass="cell_small_label" text="\$totalCalorieIn" />
             <Label fx:id="totalCalorieOut" styleClass="cell_small_label" text="\$totalCalorieOut" />
             <Label fx:id="surplus" styleClass="cell_small_label" text="\$surplus" />
+            <ProgressBar fx:id="progress" />
         </VBox>
       <rowConstraints>
          <RowConstraints />

@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -49,6 +50,8 @@ public class DayCard extends UiPart<Region> {
     private ImageView isLosing;
     @FXML
     private HBox profile;
+    @FXML
+    private ProgressBar progress;
 
     private Image cross = new Image(this.getClass().getResourceAsStream("/images/Cross.png"));
     private Image tick = new Image(this.getClass().getResourceAsStream("/images/tick.png"));
@@ -67,6 +70,7 @@ public class DayCard extends UiPart<Region> {
         totalCalorieOut.setText("Total Calories Out: " + cm.getTotalOutputCalorie() + " calories");
         surplus.setText("Surplus : " + day.getSurplus());
         isLosing.setImage(day.isLosing() ? tick : cross);
+        progress.setProgress(day.getProgress());
         this.mainWindow = mainWindow;
 
         // Fills the calorie placeholders and updates the status bar when a DayCard is double clicked

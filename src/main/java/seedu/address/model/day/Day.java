@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.Calculator.Bmi;
 import seedu.address.model.Calculator.CalorieBudget;
 import seedu.address.model.calorie.CalorieManager;
 import seedu.address.model.person.Height;
@@ -141,13 +142,34 @@ public class Day {
             int bmr = CalorieBudget.calculateBasalMetabolic(height, weight, age);
             int calorieIn = calorieManager.getTotalInputCalorie();
             int calorieOut = getCalorieManager().getTotalOutputCalorie();
-            System.out.println(bmr + " " + calorieIn + " " + calorieOut);
+            //            System.out.println(bmr + " " + calorieIn + " " + calorieOut);
             return CalorieBudget.calculateCalorieSurplus(bmr, calorieIn, calorieOut);
         }
     }
 
     public boolean isLosing() {
         return getSurplus() >= 0;
+    }
+
+    public double getProgress() {
+        double currentBmi = Bmi.calculateBmi(height, weight);
+        double startBmi = 30;
+        double endBmi = 22.5;
+        double totalBmiToChange = startBmi - endBmi;
+        double differenceWithEnd = currentBmi - endBmi;
+        double percentageChange = 1 - (differenceWithEnd / totalBmiToChange);
+
+        System.out.println(weight);
+        System.out.println(height);
+        System.out.println(currentBmi);
+        if (percentageChange > 1) {
+            percentageChange = 1;
+        }
+
+        if (percentageChange < 0) {
+            percentageChange = 0;
+        }
+        return percentageChange;
     }
 
 }
