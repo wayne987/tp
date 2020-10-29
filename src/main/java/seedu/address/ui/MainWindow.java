@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -31,6 +30,9 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
+    // Zero-based
+    private int indexOfDayCurrentlyShowingCalories;
+
     // Independent Ui parts residing in this Ui container
     private DayListPanel dayListPanel;
     private CalorieInputListPanel calorieInputListPanel;
@@ -39,12 +41,16 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private WeightStatsWindow weightStatsWindow;
     private CalorieStatsWindow calorieStatsWindow;
+    private StatusBarDaySelected statusBarDaySelected;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane statusbarDaySelectedPlaceholder;
 
     @FXML
     private StackPane dayListPanelPlaceholder;
@@ -90,6 +96,8 @@ public class MainWindow extends UiPart<Stage> {
         weightStatsWindow = new WeightStatsWindow(logic.getFilteredDayList());
 
         calorieStatsWindow = new CalorieStatsWindow(logic.getFilteredDayList());
+
+        indexOfDayCurrentlyShowingCalories = -1;
     }
 
     public Stage getPrimaryStage() {
@@ -131,28 +139,92 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Fills up the calorie panels with calorie values of the day that is clicked.
+     * Updates the calorie panels with calorie values of the day that is clicked.
      *
-     * @param index the index of the day that is clicked
+     * @param indexOfDayClicked the index (zeroBased) of the day that is clicked
      */
-    void fillCaloriePanels(int index) {
-        if (logic.getFilteredDayList().isEmpty() || index == logic.getFilteredDayList().size()) {
-            calorieInputListPanel.update(FXCollections.observableArrayList());
-            calorieOutputListPanel.update(FXCollections.observableArrayList());
-        } else {
-            calorieInputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager()
-                    .getCalorieInputList());
-            calorieOutputListPanel.update(logic.getFilteredDayList().get(index).getCalorieManager()
-                    .getCalorieOutputList());
+    void updateCaloriePanelsWhenClicked(int indexOfDayClicked) {
+        indexOfDayCurrentlyShowingCalories = indexOfDayClicked;
+        System.out.println("indexOfDayCurrentlyShowingCalories: " + indexOfDayCurrentlyShowingCalories);
+        calorieInputListPanel.update(logic.getFilteredDayList().get(indexOfDayClicked).getCalorieManager()
+                .getCalorieInputList());
+        calorieOutputListPanel.update(logic.getFilteredDayList().get(indexOfDayClicked).getCalorieManager()
+                .getCalorieOutputList());
+    }
+
+    /**
+     * Updates the calorie panels when a day is deleted.
+     *
+     * @param indexOfDayDeleted the index (zeroBased) of the day that is deleted.
+     */
+    void updateCaloriePanelsWhenDeleted(int indexOfDayDeleted) {
+        boolean isCurrDayShowingDeleted = indexOfDayDeleted == indexOfDayCurrentlyShowingCalories;
+        boolean isDayDeletedAboveCurrDayShowing = indexOfDayDeleted < indexOfDayCurrentlyShowingCalories;
+        if (isCurrDayShowingDeleted) {
+            boolean isLastDayBeingDeleted = indexOfDayDeleted == logic.getFilteredDayList().size();
+            if (isLastDayBeingDeleted) {
+                clearCaloriePanels();
+            } else {
+                calorieInputListPanel.update(logic.getFilteredDayList().get(indexOfDayDeleted).getCalorieManager()
+                        .getCalorieInputList());
+                calorieOutputListPanel.update(logic.getFilteredDayList().get(indexOfDayDeleted).getCalorieManager()
+                        .getCalorieOutputList());
+            }
+        } else if (isDayDeletedAboveCurrDayShowing) {
+            indexOfDayCurrentlyShowingCalories--;
         }
     }
 
+    /**
+     * Clears the calorie panels.
+     */
+    void clearCaloriePanels() {
+        indexOfDayCurrentlyShowingCalories = -1;
+        calorieInputListPanel.clear();
+        calorieOutputListPanel.clear();
+    }
 
+    /**
+     * Sets the date label in the status bar.
+     *
+     * @param date the date string to be set.
+     */
+    void setDateLabel(String date) {
+        statusBarDaySelected.setDateSelectedLabel(date);
+    }
+
+    /**
+     * Updates the date label when a day is deleted.
+     *
+     * @param indexOfDayDeleted the index (zeroBased) of the day that is deleted.
+     */
+    void updateDateLabelWhenDelete(int indexOfDayDeleted) {
+        boolean isCurrDayShowingDeleted = indexOfDayDeleted == indexOfDayCurrentlyShowingCalories;
+        if (isCurrDayShowingDeleted) {
+            boolean isLastDayBeingDeleted = indexOfDayDeleted == logic.getFilteredDayList().size();
+            if (isLastDayBeingDeleted) {
+                clearDateLabel();
+            } else {
+                String dateStringOfNextDay = logic.getFilteredDayList().get(indexOfDayDeleted)
+                        .getDate().get().toString();
+                setDateLabel(dateStringOfNextDay);
+            }
+        }
+    }
+
+    /**
+     * Clears the date label.
+     */
+    void clearDateLabel() {
+        statusBarDaySelected.clear();
+    }
 
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        statusBarDaySelected = new StatusBarDaySelected();
+        statusbarDaySelectedPlaceholder.getChildren().add(statusBarDaySelected.getRoot());
 
         dayListPanel = new DayListPanel(logic.getFilteredDayList(), this);
         dayListPanelPlaceholder.getChildren().add(dayListPanel.getRoot());
@@ -237,7 +309,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleClear() {
-        fillCaloriePanels(0);
+        clearDateLabel();
+        clearCaloriePanels();
     }
 
     /**
@@ -247,7 +320,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleDelete(int index) {
-        fillCaloriePanels(index - 1);
+        updateDateLabelWhenDelete(index);
+        updateCaloriePanelsWhenDeleted(index);
     }
 
     void show() {
@@ -309,7 +383,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isDelete()) {
-                handleDelete(commandResult.getIndex());
+                handleDelete(commandResult.getIndex() - 1);
             }
 
             return commandResult;

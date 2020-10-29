@@ -40,6 +40,7 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
+        <StackPane fx:id="statusbarDaySelectedPlaceholder" prefHeight="5.0" prefWidth="505.0" VBox.vgrow="NEVER" />
         <SplitPane dividerPositions="0.29797979797979796" prefHeight="540.0" prefWidth="340.0">
           <items>
             <AnchorPane minHeight="0.0" minWidth="210.0" prefHeight="330.0" prefWidth="245.0">
