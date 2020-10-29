@@ -10,8 +10,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ID {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "ID should only contain numbers, and it should be 4 digits long. ";
+            "ID should only contain 4 digit.";
     public static final String VALIDATION_REGEX = "\\d{4}";
+    public static final String VALIDATION_REGEX_FIRST_TWO_INDEX = "[1-4]";
+    public static final int VALIDATION_REGEX_LOWER_LIMIT = 1;
+    public static final int VALIDATION_REGEX_UPPER_LIMIT = 20;
     public final String value;
 
     /**
@@ -30,7 +33,19 @@ public class ID {
      */
     public static boolean isValidId(String test) {
         assert test.length() > 3;
-        return test.matches(VALIDATION_REGEX);
+        if (test.matches(VALIDATION_REGEX)) {
+            int firstIndex = Integer.parseInt(test.substring(0, 1));
+            int secondIndex = Integer.parseInt(test.substring(1, 2));
+            int value = Integer.parseInt(test.substring(2, 4));
+            return firstIndex > 0
+                    && firstIndex < 5
+                    && secondIndex > 0
+                    && secondIndex < 5
+                    && value > 0
+                    && value < 21;
+        } else {
+            return false;
+        }
     }
 
     @Override

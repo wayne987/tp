@@ -91,7 +91,8 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      */
 
     public void setProfile(Profile profile) {
-        getPerson().setProfile(profile);
+        this.currentPerson.setProfile(profile);
+        this.person.setProfile(profile);
     }
 
     /**
