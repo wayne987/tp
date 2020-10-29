@@ -38,7 +38,7 @@ public class ProfileCard extends UiPart<Region> {
     private ImageView profilePicture;
     @FXML
     private Image user = new Image(this.getClass()
-            .getResourceAsStream("/images/ProfilePicture/" + "1101" + ".png"));
+            .getResourceAsStream("/images/ProfilePicture/" + "1111" + ".png"));
     @FXML
     private Image def = new Image(this.getClass().getResourceAsStream("/images/User.png"));
 
@@ -53,8 +53,13 @@ public class ProfileCard extends UiPart<Region> {
         id.setText("ID: " + profile.getId().toString());
         targetWeight.setText("Target Weight: " + profile.getTargetWeight().toString());
         height.setText("Height: " + profile.getHeight().toString());
-        String path = "/images/ProfilePicture/" + profile.getId().toString() + ".png";
-        user = new Image(this.getClass().getResourceAsStream(path));
+//        String path = "/images/ProfilePicture/" + profile.getId().toString() + ".png";
+//        try {
+//            user = new Image(this.getClass().getResourceAsStream(path));
+//        } catch (NullPointerException e) {
+//            user = def;
+//        }
+        getImage();
         profilePicture.setImage(user);
         circleClip(profilePicture);
     }
@@ -72,9 +77,11 @@ public class ProfileCard extends UiPart<Region> {
         targetWeight.setText("Target Weight: " + profile.getTargetWeight().toString());
         height.setText("Height: " + profile.getHeight().toString());
         String path = "/images/ProfilePicture/" + profile.getId().toString() + ".png";
-        System.out.println(path);
-        user = new Image(this.getClass().getResourceAsStream(path));
-        profilePicture.setImage(user);
+        try {
+            user = new Image(this.getClass().getResourceAsStream(path));
+        } catch (NullPointerException e) {
+            user = def;
+        }
         circleClip(profilePicture);
     }
 
@@ -105,5 +112,14 @@ public class ProfileCard extends UiPart<Region> {
         ProfileCard card = (ProfileCard) other;
         return index.getText().equals(card.index.getText())
                 && profile.equals(card.profile);
+    }
+
+    private void getImage() {
+        String path = "/images/ProfilePicture/" + profile.getId().toString() + ".png";
+        try {
+            user = new Image(this.getClass().getResourceAsStream(path));
+        } catch (NullPointerException e) {
+            user = def;
+        }
     }
 }
