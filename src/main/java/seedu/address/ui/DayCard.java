@@ -12,7 +12,7 @@ import seedu.address.model.day.Day;
  */
 public class DayCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "DayListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -37,6 +37,8 @@ public class DayCard extends UiPart<Region> {
     private Label totalCalorieIn;
     @FXML
     private Label totalCalorieOut;
+    @FXML
+    private HBox profile;
 
     /**
      * Creates a {@code DayCard} with the given {@code Day} and index to display and the given {@code MainWindow}.

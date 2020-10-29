@@ -25,7 +25,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyMyFitnessBuddy;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.day.Day;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonMyFitnessBuddyStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.DayBuilder;
@@ -42,8 +42,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonMyFitnessBuddyStorage addressBookStorage =
+                new JsonMyFitnessBuddyStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -70,7 +70,7 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
+        JsonMyFitnessBuddyStorage addressBookStorage =
                 new JsonMyFitnessBuddyIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
@@ -148,13 +148,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonMyFitnessBuddyIoExceptionThrowingStub extends JsonAddressBookStorage {
+    private static class JsonMyFitnessBuddyIoExceptionThrowingStub extends JsonMyFitnessBuddyStorage {
         private JsonMyFitnessBuddyIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyMyFitnessBuddy addressBook, Path filePath) throws IOException {
+        public void saveFitnessBuddy(ReadOnlyMyFitnessBuddy myFitnessBuddy, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

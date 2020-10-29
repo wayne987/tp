@@ -50,4 +50,21 @@ public class Time {
         return time;
     }
 
+    /**
+     * Returns true if both Times have the same time string.
+     * This defines a stronger notion of equality between two times.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Time)) {
+            return false;
+        }
+
+        Time otherTime = (Time) other;
+        return otherTime.time.equals(this.time);
+    }
 }

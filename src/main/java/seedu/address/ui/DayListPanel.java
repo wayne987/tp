@@ -4,10 +4,8 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.day.Day;
@@ -16,11 +14,11 @@ import seedu.address.model.day.Day;
  * Panel containing the list of days.
  */
 public class DayListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
+    private static final String FXML = "DayListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(DayListPanel.class);
 
     @FXML
-    private ListView<Day> personListView;
+    private ListView<Day> dayListView;
 
     private MainWindow mainWindow;
 
@@ -29,8 +27,8 @@ public class DayListPanel extends UiPart<Region> {
      */
     public DayListPanel(ObservableList<Day> dayList, MainWindow mainWindow) {
         super(FXML);
-        personListView.setItems(dayList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        dayListView.setItems(dayList);
+        dayListView.setCellFactory(listView -> new DayListViewCell());
         this.mainWindow = mainWindow;
         logger.info("DayListPanel created");
     }
@@ -38,7 +36,7 @@ public class DayListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Day} using a {@code DayCard}.
      */
-    class PersonListViewCell extends ListCell<Day> {
+    class DayListViewCell extends ListCell<Day> {
         @Override
         protected void updateItem(Day day, boolean empty) {
             super.updateItem(day, empty);

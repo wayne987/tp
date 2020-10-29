@@ -46,7 +46,7 @@ class JsonAdaptedDay {
     }
 
     /**
-     * Converts a given {@code Date} into this class for Jackson use.
+     * Converts a given {@code Day} into this class for Jackson use.
      */
     public JsonAdaptedDay(Day source) {
         date = source.getDate().value;
@@ -95,9 +95,7 @@ class JsonAdaptedDay {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     CalorieManager.class.getSimpleName()));
         }
-
         final CalorieManager modelCalorieManager = calorieManager.toModelType();
-
         final Set<Tag> modelTags = new HashSet<>(dayTags);
 
         return new Day(modelDate, modelWeight, modelTags, modelCalorieManager);
