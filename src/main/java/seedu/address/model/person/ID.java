@@ -26,6 +26,14 @@ public class ID {
     }
 
     /**
+     * Constructs a {@code ID}.
+     * for default profile
+     */
+    public ID() {
+        value = "DEFAULT";
+    }
+
+    /**
      * Returns true if a given string is a valid Id number.
      */
     public static boolean isValidId(String test) {

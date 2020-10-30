@@ -25,6 +25,14 @@ public class Height {
     }
 
     /**
+     * Constructs a {@code Height}.
+     * for default profile
+     */
+    public Height() {
+        value = "DEFAULT";
+    }
+
+    /**
      * Returns true if a given string is a valid height number.
      */
     public static boolean isValidHeight(String test) {

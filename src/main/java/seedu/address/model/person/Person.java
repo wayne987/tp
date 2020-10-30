@@ -23,7 +23,7 @@ public class Person {
 
     // Identity fields
     private static Profile defaultProfile =
-            new Profile(new Name("Default"), new ID("1111"), new Height("170"), new Weight("50"));
+            new Profile(new Name("DEFAULT"), new ID(), new Height(), new Weight());
     private Profile profile;
     private final UniqueDayList days;
 

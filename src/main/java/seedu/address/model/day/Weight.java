@@ -27,6 +27,14 @@ public class Weight {
     }
 
     /**
+     * Constructs a {@code Weight}.
+     * for default profile
+     */
+    public Weight() {
+        value = "DEFAULT";
+    }
+
+    /**
      * Returns true if a given string is a valid weight number.
      */
     public static boolean isValidWeight(String test) {
