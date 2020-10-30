@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.day.Date.VALIDATION_REGEX;
 import static seedu.address.model.day.Date.isCorrectRegrex;
 
 import java.time.LocalDate;
