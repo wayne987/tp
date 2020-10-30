@@ -83,9 +83,9 @@ public class CalorieCommand extends Command {
         LocalDate date = getDate(this.date);
         if (model.hasDay(date)) {
             Day editDay = model.getDay(date);
-            if (editDay.getCalorieManager().contains(calorie, isOut)) {
-                throw new CommandException(DUPLICATE_TIME);
-            }
+            //            if (editDay.getCalorieManager().contains(calorie, isOut)) {
+            //                throw new CommandException(DUPLICATE_TIME);
+            //            }
             if (!isOut) {
                 editDay.getCalorieManager().addCalorieInput((Input) calorie);
             } else {
