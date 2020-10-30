@@ -10,8 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Height {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Height should only contain numbers, and it should be 3 digits long. ";
-    public static final String VALIDATION_REGEX = "\\d{3}";
+            "Height should be in between 50-272 unless you are the world's tallest or shortest person";
     public final String value;
 
     /**
@@ -29,8 +28,14 @@ public class Height {
      * Returns true if a given string is a valid height number.
      */
     public static boolean isValidHeight(String test) {
+        int testHeight;
         assert test.length() > 0;
-        return test.matches(VALIDATION_REGEX) && Integer.parseInt(test) > 100;
+        try {
+            testHeight = Integer.parseInt(test);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return (62 < testHeight) && (testHeight < 272);
     }
 
     @Override
