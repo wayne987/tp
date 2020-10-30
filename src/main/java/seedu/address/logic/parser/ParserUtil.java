@@ -76,6 +76,15 @@ public class ParserUtil {
         if (!Weight.isValidWeight(trimmedWeight)) {
             throw new ParseException(Weight.MESSAGE_CONSTRAINTS);
         }
+
+        double w = Double.parseDouble(weight);
+
+        if (w < 2.13) {
+            throw new ParseException(Weight.MESSAGE_TOO_LIGHT);
+        }
+        if (w > 635) {
+            throw new ParseException(Weight.MESSAGE_TOO_HEAVY);
+        }
         return new Weight(trimmedWeight);
     }
 

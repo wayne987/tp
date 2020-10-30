@@ -11,8 +11,12 @@ public class Weight {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Weight should only contain numbers, and it should be at least 2 digits long and maximum 3 digits long. ";
-    public static final String VALIDATION_REGEX = "\\d{2,3}";
+            "Weight should only contain numbers, and it can only take up to at most 2 decimal points ";
+    public static final String MESSAGE_TOO_LIGHT =
+            "are you the world's lightest person?";
+    public static final String MESSAGE_TOO_HEAVY =
+            "are you the world's heaviest person?";
+    public static final String VALIDATION_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
     public final String value;
 
     /**
@@ -40,7 +44,6 @@ public class Weight {
     public static boolean isValidWeight(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
     @Override
     public String toString() {
         return value;
