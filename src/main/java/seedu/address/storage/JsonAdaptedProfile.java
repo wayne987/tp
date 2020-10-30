@@ -23,6 +23,7 @@ class JsonAdaptedProfile {
     private final String id;
     private final String height;
     private final String targetWeight;
+    private final String startingDate;
 
 
     /**
@@ -30,11 +31,13 @@ class JsonAdaptedProfile {
      */
     @JsonCreator
     public JsonAdaptedProfile(@JsonProperty("name") String name, @JsonProperty("id") String id,
-                          @JsonProperty("height") String height, @JsonProperty("targetWeight") String targetWeight) {
+                          @JsonProperty("height") String height, @JsonProperty("targetWeight") String targetWeight,
+                        @JsonProperty("startingDate") String startingDate) {
         this.name = name;
         this.id = id;
         this.height = height;
         this.targetWeight = targetWeight;
+        this.startingDate = startingDate;
     }
 
     /**
@@ -45,6 +48,7 @@ class JsonAdaptedProfile {
         id = source.getId().value;
         height = source.getHeight().value;
         targetWeight = source.getTargetWeight().value;
+        startingDate = source.getStartDate().value;
     }
 
     /**
@@ -81,7 +85,12 @@ class JsonAdaptedProfile {
         }
         final Weight modelWeight = new Weight(targetWeight);
 
-        return new Profile(modelName, modelID, modelHeight, modelWeight);
+        if (startingDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+        }
+        final Date startDate = new Date(startingDate);
+
+        return new Profile(modelName, modelID, modelHeight, modelWeight, startDate);
     }
 
 }

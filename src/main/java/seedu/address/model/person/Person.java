@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.UniqueDayList;
 import seedu.address.model.day.Weight;
@@ -26,6 +27,7 @@ public class Person {
             new Profile(new Name("DEFAULT"), new ID(), new Height(), new Weight());
     private Profile profile;
     private final UniqueDayList days;
+    private Date startingDate;
 
     /**
      * Every field must be present and not null.
@@ -95,6 +97,14 @@ public class Person {
     /**
      * Sets the profile information of current data to {@code profile}.
      */
+    public void setStartingDay(Date date) {
+        assert date != null;
+        this.startingDate = date;
+    }
+
+    /**
+     * Sets the profile information of current data to {@code profile}.
+     */
     public void setProfile(Profile profile) {
         assert profile != null;
         this.profile = profile;
@@ -120,6 +130,13 @@ public class Person {
      */
     public Day getDay(LocalDate date) {
         return days.getDate(date);
+    }
+
+    /**
+     * Gets starting day
+     */
+    public Date getDay() {
+        return profile.getStartDate();
     }
 
     /**
