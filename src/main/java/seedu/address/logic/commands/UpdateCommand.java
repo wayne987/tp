@@ -62,6 +62,7 @@ public class UpdateCommand extends Command {
         }
         Profile toEdit = model.getMyFitnessBuddy().getProfile();
         Profile editedProfile = createEditedProfile(toEdit, editProfileDescriptor);
+        editedProfile.setStartingDay(toEdit.getStartDate());
         model.setProfile(editedProfile);
         logger.info("---------------[USER COMMAND][Profile updated]");
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedProfile));
