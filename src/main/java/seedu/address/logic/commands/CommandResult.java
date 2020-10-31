@@ -69,7 +69,8 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, boolean showAllStats, boolean showCalorieStats,
                          boolean showWeightStats) {
-        this(feedbackToUser, false, false, showAllStats, showCalorieStats, showWeightStats, false, false, 0, false, false, 0);
+        this(feedbackToUser, false, false, showAllStats, showCalorieStats, showWeightStats,
+                false, false, 0, false, false, 0);
     }
 
     /**

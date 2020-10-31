@@ -348,6 +348,11 @@ public class MainWindow extends UiPart<Stage> {
         updateCaloriePanelsWhenDeleted(index);
     }
 
+    /**
+     * Updates the calorie lists and status bar when a view command is used.
+     *
+     * @param indexOfDayToView index of the item to be viewed.
+     */
     @FXML
     public void handleView(int indexOfDayToView) {
         updateCaloriePanelsWhenViewed(indexOfDayToView);

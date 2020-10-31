@@ -17,7 +17,9 @@ public class StatsCommandTest {
     @Test
     public void execute_viewBothStats_success() {
         CommandResult expectedCommandResult =
-                new CommandResult(SHOWING_ALL_STATS_MESSAGE, false, false, true, false, false, false, false, 0, false, false, 0);
+                new CommandResult(SHOWING_ALL_STATS_MESSAGE, false, false, true,
+                        false, false, false, false, 0,
+                        false, false, 0);
         assertCommandSuccess(new StatsCommand(true, true), model,
                 expectedCommandResult, expectedModel);
     }
