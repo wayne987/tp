@@ -55,7 +55,7 @@ public class ProfileCard extends UiPart<Region> {
         height.setText("Height: " + profile.getHeight().toString());
         String path = "/images/ProfilePicture/" + profile.getId().toString() + ".png";
         try {
-            Image test = new Image(this.getClass().getResourceAsStream(path));
+            user = new Image(this.getClass().getResourceAsStream(path));
         } catch (NullPointerException e) {
             user = def;
         }
