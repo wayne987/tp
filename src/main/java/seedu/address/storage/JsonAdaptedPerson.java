@@ -37,6 +37,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
+        System.out.println(source.getProfile().getStartDate());
         profile = new JsonAdaptedProfile(source.getProfile());
         days.addAll(source.getDayList().stream().map(JsonAdaptedDay::new).collect(Collectors.toList()));
     }

@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import seedu.address.model.day.Date;
 import seedu.address.model.day.Weight;
 
 /**
@@ -18,6 +19,8 @@ public class Profile {
     private Weight targetWeight;
     private final int age = 20;
 
+    private Date startingDate;
+
     /**
      * Creates a profile.
      */
@@ -27,6 +30,18 @@ public class Profile {
         this.id = id;
         this.height = height;
         this.targetWeight = targetWeight;
+    }
+
+    /**
+     * Creates a profile with the option to indicate starting date for storage.
+     */
+    public Profile(Name name, ID id, Height height, Weight targetWeight, Date date) {
+        requireAllNonNull(name, id, height, targetWeight);
+        this.name = name;
+        this.id = id;
+        this.height = height;
+        this.targetWeight = targetWeight;
+        this.startingDate = date;
     }
 
     public Name getName() {
@@ -48,6 +63,18 @@ public class Profile {
 
     public int getAge() {
         return this.age;
+    }
+
+    public Date getStartDate() {
+        return startingDate;
+    }
+
+    /**
+     * Sets the profile information of current data to {@code profile}.
+     */
+    public void setStartingDay(Date date) {
+        assert date != null;
+        this.startingDate = date;
     }
 
     @Override

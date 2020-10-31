@@ -34,6 +34,6 @@ public class LoginCommand extends Command {
         model.setCurrentPerson(toChange);
         model.updateDay();
 
-        return new CommandResult(toChange.toString());
+        return new CommandResult(true, toChange.toString());
     }
 }

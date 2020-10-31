@@ -30,7 +30,6 @@ public class WeightTest {
         assertFalse(Weight.isValidWeight("phone")); // non-numeric
         assertFalse(Weight.isValidWeight("9p1")); // alphabets within digits
         assertFalse(Weight.isValidWeight("9 1")); // spaces within digits
-        assertFalse(Weight.isValidWeight("1000")); // 4 digits long
 
         // valid weight numbers
         assertTrue(Weight.isValidWeight("70")); // exactly 2 digits
