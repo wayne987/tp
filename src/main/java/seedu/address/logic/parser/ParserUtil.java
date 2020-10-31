@@ -1,8 +1,10 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.day.Date.isCorrectRegrex;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,6 +29,9 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_DUPLICATE_PREFIX = "There should only be one prefix for each field";
+    public static final double HEAVIEST_PERSON = 635;
+    public static final double LIGHTEST_PERSON = 2.13;
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -50,8 +55,14 @@ public class ParserUtil {
     public static Date parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        if (!Date.isValidDate(trimmedDate)) {
+        if (!isCorrectRegrex(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        try {
+            LocalDate.parse(trimmedDate);
+        } catch (DateTimeParseException e) {
+            String errorMessage = (e.toString().split("parsed: ")[1]);
+            throw new ParseException(errorMessage);
         }
         return new Date(trimmedDate);
     }
@@ -67,6 +78,15 @@ public class ParserUtil {
         String trimmedWeight = weight.trim();
         if (!Weight.isValidWeight(trimmedWeight)) {
             throw new ParseException(Weight.MESSAGE_CONSTRAINTS);
+        }
+
+        double w = Double.parseDouble(weight);
+
+        if (w < LIGHTEST_PERSON) {
+            throw new ParseException(Weight.MESSAGE_TOO_LIGHT);
+        }
+        if (w > HEAVIEST_PERSON) {
+            throw new ParseException(Weight.MESSAGE_TOO_HEAVY);
         }
         return new Weight(trimmedWeight);
     }
@@ -179,12 +199,18 @@ public class ParserUtil {
     public static LocalDate parseLocalDate(String date) throws ParseException {
         requireNonNull(date);
         String toCheck = date.trim();
-
-        if (Date.isValidDate(toCheck)) {
-            return LocalDate.parse(toCheck);
-        } else {
+        if (!isCorrectRegrex(toCheck)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
+        LocalDate result;
+        try {
+            result = LocalDate.parse(toCheck);
+        } catch (DateTimeParseException e) {
+            String errorMessage = (e.toString().split("parsed: ")[1]);
+            throw new ParseException(errorMessage);
+        }
+
+        return result;
     }
 
     /**
