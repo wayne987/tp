@@ -25,7 +25,8 @@ public class Day {
     private final CalorieManager calorieManager;
     private int age = 0;
     private Height height = null;
-    private int surplus = getSurplus();
+    private Weight startingWeight = null;
+    private int surplus = getBalance();
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -96,10 +97,13 @@ public class Day {
         this.age = age;
     }
 
+    public void setStartingWeight(Weight weight) {
+        this.startingWeight = weight;
+    }
+
     public void setHeight(Height height) {
         this.height = height;
     }
-
     /**
      * Returns true if both days have the same date and data fields.
      * This defines a stronger notion of equality between two days.
@@ -135,7 +139,7 @@ public class Day {
         return builder.toString();
     }
 
-    public int getSurplus() {
+    public int getBalance() {
         if (height == null || weight == null) {
             return -1;
         } else {
@@ -148,12 +152,12 @@ public class Day {
     }
 
     public boolean isLosing() {
-        return getSurplus() >= 0;
+        return getBalance() >= 0;
     }
 
     public double getProgress() {
         double currentBmi = Bmi.calculateBmi(height, weight);
-        double startBmi = 30;
+        double startBmi = Bmi.calculateBmi(height, startingWeight);
         double endBmi = 22.5;
         double totalBmiToChange = startBmi - endBmi;
         double differenceWithEnd = currentBmi - endBmi;

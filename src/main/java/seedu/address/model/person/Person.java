@@ -150,6 +150,7 @@ public class Person {
         assert day != null;
         day.setAge(this.age);
         day.setHeight(profile.height);
+        day.setStartingWeight(profile.getTargetWeight());
         days.add(day);
     }
 

@@ -100,11 +100,11 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-image: url("background.png");
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-image: url("backgroundEven.png");
 }
 
 .list-cell:filled:selected {
@@ -350,7 +350,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-image: url("background.png");
     -fx-background-radius: 0;
 }
 

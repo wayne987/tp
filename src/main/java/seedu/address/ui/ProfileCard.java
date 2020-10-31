@@ -53,6 +53,7 @@ public class ProfileCard extends UiPart<Region> {
         this.profile = person.getProfile();
         index.setText("");
         name.setText("Name: " + profile.getName().toString());
+        name.setTranslateX(-5);
         id.setText("ID: " + profile.getId().toString());
         targetWeight.setText("Target Weight: " + profile.getTargetWeight().toString());
         height.setText("Height: " + profile.getHeight().toString());
