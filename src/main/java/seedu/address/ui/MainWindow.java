@@ -147,15 +147,15 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Updates the calorie panels with calorie values of the day that is clicked.
+     * Updates the calorie panels with calorie values of the day that is viewed.
      *
-     * @param indexOfDayClicked the index (zeroBased) of the day that is clicked
+     * @param indexOfDayViewed the index (zeroBased) of the day that is viewed
      */
-    void updateCaloriePanelsWhenClicked(int indexOfDayClicked) {
-        indexOfDayCurrentlyShowingCalories = indexOfDayClicked;
-        calorieInputListPanel.update(logic.getFilteredDayList().get(indexOfDayClicked).getCalorieManager()
+    void updateCaloriePanelsWhenViewed(int indexOfDayViewed) {
+        indexOfDayCurrentlyShowingCalories = indexOfDayViewed;
+        calorieInputListPanel.update(logic.getFilteredDayList().get(indexOfDayViewed).getCalorieManager()
                 .getCalorieInputList());
-        calorieOutputListPanel.update(logic.getFilteredDayList().get(indexOfDayClicked).getCalorieManager()
+        calorieOutputListPanel.update(logic.getFilteredDayList().get(indexOfDayViewed).getCalorieManager()
                 .getCalorieOutputList());
     }
 
@@ -348,6 +348,12 @@ public class MainWindow extends UiPart<Stage> {
         updateCaloriePanelsWhenDeleted(index);
     }
 
+    @FXML
+    public void handleView(int indexOfDayToView) {
+        updateCaloriePanelsWhenViewed(indexOfDayToView);
+        setDateLabel(logic.getFilteredDayList().get(indexOfDayToView).getDate().get().toString());
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -406,13 +412,17 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isDelete()) {
-                handleDelete(commandResult.getIndex() - 1);
+                handleDelete(commandResult.getIndexDelete() - 1);
             }
 
             if (commandResult.isProfileChanged()) {
                 updateProfileCardPanel();
                 clearDateLabel();
                 clearCaloriePanels();
+            }
+
+            if (commandResult.isView()) {
+                handleView(commandResult.getIndexView() - 1);
             }
 
             return commandResult;

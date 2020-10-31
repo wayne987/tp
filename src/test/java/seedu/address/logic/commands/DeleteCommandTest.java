@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -75,7 +77,7 @@ public class DeleteCommandTest {
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_DAY_DISPLAYED_INDEX);
     }
 
-    //    @Test
+    @Test
     public void equals() {
         DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_DAY);
         DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_DAY);

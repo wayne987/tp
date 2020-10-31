@@ -17,7 +17,7 @@ public class StatsCommandTest {
     @Test
     public void execute_viewBothStats_success() {
         CommandResult expectedCommandResult =
-                new CommandResult(SHOWING_ALL_STATS_MESSAGE, false, false, true, false, false, false, false, 0, false);
+                new CommandResult(SHOWING_ALL_STATS_MESSAGE, false, false, true, false, false, false, false, 0, false, false, 0);
         assertCommandSuccess(new StatsCommand(true, true), model,
                 expectedCommandResult, expectedModel);
     }
@@ -34,7 +34,7 @@ public class StatsCommandTest {
     public void execute_viewCalorieStats_success() {
         CommandResult expectedCommandResult =
                 new CommandResult(SHOWING_CALORIE_STATS_MESSAGE, false, false, false,
-                        true, false, false, false, 0, false);
+                        true, false, false, false, 0, false, false, 0);
         assertCommandSuccess(new StatsCommand(true, false), model,
                 expectedCommandResult, expectedModel);
     }
@@ -51,7 +51,7 @@ public class StatsCommandTest {
     public void execute_viewWeightStats_success() {
         CommandResult expectedCommandResult =
                 new CommandResult(SHOWING_WEIGHT_STATS_MESSAGE, false, false, false,
-                        false, true, false, false, 0, false);
+                        false, true, false, false, 0, false, false, 0);
         assertCommandSuccess(new StatsCommand(false, true), model,
                 expectedCommandResult, expectedModel);
     }
