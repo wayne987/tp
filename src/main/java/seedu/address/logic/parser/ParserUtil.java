@@ -30,6 +30,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_DUPLICATE_PREFIX = "There should only be one prefix for each field";
+    public static final double HEAVIEST_PERSON = 635;
+    public static final double LIGHTEST_PERSON = 2.13;
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -80,10 +82,10 @@ public class ParserUtil {
 
         double w = Double.parseDouble(weight);
 
-        if (w < 2.13) {
+        if (w < LIGHTEST_PERSON) {
             throw new ParseException(Weight.MESSAGE_TOO_LIGHT);
         }
-        if (w > 635) {
+        if (w > HEAVIEST_PERSON) {
             throw new ParseException(Weight.MESSAGE_TOO_HEAVY);
         }
         return new Weight(trimmedWeight);
