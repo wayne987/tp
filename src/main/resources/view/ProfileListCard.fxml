@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.ProgressBar?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -33,6 +34,7 @@
             <Label fx:id="id" styleClass="cell_small_label" text="\$id" />
             <Label fx:id="targetWeight" styleClass="cell_small_label" text="\$targetWeight" />
             <Label fx:id="height" styleClass="cell_small_label" text="\$height" />
+            <ProgressBar fx:id="progress"/>
             </VBox>
             <ImageView fx:id="profilePicture" fitHeight="1.0" fitWidth="2.0" preserveRatio="true" scaleX="60.0" scaleY="60.0" translateX="50.0" translateY="-10.0">
             <HBox.margin>

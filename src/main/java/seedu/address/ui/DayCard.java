@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.PerspectiveCamera;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
@@ -70,7 +71,6 @@ public class DayCard extends UiPart<Region> {
         totalCalorieOut.setText("Total Calories Out: " + cm.getTotalOutputCalorie() + " calories");
         surplus.setText("Balance : " + day.getBalance());
         isLosing.setImage(day.isLosing() ? tick : cross);
-        System.out.println(day.getProgress() + "1111");
         progress.setProgress(day.getProgress());
         this.mainWindow = mainWindow;
 

@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -41,6 +42,8 @@ public class ProfileCard extends UiPart<Region> {
             .getResourceAsStream("/images/ProfilePicture/" + "1111" + ".png"));
     @FXML
     private Image def = new Image(this.getClass().getResourceAsStream("/images/User.png"));
+    @FXML
+    private ProgressBar progress;
 
     /**
      * Creates a {@code ProfileCard} with the given {@code Person} and index to display.
@@ -61,6 +64,7 @@ public class ProfileCard extends UiPart<Region> {
         }
         profilePicture.setImage(user);
         circleClip(profilePicture);
+        progress.setProgress(person.getProgress());
     }
 
     /**
@@ -84,6 +88,7 @@ public class ProfileCard extends UiPart<Region> {
         }
         profilePicture.setImage(user);
         circleClip(profilePicture);
+        progress.setProgress(person.getProgress());
     }
 
     /**

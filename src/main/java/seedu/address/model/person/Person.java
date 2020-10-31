@@ -242,7 +242,6 @@ public class Person {
         List<Day> list = days.asUnmodifiableObservableList();
         int size = list.size();
         if (size == 0) {
-            System.out.println(profile.height + " " + profile.getTargetWeight());
             return Bmi.calculateBmi(profile.height, profile.getTargetWeight());
         } else {
             Day currentDay = list.get(size - 1);
@@ -250,5 +249,26 @@ public class Person {
             Height currentHeight = profile.height;
             return Bmi.calculateBmi(currentHeight, currentWeight);
         }
+    }
+
+    /**
+     * returns current bmi progress
+     */
+    public double getProgress() {
+        double currentBmi = getCurrentBmi();
+        double startBmi = Bmi.calculateBmi(profile.getHeight(), profile.getTargetWeight());
+        double endBmi = 22.5;
+        double totalBmiToChange = startBmi - endBmi;
+        double differenceWithEnd = currentBmi - endBmi;
+        double percentageChange = 1 - (differenceWithEnd / totalBmiToChange);
+
+        if (percentageChange > 1) {
+            percentageChange = 1;
+        }
+
+        if (percentageChange < 0) {
+            percentageChange = 0;
+        }
+        return percentageChange;
     }
 }
