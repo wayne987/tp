@@ -35,6 +35,14 @@ public class ProfileCardPanel extends UiPart<Region> {
     }
 
     /**
+     * Clears the current profile panel.
+     */
+    public void clear() {
+        profileCardView.setItems(FXCollections.observableArrayList());
+        profileCardView.setCellFactory(listView -> new ProfileCardViewCell());
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Input} using a {@code CalorieInputCard}.
      */
     class ProfileCardViewCell extends ListCell<Person> {

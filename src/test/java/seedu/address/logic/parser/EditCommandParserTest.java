@@ -104,6 +104,7 @@ public class EditCommandParserTest {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
+        System.out.println(userInput);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

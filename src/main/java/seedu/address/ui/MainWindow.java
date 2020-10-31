@@ -191,6 +191,11 @@ public class MainWindow extends UiPart<Stage> {
         calorieOutputListPanel.clear();
     }
 
+    void clearProfilePanels() {
+        profileListPanel.clear();
+        profileCardPanel.clear();
+    }
+
     /**
      * Sets the date label in the status bar.
      *
@@ -224,6 +229,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     void clearDateLabel() {
         statusBarDaySelected.clear();
+    }
+
+    void updateProfileCardPanel() {
+        profileCardPanel = new ProfileCardPanel(logic.getMyFitnessBuddy().getPerson());
+        profileCardPlaceholder.getChildren().add(profileCardPanel.getRoot());
     }
 
     /**
@@ -324,6 +334,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleClear() {
         clearDateLabel();
         clearCaloriePanels();
+        clearProfilePanels();
     }
 
     /**
@@ -396,6 +407,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isDelete()) {
                 handleDelete(commandResult.getIndex() - 1);
+            }
+
+            if (commandResult.isProfileChanged()) {
+                updateProfileCardPanel();
+                clearDateLabel();
+                clearCaloriePanels();
             }
 
             return commandResult;
