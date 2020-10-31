@@ -53,13 +53,12 @@ public class ProfileCard extends UiPart<Region> {
         id.setText("ID: " + profile.getId().toString());
         targetWeight.setText("Target Weight: " + profile.getTargetWeight().toString());
         height.setText("Height: " + profile.getHeight().toString());
-//        String path = "/images/ProfilePicture/" + profile.getId().toString() + ".png";
-//        try {
-//            user = new Image(this.getClass().getResourceAsStream(path));
-//        } catch (NullPointerException e) {
-//            user = def;
-//        }
-        getImage();
+        String path = "/images/ProfilePicture/" + profile.getId().toString() + ".png";
+        try {
+            Image test = new Image(this.getClass().getResourceAsStream(path));
+        } catch (NullPointerException e) {
+            user = def;
+        }
         profilePicture.setImage(user);
         circleClip(profilePicture);
     }
@@ -82,6 +81,7 @@ public class ProfileCard extends UiPart<Region> {
         } catch (NullPointerException e) {
             user = def;
         }
+        profilePicture.setImage(user);
         circleClip(profilePicture);
     }
 
@@ -112,14 +112,5 @@ public class ProfileCard extends UiPart<Region> {
         ProfileCard card = (ProfileCard) other;
         return index.getText().equals(card.index.getText())
                 && profile.equals(card.profile);
-    }
-
-    private void getImage() {
-        String path = "/images/ProfilePicture/" + profile.getId().toString() + ".png";
-        try {
-            user = new Image(this.getClass().getResourceAsStream(path));
-        } catch (NullPointerException e) {
-            user = def;
-        }
     }
 }

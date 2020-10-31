@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -33,10 +34,14 @@
             <Label fx:id="targetWeight" styleClass="cell_small_label" text="\$targetWeight" />
             <Label fx:id="height" styleClass="cell_small_label" text="\$height" />
             </VBox>
-            <ImageView fx:id="profilePicture" fitHeight="1.0" fitWidth="9.0" preserveRatio="true" scaleX="50.0" scaleY="50.0" translateX="50.0" translateY="-10.0">
+            <ImageView fx:id="profilePicture" fitHeight="1.0" fitWidth="2.0" preserveRatio="true" scaleX="60.0" scaleY="60.0" translateX="50.0" translateY="-10.0">
             <HBox.margin>
                <Insets />
-            </HBox.margin></ImageView>
+            </HBox.margin>
+            <image>
+               <Image url="@../images/ProfilePicture/1111.png" />
+            </image>
+         </ImageView>
         </HBox>
       <rowConstraints>
          <RowConstraints />
