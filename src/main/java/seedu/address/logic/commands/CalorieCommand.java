@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.calorie.Calorie;
+import seedu.address.model.calorie.CalorieManager;
 import seedu.address.model.calorie.Input;
 import seedu.address.model.calorie.Output;
 import seedu.address.model.day.Date;
@@ -31,6 +32,10 @@ public class CalorieCommand extends Command {
     public static final String DUPLICATE_TIME =
             "A calorie record with the same time already exist";
     public static final String INVALID_DATE = "Please input a valid Date";
+    public static final String INSANE_INPUT_CALORIE = "why are you eat so much calories?\n"
+            + "It is physically impossible to consume more than 2147483647KCal";
+    public static final String INSANE_OUTPUT_CALORIE = "Good you are exercising so much!!\n"
+            + "But it is physically impossible to expend more than 2147483647KCal";
     public static final String MESSAGE_PARAMETERS = "Parameters: "
             + PREFIX_CALORIE_TYPE + "IN/OUT"
             + PREFIX_DATE + "(OPTIONAL) 2020-10-14"
@@ -47,6 +52,7 @@ public class CalorieCommand extends Command {
             + MESSAGE_PARAMETERS;
     public static final String MESSAGE_USAGE_2 = "There can only be f/FOOD field for tp/in and e/EXERCISE for tp/out \n"
             + MESSAGE_PARAMETERS;
+
 
     private Calorie calorie;
     private Boolean isOut;
@@ -77,18 +83,58 @@ public class CalorieCommand extends Command {
         return addDate;
     }
 
+    /**
+     *
+     * @param calorie to be added
+     * @param cm of the Day added
+     * @param isOut determine the type of calorie
+     * @return true if the calorie added will cause an overflow
+     */
+    boolean inRange(Calorie calorie, CalorieManager cm, Boolean isOut) throws CommandException {
+        int currentTotalCalorie;
+        int calorieCount;
+        try {
+            calorieCount = Integer.parseInt(calorie.getCalorieCount().calorieCount);
+        } catch (NumberFormatException e) {
+            if (isOut) {
+                throw new CommandException(INSANE_OUTPUT_CALORIE);
+            } else {
+                throw new CommandException(INSANE_INPUT_CALORIE);
+            }
+        }
+        if (isOut) {
+            currentTotalCalorie = cm.getTotalOutputCalorie();
+        } else {
+            currentTotalCalorie = cm.getTotalInputCalorie();
+        }
+
+        return currentTotalCalorie + calorieCount > 0;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         LocalDate date = getDate(this.date);
         if (model.hasDay(date)) {
             Day editDay = model.getDay(date);
+            CalorieManager cm = editDay.getCalorieManager();
+            if (editDay.getCalorieManager().contains(calorie, isOut)) {
+                throw new CommandException(DUPLICATE_TIME);
+            }
+
+            if (!inRange(calorie, cm, isOut)) {
+                if (isOut) {
+                    throw new CommandException(INSANE_OUTPUT_CALORIE);
+                } else {
+                    throw new CommandException(INSANE_INPUT_CALORIE);
+                }
+            }
             //            if (editDay.getCalorieManager().contains(calorie, isOut)) {
             //                throw new CommandException(DUPLICATE_TIME);
             //            }
             if (!isOut) {
                 editDay.getCalorieManager().addCalorieInput((Input) calorie);
             } else {
+                System.out.println("hello");
                 editDay.getCalorieManager().addCalorieOutput((Output) calorie);
             }
             model.setDay(model.getDay(date), editDay);
