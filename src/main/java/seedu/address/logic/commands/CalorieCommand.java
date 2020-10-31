@@ -35,7 +35,7 @@ public class CalorieCommand extends Command {
     public static final String INSANE_INPUT_CALORIE = "why are you eat so much calories?\n"
             + "It is physically impossible to consume more than 2147483647KCal";
     public static final String INSANE_OUTPUT_CALORIE = "Good you are exercising so much!!\n"
-            + "But it is physically impossible to expand more than 2147483647KCal";
+            + "But it is physically impossible to expend more than 2147483647KCal";
     public static final String MESSAGE_PARAMETERS = "Parameters: "
             + PREFIX_CALORIE_TYPE + "IN/OUT"
             + PREFIX_DATE + "(OPTIONAL) 2020-10-14"
@@ -128,7 +128,9 @@ public class CalorieCommand extends Command {
                     throw new CommandException(INSANE_INPUT_CALORIE);
                 }
             }
-
+            //            if (editDay.getCalorieManager().contains(calorie, isOut)) {
+            //                throw new CommandException(DUPLICATE_TIME);
+            //            }
             if (!isOut) {
                 editDay.getCalorieManager().addCalorieInput((Input) calorie);
             } else {
