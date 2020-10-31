@@ -144,6 +144,10 @@
     -fx-text-fill: #010504;
 }
 
+.img {
+  border-radius: 50%;
+}
+
 .stack-pane {
      -fx-background-color: derive(#4b5320, 20%);
 }
@@ -367,3 +371,5 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+

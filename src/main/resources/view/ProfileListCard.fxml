@@ -2,34 +2,49 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <HBox alignment="CENTER_LEFT" minHeight="105">
+            <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
-                <Insets top="5" right="5" bottom="5" left="15" />
+                <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="index" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" text="\$name" styleClass="cell_big_label" />
+                <Label fx:id="name" styleClass="cell_big_label" text="\$name" />
             </HBox>
             <Label fx:id="id" styleClass="cell_small_label" text="\$id" />
             <Label fx:id="targetWeight" styleClass="cell_small_label" text="\$targetWeight" />
             <Label fx:id="height" styleClass="cell_small_label" text="\$height" />
-        </VBox>
+            </VBox>
+            <ImageView fx:id="profilePicture" fitHeight="1.0" fitWidth="2.0" preserveRatio="true" scaleX="60.0" scaleY="60.0" translateX="50.0" translateY="-10.0">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+            <image>
+               <Image url="@../images/ProfilePicture/1111.png" />
+            </image>
+         </ImageView>
+        </HBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
     </GridPane>
 </HBox>
