@@ -64,17 +64,19 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
         this.person = p;
     }
 
+    public void setPersons(List<Person> persons) {
+        this.persons.setPersons(persons);
+    }
+
 
     /**
      * Resets the existing data of this {@code MyFitnessBuddy} with {@code newData}.
      */
     public void resetData(ReadOnlyMyFitnessBuddy newData) {
         requireNonNull(newData);
-        List<Person> personList = newData.getPersonList();
-        if (personList.size() > 0) {
-            personList.forEach(x -> addPerson(x));
-            setCurrentPerson(personList.get(0));
-        }
+        setDays(newData.getDayList());
+        setPersons(newData.getPersonList());
+        setCurrentPerson(new Person());
     }
 
     /**

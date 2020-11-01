@@ -231,9 +231,11 @@ public class MainWindow extends UiPart<Stage> {
         statusBarDaySelected.clear();
     }
 
-    void updateProfileCardPanel() {
+    void updateProfilePanels() {
         profileCardPanel = new ProfileCardPanel(logic.getMyFitnessBuddy().getPerson());
         profileCardPlaceholder.getChildren().add(profileCardPanel.getRoot());
+        profileListPanel = new ProfileListPanel(logic.getFilteredPersonList());
+        profileListPlaceholder.getChildren().add(profileListPanel.getRoot());
     }
 
     /**
@@ -243,8 +245,7 @@ public class MainWindow extends UiPart<Stage> {
         statusBarDaySelected = new StatusBarDaySelected();
         statusbarDaySelectedPlaceholder.getChildren().add(statusBarDaySelected.getRoot());
 
-        profileCardPanel = new ProfileCardPanel(logic.getMyFitnessBuddy().getPerson());
-        profileCardPlaceholder.getChildren().add(profileCardPanel.getRoot());
+        //profileCardPanel will not be filled before login
 
         profileListPanel = new ProfileListPanel(logic.getFilteredPersonList());
         profileListPlaceholder.getChildren().add(profileListPanel.getRoot());
@@ -421,7 +422,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isProfileChanged()) {
-                updateProfileCardPanel();
+                updateProfilePanels();
                 clearDateLabel();
                 clearCaloriePanels();
             }
