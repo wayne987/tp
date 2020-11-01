@@ -1,21 +1,21 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+//import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
+//import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.day.Day;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+//import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditDayDescriptorBuilder;
 
 /**
@@ -99,18 +99,18 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredDayList());
     }
     //error due to refactoring
-    /**
-     * Updates {@code model}'s filtered list to show only the day at the given {@code targetIndex} in the
-     * {@code model}'s My Fitness Buddy records.
-     */
-    public static void showDayAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredDayList().size());
-
-        Day day = model.getFilteredDayList().get(targetIndex.getZeroBased());
-        final String[] splitDate = day.getDate().value.split("\\s+");
-        model.updateFilteredDayList(new NameContainsKeywordsPredicate(Arrays.asList(splitDate[0])));
-
-        //assertEquals(1, model.getFilteredDayList().size());
-    }
+    //    /**
+    //     * Updates {@code model}'s filtered list to show only the day at the given {@code targetIndex} in the
+    //     * {@code model}'s My Fitness Buddy records.
+    //     */
+    //    public static void showDayAtIndex(Model model, Index targetIndex) {
+    //        assertTrue(targetIndex.getZeroBased() < model.getFilteredDayList().size());
+    //
+    //        Day day = model.getFilteredDayList().get(targetIndex.getZeroBased());
+    //        final String[] splitDate = day.getDate().value.split("\\s+");
+    //        model.updateFilteredDayList(new NameContainsKeywordsPredicate(Arrays.asList(splitDate[0])));
+    //
+    //        //assertEquals(1, model.getFilteredDayList().size());
+    //    }
 
 }
