@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.day.Day;
-import seedu.address.model.day.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.MyFitnessBuddyBuilder;
 
 public class ModelManagerTest {

@@ -23,6 +23,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_ID = new Prefix("id/");
     public static final Prefix PREFIX_HEIGHT = new Prefix("h/");
+    public static final Prefix PREFIX_BMI = new Prefix("bmi/");
 
     /* Prefix for stats command */
     public static final Prefix PREFIX_VIEW_STATS = new Prefix("v/");

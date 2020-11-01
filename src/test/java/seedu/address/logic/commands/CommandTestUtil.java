@@ -15,7 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.day.Day;
-import seedu.address.model.day.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditDayDescriptorBuilder;
 
 /**

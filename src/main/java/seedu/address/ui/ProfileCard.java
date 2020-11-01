@@ -44,6 +44,8 @@ public class ProfileCard extends UiPart<Region> {
     private Image def = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     @FXML
     private ProgressBar progress;
+    @FXML
+    private Label bmi;
 
     /**
      * Creates a {@code ProfileCard} with the given {@code Person} and index to display.
@@ -52,7 +54,12 @@ public class ProfileCard extends UiPart<Region> {
         super(FXML);
         this.profile = person.getProfile();
         index.setText(displayedIndex + ". ");
-        name.setText("Name: " + profile.getName().toString());
+
+        if (profile.getName().toString().length() >= 15) {
+            name.setText(profile.getName().toString().split(" ")[0]);
+        } else {
+            name.setText(profile.getName().toString());
+        }
         id.setText("ID: " + profile.getId().toString());
         targetWeight.setText("Target Weight: " + profile.getTargetWeight().toString());
         height.setText("Height: " + profile.getHeight().toString());
@@ -64,7 +71,13 @@ public class ProfileCard extends UiPart<Region> {
         }
         profilePicture.setImage(user);
         circleClip(profilePicture);
-        progress.setProgress(person.getProgress());
+        if (!person.isDefaultProfile()) {
+            progress.setProgress(person.getProgress());
+        } else {
+            progress.disableProperty();
+        }
+        bmi.setText("BMI: "
+                + Math.round(person.getCurrentBmi() * 100.0) / 100.0);
     }
 
     /**
@@ -75,7 +88,7 @@ public class ProfileCard extends UiPart<Region> {
         super(FXML);
         this.profile = person.getProfile();
         index.setText("");
-        name.setText("Name: " + profile.getName().toString());
+        name.setText(profile.getName().toString());
         name.setTranslateX(-5);
         id.setText("ID: " + profile.getId().toString());
         targetWeight.setText("Target Weight: " + profile.getTargetWeight().toString());
@@ -88,7 +101,13 @@ public class ProfileCard extends UiPart<Region> {
         }
         profilePicture.setImage(user);
         circleClip(profilePicture);
-        progress.setProgress(person.getProgress());
+        if (!person.isDefaultProfile()) {
+            progress.setProgress(person.getProgress());
+        } else {
+            progress.disableProperty();
+        }
+        bmi.setText("BMI: "
+                + Math.round(person.getCurrentBmi() * 100.0) / 100.0);
     }
 
     /**

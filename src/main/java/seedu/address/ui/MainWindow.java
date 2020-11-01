@@ -246,7 +246,7 @@ public class MainWindow extends UiPart<Stage> {
         profileCardPanel = new ProfileCardPanel(logic.getMyFitnessBuddy().getPerson());
         profileCardPlaceholder.getChildren().add(profileCardPanel.getRoot());
 
-        profileListPanel = new ProfileListPanel(logic.getMyFitnessBuddy().getPersonList());
+        profileListPanel = new ProfileListPanel(logic.getFilteredPersonList());
         profileListPlaceholder.getChildren().add(profileListPanel.getRoot());
 
         dayListPanel = new DayListPanel(logic.getFilteredDayList(), this);

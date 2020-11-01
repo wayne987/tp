@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
-import javafx.scene.PerspectiveCamera;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;

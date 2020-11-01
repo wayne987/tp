@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -11,7 +12,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.ProgressBar?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -20,7 +20,7 @@
         <HBox alignment="CENTER_LEFT" minHeight="105">
             <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
-                <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="index" styleClass="cell_big_label">
@@ -34,9 +34,10 @@
             <Label fx:id="id" styleClass="cell_small_label" text="\$id" />
             <Label fx:id="targetWeight" styleClass="cell_small_label" text="\$targetWeight" />
             <Label fx:id="height" styleClass="cell_small_label" text="\$height" />
-            <ProgressBar fx:id="progress"/>
+            <ProgressBar fx:id="progress" />
             </VBox>
-            <ImageView fx:id="profilePicture" fitHeight="1.0" fitWidth="2.0" preserveRatio="true" scaleX="60.0" scaleY="60.0" translateX="50.0" translateY="-10.0">
+         <Label fx:id="bmi" styleClass="bmi_label" text="\$BMI" translateX="5.0" translateY="35.0" />
+            <ImageView fx:id="profilePicture" fitHeight="1.0" fitWidth="2.0" preserveRatio="true" scaleX="60.0" scaleY="60.0" translateX="-2.0" translateY="-19.0">
             <HBox.margin>
                <Insets />
             </HBox.margin>
@@ -44,6 +45,12 @@
                <Image url="@../images/ProfilePicture/1111.png" />
             </image>
          </ImageView>
+            <padding>
+                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+            </padding>
+            <padding>
+                <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+            </padding>
         </HBox>
       <rowConstraints>
          <RowConstraints />
