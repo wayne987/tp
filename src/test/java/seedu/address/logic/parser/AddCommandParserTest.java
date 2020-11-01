@@ -41,13 +41,15 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + DATE_DESC_2 + WEIGHT_DESC_2
                 + TAG_DESC_FRIEND, new AddCommand(expectedDay));
 
-        // multiple dates - last date accepted
-        assertParseSuccess(parser, DATE_DESC_1 + DATE_DESC_2 + WEIGHT_DESC_2
-                + TAG_DESC_FRIEND, new AddCommand(expectedDay));
+        //  not allowing multiple dates
+        //        // multiple dates - last date accepted
+        //        assertParseSuccess(parser, DATE_DESC_1 + DATE_DESC_2 + WEIGHT_DESC_2
+        //                + TAG_DESC_FRIEND, new AddCommand(expectedDay));
 
-        // multiple weights - last weight accepted
-        assertParseSuccess(parser, DATE_DESC_2 + WEIGHT_DESC_1 + WEIGHT_DESC_2
-                + TAG_DESC_FRIEND, new AddCommand(expectedDay));
+        // multiple field not allowed
+        //        // multiple weights - last weight accepted
+        //        assertParseSuccess(parser, DATE_DESC_2 + WEIGHT_DESC_1 + WEIGHT_DESC_2
+        //                + TAG_DESC_FRIEND, new AddCommand(expectedDay));
 
         // multiple tags - all accepted
         Day expectedDayMultipleTags = new DayBuilder(MDAY2).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
@@ -87,6 +89,7 @@ public class AddCommandParserTest {
         //assertParseFailure(parser, INVALID_DATE_DESC + WEIGHT_DESC_2 + TAG_DESC_HUSBAND
         //        + TAG_DESC_FRIEND, Date.MESSAGE_CONSTRAINTS);
 
+        System.out.println(DATE_DESC_2 + INVALID_WEIGHT_DESC + TAG_DESC_HUSBAND);
         // invalid weight
         assertParseFailure(parser, DATE_DESC_2 + INVALID_WEIGHT_DESC + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND, Weight.MESSAGE_CONSTRAINTS);
