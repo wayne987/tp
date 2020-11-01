@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.Calculator.Bmi;
-import seedu.address.model.Calculator.CalorieBudget;
+import seedu.address.model.calculator.Bmi;
+import seedu.address.model.calculator.CalorieBudget;
 import seedu.address.model.calorie.CalorieManager;
 import seedu.address.model.person.Height;
 import seedu.address.model.tag.Tag;

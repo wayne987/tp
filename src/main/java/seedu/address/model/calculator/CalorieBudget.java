@@ -1,4 +1,4 @@
-package seedu.address.model.Calculator;
+package seedu.address.model.calculator;
 
 import seedu.address.model.day.Weight;
 import seedu.address.model.person.Height;
