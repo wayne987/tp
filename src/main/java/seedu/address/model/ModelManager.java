@@ -26,6 +26,7 @@ public class ModelManager implements Model {
     private final MyFitnessBuddy myFitnessBuddy;
     private final UserPrefs userPrefs;
     private final FilteredList<Day> filteredDays;
+    private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given myFitnessBuddy and userPrefs.
@@ -39,6 +40,7 @@ public class ModelManager implements Model {
         this.myFitnessBuddy = new MyFitnessBuddy(readOnlyMyFitnessBuddy);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredDays = new FilteredList<>(this.myFitnessBuddy.getDayList());
+        filteredPersons = new FilteredList<>(this.myFitnessBuddy.getPersonList());
     }
 
     public ModelManager() {
@@ -158,6 +160,24 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredDays.setPredicate(predicate);
     }
+
+    //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Day} backed by the internal list of
+     * {@code versionedMyFitnessBuddy}
+     */
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return filteredPersons;
+    }
+
+    @Override
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
 
     @Override
     public void setProfile(Profile profile) {

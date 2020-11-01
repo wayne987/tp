@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showDayAtIndex;
+//import static seedu.address.logic.commands.CommandTestUtil.showDayAtIndex;
 import static seedu.address.testutil.TypicalDays.getTypicalMyFitnessBuddy;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DAY;
+//import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DAY;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,9 +31,9 @@ public class ListCommandTest {
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
-    //    @Test
-    public void execute_listIsFiltered_showsEverything() {
-        showDayAtIndex(model, INDEX_FIRST_DAY);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
-    }
+    //    //    @Test
+    //    public void execute_listIsFiltered_showsEverything() {
+    //        showDayAtIndex(model, INDEX_FIRST_DAY);
+    //        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    //    }
 }

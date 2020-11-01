@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.calculator.Bmi;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.UniqueDayList;
@@ -27,6 +28,8 @@ public class Person {
             new Profile(new Name("DEFAULT"), new ID(), new Height(), new Weight());
     private Profile profile;
     private final UniqueDayList days;
+    private final int age = 20;
+    //    private double currentBmi = -1;
     private Date startingDate;
 
     /**
@@ -145,6 +148,9 @@ public class Person {
      */
     public void addDay(Day day) {
         assert day != null;
+        day.setAge(this.age);
+        day.setHeight(profile.height);
+        day.setStartingWeight(profile.getTargetWeight());
         days.add(day);
     }
 
@@ -227,5 +233,42 @@ public class Person {
         int thisPerson = Integer.parseInt(this.profile.id.value);
         int otherPer = Integer.parseInt(otherPerson.profile.id.value);
         return thisPerson > otherPer;
+    }
+
+    /**
+     * Returns current bmi
+     */
+    public double getCurrentBmi() {
+        List<Day> list = days.asUnmodifiableObservableList();
+        int size = list.size();
+        if (size == 0) {
+            return Bmi.calculateBmi(profile.height, profile.getTargetWeight());
+        } else {
+            Day currentDay = list.get(size - 1);
+            Weight currentWeight = currentDay.getWeight();
+            Height currentHeight = profile.height;
+            return Bmi.calculateBmi(currentHeight, currentWeight);
+        }
+    }
+
+    /**
+     * returns current bmi progress
+     */
+    public double getProgress() {
+        double currentBmi = getCurrentBmi();
+        double startBmi = Bmi.calculateBmi(profile.getHeight(), profile.getTargetWeight());
+        double endBmi = 22.5;
+        double totalBmiToChange = startBmi - endBmi;
+        double differenceWithEnd = currentBmi - endBmi;
+        double percentageChange = 1 - (differenceWithEnd / totalBmiToChange);
+
+        if (percentageChange > 1) {
+            percentageChange = 1;
+        }
+
+        if (percentageChange < 0) {
+            percentageChange = 0;
+        }
+        return percentageChange;
     }
 }

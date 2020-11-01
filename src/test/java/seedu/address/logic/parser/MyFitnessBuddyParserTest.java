@@ -24,7 +24,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.StatsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.day.Day;
-import seedu.address.model.day.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.DayBuilder;
 import seedu.address.testutil.DayUtil;
 import seedu.address.testutil.EditDayDescriptorBuilder;
