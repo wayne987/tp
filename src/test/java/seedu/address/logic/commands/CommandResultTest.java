@@ -16,7 +16,7 @@ public class CommandResultTest {
         assertTrue(commandResult.equals(new CommandResult("feedback")));
         assertTrue(commandResult.equals(new CommandResult("feedback", false, false,
                 false, false, false, false, false, 0,
-                false, false, 0)));
+                false, false, 0, false)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -33,52 +33,52 @@ public class CommandResultTest {
         // different showHelp value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", true, false,
                 false, false, false, false, false, 0,
-                false, false, 0)));
+                false, false, 0, false)));
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true,
                 false, false, false, false, false, 0,
-                false, false, 0)));
+                false, false, 0, false)));
 
         //different showAllStats value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
                 true, false, false, false, false, 0,
-                false, false, 0)));
+                false, false, 0, false)));
 
         //different showCalorieStats value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
                 false, true, false, false, false, 0,
-                false, false, 0)));
+                false, false, 0, false)));
 
         //different showWeightStats value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
                 false, false, true, false, false, 0,
-                false, false, 0)));
+                false, false, 0, false)));
 
         //different clear value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
                 false, false, false, true, false, 0,
-                false, false, 0)));
+                false, false, 0, false)));
 
         //different delete value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
                 false, false, false, false, true, 1,
-                false, false, 0)));
+                false, false, 0, false)));
 
         //different indexDelete value -> return false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
                 false, false, false, false, false, 1,
-                false, false, 0)));
+                false, false, 0, false)));
 
         //different view value -> return false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
                 false, false, false, false, false, 0,
-                false, true, 0)));
+                false, true, 0, false)));
 
         //different indexView value -> return false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
                 false, false, false, false, false, 0,
-                false, false, 1)));
+                false, false, 1, false)));
     }
 
     @Test
@@ -95,61 +95,61 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(),
                 new CommandResult("feedback", true, false, false,
                         false, false, false, false, 0,
-                        false, false, 0).hashCode());
+                        false, false, 0, false).hashCode());
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(),
                 new CommandResult("feedback", false, true, false,
                         false, false, false, false, 0,
-                        false, false, 0).hashCode());
+                        false, false, 0, false).hashCode());
 
         //different showAllStats value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(),
                 new CommandResult("feedback", false, false, true,
                         false, false, false, false, 0,
-                        false, false, 0).hashCode());
+                        false, false, 0, false).hashCode());
 
         //different showCalorieStats value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(),
                 new CommandResult("feedback", false, false, false,
                         true, false, false, false, 0,
-                        false, false, 0).hashCode());
+                        false, false, 0, false).hashCode());
 
         //different showWeightStats value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(),
                 new CommandResult("feedback", false, false, false,
                         false, true, false, false, 0,
-                        false, false, 0).hashCode());
+                        false, false, 0, false).hashCode());
 
         //different clear value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(),
                 new CommandResult("feedback", false, false, false,
                         false, false, true, false, 0,
-                        false, false, 0).hashCode());
+                        false, false, 0, false).hashCode());
 
         //different delete value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(),
                 new CommandResult("feedback", false, false, false,
                         false, false, false, true, 0,
-                        false, false, 0).hashCode());
+                        false, false, 0, false).hashCode());
 
         //different indexDelete value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(),
                 new CommandResult("feedback", false, false, false,
                         false, false, false, false, 1,
-                        false, false, 0).hashCode());
+                        false, false, 0, false).hashCode());
 
         //different view value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(),
                 new CommandResult("feedback", false, false, false,
                         false, false, false, false, 0,
-                        false, true, 0).hashCode());
+                        false, true, 0, false).hashCode());
 
         //different indexView value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(),
                 new CommandResult("feedback", false, false, false,
                         false, false, false, false, 0,
-                        false, false, 1).hashCode());
+                        false, false, 1, false).hashCode());
 
     }
 }

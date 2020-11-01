@@ -105,6 +105,6 @@ public class MyFitnessBuddyParserTest {
     @Test
     public void parseCommand_stats() throws Exception {
         StatsCommand command = (StatsCommand) parser.parseCommand(StatsCommand.COMMAND_WORD + " v/all");
-        assertEquals(new StatsCommand(true, true), command);
+        assertEquals(new StatsCommand(true, true, false), command);
     }
 }

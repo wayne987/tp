@@ -1,50 +1,48 @@
 package seedu.address.ui;
 
-import java.util.Arrays;
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.day.Day;
 import seedu.address.model.person.Person;
 
 /**
  * The controller for the commander overall BMI statistics window.
  */
-public class CommanderBMIStatsWindow extends UiPart<Stage> {
-    private static final Logger logger = LogsCenter.getLogger(CommanderBMIStatsWindow.class);
-    private static final String FXML = "CommanderBMIStatsWindow.fxml";
+public class CommanderBmiStatsWindow extends UiPart<Stage> {
+    private static final Logger logger = LogsCenter.getLogger(CommanderBmiStatsWindow.class);
+    private static final String FXML = "CommanderBmiStatsWindow.fxml";
 
     @FXML
     private PieChart pieChart;
 
     /**
-     * Creates a new CommanderBMIStatsWindow.
+     * Creates a new CommanderBmiStatsWindow.
      *
-     * @param root Stage to use as the root of the CommanderBMIStatsWindow.
+     * @param root Stage to use as the root of the CommanderBmiStatsWindow.
      */
-    public CommanderBMIStatsWindow(Stage root) {
+    public CommanderBmiStatsWindow(Stage root) {
         super(FXML, root);
     }
 
     /**
-     * Creates a new CommanderBMIStatsWindow.
+     * Creates a new CommanderBmiStatsWindow.
      *
      * @param personList personList from seedu.address.logic.Logic
      */
-    public CommanderBMIStatsWindow(ObservableList<Person> personList) {
+    public CommanderBmiStatsWindow(ObservableList<Person> personList) {
         this(new Stage());
 
         pieChart.setTitle("Current Overall BMI Progress of Recruits");
-        setBMIStats(personList);
+        setBmiStats(personList);
     }
 
-    private void setBMIStats(ObservableList<Person> personList) {
+    private void setBmiStats(ObservableList<Person> personList) {
         assert personList != null;
 
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
@@ -69,6 +67,14 @@ public class CommanderBMIStatsWindow extends UiPart<Stage> {
         pieChartData.add(new PieChart.Data("< 27", lessThan27));
         pieChartData.add(new PieChart.Data("< 30", lessThan30));
         pieChartData.add(new PieChart.Data("> 30", moreThan30));
+
+        pieChartData.forEach(data ->
+                data.nameProperty().bind(
+                        Bindings.concat(
+                                data.getName(), " ", data.pieValueProperty(), " People"
+                        )
+                )
+        );
 
         pieChart.setData(pieChartData);
 

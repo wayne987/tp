@@ -53,6 +53,7 @@ public class StatsCommand extends Command {
         return other == this //short circuit if same object
                 || (other instanceof StatsCommand //instanceof handles nulls
                 && showCalorie == ((StatsCommand) other).showCalorie
-                && showWeight == ((StatsCommand) other).showWeight);
+                && showWeight == ((StatsCommand) other).showWeight
+                && showCommander == ((StatsCommand) other).showCommander);
     }
 }

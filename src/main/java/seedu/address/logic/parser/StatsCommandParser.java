@@ -46,8 +46,7 @@ public class StatsCommandParser implements Parser<StatsCommand> {
             showCalorie = false;
             showWeight = false;
             showCommander = true;
-        }
-        else {
+        } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE));
         }
         return new StatsCommand(showCalorie, showWeight, showCommander);

@@ -198,7 +198,7 @@ public class CommandResult {
     @Override
     public int hashCode() {
         return Objects.hash(feedbackToUser, showHelp, exit, showAllStats, showCalorieStats,
-                showWeightStats, clear, delete, indexDelete, profileHasChanged, view, indexView);
+                showWeightStats, clear, delete, indexDelete, profileHasChanged, view, indexView, showCommanderStats);
     }
 
 }
