@@ -251,4 +251,18 @@ public class ParserUtil {
         }
         return new Height(trimmedHeight);
     }
+
+    /**
+     * Parses a {@code String BMI} into @code BMI.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static double parseBmi(String bmi) throws ParseException {
+        requireNonNull(bmi);
+        String trimmedHeight = bmi.trim();
+        try {
+            return Double.parseDouble(bmi);
+        } catch (Exception e) {
+            throw new ParseException("Please input a valid BMI");
+        }
+    }
 }

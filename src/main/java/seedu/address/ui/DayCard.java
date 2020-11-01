@@ -2,10 +2,17 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.calorie.CalorieManager;
 import seedu.address.model.day.Day;
+
+
+
+
 
 /**
  * An UI component that displays information of a {@code Day}.
@@ -38,7 +45,16 @@ public class DayCard extends UiPart<Region> {
     @FXML
     private Label totalCalorieOut;
     @FXML
+    private Label surplus;
+    @FXML
+    private ImageView isLosing;
+    @FXML
     private HBox profile;
+    @FXML
+    private ProgressBar progress;
+
+    private Image cross = new Image(this.getClass().getResourceAsStream("/images/Cross.png"));
+    private Image tick = new Image(this.getClass().getResourceAsStream("/images/tick.png"));
 
     /**
      * Creates a {@code DayCard} with the given {@code Day} and index to display and the given {@code MainWindow}.
@@ -52,6 +68,9 @@ public class DayCard extends UiPart<Region> {
         weight.setText("Weight: " + day.getWeight().value + " kg");
         totalCalorieIn.setText("Total Calories In: " + cm.getTotalInputCalorie() + " calories");
         totalCalorieOut.setText("Total Calories Out: " + cm.getTotalOutputCalorie() + " calories");
+        surplus.setText("Balance : " + day.getBalance());
+        isLosing.setImage(day.isLosing() ? tick : cross);
+        progress.setProgress(day.getProgress());
         this.mainWindow = mainWindow;
 
         // Fills the calorie placeholders and updates the status bar when a DayCard is double clicked
