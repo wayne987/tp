@@ -19,27 +19,32 @@ public class StatsCommand extends Command {
     public static final String SHOWING_ALL_STATS_MESSAGE = "Opened both stats window.";
     public static final String SHOWING_CALORIE_STATS_MESSAGE = "Opened calories stats window.";
     public static final String SHOWING_WEIGHT_STATS_MESSAGE = "Opened weight stats window.";
+    public static final String SHOWING_COMMANDER_STATS_MESSAGE = "Opened commander stats window";
 
     private boolean showCalorie;
     private boolean showWeight;
+    private boolean showCommander;
 
     /**
      * @param showCalorie to show the calorie statistics
      * @param showWeight to show the weight statistics
      */
-    public StatsCommand(boolean showCalorie, boolean showWeight) {
+    public StatsCommand(boolean showCalorie, boolean showWeight, boolean showCommander) {
         this.showCalorie = showCalorie;
         this.showWeight = showWeight;
+        this.showCommander = showCommander;
     }
 
     @Override
     public CommandResult execute (Model model) {
-        if (showCalorie && !showWeight) { /* Show calorie statistics only*/
-            return new CommandResult(SHOWING_CALORIE_STATS_MESSAGE, false, true, false);
+        if (!showCalorie && !showWeight && showCommander) {
+            return new CommandResult(SHOWING_COMMANDER_STATS_MESSAGE, false, false, false, true);
+        } else if (showCalorie && !showWeight) { /* Show calorie statistics only*/
+            return new CommandResult(SHOWING_CALORIE_STATS_MESSAGE, false, true, false, false);
         } else if (!showCalorie && showWeight) { /* Show weight statistics only*/
-            return new CommandResult(SHOWING_WEIGHT_STATS_MESSAGE, false, false, true);
+            return new CommandResult(SHOWING_WEIGHT_STATS_MESSAGE, false, false, true, false);
         } else { /* Show both statistics */
-            return new CommandResult(SHOWING_ALL_STATS_MESSAGE, true, false, false);
+            return new CommandResult(SHOWING_ALL_STATS_MESSAGE, true, false, false, false);
         }
     }
 

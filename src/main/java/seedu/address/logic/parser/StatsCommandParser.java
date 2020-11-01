@@ -28,20 +28,29 @@ public class StatsCommandParser implements Parser<StatsCommand> {
 
         boolean showCalorie;
         boolean showWeight;
+        boolean showCommander;
 
         if (argMultimap.getValue(PREFIX_VIEW_STATS).get().equals("calorie")) {
             showCalorie = true;
             showWeight = false;
+            showCommander = false;
         } else if (argMultimap.getValue(PREFIX_VIEW_STATS).get().equals("weight")) {
             showCalorie = false;
             showWeight = true;
+            showCommander = false;
         } else if (argMultimap.getValue(PREFIX_VIEW_STATS).get().equals("all")) {
             showCalorie = true;
             showWeight = true;
-        } else {
+            showCommander = false;
+        } else if (argMultimap.getValue(PREFIX_VIEW_STATS).get().equals("commander")) {
+            showCalorie = false;
+            showWeight = false;
+            showCommander = true;
+        }
+        else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE));
         }
-        return new StatsCommand(showCalorie, showWeight);
+        return new StatsCommand(showCalorie, showWeight, showCommander);
     }
 
     /**

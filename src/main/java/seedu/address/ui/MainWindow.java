@@ -44,6 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private StatusBarDaySelected statusBarDaySelected;
     private ProfileListPanel profileListPanel;
     private ProfileCardPanel profileCardPanel;
+    private CommanderBMIStatsWindow commanderBMIStatsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -104,6 +105,8 @@ public class MainWindow extends UiPart<Stage> {
         weightStatsWindow = new WeightStatsWindow(logic.getFilteredDayList());
 
         calorieStatsWindow = new CalorieStatsWindow(logic.getFilteredDayList());
+
+        commanderBMIStatsWindow = new CommanderBMIStatsWindow(logic.getFilteredPersonList());
 
         indexOfDayCurrentlyShowingCalories = -1;
     }
@@ -320,6 +323,15 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    @FXML
+    public void handleCommanderStats() {
+        if (!commanderBMIStatsWindow.isShowing()) {
+            commanderBMIStatsWindow.show();
+        } else {
+            commanderBMIStatsWindow.focus();
+        }
+    }
+
     /**
      * Opens both stats window or focuses on it if it's already opened.
      */
@@ -429,6 +441,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isView()) {
                 handleView(commandResult.getIndexView() - 1);
+            }
+
+            if (commandResult.isShowCommanderStats()) {
+                handleCommanderStats();
             }
 
             return commandResult;
