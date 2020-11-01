@@ -27,7 +27,10 @@ public class CommandResult {
 
     /** If the index matches the current day's calories being shown, remove them */
     private final boolean delete;
-    private final int index;
+    private final int indexDelete;
+
+    private final boolean view;
+    private final int indexView;
 
     private final boolean profileHasChanged;
 
@@ -36,7 +39,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showAllStats,
                          boolean showCalorieStats, boolean showWeightStats, boolean clear, boolean delete,
-                         int index, boolean profileHasChanged) {
+                         int indexDelete, boolean profileHasChanged, boolean view, int indexView) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -45,8 +48,10 @@ public class CommandResult {
         this.showWeightStats = showWeightStats;
         this.clear = clear;
         this.delete = delete;
-        this.index = index;
+        this.indexDelete = indexDelete;
         this.profileHasChanged = profileHasChanged;
+        this.view = view;
+        this.indexView = indexView;
     }
 
     /**
@@ -54,7 +59,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false, false, false, false, 0, false);
+        this(feedbackToUser, false, false, false, false, false, false, false, 0, false, false, 0);
     }
 
     /**
@@ -64,7 +69,8 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, boolean showAllStats, boolean showCalorieStats,
                          boolean showWeightStats) {
-        this(feedbackToUser, false, false, showAllStats, showCalorieStats, showWeightStats, false, false, 0, false);
+        this(feedbackToUser, false, false, showAllStats, showCalorieStats, showWeightStats,
+                false, false, 0, false, false, 0);
     }
 
     /**
@@ -72,7 +78,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, false, false, false, false, false, 0, false);
+        this(feedbackToUser, showHelp, exit, false, false, false, false, false, 0, false, false, 0);
     }
 
     /**
@@ -80,24 +86,31 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, boolean clear) {
-        this(feedbackToUser, false, false, false, false, false, clear, false, 0, false);
+        this(feedbackToUser, false, false, false, false, false, clear, false, 0, false, false, 0);
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser, delete, index},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser, boolean delete, int index) {
-        this(feedbackToUser, false, false, false, false, false, false, delete, index, false);
+    public CommandResult(String feedbackToUser, boolean delete, int indexDelete) {
+        this(feedbackToUser, false, false, false, false, false, false, delete, indexDelete, false, false, 0);
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser, delete, index},
+     * Constructs a {@code CommandResult} with the specified {@code profileHasChanged, feedbackToUser},
      * and other fields set to their default value.
-     * PS-jh: i think this is a bad way to construct this constructor.
      */
     public CommandResult(boolean profileHasChanged, String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false, false, false, false, 0, profileHasChanged);
+        this(feedbackToUser, false, false, false, false, false, false, false, 0, profileHasChanged, false, 0);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser, indexView, view},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, int indexView, boolean view) {
+        this(feedbackToUser, false, false, false, false, false, false, false, 0, false, view, indexView);
     }
 
     public String getFeedbackToUser() {
@@ -132,12 +145,20 @@ public class CommandResult {
         return delete;
     }
 
-    public int getIndex() {
-        return index;
+    public int getIndexDelete() {
+        return indexDelete;
     }
 
     public boolean isProfileChanged() {
         return profileHasChanged;
+    }
+
+    public boolean isView() {
+        return view;
+    }
+
+    public int getIndexView() {
+        return indexView;
     }
 
     @Override
@@ -160,14 +181,16 @@ public class CommandResult {
                 && showWeightStats == otherCommandResult.showWeightStats
                 && clear == otherCommandResult.clear
                 && delete == otherCommandResult.delete
-                && index == otherCommandResult.index
-                && profileHasChanged == otherCommandResult.profileHasChanged;
+                && indexDelete == otherCommandResult.indexDelete
+                && profileHasChanged == otherCommandResult.profileHasChanged
+                && view == otherCommandResult.view
+                && indexView == otherCommandResult.indexView;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(feedbackToUser, showHelp, exit, showAllStats, showCalorieStats,
-                showWeightStats, clear, delete, index, profileHasChanged);
+                showWeightStats, clear, delete, indexDelete, profileHasChanged, view, indexView);
     }
 
 }
