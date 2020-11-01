@@ -10,6 +10,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.day.Day;
 
+/**
+ * Views a day's calorie lists.
+ * It is identified using it's displayed index from My Fitness Buddy.
+ */
 public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
