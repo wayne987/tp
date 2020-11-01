@@ -67,7 +67,7 @@ public class DayCard extends UiPart<Region> {
      * @param index the index of the day that was clicked.
      */
     private void displayCalories(int index) {
-        this.mainWindow.updateCaloriePanelsWhenClicked(index);
+        this.mainWindow.updateCaloriePanelsWhenViewed(index);
     }
 
     /**
