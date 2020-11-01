@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
@@ -17,6 +18,8 @@ import seedu.address.model.person.Person;
 public class CommanderBmiStatsWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(CommanderBmiStatsWindow.class);
     private static final String FXML = "CommanderBmiStatsWindow.fxml";
+
+    private ObservableList<Person> personList;
 
     @FXML
     private PieChart pieChart;
@@ -40,10 +43,18 @@ public class CommanderBmiStatsWindow extends UiPart<Stage> {
 
         pieChart.setTitle("Current Overall BMI Progress of Recruits");
         setBmiStats(personList);
+
+        //ListChangeListener to check for any changes to the dayList and updates the line chart accordingly
+        personList.addListener((ListChangeListener<Person>) (c -> updateChart()));
     }
 
+    /**
+     * Collate the data of each person's bmi and classify it into different
+     * categories for the Pie Chart.
+     */
     private void setBmiStats(ObservableList<Person> personList) {
         assert personList != null;
+        this.personList = personList;
 
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
 
@@ -78,6 +89,18 @@ public class CommanderBmiStatsWindow extends UiPart<Stage> {
 
         pieChart.setData(pieChartData);
 
+    }
+
+    /**
+     * Updates the line chart when there is a change in dayList.
+     */
+    private void updateChart() {
+        //clear all data points and xAxis
+        pieChart.getData().clear();
+        assert pieChart.getData().isEmpty();
+
+        //set the new data points
+        setBmiStats(personList);
     }
 
     /**
