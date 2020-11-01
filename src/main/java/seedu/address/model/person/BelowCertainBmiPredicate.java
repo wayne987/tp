@@ -11,7 +11,7 @@ public class BelowCertainBmiPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return person.getCurrentBmi() < bmi;
+        return person.getCurrentBmi() > bmi;
     }
 
     @Override
