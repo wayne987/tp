@@ -73,11 +73,12 @@ public class ProfileCard extends UiPart<Region> {
         circleClip(profilePicture);
         if (!person.isDefaultProfile()) {
             progress.setProgress(person.getProgress());
+            bmi.setText("BMI: "
+                    + Math.round(person.getCurrentBmi() * 100.0) / 100.0);
         } else {
             progress.disableProperty();
+            bmi.setText("BMI: DEFAULT");
         }
-        bmi.setText("BMI: "
-                + Math.round(person.getCurrentBmi() * 100.0) / 100.0);
     }
 
     /**
@@ -103,11 +104,12 @@ public class ProfileCard extends UiPart<Region> {
         circleClip(profilePicture);
         if (!person.isDefaultProfile()) {
             progress.setProgress(person.getProgress());
+            bmi.setText("BMI: "
+                    + Math.round(person.getCurrentBmi() * 100.0) / 100.0);
         } else {
             progress.disableProperty();
+            bmi.setText("BMI: DEFAULT");
         }
-        bmi.setText("BMI: "
-                + Math.round(person.getCurrentBmi() * 100.0) / 100.0);
     }
 
     /**

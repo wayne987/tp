@@ -3,6 +3,9 @@ package seedu.address.model.calculator;
 import seedu.address.model.day.Weight;
 import seedu.address.model.person.Height;
 
+/**
+ * class that contains methods to calculate BMI
+ */
 public class Bmi {
 
     /**
