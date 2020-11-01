@@ -25,3 +25,7 @@
 .chart-title {
     -fx-text-fill: #ffffff;
 }
+
+.chart-pie-label {
+    -fx-fill: #ffffff;
+}

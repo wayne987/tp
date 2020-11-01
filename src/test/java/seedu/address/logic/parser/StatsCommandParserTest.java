@@ -15,21 +15,21 @@ public class StatsCommandParserTest {
     @Test
     public void parse_viewAllStats_success() {
         String userInput = " v/all";
-        StatsCommand expectedCommand = new StatsCommand(true, true);
+        StatsCommand expectedCommand = new StatsCommand(true, true, false);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_viewCalorieStats_success() {
         String userInput = " v/calorie";
-        StatsCommand expectedCommand = new StatsCommand(true, false);
+        StatsCommand expectedCommand = new StatsCommand(true, false, false);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_viewWeightStats_success() {
         String userInput = " v/weight";
-        StatsCommand expectedCommand = new StatsCommand(false, true);
+        StatsCommand expectedCommand = new StatsCommand(false, true, false);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
