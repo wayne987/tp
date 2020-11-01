@@ -17,6 +17,7 @@ public class Profile {
     // data fields
     public final Height height;
     private Weight targetWeight;
+    private final int age = 20;
 
     private Date startingDate;
 
@@ -60,6 +61,10 @@ public class Profile {
         return targetWeight;
     }
 
+    public int getAge() {
+        return this.age;
+    }
+
     public Date getStartDate() {
         return startingDate;
     }
@@ -71,9 +76,6 @@ public class Profile {
         assert date != null;
         this.startingDate = date;
     }
-
-
-
 
     @Override
     public boolean equals(Object other) {
