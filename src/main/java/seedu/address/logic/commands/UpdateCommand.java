@@ -61,6 +61,7 @@ public class UpdateCommand extends Command {
      * checks if the id intended to be change is taken
      */
     public boolean isUnique(ID id, ObservableList<Person> ul) {
+        System.out.println(id);
         return ul.size() == 0 || ul.stream().noneMatch(x -> x.getProfile().getId().value.equals(id.value));
     }
 
@@ -72,7 +73,8 @@ public class UpdateCommand extends Command {
             throw new CommandException(MESSAGE_ERROR);
         }
 
-        if (!isUnique(editProfileDescriptor.id, model.getMyFitnessBuddy().getPersons())) {
+
+        if (editProfileDescriptor.id != null && !isUnique(editProfileDescriptor.id, model.getFilteredPersonList())) {
             throw new CommandException(MESSAGE_SAME_ID);
         }
 
@@ -81,7 +83,7 @@ public class UpdateCommand extends Command {
         editedProfile.setStartingDay(toEdit.getStartDate());
         model.setProfile(editedProfile);
         logger.info("---------------[USER COMMAND][Profile updated]");
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedProfile));
+        return new CommandResult(true, String.format(MESSAGE_SUCCESS, editedProfile));
     }
 
     /**

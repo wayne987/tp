@@ -1,10 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.MyFitnessBuddy;
 
 /**
  * Clears the days in My Fitness Buddy.
@@ -17,10 +16,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.resetPersons();
-        model.setCurrentPerson(new Person());
-        model.updateDay();
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setMyFitnessBuddy(new MyFitnessBuddy());
         return new CommandResult(MESSAGE_SUCCESS, true);
     }
 }
