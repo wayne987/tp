@@ -46,6 +46,8 @@ public class SampleDataUtil {
         Profile sampleProfile = new Profile(new Name("Sample Person"),
                 new ID("2103"), new Height("170"), new Weight("60"));
         Person samplePerson = new Person(sampleProfile, getSampleDays());
+        samplePerson.setStartingDay(new Date("2020-09-30"));
+        System.out.println(samplePerson.getProfile().getStartDate());
         return samplePerson;
     }
 
@@ -53,6 +55,7 @@ public class SampleDataUtil {
         Profile sampleProfile = new Profile(new Name("Sample Person 2"),
                 new ID("2104"), new Height("170"), new Weight("60"));
         Person samplePerson = new Person(sampleProfile, getSampleDays());
+        samplePerson.setStartingDay(new Date("2020-08-29"));
         return samplePerson;
     }
 

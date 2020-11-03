@@ -102,7 +102,7 @@ public class Person {
      */
     public void setStartingDay(Date date) {
         assert date != null;
-        this.startingDate = date;
+        profile.setStartingDay(date);
     }
 
     /**
