@@ -125,8 +125,7 @@ public class ChangeCommand extends Command {
         CalorieManager cm = calorieManager.setCalorie(calorieIndex, changeCalorieDescriptor.getIsOut(), editedCalorie);
         Date date = editDay.getDate();
         Weight weight = editDay.getWeight();
-        Set<Tag> tag = editDay.getTags();
-        Day editedDay = new Day(date, weight, tag, cm);
+        Day editedDay = new Day(date, weight, cm);
 
         model.setDay(editDay, editedDay);
         model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);

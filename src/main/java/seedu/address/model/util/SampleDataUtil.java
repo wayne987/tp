@@ -37,8 +37,8 @@ public class SampleDataUtil {
         sampleOutput.add(new Output(new Time("1800"), new Exercise("Run"), new CalorieCount("200")));
         CalorieManager sampleCalorieManager = new CalorieManager(sampleInput, sampleOutput);
         UniqueDayList sampleDays = new UniqueDayList();
-        sampleDays.add(new Day(new Date("2020-10-11"), new Weight("110"), getTagSet(), sampleCalorieManager));
-        sampleDays.add(new Day(new Date("2020-10-12"), new Weight("120"), getTagSet("5BX")));
+        sampleDays.add(new Day(new Date("2020-10-11"), new Weight("110"), sampleCalorieManager));
+        sampleDays.add(new Day(new Date("2020-10-12"), new Weight("120")));
         return sampleDays;
     }
 
@@ -63,15 +63,6 @@ public class SampleDataUtil {
         sampleMyFitnessBuddy.addPerson(getSamplePerson());
         sampleMyFitnessBuddy.addPerson(getSamplePerson2());
         return sampleMyFitnessBuddy;
-    }
-
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
     }
 
 }

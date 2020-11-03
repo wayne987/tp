@@ -28,28 +28,23 @@ public class Day {
     private Weight startingWeight = null;
     private int surplus = getBalance();
 
-    // Data fields
-    private final Set<Tag> tags = new HashSet<>();
-
     /**
      * Class constructor
      */
-    public Day(Date date, Weight weight, Set<Tag> tags) {
-        requireAllNonNull(date, weight, tags);
+    public Day(Date date, Weight weight) {
+        requireAllNonNull(date, weight);
         this.date = date;
         this.weight = weight;
-        this.tags.addAll(tags);
         this.calorieManager = new CalorieManager();
     }
 
     /**
      * Class constructor
      */
-    public Day(Date date, Weight weight, Set<Tag> tags, CalorieManager calorieManager) {
-        requireAllNonNull(date, weight, tags, calorieManager);
+    public Day(Date date, Weight weight, CalorieManager calorieManager) {
+        requireAllNonNull(date, weight, calorieManager);
         this.date = date;
         this.weight = weight;
-        this.tags.addAll(tags);
         this.calorieManager = calorieManager;
     }
 
@@ -64,15 +59,6 @@ public class Day {
     public CalorieManager getCalorieManager() {
         return calorieManager;
     }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
-    }
-
 
     /**
      * Returns true if both days are of the same date and not the weight and tag field.
@@ -125,7 +111,7 @@ public class Day {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(date, weight, tags);
+        return Objects.hash(date, weight);
     }
 
     @Override
@@ -134,8 +120,6 @@ public class Day {
         builder.append(getDate())
                 .append(" Weight: ")
                 .append(getWeight());
-        //        .append(" Tags: ");
-        getTags().forEach(builder::append);
         return builder.toString();
     }
 

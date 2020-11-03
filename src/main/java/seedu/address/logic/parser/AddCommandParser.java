@@ -36,9 +36,8 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         Weight weight = ParserUtil.parseWeight(argMultimap.getValue(PREFIX_WEIGHT).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Day day = new Day(date, weight, tagList);
+        Day day = new Day(date, weight);
 
         return new AddCommand(day);
     }

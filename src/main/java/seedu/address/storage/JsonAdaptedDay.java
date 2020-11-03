@@ -34,14 +34,10 @@ class JsonAdaptedDay {
      */
     @JsonCreator
     public JsonAdaptedDay(@JsonProperty("date") String date, @JsonProperty("weight") String weight,
-                          @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                           @JsonProperty("inputList") List<JsonAdaptedInput> inputList,
                           @JsonProperty("outputList") List<JsonAdaptedOutput> outputList) {
         this.date = date;
         this.weight = weight;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
         calorieManager = new JsonAdaptedCalorieManager(inputList, outputList);
     }
 
@@ -51,9 +47,6 @@ class JsonAdaptedDay {
     public JsonAdaptedDay(Day source) {
         date = source.getDate().value;
         weight = source.getWeight().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
         calorieManager = new JsonAdaptedCalorieManager(new ArrayList<>(),
                                                        new ArrayList<>());
         calorieManager.getInputList().addAll(source.getCalorieManager().getCalorieInputList().stream()
@@ -96,9 +89,8 @@ class JsonAdaptedDay {
                     CalorieManager.class.getSimpleName()));
         }
         final CalorieManager modelCalorieManager = calorieManager.toModelType();
-        final Set<Tag> modelTags = new HashSet<>(dayTags);
 
-        return new Day(modelDate, modelWeight, modelTags, modelCalorieManager);
+        return new Day(modelDate, modelWeight, modelCalorieManager);
     }
 
 }
