@@ -2,8 +2,6 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_2;
 
@@ -23,12 +21,12 @@ public class TypicalDays {
 
     public static final Day DAY1 = new DayBuilder().withDate("2020-11-23")
             .withWeight("45")
-            .withTags("friends").build();
+          .build();
     public static final Day DAY2 = new DayBuilder().withDate("2020-05-12")
-            .withTags("owesMoney", "friends").build();
+           .build();
     public static final Day DAY3 = new DayBuilder().withDate("2020-01-23").withWeight("75").build();
     public static final Day DAY4 = new DayBuilder().withDate("2020-01-13").withWeight("66")
-           .withTags("friends").build();
+          .build();
     public static final Day DAY5 = new DayBuilder().withDate("2020-09-12").withWeight("42")
           .build();
     public static final Day DAY6 = new DayBuilder().withDate("2020-03-01").withWeight("51")
@@ -45,9 +43,8 @@ public class TypicalDays {
     // Manually added - Day's details found in {@code CommandTestUtil}
     // MDAY stands for manually added day
     public static final Day MDAY1 = new DayBuilder().withDate(VALID_DATE_1).withWeight(VALID_WEIGHT_1)
-           .withTags(VALID_TAG_FRIEND).build();
+         .build();
     public static final Day MDAY2 = new DayBuilder().withDate(VALID_DATE_2).withWeight(VALID_WEIGHT_2)
-           .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
     public static final Profile DEFAULT_PROFILE = TypicalProfiles.DEFAULT_PROFILE;
 

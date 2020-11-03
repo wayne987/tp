@@ -1,9 +1,5 @@
 package seedu.address.model.util;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.MyFitnessBuddy;
@@ -24,7 +20,6 @@ import seedu.address.model.person.ID;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Profile;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code MyFitnessBuddy} with sample data.
@@ -37,8 +32,8 @@ public class SampleDataUtil {
         sampleOutput.add(new Output(new Time("1800"), new Exercise("Run"), new CalorieCount("200")));
         CalorieManager sampleCalorieManager = new CalorieManager(sampleInput, sampleOutput);
         UniqueDayList sampleDays = new UniqueDayList();
-        sampleDays.add(new Day(new Date("2020-10-11"), new Weight("110"), getTagSet(), sampleCalorieManager));
-        sampleDays.add(new Day(new Date("2020-10-12"), new Weight("120"), getTagSet("5BX")));
+        sampleDays.add(new Day(new Date("2020-10-11"), new Weight("110"), sampleCalorieManager));
+        sampleDays.add(new Day(new Date("2020-10-12"), new Weight("120")));
         return sampleDays;
     }
 
@@ -62,14 +57,4 @@ public class SampleDataUtil {
         sampleMyFitnessBuddy.addPerson(getSamplePerson2());
         return sampleMyFitnessBuddy;
     }
-
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
-    }
-
 }
