@@ -47,7 +47,6 @@ public class SampleDataUtil {
                 new ID("2103"), new Height("170"), new Weight("60"));
         Person samplePerson = new Person(sampleProfile, getSampleDays());
         samplePerson.setStartingDay(new Date("2020-09-30"));
-        System.out.println(samplePerson.getProfile().getStartDate());
         return samplePerson;
     }
 
