@@ -85,9 +85,10 @@ public class EditCommand extends Command {
 
         Date updatedDate = editDayDescriptor.getDate().orElse(dayToEdit.getDate());
         Weight updatedWeight = editDayDescriptor.getWeight().orElse(dayToEdit.getWeight());
+        Set<Tag> updatedTags = editDayDescriptor.getTags().orElse(dayToEdit.getTags());
         CalorieManager calorieManager = dayToEdit.getCalorieManager();
 
-        return new Day(updatedDate, updatedWeight, calorieManager);
+        return new Day(updatedDate, updatedWeight, updatedTags, calorieManager);
     }
 
     @Override
