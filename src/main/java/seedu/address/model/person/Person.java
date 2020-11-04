@@ -183,7 +183,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getProfile().getId().equals(getProfile().getId()); // check is same id and name
+                && otherPerson.equals(this); // check is same id and name
     }
 
     /**
@@ -201,11 +201,7 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getProfile().getId().equals(getProfile().getId())
-                && otherPerson.getProfile().getName().equals(getProfile().getName())
-                && otherPerson.getProfile().getHeight().equals(getProfile().getHeight())
-                && otherPerson.getProfile().getTargetWeight().equals(getProfile().getTargetWeight())
-                && otherPerson.getDayList().equals(getDayList());
+        return otherPerson.getProfile().getId().equals(getProfile().getId());
     }
 
     @Override
