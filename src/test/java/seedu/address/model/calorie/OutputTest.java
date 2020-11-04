@@ -8,7 +8,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCalories.OUTPUT_A;
 import static seedu.address.testutil.TypicalCalories.OUTPUT_B;
 
-
 import org.junit.jupiter.api.Test;
 
 class OutputTest {
