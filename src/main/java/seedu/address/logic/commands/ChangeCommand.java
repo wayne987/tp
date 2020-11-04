@@ -12,6 +12,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -103,7 +104,12 @@ public class ChangeCommand extends Command {
         Boolean isOut = changeCalorieDescriptor.getIsOut();
         CalorieManager calorieManager = editDay.getCalorieManager();
 
-        Calorie calorieToEdit = calorieManager.getCalorie(isOut, calorieIndex);
+        Calorie calorieToEdit = null;
+        try {
+            calorieToEdit = calorieManager.getCalorie(isOut, calorieIndex);
+        } catch (IllegalValueException e) {
+            e.printStackTrace();
+        }
         Calorie editedCalorie = createEditedCalorie(calorieToEdit, changeCalorieDescriptor);
 
         if (isOut) {
@@ -122,7 +128,12 @@ public class ChangeCommand extends Command {
             }
         }
 
-        CalorieManager cm = calorieManager.setCalorie(calorieIndex, changeCalorieDescriptor.getIsOut(), editedCalorie);
+        CalorieManager cm = null;
+        try {
+            cm = calorieManager.setCalorie(calorieIndex, changeCalorieDescriptor.getIsOut(), editedCalorie);
+        } catch (IllegalValueException e) {
+            throw new CommandException(CalorieManager.MESSAGE_OVERFLOW);
+        }
         Date date = editDay.getDate();
         Weight weight = editDay.getWeight();
         Set<Tag> tag = editDay.getTags();

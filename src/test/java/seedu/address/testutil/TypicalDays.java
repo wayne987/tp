@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.day.Day;
 import seedu.address.model.person.Person;
@@ -74,12 +75,19 @@ public class TypicalDays {
         for (Day day : getTypicalDays()) {
             ab.addDay(day);
         }
-        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_A));
-        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_B));
-        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_C));
-        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_A));
-        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_B));
-        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_C));
+        try {
+            for (Day d : ab.getDayList()) {
+                d.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_A);
+                d.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_B);
+                d.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_C);
+                d.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_A);
+                d.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_B);
+                d.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_C);
+            }
+        } catch (IllegalValueException e) {
+            e.printStackTrace();
+        }
+
         return ab;
     }
 

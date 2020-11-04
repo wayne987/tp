@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.calorie.CalorieManager;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
@@ -41,8 +42,12 @@ public class DayBuilder {
         date = dayToCopy.getDate();
         weight = dayToCopy.getWeight();
         calorieManager = dayToCopy.getCalorieManager();
-        calorieManager.addCalorieOutput(new CalorieBuilder().buildOutput());
-        calorieManager.addCalorieInput(new CalorieBuilder().buildInput());
+        try {
+            calorieManager.addCalorieOutput(new CalorieBuilder().buildOutput());
+            calorieManager.addCalorieInput(new CalorieBuilder().buildInput());
+        } catch (IllegalValueException e) {
+            e.printStackTrace();
+        }
         tags = new HashSet<>(dayToCopy.getTags());
     }
 

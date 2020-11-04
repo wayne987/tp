@@ -11,6 +11,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DAYS;
 
 import java.time.LocalDate;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.calorie.Calorie;
@@ -114,37 +115,40 @@ public class CalorieCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         LocalDate date = getDate(this.date);
-        if (model.hasDay(date)) {
-            Day editDay = model.getDay(date);
-            CalorieManager cm = editDay.getCalorieManager();
-            if (editDay.getCalorieManager().contains(calorie, isOut)) {
-                throw new CommandException(DUPLICATE_TIME);
-            }
-
-            if (!inRange(calorie, cm, isOut)) {
-                if (isOut) {
-                    throw new CommandException(INSANE_OUTPUT_CALORIE);
-                } else {
-                    throw new CommandException(INSANE_INPUT_CALORIE);
-                }
-            }
-            //            if (editDay.getCalorieManager().contains(calorie, isOut)) {
-            //                throw new CommandException(DUPLICATE_TIME);
-            //            }
-            if (!isOut) {
-                editDay.getCalorieManager().addCalorieInput((Input) calorie);
-            } else {
-                System.out.println("hello");
-                editDay.getCalorieManager().addCalorieOutput((Output) calorie);
-            }
-            model.setDay(model.getDay(date), editDay);
-            model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
-        } else {
+        if (!model.hasDay(date)) {
             throw new CommandException(NO_AVAILABLE_DAY);
         }
+        Day editDay = model.getDay(date);
+        CalorieManager cm = editDay.getCalorieManager();
+        if (editDay.getCalorieManager().contains(calorie, isOut)) {
+            throw new CommandException(DUPLICATE_TIME);
+        }
+
+        //        if (!inRange(calorie, cm, isOut)) {
+        //            if (isOut) {
+        //                throw new CommandException(INSANE_OUTPUT_CALORIE);
+        //            } else {
+        //                throw new CommandException(INSANE_INPUT_CALORIE);
+        //            }
+        //        }
+
+        if (!isOut) {
+            try {
+                editDay.getCalorieManager().addCalorieInput((Input) calorie);
+            } catch (IllegalValueException e) {
+                throw new CommandException(e.toString());
+            }
+        } else {
+            try {
+                editDay.getCalorieManager().addCalorieOutput((Output) calorie);
+            } catch (IllegalValueException e) {
+                throw new CommandException(e.toString());
+            }
+        }
+        model.setDay(model.getDay(date), editDay);
+        model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
         return new CommandResult(calorie.toString());
     }
-
     @Override
     public boolean equals(Object other) {
         CalorieCommand oC = (CalorieCommand) other;

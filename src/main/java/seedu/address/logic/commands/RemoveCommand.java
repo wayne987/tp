@@ -11,6 +11,7 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.calorie.Calorie;
@@ -90,12 +91,21 @@ public class RemoveCommand extends Command {
 
         CalorieManager calorieManager = editDay.getCalorieManager();
 
-        if (targetIndex.getZeroBased() >= calorieManager.getListSize(isOut)) {
+        //        if (targetIndex.getZeroBased() >= calorieManager.getListSize(isOut)) {
+        //            throw new CommandException(Messages.MESSAGE_INVALID_CALORIE_DISPLAYED_INDEX);
+        //        }
+
+        Calorie remove = null;
+        try {
+            remove = calorieManager.getCalorie(isOut, targetIndex);
+        } catch (IllegalValueException e) {
+            e.printStackTrace();
+        }
+        try {
+            editDay.getCalorieManager().removeCalorie(isOut, targetIndex);
+        } catch (IllegalValueException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_CALORIE_DISPLAYED_INDEX);
         }
-
-        Calorie remove = calorieManager.getCalorie(isOut, targetIndex);
-        editDay.getCalorieManager().removeCalorie(isOut, targetIndex);
 
         model.setDay(editDay, editDay);
         model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
