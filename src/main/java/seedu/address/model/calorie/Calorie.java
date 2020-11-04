@@ -26,6 +26,13 @@ public abstract class Calorie {
         return time;
     }
 
+    /**
+     * Returns true if the current output happens after the input output
+     */
+    public boolean happenAfter(Calorie calorie) {
+        return this.getTime().isAfter(calorie.getTime());
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

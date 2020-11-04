@@ -1,7 +1,12 @@
 package seedu.address.model.calorie;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalCalories.INPUT_A;
+import static seedu.address.testutil.TypicalCalories.INPUT_B;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,6 +42,18 @@ class InputTest {
         Food validFood = new Food("Laksa");
         Input input = new Input(new Time("1200"), validFood, new CalorieCount("200"));
         assertEquals(validFood, input.getFood());
+    }
+
+    @Test
+    void isSameInput() {
+        assertTrue(INPUT_A.isSameInput(INPUT_A));
+        assertFalse(INPUT_A.isSameInput(INPUT_B));
+    }
+
+    @Test
+    public void toStringTest() {
+        assertEquals(" Food: laksa Time: 1130 Calorie Intake: 100", INPUT_A.toString());
+        assertNotEquals(INPUT_A.toString(), INPUT_B);
     }
 
 }
