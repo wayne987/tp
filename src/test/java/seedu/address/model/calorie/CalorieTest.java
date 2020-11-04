@@ -44,6 +44,7 @@ public class CalorieTest {
         assertEquals(INPUT_B, INPUT_B);
         assertNotEquals(OUTPUT_A, OUTPUT_B);
         assertEquals(INPUT_B, INPUT_B);
+        assertNotEquals(INPUT_A, new Object());
     }
 
 }

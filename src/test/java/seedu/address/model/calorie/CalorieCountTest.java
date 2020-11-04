@@ -26,6 +26,7 @@ public class CalorieCountTest {
         CalorieCount test1 = new CalorieCount("12345");
         CalorieCount test2 = new CalorieCount("54321");
         assertNotEquals(test1, test2);
+        assertNotEquals(test1, new Object());
         assertEquals(test1, test1);
     }
 

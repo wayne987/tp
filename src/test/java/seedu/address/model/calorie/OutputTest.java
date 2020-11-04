@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCalories.OUTPUT_A;
 import static seedu.address.testutil.TypicalCalories.OUTPUT_B;
 
+
 import org.junit.jupiter.api.Test;
 
 class OutputTest {
@@ -55,5 +56,4 @@ class OutputTest {
         assertEquals(" Exercise: running Time: 1130 Calorie Burnt: 111", OUTPUT_A.toString());
         assertNotEquals(OUTPUT_A.toString(), OUTPUT_B);
     }
-
 }

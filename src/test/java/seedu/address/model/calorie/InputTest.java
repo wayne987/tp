@@ -55,5 +55,4 @@ class InputTest {
         assertEquals(" Food: laksa Time: 1130 Calorie Intake: 100", INPUT_A.toString());
         assertNotEquals(INPUT_A.toString(), INPUT_B);
     }
-
 }
