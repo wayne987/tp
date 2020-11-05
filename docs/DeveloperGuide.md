@@ -190,15 +190,32 @@ _{Diagram to be added}_
 #### Implementation
 
 This feature allows users to view each of their calorie inputs and calorie 
-outputs for a particular day when that day is double clicked. When a `DayCard` gets 
-double clicked, the `MainWindow#fillCaloriePlaceHolders` method gets called. The 
-list of calorie inputs and calorie outputs of that day would be then used to fill up 
-the JavaFX `ListView`. The `ListView` is then used to replace the placeholders on the 
-right side of the app in `MainWindow`. 
+outputs for a particular day in a `ListView` when a view command is used.
 
-{More details to be added in terms of updating the list when a new calorie is added}
+The mechanism utilises the ViewCommandParser class to parse the input and get the 
+`Index` of the particular day to be viewed.
 
-_{Diagram to be added}_
+It then utilises the ViewCommand class to display the correct message to the user,
+depending on the validity of the `Index`. If the `Index` is valid, a CommandResult 
+gets returned and the `MainWindow#handleView` gets called with the now zero-based 
+`Index`. The `Index` is then used to get the `Day` from the `Logic#getFilteredDayList` 
+method. The list of calorie inputs and calorie outputs of that `Day` would be then used 
+to fill up the JavaFX `ListView`. The `ListView` is then used to replace the placeholders 
+on the right side of the app in `MainWindow`. 
+
+The JavaFx `StatusBar` will also get updated with the date of the `Day` viewed, using
+the `MainWindow#setDateLabel` method. 
+
+Whenever a new calorie gets added, the calorie lists will get automatically updated
+using the `DayListViewCell#updateItem` method in `DayListPanel`.
+
+The calorie lists can also be viewed by double clicking on a `DayCard`. When a `DayCard`
+gets double clicked, the `Hbox#setOnMouseClicked` gets called and the lists and 
+status bar gets updated similarly. 
+
+Given below is the sequence diagram when a view command is used.
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
 ### Creates a new Person to My Fitness Buddy
 
@@ -358,8 +375,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Add a daily weight record**
 
 **MSS**
-1.  User requests to add a weight record
-2.  User inputs the date and weight
+1.  User inputs the date and weight using the add command.
 3.  User sees the newly added weight record of the day.
     
     Use case ends.
@@ -367,8 +383,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Edit a daily weight record**
 
 **MSS**
-1.  User requests to edit a weight record
-2.  User inputs the index of the record and weight
+1.  User requests to edit a weight record.
+2.  User inputs the index of the record and weight.
 3.  User sees the newly edited weight record of the day.
     
     Use case ends.
@@ -377,25 +393,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add calorie input
-2.  User selects the date that he/she wants to add a calorie input
-3.  User inputs the calorie input
-4.  User sees the newly updated calorie input of the day
+1.  User requests to add calorie input using the calorie command. 
+2.  User enters the date that he/she wants to add a calorie input.
+3.  User inputs the calorie input.
+4.  User sees the newly updated total calorie input of that day.
 
     Use case ends.
     
-**Use case: View calorie history**
+**Use case: View calorie's of a particular day recorded**
 
 **MSS**
 
-1.  User requests to view calorie history
-2.  User sees his/her calorie history
+1.  User requests to view the calorie history of a particular day using the view 
+command. 
+2.  User sees his/her calories of that day.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The history is empty.
+* 2a. The calorie lists are empty.
 
   Use case ends.
 
