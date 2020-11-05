@@ -103,7 +103,9 @@ while the last two digits must be from 1 - 20. A valid ID_NUM has only four digi
 
 
 Examples:  
-`create n/Johnny id/1234 h/170 w/68` 
+`create n/Johnny id/1220 h/170 w/68` 
+
+Meaning: create a new profile with name Johnny, ID number 1220, height 170cm and target weight of 68kg.
 
 #### 4.1.2 Editing an existing profile: `update`
 update an existing profile.

@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDays.DAY1;
 
@@ -48,7 +47,7 @@ public class PersonTest {
     @Test
     public void hasDay_dayWithSameIdentityFieldsInPerson_returnsTrue() {
         person.addDay(DAY1);
-        Day editedAlice = new DayBuilder(DAY1).withTags(VALID_TAG_HUSBAND)
+        Day editedAlice = new DayBuilder(DAY1)
                 .build();
         assertTrue(person.hasDay(editedAlice));
         assertTrue(person.hasDay(editedAlice.getDate().get()));

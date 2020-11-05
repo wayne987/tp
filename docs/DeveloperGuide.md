@@ -191,7 +191,6 @@ _{Diagram to be added}_
 
 This feature allows users to view each of their calorie inputs and calorie 
 outputs for a particular day in a `ListView` when a view command is used.
-
 The mechanism utilises the ViewCommandParser class to parse the input and get the 
 `Index` of the particular day to be viewed.
 
