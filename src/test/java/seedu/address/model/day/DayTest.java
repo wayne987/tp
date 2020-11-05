@@ -3,9 +3,8 @@ package seedu.address.model.day;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_2;
-import static seedu.address.testutil.Assert.assertThrows;
+//import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDays.DAY1;
 import static seedu.address.testutil.TypicalDays.MDAY2;
 
@@ -28,11 +27,13 @@ public class DayTest {
     public static final Input INPUT = new Input(TIME, FOOD, CALORIE_COUNT);
     public static final Output OUTPUT = new Output(TIME, EXERCISE, CALORIE_COUNT);
 
+    /*
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Day day = new DayBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> day.getTags().remove(0));
     }
+     */
 
     @Test
     public void isSameDay() {
@@ -52,16 +53,16 @@ public class DayTest {
 
         // same date, same weight, different attributes -> returns true
         editedAlice = new DayBuilder(DAY1)
-                .withTags(VALID_TAG_HUSBAND).build();
+               .build();
         assertTrue(DAY1.isSameDay(editedAlice));
 
         // same date, same email, different attributes -> returns true
         editedAlice = new DayBuilder(DAY1).withWeight(VALID_WEIGHT_2)
-                .withTags(VALID_TAG_HUSBAND).build();
+              .build();
         assertTrue(DAY1.isSameDay(editedAlice));
 
         // same date, same weight, same email, different attributes -> returns true
-        editedAlice = new DayBuilder(DAY1).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new DayBuilder(DAY1).build();
         assertTrue(DAY1.isSameDay(editedAlice));
     }
 
