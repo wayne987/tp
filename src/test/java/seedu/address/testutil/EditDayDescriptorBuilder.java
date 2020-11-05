@@ -1,14 +1,9 @@
 package seedu.address.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
-import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building EditDayDescriptor objects.
@@ -32,7 +27,6 @@ public class EditDayDescriptorBuilder {
         descriptor = new EditCommand.EditDayDescriptor();
         descriptor.setDate(day.getDate());
         descriptor.setWeight(day.getWeight());
-        descriptor.setTags(day.getTags());
     }
 
     /**
@@ -48,16 +42,6 @@ public class EditDayDescriptorBuilder {
      */
     public EditDayDescriptorBuilder withWeight(String weight) {
         descriptor.setWeight(new Weight(weight));
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditDayDescriptor}
-     * that we are building.
-     */
-    public EditDayDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
         return this;
     }
 

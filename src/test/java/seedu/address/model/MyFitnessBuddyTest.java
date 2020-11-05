@@ -3,7 +3,6 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDays.DAY1;
 import static seedu.address.testutil.TypicalDays.DEFAULT_PROFILE;
@@ -48,7 +47,7 @@ public class MyFitnessBuddyTest {
     @Test
     public void resetData_withDuplicateDays_throwsDuplicateDayException() {
         // Two days with the same identity fields
-        Day editedAlice = new DayBuilder(DAY1).withTags(VALID_TAG_HUSBAND)
+        Day editedAlice = new DayBuilder(DAY1)
                 .build();
         List<Day> newDays = Arrays.asList(DAY1, editedAlice);
         MyFitnessBuddyStub newData = new MyFitnessBuddyStub(newDays, person);
@@ -75,7 +74,7 @@ public class MyFitnessBuddyTest {
     //    @Test
     public void hasDay_dayWithSameIdentityFieldsInMyFitnessBuddy_returnsTrue() {
         myFitnessBuddy.addDay(DAY1);
-        Day editedAlice = new DayBuilder(DAY1).withTags(VALID_TAG_HUSBAND)
+        Day editedAlice = new DayBuilder(DAY1)
                 .build();
         assertTrue(myFitnessBuddy.getPerson().hasDay(editedAlice));
     }
