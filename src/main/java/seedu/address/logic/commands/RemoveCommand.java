@@ -36,6 +36,9 @@ public class RemoveCommand extends Command {
             + PREFIX_INDEX + "Positive index number\n"
             + "Example: " + COMMAND_WORD + PREFIX_CALORIE_TYPE + " tp/out " + PREFIX_INDEX + " 1";
 
+    public static final String MESSAGE_MISSING_DAY_DETERMINANT = "Either input a date or an index to specify which "
+            + "date the calorie to be deleted is present but not both";
+
     public static final String MESSAGE_DELETE_CALORIE_SUCCESS = "Removed Calorie - " + ": %1$s";
 
     private final Index targetIndex;

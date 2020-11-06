@@ -6,11 +6,11 @@ import java.util.Objects;
  * abstract class that input and output extends from
  */
 public abstract class Calorie {
+    public static final String MESSAGE_TYPE_CONSTRAINT = "type can only be in or out";
+
     // Identity fields
     protected CalorieCount calorieCount;
     protected Time time;
-
-
     /**
      * Every field must be present and not null.
      */

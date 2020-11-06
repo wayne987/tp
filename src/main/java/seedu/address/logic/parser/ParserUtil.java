@@ -12,6 +12,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.calorie.Calorie;
 import seedu.address.model.calorie.CalorieCount;
 import seedu.address.model.calorie.Exercise;
 import seedu.address.model.calorie.Food;
@@ -189,7 +190,7 @@ public class ParserUtil {
         case "in":
             return false;
         default:
-            throw new ParseException("type can only be either in/out");
+            throw new ParseException(Calorie.MESSAGE_TYPE_CONSTRAINT);
         }
     }
 

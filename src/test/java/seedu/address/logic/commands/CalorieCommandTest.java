@@ -27,13 +27,6 @@ public class CalorieCommandTest {
         assertThrows(NullPointerException.class, () -> new CalorieCommand(null, null, null));
     }
 
-    //    @Test
-    public void execute_duplicateTime_throwsCommandException() {
-        Model model = new ModelManager(getAnotherMyFitnessBuddy(), new UserPrefs());
-        String date = "2020-11-23";
-        CalorieCommand calorieCommand = new CalorieCommand(INPUT_A, false, date);
-        assertThrows(CommandException.class, CalorieCommand.DUPLICATE_TIME, () -> calorieCommand.execute(model));
-    }
 
     //    @Test
     public void execute_noAvailableDay_throwsCommandException() {

@@ -30,13 +30,7 @@ public class CalorieCommand extends Command {
 
     public static final String NO_AVAILABLE_DAY =
             "Please add a new day entry for the date intended before adding calorie input/output";
-    public static final String DUPLICATE_TIME =
-            "A calorie record with the same time already exist";
     public static final String INVALID_DATE = "Please input a valid Date";
-    public static final String INSANE_INPUT_CALORIE = "why are you eat so much calories?\n"
-            + "It is physically impossible to consume more than 2147483647KCal";
-    public static final String INSANE_OUTPUT_CALORIE = "Good you are exercising so much!!\n"
-            + "But it is physically impossible to expend more than 2147483647KCal";
     public static final String MESSAGE_PARAMETERS = "Parameters: "
             + PREFIX_CALORIE_TYPE + "IN/OUT"
             + PREFIX_DATE + "(OPTIONAL) 2020-10-14"
@@ -51,7 +45,9 @@ public class CalorieCommand extends Command {
             + PREFIX_CALORIE_COUNT + "123";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a calorie to a particular day. \n"
             + MESSAGE_PARAMETERS;
-    public static final String MESSAGE_USAGE_2 = "There can only be f/FOOD field for tp/in and e/EXERCISE for tp/out \n"
+    public static final String MESSAGE_USAGE_TYPE_OUT = "There can only be e/EXERCISE for tp/out \n"
+            + MESSAGE_PARAMETERS;
+    public static final String MESSAGE_USAGE_TYPE_IN = "There can only be f/FOOD for tp/in \n"
             + MESSAGE_PARAMETERS;
 
 
@@ -84,34 +80,6 @@ public class CalorieCommand extends Command {
         return addDate;
     }
 
-    /**
-     *
-     * @param calorie to be added
-     * @param cm of the Day added
-     * @param isOut determine the type of calorie
-     * @return true if the calorie added will cause an overflow
-     */
-    boolean inRange(Calorie calorie, CalorieManager cm, Boolean isOut) throws CommandException {
-        int currentTotalCalorie;
-        int calorieCount;
-        try {
-            calorieCount = Integer.parseInt(calorie.getCalorieCount().calorieCount);
-        } catch (NumberFormatException e) {
-            if (isOut) {
-                throw new CommandException(INSANE_OUTPUT_CALORIE);
-            } else {
-                throw new CommandException(INSANE_INPUT_CALORIE);
-            }
-        }
-        if (isOut) {
-            currentTotalCalorie = cm.getTotalOutputCalorie();
-        } else {
-            currentTotalCalorie = cm.getTotalInputCalorie();
-        }
-
-        return currentTotalCalorie + calorieCount > 0;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         LocalDate date = getDate(this.date);
@@ -120,30 +88,15 @@ public class CalorieCommand extends Command {
         }
         Day editDay = model.getDay(date);
         CalorieManager cm = editDay.getCalorieManager();
-        if (editDay.getCalorieManager().contains(calorie, isOut)) {
-            throw new CommandException(DUPLICATE_TIME);
-        }
 
-        //        if (!inRange(calorie, cm, isOut)) {
-        //            if (isOut) {
-        //                throw new CommandException(INSANE_OUTPUT_CALORIE);
-        //            } else {
-        //                throw new CommandException(INSANE_INPUT_CALORIE);
-        //            }
-        //        }
-
-        if (!isOut) {
-            try {
-                editDay.getCalorieManager().addCalorieInput((Input) calorie);
-            } catch (IllegalValueException e) {
-                throw new CommandException(e.toString());
+        try {
+            if (!isOut) {
+                cm.addCalorieInput((Input) calorie);
+            } else {
+                cm.addCalorieOutput((Output) calorie);
             }
-        } else {
-            try {
-                editDay.getCalorieManager().addCalorieOutput((Output) calorie);
-            } catch (IllegalValueException e) {
-                throw new CommandException(e.toString());
-            }
+        } catch (IllegalValueException e) {
+            throw new CommandException(e.getMessage());
         }
         model.setDay(model.getDay(date), editDay);
         model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);

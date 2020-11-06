@@ -132,7 +132,7 @@ public class ChangeCommand extends Command {
         try {
             cm = calorieManager.setCalorie(calorieIndex, changeCalorieDescriptor.getIsOut(), editedCalorie);
         } catch (IllegalValueException e) {
-            throw new CommandException(CalorieManager.MESSAGE_OVERFLOW);
+            throw new CommandException(e.getMessage());
         }
         Date date = editDay.getDate();
         Weight weight = editDay.getWeight();

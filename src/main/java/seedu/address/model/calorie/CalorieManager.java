@@ -19,9 +19,12 @@ import seedu.address.commons.exceptions.IllegalValueException;
 public class CalorieManager {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is out of range";
-    public static final String MESSAGE_OVERFLOW = "further addition will result in a "
-            + "value larger than the allowed 2147483647 kCal";
+    public static final String INSANE_INPUT_CALORIE = "why are you eat so much calories?\n"
+            + "It is physically impossible to consume more than 2147483647KCal";
+    public static final String INSANE_OUTPUT_CALORIE = "Good you are exercising so much!!\n"
+            + "But it is physically impossible to expend more than 2147483647KCal";
 
+    public static final String INVALID_INDEX = "please input a correct index";
     private ObservableList<Input> calorieInputList;
     private ObservableList<Output> calorieOutputList;
     private int totalCalorieIn;
@@ -84,7 +87,7 @@ public class CalorieManager {
         int previousTotalCalorieOut = totalCalorieOut;
         int calorieToAdd = Integer.parseInt(calorieOutput.toString());
         if (totalCalorieOut + calorieToAdd < 0) {
-            throw new IllegalValueException("further addition results in integer overflow");
+            throw new IllegalValueException(INSANE_OUTPUT_CALORIE);
         }
         totalCalorieOut += calorieToAdd;
         logger.info("----------update total calorie output----------");
@@ -100,7 +103,7 @@ public class CalorieManager {
         int previousTotalCalorieIn = totalCalorieIn;
         int calorieToAdd = Integer.parseInt(calorieInput.toString());
         if (totalCalorieIn + calorieToAdd < 0) {
-            throw new IllegalValueException("further addition results in integer overflow");
+            throw new IllegalValueException(INSANE_INPUT_CALORIE);
         }
         totalCalorieIn += calorieToAdd;
         logger.info("----------update total calorie Input----------");
@@ -147,6 +150,7 @@ public class CalorieManager {
     public void addCalorieInput(Input calorieInput) throws IllegalValueException {
         requireNonNull(calorieInput);
         assert calorieInput instanceof Input : "calorieInput must be an input";
+        addTotalCalorieInput(calorieInput.getCalorieCount());
         boolean isAdded = false;
         for (int index = calorieInputList.size() - 1; index >= 0; index -= 1) {
             if (calorieInput.happenAfter(calorieInputList.get(index))) {
@@ -158,7 +162,6 @@ public class CalorieManager {
         if (!isAdded) {
             calorieInputList.add(0, calorieInput);
         }
-        addTotalCalorieInput(calorieInput.getCalorieCount());
     }
 
     /**
@@ -166,6 +169,7 @@ public class CalorieManager {
      */
     public void addCalorieOutput(Output calorieOutput) throws IllegalValueException {
         requireNonNull(calorieOutput);
+        addTotalCalorieOut(calorieOutput.getCalorieCount());
         boolean isAdded = false;
         for (int index = calorieOutputList.size() - 1; index >= 0; index -= 1) {
             if (calorieOutput.happenAfter(calorieOutputList.get(index))) {
@@ -177,7 +181,6 @@ public class CalorieManager {
         if (!isAdded) {
             calorieOutputList.add(0, calorieOutput);
         }
-        addTotalCalorieOut(calorieOutput.getCalorieCount());
     }
 
     /**
@@ -215,18 +218,14 @@ public class CalorieManager {
      */
     public Calorie getCalorie(Boolean isOut, Index index) throws IllegalValueException {
         requireAllNonNull(isOut, index);
-        if (!isOut) {
-            try {
+        try {
+            if (!isOut) {
                 return calorieInputList.get(index.getZeroBased());
-            } catch (IndexOutOfBoundsException e) {
-                throw new IllegalValueException("please give an valid index");
-            }
-        } else {
-            try {
+            } else {
                 return calorieOutputList.get(index.getZeroBased());
-            } catch (IndexOutOfBoundsException e) {
-                throw new IllegalValueException("please give an valid index");
             }
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalValueException(INVALID_INDEX);
         }
     }
 
