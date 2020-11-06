@@ -17,7 +17,6 @@ import seedu.address.model.day.Weight;
 public class JsonAdaptedDayTest {
     private static final String INVALID_DATE = "";
     private static final String INVALID_WEIGHT = "7-0";
-    private static final String INVALID_TAG = "#friend";
 
     private static final List<JsonAdaptedInput> VALID_INPUT = new ArrayList<JsonAdaptedInput>();
     private static final List<JsonAdaptedOutput> VALID_OUTPUT = new ArrayList<JsonAdaptedOutput>();

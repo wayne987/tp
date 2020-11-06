@@ -14,6 +14,7 @@ import seedu.address.model.calorie.Time;
  */
 class JsonAdaptedOutput {
 
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Output's %s field is missing!";
     private final String calorieCount;
     private final String time;
     private final String exercise;
@@ -22,11 +23,12 @@ class JsonAdaptedOutput {
      * Constructs a {@code JsonAdaptedOutput} with the given Output details.
      */
     @JsonCreator
-    public JsonAdaptedOutput(@JsonProperty("calorieCount") String calorieCount, @JsonProperty("time") String time,
-                             @JsonProperty("exercise") String exercise) {
-        this.calorieCount = calorieCount;
+    public JsonAdaptedOutput(@JsonProperty("time") String time,
+                             @JsonProperty("exercise") String exercise,
+                             @JsonProperty("calorieCount") String calorieCount) {
         this.time = time;
         this.exercise = exercise;
+        this.calorieCount = calorieCount;
     }
 
     /**
@@ -45,19 +47,29 @@ class JsonAdaptedOutput {
      * @throws IllegalValueException if there were any data constraints violated in the adapted output.
      */
     public Output toModelType() throws IllegalValueException {
-
-        if (!CalorieCount.isValidCalorieCount(calorieCount)) {
-            throw new IllegalValueException(String.format(CalorieCount.MESSAGE_CONSTRAINTS));
+        if (time == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
-        final CalorieCount modelCalorieCount = new CalorieCount(calorieCount);
         if (!Time.isValidTime(time)) {
             throw new IllegalValueException(String.format(Time.MESSAGE_CONSTRAINTS));
         }
         final Time modelTime = new Time(time);
+
+        if (exercise == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Exercise.class.getSimpleName()));
+        }
         if (!Exercise.isValidExercise(exercise)) {
             throw new IllegalValueException(String.format(Exercise.MESSAGE_CONSTRAINTS));
         }
         final Exercise modelExercise = new Exercise(exercise);
+
+        if (calorieCount == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CalorieCount.class.getSimpleName()));
+        }
+        if (!CalorieCount.isValidCalorieCount(calorieCount)) {
+            throw new IllegalValueException(String.format(CalorieCount.MESSAGE_CONSTRAINTS));
+        }
+        final CalorieCount modelCalorieCount = new CalorieCount(calorieCount);
         return new Output(modelTime, modelExercise, modelCalorieCount);
     }
 
