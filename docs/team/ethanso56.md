@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Hope's Project Portfolio Page
+title: Ethan's Project Portfolio Page
 ---
 
 ## Project: My Fitness Buddy
