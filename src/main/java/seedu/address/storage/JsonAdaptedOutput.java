@@ -56,7 +56,8 @@ class JsonAdaptedOutput {
         final Time modelTime = new Time(time);
 
         if (exercise == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Exercise.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Exercise.class.getSimpleName()));
         }
         if (!Exercise.isValidExercise(exercise)) {
             throw new IllegalValueException(String.format(Exercise.MESSAGE_CONSTRAINTS));
@@ -64,7 +65,8 @@ class JsonAdaptedOutput {
         final Exercise modelExercise = new Exercise(exercise);
 
         if (calorieCount == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CalorieCount.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    CalorieCount.class.getSimpleName()));
         }
         if (!CalorieCount.isValidCalorieCount(calorieCount)) {
             throw new IllegalValueException(String.format(CalorieCount.MESSAGE_CONSTRAINTS));

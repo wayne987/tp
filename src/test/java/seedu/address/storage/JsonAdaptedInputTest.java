@@ -7,7 +7,10 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.calorie.*;
+import seedu.address.model.calorie.CalorieCount;
+import seedu.address.model.calorie.Food;
+import seedu.address.model.calorie.Input;
+import seedu.address.model.calorie.Time;
 
 
 public class JsonAdaptedInputTest {

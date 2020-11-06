@@ -8,7 +8,6 @@ import seedu.address.model.calorie.CalorieCount;
 import seedu.address.model.calorie.Food;
 import seedu.address.model.calorie.Input;
 import seedu.address.model.calorie.Time;
-import seedu.address.model.day.Weight;
 
 
 /**
