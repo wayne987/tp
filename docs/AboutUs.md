@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/hoperawr.png" width="200px">
 
 [[github](https://github.com/hoperawr)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/hoperawr.md)]
 
 * Role: Team Lead
 * Responsibilities: Scheduling and Tracking
@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/junhui-phoon.png" width="200px">
 
 [[github](http://github.com/junhui-phoon)] 
-[[portfolio](team/junhui.md)]
+[[portfolio](team/junhui-phoon.md)]
 
 * Role: Developer
 * Responsibilities: Integration
@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/ethanso56.png" width="200px">
 
 [[github](http://github.com/ethanso56)]
-[[portfolio](team/ethanso.md)]
+[[portfolio](team/ethanso56.md)]
 
 * Role: Developer
 * Responsibilities: Code Quality

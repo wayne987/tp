@@ -35,7 +35,9 @@ public class PersonBuilder {
      * Builds a person with specified days.
      */
     public PersonBuilder withDays(List<Day> days) {
-        person.setDays(days);
+        for (Day day: days) {
+            person.addDay(day);
+        }
         return this;
     }
 

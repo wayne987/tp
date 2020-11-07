@@ -8,7 +8,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DAYS;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -27,8 +26,6 @@ import seedu.address.model.calorie.Time;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
-import seedu.address.model.tag.Tag;
-
 
 /**
  * Edit a certain calorie input/output for a particular day
@@ -136,8 +133,8 @@ public class ChangeCommand extends Command {
         }
         Date date = editDay.getDate();
         Weight weight = editDay.getWeight();
-        Set<Tag> tag = editDay.getTags();
-        Day editedDay = new Day(date, weight, tag, cm);
+
+        Day editedDay = new Day(date, weight, cm);
         editedDay.setHeight(editDay.getHeight());
         editedDay.setStartingWeight(editDay.getStartingWeight());
         editDay.setAge(editDay.getAge());

@@ -5,11 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DAYS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -20,7 +17,6 @@ import seedu.address.model.calorie.CalorieManager;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing day in My Fitness Buddy.
@@ -85,10 +81,9 @@ public class EditCommand extends Command {
 
         Date updatedDate = editDayDescriptor.getDate().orElse(dayToEdit.getDate());
         Weight updatedWeight = editDayDescriptor.getWeight().orElse(dayToEdit.getWeight());
-        Set<Tag> updatedTags = editDayDescriptor.getTags().orElse(dayToEdit.getTags());
         CalorieManager calorieManager = dayToEdit.getCalorieManager();
 
-        return new Day(updatedDate, updatedWeight, updatedTags, calorieManager);
+        return new Day(updatedDate, updatedWeight, calorieManager);
     }
 
     @Override
@@ -116,7 +111,6 @@ public class EditCommand extends Command {
     public static class EditDayDescriptor {
         private Date date;
         private Weight weight;
-        private Set<Tag> tags;
 
         public EditDayDescriptor() {}
 
@@ -127,14 +121,13 @@ public class EditCommand extends Command {
         public EditDayDescriptor(EditDayDescriptor toCopy) {
             setDate(toCopy.date);
             setWeight(toCopy.weight);
-            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(date, weight, tags);
+            return CollectionUtil.isAnyNonNull(date, weight);
         }
 
         public void setDate(Date date) {
@@ -153,24 +146,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(weight);
         }
 
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -187,8 +162,7 @@ public class EditCommand extends Command {
             EditDayDescriptor e = (EditDayDescriptor) other;
 
             return getDate().equals(e.getDate())
-                    && getWeight().equals(e.getWeight())
-                    && getTags().equals(e.getTags());
+                    && getWeight().equals(e.getWeight());
         }
     }
 }
