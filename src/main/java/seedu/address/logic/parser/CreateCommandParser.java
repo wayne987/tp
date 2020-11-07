@@ -6,10 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
+import java.time.LocalDate;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.day.Date;
 import seedu.address.model.day.Weight;
 import seedu.address.model.person.Height;
 import seedu.address.model.person.ID;
@@ -42,7 +44,9 @@ public class CreateCommandParser implements Parser<CreateCommand> {
         Height height = ParserUtil.parseHeight(argMultimap.getValue(PREFIX_HEIGHT).get());
         Weight targetWeight = ParserUtil.parseWeight(argMultimap.getValue(PREFIX_WEIGHT).get());
         profile = new Profile(name, id, height, targetWeight);
-
+        //        Date start = new Date(LocalDate.now().toString()); set the created day to be 1999-06-06 for testing
+        //        profile.setStartingDay(start);
+        profile.setStartingDay(new Date(LocalDate.parse("1999-12-31").toString()));
         return new CreateCommand(profile);
     }
 

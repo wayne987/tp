@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.calculator.Bmi;
+import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.UniqueDayList;
 import seedu.address.model.day.Weight;
@@ -23,9 +25,12 @@ public class Person {
 
     // Identity fields
     private static Profile defaultProfile =
-            new Profile(new Name("Default"), new ID("1111"), new Height("170"), new Weight("50"));
+            new Profile(new Name("DEFAULT"), new ID(), new Height(), new Weight());
     private Profile profile;
     private final UniqueDayList days;
+    private final int age = 20;
+    //    private double currentBmi = -1;
+    private Date startingDate;
 
     /**
      * Every field must be present and not null.
@@ -95,6 +100,14 @@ public class Person {
     /**
      * Sets the profile information of current data to {@code profile}.
      */
+    public void setStartingDay(Date date) {
+        assert date != null;
+        profile.setStartingDay(date);
+    }
+
+    /**
+     * Sets the profile information of current data to {@code profile}.
+     */
     public void setProfile(Profile profile) {
         assert profile != null;
         this.profile = profile;
@@ -123,11 +136,21 @@ public class Person {
     }
 
     /**
+     * Gets starting day
+     */
+    public Date getDay() {
+        return profile.getStartDate();
+    }
+
+    /**
      * Adds a day to the my fitness buddy records.
      * The day must not already exist in the my fitness buddy records.
      */
     public void addDay(Day day) {
         assert day != null;
+        day.setAge(this.age);
+        day.setHeight(profile.height);
+        day.setStartingWeight(profile.getTargetWeight());
         days.add(day);
     }
 
@@ -152,8 +175,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both persons have the same ID.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -161,8 +183,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getProfile().getId().equals(getProfile().getId())
-                && otherPerson.getProfile().getName().equals(profile.getName()); // check is same id and name
+                && otherPerson.equals(this); // check is same id and name
     }
 
     /**
@@ -180,11 +201,7 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getProfile().getId().equals(getProfile().getId())
-                && otherPerson.getProfile().getName().equals(getProfile().getName())
-                && otherPerson.getProfile().getHeight().equals(getProfile().getHeight())
-                && otherPerson.getProfile().getTargetWeight().equals(getProfile().getTargetWeight())
-                && otherPerson.getDayList().equals(getDayList());
+        return otherPerson.getProfile().getId().equals(getProfile().getId());
     }
 
     @Override
@@ -210,5 +227,42 @@ public class Person {
         int thisPerson = Integer.parseInt(this.profile.id.value);
         int otherPer = Integer.parseInt(otherPerson.profile.id.value);
         return thisPerson > otherPer;
+    }
+
+    /**
+     * Returns current bmi
+     */
+    public double getCurrentBmi() {
+        List<Day> list = days.asUnmodifiableObservableList();
+        int size = list.size();
+        if (size == 0) {
+            return Bmi.calculateBmi(profile.height, profile.getTargetWeight());
+        } else {
+            Day currentDay = list.get(size - 1);
+            Weight currentWeight = currentDay.getWeight();
+            Height currentHeight = profile.height;
+            return Bmi.calculateBmi(currentHeight, currentWeight);
+        }
+    }
+
+    /**
+     * returns current bmi progress
+     */
+    public double getProgress() {
+        double currentBmi = getCurrentBmi();
+        double startBmi = Bmi.calculateBmi(profile.getHeight(), profile.getTargetWeight());
+        double endBmi = 22.5;
+        double totalBmiToChange = startBmi - endBmi;
+        double differenceWithEnd = currentBmi - endBmi;
+        double percentageChange = 1 - (differenceWithEnd / totalBmiToChange);
+
+        if (percentageChange > 1) {
+            percentageChange = 1;
+        }
+
+        if (percentageChange < 0) {
+            percentageChange = 0;
+        }
+        return percentageChange;
     }
 }

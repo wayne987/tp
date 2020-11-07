@@ -30,9 +30,10 @@ public class LoginCommand extends Command {
             throw new CommandException("not valid index");
         }
         Person toChange = ul.get(i);
+        //        System.out.println("current bmi :" + toChange.getCurrentBmi());
         model.setCurrentPerson(toChange);
         model.updateDay();
 
-        return new CommandResult(toChange.toString());
+        return new CommandResult(true, toChange.toString());
     }
 }

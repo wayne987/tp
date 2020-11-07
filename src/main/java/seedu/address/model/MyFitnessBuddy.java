@@ -64,19 +64,19 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
         this.person = p;
     }
 
+    public void setPersons(List<Person> persons) {
+        this.persons.setPersons(persons);
+    }
+
 
     /**
      * Resets the existing data of this {@code MyFitnessBuddy} with {@code newData}.
      */
     public void resetData(ReadOnlyMyFitnessBuddy newData) {
         requireNonNull(newData);
-        //        setProfile(newData.getProfile());
-        //        setDays(newData.getPerson().getDayList());
-        //        setPerson(newData.getPerson());
-        Person defaultPerson = new Person();
-        if (!newData.getPerson().equals(defaultPerson)) {
-            addPerson(newData.getPerson());
-        }
+        setDays(newData.getDayList());
+        setPersons(newData.getPersonList());
+        setCurrentPerson(new Person());
     }
 
     /**
@@ -110,7 +110,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      */
     public boolean hasDay(Day day) {
         requireNonNull(day);
-        return getPerson().getDays().contains(day);
+        return getPerson().hasDay(day);
     }
 
     /**
@@ -118,7 +118,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      */
     public boolean hasDay(LocalDate date) {
         requireNonNull(date);
-        return getPerson().getDays().contains(date);
+        return getPerson().hasDay(date);
     }
 
     /**
@@ -134,6 +134,8 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      */
     public void addDay(Day day) {
         currentPerson.addDay(day);
+        day.setStartingWeight(person.getProfile().getTargetWeight());
+        day.setHeight(person.getProfile().getHeight());
     }
 
     /**
@@ -143,7 +145,6 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      */
     public void setDay(Day target, Day editedDay) {
         requireNonNull(editedDay);
-
         getPerson().setDay(target, editedDay);
     }
 

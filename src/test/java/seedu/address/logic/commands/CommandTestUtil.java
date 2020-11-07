@@ -1,21 +1,20 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+//import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
+//import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.day.Day;
-import seedu.address.model.day.NameContainsKeywordsPredicate;
+//import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditDayDescriptorBuilder;
 
 /**
@@ -25,20 +24,15 @@ public class CommandTestUtil {
 
     public static final String VALID_DATE_1 = "2019-12-23";
     public static final String VALID_DATE_2 = "2020-10-11";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_WEIGHT_1 = "45";
     public static final String VALID_WEIGHT_2 = "95";
 
     public static final String DATE_DESC_1 = " " + PREFIX_DATE + VALID_DATE_1;
     public static final String DATE_DESC_2 = " " + PREFIX_DATE + VALID_DATE_2;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String WEIGHT_DESC_1 = " " + PREFIX_WEIGHT + VALID_WEIGHT_1;
     public static final String WEIGHT_DESC_2 = " " + PREFIX_WEIGHT + VALID_WEIGHT_2;
 
     public static final String INVALID_DATE_DESC = "2020-10&14"; // '&' not allowed in dates
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_WEIGHT_DESC = " " + PREFIX_WEIGHT + "91a"; // 'a' not allowed in weight
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -50,10 +44,10 @@ public class CommandTestUtil {
     static {
         DESC_1 = new EditDayDescriptorBuilder().withDate(VALID_DATE_1)
                 .withWeight(VALID_WEIGHT_1)
-                .withTags(VALID_TAG_FRIEND).build();
+                 .build();
         DESC_2 = new EditDayDescriptorBuilder().withDate(VALID_DATE_2)
                 .withWeight(VALID_WEIGHT_2)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .build();
     }
 
     /**
@@ -99,18 +93,18 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredDayList());
     }
     //error due to refactoring
-    /**
-     * Updates {@code model}'s filtered list to show only the day at the given {@code targetIndex} in the
-     * {@code model}'s My Fitness Buddy records.
-     */
-    public static void showDayAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredDayList().size());
-
-        Day day = model.getFilteredDayList().get(targetIndex.getZeroBased());
-        final String[] splitDate = day.getDate().value.split("\\s+");
-        model.updateFilteredDayList(new NameContainsKeywordsPredicate(Arrays.asList(splitDate[0])));
-
-        //assertEquals(1, model.getFilteredDayList().size());
-    }
+    //    /**
+    //     * Updates {@code model}'s filtered list to show only the day at the given {@code targetIndex} in the
+    //     * {@code model}'s My Fitness Buddy records.
+    //     */
+    //    public static void showDayAtIndex(Model model, Index targetIndex) {
+    //        assertTrue(targetIndex.getZeroBased() < model.getFilteredDayList().size());
+    //
+    //        Day day = model.getFilteredDayList().get(targetIndex.getZeroBased());
+    //        final String[] splitDate = day.getDate().value.split("\\s+");
+    //        model.updateFilteredDayList(new NameContainsKeywordsPredicate(Arrays.asList(splitDate[0])));
+    //
+    //        //assertEquals(1, model.getFilteredDayList().size());
+    //    }
 
 }

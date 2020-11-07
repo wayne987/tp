@@ -79,7 +79,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + DATE_DESC_1 + WEIGHT_DESC_1;
-        Day expectedDay = new DayBuilder(MDAY1).withTags().build();
+        Day expectedDay = new DayBuilder(MDAY1).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.setProfile(TypicalProfiles.JON);
         expectedModel.addDay(expectedDay);

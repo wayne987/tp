@@ -1,11 +1,10 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.day.Date.isCorrectRegrex;
 
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.format.DateTimeParseException;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -19,7 +18,6 @@ import seedu.address.model.day.Weight;
 import seedu.address.model.person.Height;
 import seedu.address.model.person.ID;
 import seedu.address.model.person.Name;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -27,6 +25,9 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_DUPLICATE_PREFIX = "There should only be one prefix for each field";
+    public static final double HEAVIEST_PERSON = 635;
+    public static final double LIGHTEST_PERSON = 2.13;
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -50,8 +51,14 @@ public class ParserUtil {
     public static Date parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        if (!Date.isValidDate(trimmedDate)) {
+        if (!isCorrectRegrex(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        try {
+            LocalDate.parse(trimmedDate);
+        } catch (DateTimeParseException e) {
+            String errorMessage = (e.toString().split("parsed: ")[1]);
+            throw new ParseException(errorMessage);
         }
         return new Date(trimmedDate);
     }
@@ -68,34 +75,16 @@ public class ParserUtil {
         if (!Weight.isValidWeight(trimmedWeight)) {
             throw new ParseException(Weight.MESSAGE_CONSTRAINTS);
         }
+
+        double w = Double.parseDouble(weight);
+
+        if (w < LIGHTEST_PERSON) {
+            throw new ParseException(Weight.MESSAGE_TOO_LIGHT);
+        }
+        if (w > HEAVIEST_PERSON) {
+            throw new ParseException(Weight.MESSAGE_TOO_HEAVY);
+        }
         return new Weight(trimmedWeight);
-    }
-
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 
     /**
@@ -179,12 +168,18 @@ public class ParserUtil {
     public static LocalDate parseLocalDate(String date) throws ParseException {
         requireNonNull(date);
         String toCheck = date.trim();
-
-        if (Date.isValidDate(toCheck)) {
-            return LocalDate.parse(toCheck);
-        } else {
+        if (!isCorrectRegrex(toCheck)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
+        LocalDate result;
+        try {
+            result = LocalDate.parse(toCheck);
+        } catch (DateTimeParseException e) {
+            String errorMessage = (e.toString().split("parsed: ")[1]);
+            throw new ParseException(errorMessage);
+        }
+
+        return result;
     }
 
     /**
@@ -224,5 +219,19 @@ public class ParserUtil {
             throw new ParseException(Height.MESSAGE_CONSTRAINTS);
         }
         return new Height(trimmedHeight);
+    }
+
+    /**
+     * Parses a {@code String BMI} into @code BMI.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static double parseBmi(String bmi) throws ParseException {
+        requireNonNull(bmi);
+        String trimmedHeight = bmi.trim();
+        try {
+            return Double.parseDouble(bmi);
+        } catch (Exception e) {
+            throw new ParseException("Please input a valid BMI");
+        }
     }
 }

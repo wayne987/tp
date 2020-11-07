@@ -190,8 +190,12 @@ _{Diagram to be added}_
 #### Implementation
 
 This feature allows users to view each of their calorie inputs and calorie 
-outputs for a particular day when that day is double clicked. When a `DayCard` gets 
-double clicked, the `MainWindow#fillCaloriePlaceHolders` method gets called. The 
+outputs for a particular day when a `view` command is used. 
+
+
+
+Alternatively, the user can view the calorie lists by double clicking on a particular
+`DayCard`. When a `DayCard` gets double clicked, the `MainWindow#fillCaloriePlaceHolders` method gets called. The 
 list of calorie inputs and calorie outputs of that day would be then used to fill up 
 the JavaFX `ListView`. The `ListView` is then used to replace the placeholders on the 
 right side of the app in `MainWindow`. 

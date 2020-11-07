@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_2;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showDayAtIndex;
+//import static seedu.address.logic.commands.CommandTestUtil.showDayAtIndex;
 import static seedu.address.testutil.TypicalDays.getTypicalMyFitnessBuddy;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DAY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_DAY;
@@ -106,16 +106,16 @@ public class EditCommandTest {
     }
 
     //    @Test
-    public void execute_duplicatePersonFilteredList_failure() {
-        showDayAtIndex(model, INDEX_FIRST_DAY);
-
-        // edit day in filtered list into a duplicate in address book
-        Day dayInList = model.getMyFitnessBuddy().getPerson().getDayList().get(INDEX_SECOND_DAY.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_DAY,
-                new EditDayDescriptorBuilder(dayInList).build());
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_DAY);
-    }
+    //    public void execute_duplicatePersonFilteredList_failure() {
+    //        showDayAtIndex(model, INDEX_FIRST_DAY);
+    //
+    //        // edit day in filtered list into a duplicate in address book
+    //        Day dayInList = model.getMyFitnessBuddy().getPerson().getDayList().get(INDEX_SECOND_DAY.getZeroBased());
+    //        EditCommand editCommand = new EditCommand(INDEX_FIRST_DAY,
+    //                new EditDayDescriptorBuilder(dayInList).build());
+    //
+    //        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_DAY);
+    //    }
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
@@ -131,17 +131,17 @@ public class EditCommandTest {
      * but smaller than size of address book
      */
     //    @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
-        showDayAtIndex(model, INDEX_FIRST_DAY);
-        Index outOfBoundIndex = INDEX_SECOND_DAY;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getMyFitnessBuddy().getPerson().getDayList().size());
-
-        EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditDayDescriptorBuilder().withDate(VALID_DATE_2).build());
-
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_DAY_DISPLAYED_INDEX);
-    }
+    //    public void execute_invalidPersonIndexFilteredList_failure() {
+    //        showDayAtIndex(model, INDEX_FIRST_DAY);
+    //        Index outOfBoundIndex = INDEX_SECOND_DAY;
+    //        // ensures that outOfBoundIndex is still in bounds of address book list
+    //        assertTrue(outOfBoundIndex.getZeroBased() < model.getMyFitnessBuddy().getPerson().getDayList().size());
+    //
+    //        EditCommand editCommand = new EditCommand(outOfBoundIndex,
+    //                new EditDayDescriptorBuilder().withDate(VALID_DATE_2).build());
+    //
+    //        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_DAY_DISPLAYED_INDEX);
+    //    }
 
     //    @Test
     public void equals() {

@@ -1,9 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -14,7 +12,6 @@ import seedu.address.model.calorie.CalorieManager;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Day}.
@@ -26,7 +23,6 @@ class JsonAdaptedDay {
     private final String date;
     private final String weight;
     private final JsonAdaptedCalorieManager calorieManager;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
 
     /**
@@ -34,14 +30,10 @@ class JsonAdaptedDay {
      */
     @JsonCreator
     public JsonAdaptedDay(@JsonProperty("date") String date, @JsonProperty("weight") String weight,
-                          @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                           @JsonProperty("inputList") List<JsonAdaptedInput> inputList,
                           @JsonProperty("outputList") List<JsonAdaptedOutput> outputList) {
         this.date = date;
         this.weight = weight;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
         calorieManager = new JsonAdaptedCalorieManager(inputList, outputList);
     }
 
@@ -51,9 +43,6 @@ class JsonAdaptedDay {
     public JsonAdaptedDay(Day source) {
         date = source.getDate().value;
         weight = source.getWeight().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
         calorieManager = new JsonAdaptedCalorieManager(new ArrayList<>(),
                                                        new ArrayList<>());
         calorieManager.getInputList().addAll(source.getCalorieManager().getCalorieInputList().stream()
@@ -70,11 +59,6 @@ class JsonAdaptedDay {
      * @throws IllegalValueException if there were any data constraints violated in the adapted day.
      */
     public Day toModelType() throws IllegalValueException {
-        final List<Tag> dayTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            dayTags.add(tag.toModelType());
-        }
-
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
@@ -96,9 +80,8 @@ class JsonAdaptedDay {
                     CalorieManager.class.getSimpleName()));
         }
         final CalorieManager modelCalorieManager = calorieManager.toModelType();
-        final Set<Tag> modelTags = new HashSet<>(dayTags);
 
-        return new Day(modelDate, modelWeight, modelTags, modelCalorieManager);
+        return new Day(modelDate, modelWeight, modelCalorieManager);
     }
 
 }

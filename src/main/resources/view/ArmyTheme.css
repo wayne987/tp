@@ -100,11 +100,11 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-image: url("background.png");
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-image: url("backgroundEven.png");
 }
 
 .list-cell:filled:selected {
@@ -142,6 +142,10 @@
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
+}
+
+.img {
+  border-radius: 50%;
 }
 
 .stack-pane {
@@ -350,7 +354,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-image: url("background.png");
     -fx-background-radius: 0;
 }
 
@@ -367,3 +371,9 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+.bmi_label {
+    -fx-background-color: #a88932;
+}
+
+

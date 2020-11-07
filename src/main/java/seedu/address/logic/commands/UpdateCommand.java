@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.LogicManager;
@@ -18,7 +19,9 @@ import seedu.address.model.day.Weight;
 import seedu.address.model.person.Height;
 import seedu.address.model.person.ID;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Profile;
+
 
 /**
  * Updates the profile in My Fitness Buddy
@@ -42,6 +45,7 @@ public class UpdateCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Profile updated!";
     public static final String MESSAGE_ERROR = "No profile found. ";
     public static final String MESSAGE_NOT_EDITED = "At least one valid field to edit must be provided.";
+    public static final String MESSAGE_SAME_ID = "The ID you intending to change to belongs to someone else";
     private final EditProfileDescriptor editProfileDescriptor;
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
@@ -53,6 +57,14 @@ public class UpdateCommand extends Command {
         this.editProfileDescriptor = new EditProfileDescriptor(editProfileDescriptor);
     }
 
+    /**
+     * checks if the id intended to be change is taken
+     */
+    public boolean isUnique(ID id, ObservableList<Person> ul) {
+        System.out.println(id);
+        return ul.size() == 0 || ul.stream().noneMatch(x -> x.getProfile().getId().value.equals(id.value));
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -60,11 +72,18 @@ public class UpdateCommand extends Command {
         if (model.isDefaultProfile()) {
             throw new CommandException(MESSAGE_ERROR);
         }
+
+
+        if (editProfileDescriptor.id != null && !isUnique(editProfileDescriptor.id, model.getFilteredPersonList())) {
+            throw new CommandException(MESSAGE_SAME_ID);
+        }
+
         Profile toEdit = model.getMyFitnessBuddy().getProfile();
         Profile editedProfile = createEditedProfile(toEdit, editProfileDescriptor);
+        editedProfile.setStartingDay(toEdit.getStartDate());
         model.setProfile(editedProfile);
         logger.info("---------------[USER COMMAND][Profile updated]");
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedProfile));
+        return new CommandResult(true, String.format(MESSAGE_SUCCESS, editedProfile));
     }
 
     /**
@@ -116,7 +135,7 @@ public class UpdateCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, weight, height, weight);
+            return CollectionUtil.isAnyNonNull(name, id, height, weight);
         }
 
         public void setName(Name name) {
@@ -128,6 +147,7 @@ public class UpdateCommand extends Command {
         }
 
         public void setId(ID id) {
+            System.out.println(id);
             this.id = id;
         }
 

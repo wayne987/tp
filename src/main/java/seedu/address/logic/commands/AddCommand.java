@@ -4,9 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
+import java.time.LocalDate;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
+
 
 /**
  * Adds a day to the records.
@@ -25,6 +29,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New day added: %1$s";
     public static final String MESSAGE_DUPLICATE_DAY = "This day already exists in the records.";
+    public static final String MESSAGE_PAST = "Bruh going back in time?";
+    public static final String MESSAGE_FUTURE = "Bruh you travelling through time?";
 
     private final Day toAdd;
 
@@ -36,9 +42,32 @@ public class AddCommand extends Command {
         toAdd = day;
     }
 
+    private boolean isBefore(Date toAdd, Date start) {
+        LocalDate add = LocalDate.parse(toAdd.value);
+        LocalDate compareTo = LocalDate.parse(start.value);
+        return add.isBefore(compareTo);
+    }
+
+    private boolean isAfter(Date toAdd) {
+        LocalDate add = LocalDate.parse(toAdd.value);
+        LocalDate compareTo = LocalDate.now();
+        return add.isAfter(compareTo);
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        Date start = model.getMyFitnessBuddy().getPerson().getDay();
+        Date check = toAdd.getDate();
+
+        if (isBefore(check, start)) {
+            throw new CommandException(MESSAGE_PAST);
+        }
+
+        if (isAfter(check)) {
+            throw new CommandException(MESSAGE_FUTURE);
+        }
 
         if (model.hasDay(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_DAY);

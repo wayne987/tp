@@ -17,48 +17,52 @@ public class StatsCommandTest {
     @Test
     public void execute_viewBothStats_success() {
         CommandResult expectedCommandResult =
-                new CommandResult(SHOWING_ALL_STATS_MESSAGE, false, false, true, false, false, false, false, 0);
-        assertCommandSuccess(new StatsCommand(true, true), model,
+                new CommandResult(SHOWING_ALL_STATS_MESSAGE, false, false, true,
+                        false, false, false, false, 0,
+                        false, false, 0, false);
+        assertCommandSuccess(new StatsCommand(true, true, false), model,
                 expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_viewBothStatsOverloadedConstructor_success() {
         CommandResult expectedCommandResult =
-                new CommandResult(SHOWING_ALL_STATS_MESSAGE, true, false, false);
-        assertCommandSuccess(new StatsCommand(true, true), model,
+                new CommandResult(SHOWING_ALL_STATS_MESSAGE, true, false, false, false);
+        assertCommandSuccess(new StatsCommand(true, true, false), model,
                 expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_viewCalorieStats_success() {
         CommandResult expectedCommandResult =
-                new CommandResult(SHOWING_CALORIE_STATS_MESSAGE, false, false, false, true, false, false, false, 0);
-        assertCommandSuccess(new StatsCommand(true, false), model,
+                new CommandResult(SHOWING_CALORIE_STATS_MESSAGE, false, false, false,
+                        true, false, false, false, 0, false, false, 0, false);
+        assertCommandSuccess(new StatsCommand(true, false, false), model,
                 expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_viewCalorieStatsOverloadedConstructor_success() {
         CommandResult expectedCommandResult =
-                new CommandResult(SHOWING_CALORIE_STATS_MESSAGE, false, true, false);
-        assertCommandSuccess(new StatsCommand(true, false), model,
+                new CommandResult(SHOWING_CALORIE_STATS_MESSAGE, false, true, false, false);
+        assertCommandSuccess(new StatsCommand(true, false, false), model,
                 expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_viewWeightStats_success() {
         CommandResult expectedCommandResult =
-                new CommandResult(SHOWING_WEIGHT_STATS_MESSAGE, false, false, false, false, true, false, false, 0);
-        assertCommandSuccess(new StatsCommand(false, true), model,
+                new CommandResult(SHOWING_WEIGHT_STATS_MESSAGE, false, false, false,
+                        false, true, false, false, 0, false, false, 0, false);
+        assertCommandSuccess(new StatsCommand(false, true, false), model,
                 expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_viewWeightStatsOverloadedConstructor_success() {
         CommandResult expectedCommandResult =
-                new CommandResult(SHOWING_WEIGHT_STATS_MESSAGE, false, false, true);
-        assertCommandSuccess(new StatsCommand(false, true), model,
+                new CommandResult(SHOWING_WEIGHT_STATS_MESSAGE, false, false, true, false);
+        assertCommandSuccess(new StatsCommand(false, true, false), model,
                 expectedCommandResult, expectedModel);
     }
 

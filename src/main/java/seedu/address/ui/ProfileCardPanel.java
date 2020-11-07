@@ -22,16 +22,31 @@ public class ProfileCardPanel extends UiPart<Region> {
     @FXML
     private ListView<Person> profileCardView;
 
+
     /**
-     * Creates a {@code ProfileCardPanel} with the given {@code Person}.
+     * Creates an empty {@code ProfileCardPanel}.
      */
-    public ProfileCardPanel(Person person) {
+    public ProfileCardPanel() {
         super(FXML);
+        logger.info("ProfileCardPanel created");
+    }
+
+    /**
+     * Updates the {@code ProfileCardPanel} with the given {@code Person}.
+     */
+    public void update(Person person) {
         ObservableList<Person> list = FXCollections.observableArrayList();
         list.add(person);
         profileCardView.setItems(list);
         profileCardView.setCellFactory(listView -> new ProfileCardViewCell());
-        logger.info("ProfileCardPanel created");
+    }
+
+    /**
+     * Clears the current profile panel.
+     */
+    public void clear() {
+        profileCardView.setItems(FXCollections.observableArrayList());
+        profileCardView.setCellFactory(listView -> new ProfileCardViewCell());
     }
 
     /**

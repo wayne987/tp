@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -26,9 +27,24 @@ public class ProfileListPanel extends UiPart<Region> {
      */
     public ProfileListPanel(ObservableList<Person> personList) {
         super(FXML);
+        update(personList);
+        logger.info("ProfileListPanel created");
+    }
+
+    /**
+     * Clears the profile list panel.
+     */
+    public void clear() {
+        profileListView.setItems(FXCollections.observableArrayList());
+        profileListView.setCellFactory(listView -> new ProfileListViewCell());
+    }
+
+    /**
+     * Updates the {@code ProfileListPanel} with the given {@code ObservableList}
+     */
+    public void update(ObservableList<Person> personList) {
         profileListView.setItems(personList);
         profileListView.setCellFactory(listView -> new ProfileListViewCell());
-        logger.info("ProfileListPanel created");
     }
 
     /**
