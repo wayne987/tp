@@ -190,19 +190,31 @@ _{Diagram to be added}_
 #### Implementation
 
 This feature allows users to view each of their calorie inputs and calorie 
-outputs for a particular day when a `view` command is used. 
+outputs for a particular day in a `ListView` when a view command is used.
+The mechanism utilises the ViewCommandParser class to parse the input and get the 
+`Index` of the particular day to be viewed.
 
+It then utilises the ViewCommand class to display the correct message to the user,
+depending on the validity of the `Index`. If the `Index` is valid, a CommandResult 
+gets returned and the `MainWindow#handleView` gets called with the now zero-based 
+`Index`. The `Index` is then used to get the `Day` from the `Logic#getFilteredDayList` 
+method. The list of calorie inputs and calorie outputs of that `Day` would be then used 
+to fill up the JavaFX `ListView`. The `ListView` is then used to replace the placeholders 
+on the right side of the app in `MainWindow`. 
 
+The JavaFx `StatusBar` will also get updated with the date of the `Day` viewed, using
+the `MainWindow#setDateLabel` method. 
 
-Alternatively, the user can view the calorie lists by double clicking on a particular
-`DayCard`. When a `DayCard` gets double clicked, the `MainWindow#fillCaloriePlaceHolders` method gets called. The 
-list of calorie inputs and calorie outputs of that day would be then used to fill up 
-the JavaFX `ListView`. The `ListView` is then used to replace the placeholders on the 
-right side of the app in `MainWindow`. 
+Whenever a new calorie gets added, the calorie lists will get automatically updated
+using the `DayListViewCell#updateItem` method in `DayListPanel`.
 
-{More details to be added in terms of updating the list when a new calorie is added}
+The calorie lists can also be viewed by double clicking on a `DayCard`. When a `DayCard`
+gets double clicked, the `Hbox#setOnMouseClicked` gets called and the lists and 
+status bar gets updated similarly. 
 
-_{Diagram to be added}_
+Given below is the sequence diagram when a view command is used.
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
 ### Creates a new Person to My Fitness Buddy
 
@@ -362,8 +374,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Add a daily weight record**
 
 **MSS**
-1.  User requests to add a weight record
-2.  User inputs the date and weight
+1.  User inputs the date and weight using the add command.
 3.  User sees the newly added weight record of the day.
     
     Use case ends.
@@ -371,9 +382,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Edit a daily weight record**
 
 **MSS**
-1.  User requests to edit a weight record
-2.  User inputs the index of the record and weight
-3.  User sees the newly edited weight record of the day.
+1.  User inputs the index of the record and the new weight with the edit command.
+2.  User sees the newly edited weight record of the day.
     
     Use case ends.
 
@@ -381,25 +391,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add calorie input
-2.  User selects the date that he/she wants to add a calorie input
-3.  User inputs the calorie input
-4.  User sees the newly updated calorie input of the day
+1.  User requests to add calorie input using the calorie command. 
+2.  User enters the date that he/she wants to add a calorie input.
+3.  User inputs the time and name of the calorie input.
+4.  User sees the newly updated total calorie input of that day.
 
     Use case ends.
     
-**Use case: View calorie history**
+**Use case: View calorie's of a particular day recorded**
 
 **MSS**
 
-1.  User requests to view calorie history
-2.  User sees his/her calorie history
+1.  User requests to view the calorie history of a particular day using the view 
+command. 
+2.  User sees his/her calories of that day.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The history is empty.
+* 2a. The calorie lists are empty.
 
   Use case ends.
 
@@ -449,13 +460,32 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Creating a profile
+
+1. Creating a profile when the current profile list is empty
+
+    1. Test case: `create n/John id/1111 h/170 w/80` <br>
+       Expected: Profile gets created.
+       
+    2. Test case: `create n/John id/1121 h/170 w/80` <br>
+       Expected: No profile gets created. Error details shown in the status message. Invalid id number. 
+   
+### Adding a day
+
+1. Adding a day when the current day list is empty
+
+    1. Test case: `add d/2020-10-21 w/77` <br>
+       Expected: Day gets created. 
+       
+    2. Test case: `add d/2020-10-212 w/77` <br>
+       Expected: No Day gets created. Error details shown in the status message. Invalid date.
+       
+    3. Test case: `add d/2020-10-21 w/sd` <br>
+       Expected: No Day gets created. Error details shown in the status message. Invalid weight.
 
 ### Deleting a day
 
 1. Deleting a day while all days are being shown
-
-   1. Prerequisites: List all days using the `list` command. Multiple days in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
@@ -465,9 +495,43 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+      
+### Adding a calorie input to a day 
+Assuming the day (2020-10-21) has already been added to the day list.
 
-1. _{ more test cases …​ }_
+1. Adding a calorie input to a day that has been added to the list already
 
+    1. Test case: `calorie d/2020-10-21 tp/in t/1200 f/chicken c/300` <br>
+       Expected: Calorie input added. Total calorie input count updated for that day. 
+       
+    2. Test case: `calorie d/2020-10-21 tp/in t/sdfds f/chicken c/300` <br>    
+       Expected: Calorie input not added. Total calorie input count remains the same for that day. Invalid time input.  
+
+### Adding a calorie output to a day 
+Assuming the day (2020-10-21) has already been added to the day list.
+
+1. Adding a calorie output to a day that has been added to the list already
+
+    1. Test case: `calorie d/2020-10-21 tp/out t/1200 e/running c/300` <br>
+       Expected: Calorie output added. Total calorie output count updated for that day. 
+       
+    2. Test case: `calorie d/2020-10-21 tp/out t/sdfds e/gym c/300` <br>    
+       Expected: Calorie input not added. Total calorie input count remains the same for that day. Invalid time input.  
+
+### Viewing the calorie lists of a day
+Assuming the day list is not empty and the day at index 1 has calorie 
+inputs and ouputs already.
+
+   1. Test case: `view 1`<br>
+      Expected: Calories will be shown on the calorie panels on the right. 
+      Status bar will update the the date of the day being shown. 
+
+   1. Test case: `view 0`<br>
+      Expected: Calorie lists does not update. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+  
 ### Saving data
 
 1. Dealing with missing/corrupted data files
