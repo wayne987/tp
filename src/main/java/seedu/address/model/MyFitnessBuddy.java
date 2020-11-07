@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.day.Day;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Profile;
+import seedu.address.model.person.UniquePersonList;
 
 /**
  * Wraps all data at the My Fitness Buddy level
@@ -16,9 +17,14 @@ import seedu.address.model.person.Profile;
  */
 public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
 
-    //private final UniqueDayList days;
+    private UniquePersonList persons;
     //private Profile profile;
+
+    //serves as a container for all the ui to obtain information from
     private Person person;
+
+    //serves as a pointer to which profile is being selected
+    private Person currentPerson;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,11 +34,13 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      *   among constructors.
      */
     {
-        //days = new UniqueDayList();
+        persons = new UniquePersonList();
         person = new Person();
+        currentPerson = new Person();
     }
 
-    public MyFitnessBuddy() {}
+    public MyFitnessBuddy() {
+    }
 
     /**
      * Creates an MyFitnessBuddy using the data in the {@code toBeCopied}
@@ -46,7 +54,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
 
     /**
      * Replaces the contents of the day list with {@code days}.
-     * {@code days} must not contain duplicate persons.
+     * {@code days} must not contain duplicate days.
      */
     public void setDays(List<Day> days) {
         getPerson().setDays(days);
@@ -56,12 +64,26 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
         this.person = p;
     }
 
+    public void setPersons(List<Person> persons) {
+        this.persons.setPersons(persons);
+    }
+
+
     /**
      * Resets the existing data of this {@code MyFitnessBuddy} with {@code newData}.
      */
     public void resetData(ReadOnlyMyFitnessBuddy newData) {
         requireNonNull(newData);
-        setDays(newData.getPerson().getDayList());
+        setDays(newData.getDayList());
+        setPersons(newData.getPersonList());
+        setCurrentPerson(new Person());
+    }
+
+    /**
+     * Resets the existing data of this {@code MyFitnessBuddy} with {@code newData}.
+     */
+    public void resetPersons() {
+        persons = new UniquePersonList();
     }
 
     /**
@@ -69,7 +91,8 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      */
 
     public void setProfile(Profile profile) {
-        getPerson().setProfile(profile);
+        this.currentPerson.setProfile(profile);
+        this.person.setProfile(profile);
     }
 
     /**
@@ -77,7 +100,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      */
 
     public boolean isDefaultProfile() {
-        return getPerson().isDefaultProfile();
+        return this.currentPerson.isDefaultProfile();
     }
 
     //// day-level operations
@@ -87,7 +110,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      */
     public boolean hasDay(Day day) {
         requireNonNull(day);
-        return getPerson().getDays().contains(day);
+        return getPerson().hasDay(day);
     }
 
     /**
@@ -95,7 +118,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      */
     public boolean hasDay(LocalDate date) {
         requireNonNull(date);
-        return getPerson().getDays().contains(date);
+        return getPerson().hasDay(date);
     }
 
     /**
@@ -104,12 +127,15 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
     public Day getDay(LocalDate date) {
         return getPerson().getDay(date);
     }
+
     /**
      * Adds a day to My Fitness Buddy.
      * The day must not already exist in My Fitness Buddy.
      */
-    public void addDay(Day p) {
-        getPerson().addDay(p);
+    public void addDay(Day day) {
+        currentPerson.addDay(day);
+        day.setStartingWeight(person.getProfile().getTargetWeight());
+        day.setHeight(person.getProfile().getHeight());
     }
 
     /**
@@ -119,7 +145,6 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      */
     public void setDay(Day target, Day editedDay) {
         requireNonNull(editedDay);
-
         getPerson().setDay(target, editedDay);
     }
 
@@ -128,7 +153,8 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      * {@code key} must exist in My Fitness Buddy.
      */
     public void removeDay(Day key) {
-        getPerson().getDays().remove(key);
+        this.currentPerson.getDays().remove(key);
+        updateDay();
     }
 
     //// util methods
@@ -145,6 +171,41 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
 
     public Person getPerson() {
         return person;
+    }
+
+    public void setCurrentPerson(Person toSet) {
+        this.currentPerson = toSet;
+        this.person.setProfile(currentPerson.getProfile());
+        this.person.setDays(currentPerson.getDayList());
+    }
+
+    /**
+     * Adds a new person
+     * @param toAdd is the person to be added
+     */
+    public void addPerson(Person toAdd) {
+        this.currentPerson = toAdd;
+        this.person.setProfile(currentPerson.getProfile());
+        this.person.setDays(currentPerson.getDayList());
+        this.persons.add(currentPerson);
+    }
+
+    public boolean hasPerson(Person toCheck) {
+        return this.persons.contains(toCheck);
+    }
+
+    public void updateDay() {
+        this.person.setDays(this.currentPerson.getDayList());
+    }
+
+    @Override
+    public ObservableList<Person> getPersonList() {
+        return this.persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Person> getPersons() {
+        return persons.asUnmodifiableObservableList();
     }
 
     @Override

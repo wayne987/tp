@@ -22,9 +22,9 @@ import seedu.address.model.ReadOnlyMyFitnessBuddy;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonMyFitnessBuddyStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.MyFitnessBuddyStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -36,7 +36,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 6, 0, true);
+    public static final Version VERSION = new Version(1, 3, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -56,7 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage myFitnessBuddyStorage = new JsonAddressBookStorage(userPrefs.getMyFitnessBuddyFilePath());
+        MyFitnessBuddyStorage myFitnessBuddyStorage =
+                new JsonMyFitnessBuddyStorage(userPrefs.getMyFitnessBuddyFilePath());
         storage = new StorageManager(myFitnessBuddyStorage, userPrefsStorage);
 
         initLogging(config);
@@ -79,11 +80,12 @@ public class MainApp extends Application {
         Optional<ReadOnlyMyFitnessBuddy> myFitnessBuddyOptional;
         ReadOnlyMyFitnessBuddy initialData;
         try {
-            myFitnessBuddyOptional = storage.readAddressBook();
+            myFitnessBuddyOptional = storage.readFitnessBuddy();
             if (!myFitnessBuddyOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample MyFitnessBuddy");
             }
             initialData = myFitnessBuddyOptional.orElseGet(SampleDataUtil::getSampleMyFitnessBuddy);
+            storage.saveFitnessBuddy(initialData);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with a new MyFitnessBuddy");
             initialData = new MyFitnessBuddy();
@@ -91,7 +93,6 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with a new MyFitnessBuddy");
             initialData = new MyFitnessBuddy();
         }
-
         return new ModelManager(initialData, userPrefs);
     }
 

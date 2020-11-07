@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ID {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "ID should only contain numbers, and it should be 4 digits long. ";
+            "Key in a valid 4D number!";
     public static final String VALIDATION_REGEX = "\\d{4}";
     public final String value;
 
@@ -26,11 +26,31 @@ public class ID {
     }
 
     /**
+     * Constructs a {@code ID}.
+     * for default profile
+     */
+    public ID() {
+        value = "DEFAULT";
+    }
+
+    /**
      * Returns true if a given string is a valid Id number.
      */
     public static boolean isValidId(String test) {
         assert test.length() > 3;
-        return test.matches(VALIDATION_REGEX);
+        if (test.matches(VALIDATION_REGEX)) {
+            int firstIndex = Integer.parseInt(test.substring(0, 1));
+            int secondIndex = Integer.parseInt(test.substring(1, 2));
+            int value = Integer.parseInt(test.substring(2, 4));
+            return firstIndex > 0
+                    && firstIndex < 5
+                    && secondIndex > 0
+                    && secondIndex < 5
+                    && value > 0
+                    && value < 21;
+        } else {
+            return false;
+        }
     }
 
     @Override

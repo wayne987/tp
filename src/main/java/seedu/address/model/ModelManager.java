@@ -13,7 +13,9 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.day.Day;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Profile;
+
 
 /**
  * Represents the in-memory model of My Fitness Buddy data.
@@ -24,6 +26,7 @@ public class ModelManager implements Model {
     private final MyFitnessBuddy myFitnessBuddy;
     private final UserPrefs userPrefs;
     private final FilteredList<Day> filteredDays;
+    private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given myFitnessBuddy and userPrefs.
@@ -37,6 +40,7 @@ public class ModelManager implements Model {
         this.myFitnessBuddy = new MyFitnessBuddy(readOnlyMyFitnessBuddy);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredDays = new FilteredList<>(this.myFitnessBuddy.getDayList());
+        filteredPersons = new FilteredList<>(this.myFitnessBuddy.getPersonList());
     }
 
     public ModelManager() {
@@ -91,7 +95,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns my fitness buddy
+     * Returns my fitness buddy.
      */
     @Override
     public ReadOnlyMyFitnessBuddy getMyFitnessBuddy() {
@@ -126,6 +130,15 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addPerson(Person toAdd) {
+        myFitnessBuddy.addPerson(toAdd);
+    }
+
+    @Override
+    public void setCurrentPerson(Person toSet) {
+        myFitnessBuddy.setCurrentPerson(toSet);
+    }
+    @Override
     public void setDay(Day target, Day editedDay) {
         requireAllNonNull(target, editedDay);
         myFitnessBuddy.setDay(target, editedDay);
@@ -148,14 +161,46 @@ public class ModelManager implements Model {
         filteredDays.setPredicate(predicate);
     }
 
+    //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Day} backed by the internal list of
+     * {@code versionedMyFitnessBuddy}
+     */
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return filteredPersons;
+    }
+
+    @Override
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+
     @Override
     public void setProfile(Profile profile) {
         myFitnessBuddy.setProfile(profile);
     }
 
     @Override
+    public void resetPersons() {
+        myFitnessBuddy.resetPersons();
+    }
+
     public boolean isDefaultProfile() {
         return myFitnessBuddy.isDefaultProfile();
+    }
+
+    @Override
+    public boolean hasPerson(Person toCheck) {
+        return myFitnessBuddy.hasPerson(toCheck);
+    }
+
+    @Override
+    public void updateDay() {
+        myFitnessBuddy.updateDay();
     }
 
     @Override

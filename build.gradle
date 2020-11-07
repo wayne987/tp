@@ -70,7 +70,8 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'MyFitnessBuddy_v1.3.jar'
 }
 
 defaultTasks 'clean', 'test'
+

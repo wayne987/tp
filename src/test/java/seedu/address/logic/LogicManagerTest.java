@@ -6,7 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_1;
 import static seedu.address.logic.commands.CommandTestUtil.WEIGHT_DESC_1;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalDays.AMY;
+import static seedu.address.testutil.TypicalDays.MDAY1;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -25,10 +25,11 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyMyFitnessBuddy;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.day.Day;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonMyFitnessBuddyStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.DayBuilder;
+import seedu.address.testutil.TypicalProfiles;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -41,8 +42,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonMyFitnessBuddyStorage addressBookStorage =
+                new JsonMyFitnessBuddyStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -65,11 +66,11 @@ public class LogicManagerTest {
         String listCommand = ListCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
-
+    // error: im not too sure...?
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
+        JsonMyFitnessBuddyStorage addressBookStorage =
                 new JsonMyFitnessBuddyIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
@@ -78,8 +79,9 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + DATE_DESC_1 + WEIGHT_DESC_1;
-        Day expectedDay = new DayBuilder(AMY).withTags().build();
+        Day expectedDay = new DayBuilder(MDAY1).build();
         ModelManager expectedModel = new ModelManager();
+        expectedModel.setProfile(TypicalProfiles.JON);
         expectedModel.addDay(expectedDay);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         //assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
@@ -146,13 +148,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonMyFitnessBuddyIoExceptionThrowingStub extends JsonAddressBookStorage {
+    private static class JsonMyFitnessBuddyIoExceptionThrowingStub extends JsonMyFitnessBuddyStorage {
         private JsonMyFitnessBuddyIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyMyFitnessBuddy addressBook, Path filePath) throws IOException {
+        public void saveFitnessBuddy(ReadOnlyMyFitnessBuddy myFitnessBuddy, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

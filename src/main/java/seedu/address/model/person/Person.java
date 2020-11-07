@@ -8,21 +8,29 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.calculator.Bmi;
+import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.UniqueDayList;
 import seedu.address.model.day.Weight;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in My Fitness Buddy.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
 
+    // if a person has DEFAULT_PROFILE, it means that the profile has not been set by user so no
+    // daily records can be added.
+
     // Identity fields
     private static Profile defaultProfile =
-            new Profile(new Name("Default"), new ID("0000"), new Height("170"), new Weight("50"));
+            new Profile(new Name("DEFAULT"), new ID(), new Height(), new Weight());
     private Profile profile;
     private final UniqueDayList days;
+    private final int age = 20;
+    //    private double currentBmi = -1;
+    private Date startingDate;
 
     /**
      * Every field must be present and not null.
@@ -55,18 +63,27 @@ public class Person {
      */
     public boolean isDefaultProfile() {
         assert profile != null;
-        return getProfile().equals(defaultProfile);
+        return profile.equals(defaultProfile);
     }
 
+    /**
+     * Returns the profile of a Person instance.
+     */
     public Profile getProfile() {
         assert profile != null;
         return profile;
     }
 
+    /**
+     * Returns an unmodifiable day list.
+     */
     public ObservableList<Day> getDayList() {
         return days.asUnmodifiableObservableList();
     }
 
+    /**
+     * Returns the UniqueDayList that can be modified.
+     */
     public UniqueDayList getDays() {
         return days;
     }
@@ -83,17 +100,19 @@ public class Person {
     /**
      * Sets the profile information of current data to {@code profile}.
      */
+    public void setStartingDay(Date date) {
+        assert date != null;
+        profile.setStartingDay(date);
+    }
+
+    /**
+     * Sets the profile information of current data to {@code profile}.
+     */
     public void setProfile(Profile profile) {
         assert profile != null;
         this.profile = profile;
     }
 
-    /**
-     * Checks if the current data {@code Person } has a profile.
-     */
-    public boolean hasProfile() {
-        return profile != null;
-    }
     /**
      * Returns true if a day with the same identity as {@code day} exists in the my fitness buddy records.
      */
@@ -110,10 +129,17 @@ public class Person {
     }
 
     /**
-     * get a day in the my fitness buddy records with a specific date
+     * Gets a day in the my fitness buddy records with a specific date.
      */
     public Day getDay(LocalDate date) {
         return days.getDate(date);
+    }
+
+    /**
+     * Gets starting day
+     */
+    public Date getDay() {
+        return profile.getStartDate();
     }
 
     /**
@@ -122,6 +148,9 @@ public class Person {
      */
     public void addDay(Day day) {
         assert day != null;
+        day.setAge(this.age);
+        day.setHeight(profile.height);
+        day.setStartingWeight(profile.getTargetWeight());
         days.add(day);
     }
 
@@ -146,8 +175,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both persons have the same ID.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -155,7 +183,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getProfile().getId().equals(getProfile().getId()); // check is same id
+                && otherPerson.equals(this); // check is same id and name
     }
 
     /**
@@ -173,11 +201,7 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getProfile().getId().equals(getProfile().getId())
-                && otherPerson.getProfile().getName().equals(getProfile().getName())
-                && otherPerson.getProfile().getHeight().equals(getProfile().getHeight())
-                && otherPerson.getProfile().getTargetWeight().equals(getProfile().getTargetWeight())
-                && otherPerson.getDayList().equals(getDayList());
+        return otherPerson.getProfile().getId().equals(getProfile().getId());
     }
 
     @Override
@@ -196,4 +220,49 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Returns true if the date of this day is after otherDay
+     */
+    public boolean isAfter(Person otherPerson) {
+        int thisPerson = Integer.parseInt(this.profile.id.value);
+        int otherPer = Integer.parseInt(otherPerson.profile.id.value);
+        return thisPerson > otherPer;
+    }
+
+    /**
+     * Returns current bmi
+     */
+    public double getCurrentBmi() {
+        List<Day> list = days.asUnmodifiableObservableList();
+        int size = list.size();
+        if (size == 0) {
+            return Bmi.calculateBmi(profile.height, profile.getTargetWeight());
+        } else {
+            Day currentDay = list.get(size - 1);
+            Weight currentWeight = currentDay.getWeight();
+            Height currentHeight = profile.height;
+            return Bmi.calculateBmi(currentHeight, currentWeight);
+        }
+    }
+
+    /**
+     * returns current bmi progress
+     */
+    public double getProgress() {
+        double currentBmi = getCurrentBmi();
+        double startBmi = Bmi.calculateBmi(profile.getHeight(), profile.getTargetWeight());
+        double endBmi = 22.5;
+        double totalBmiToChange = startBmi - endBmi;
+        double differenceWithEnd = currentBmi - endBmi;
+        double percentageChange = 1 - (differenceWithEnd / totalBmiToChange);
+
+        if (percentageChange > 1) {
+            percentageChange = 1;
+        }
+
+        if (percentageChange < 0) {
+            percentageChange = 0;
+        }
+        return percentageChange;
+    }
 }
