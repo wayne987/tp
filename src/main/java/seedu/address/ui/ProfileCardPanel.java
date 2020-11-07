@@ -35,6 +35,13 @@ public class ProfileCardPanel extends UiPart<Region> {
     }
 
     /**
+     * Creates an empty {@code ProfileCardPanel}.
+     */
+    public ProfileCardPanel() {
+        super(FXML);
+    }
+
+    /**
      * Clears the current profile panel.
      */
     public void clear() {
