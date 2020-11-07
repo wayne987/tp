@@ -22,7 +22,7 @@ import seedu.address.testutil.TypicalProfiles;
 
 class CreateCommandTest {
 
-    private static final Profile JON = TypicalProfiles.JON;
+    private static final Profile JON = TypicalProfiles.VALID_PROFILE;
     private static Profile defaultProfile = TypicalProfiles.DEFAULT_PROFILE;
     private Model model = new ModelManager(getTypicalMyFitnessBuddy(), new UserPrefs());
 
@@ -42,7 +42,7 @@ class CreateCommandTest {
     }
     //    @Test
     public void execute_createExistingProfileFail_throwsCommandException() throws Exception {
-        Profile validProfile = TypicalProfiles.JON;
+        Profile validProfile = TypicalProfiles.VALID_PROFILE;
         CreateCommand createCommand = new CreateCommand(validProfile);
         ModelManager expectedModel = new ModelManager(model.getMyFitnessBuddy(), new UserPrefs());
         expectedModel.setCurrentPerson(new Person(validProfile));

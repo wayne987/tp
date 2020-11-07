@@ -19,20 +19,13 @@ import seedu.address.model.person.Profile;
  */
 public class TypicalDays {
 
-    public static final Day DAY1 = new DayBuilder().withDate("2020-11-23")
-            .withWeight("45")
-          .build();
-    public static final Day DAY2 = new DayBuilder().withDate("2020-05-12")
-           .build();
+    public static final Day DAY1 = new DayBuilder().withDate("2020-11-23").withWeight("45").build();
+    public static final Day DAY2 = new DayBuilder().withDate("2020-05-12").build();
     public static final Day DAY3 = new DayBuilder().withDate("2020-01-23").withWeight("75").build();
-    public static final Day DAY4 = new DayBuilder().withDate("2020-01-13").withWeight("66")
-          .build();
-    public static final Day DAY5 = new DayBuilder().withDate("2020-09-12").withWeight("42")
-          .build();
-    public static final Day DAY6 = new DayBuilder().withDate("2020-03-01").withWeight("51")
-           .build();
-    public static final Day DAY7 = new DayBuilder().withDate("2019-12-25").withWeight("73")
-           .build();
+    public static final Day DAY4 = new DayBuilder().withDate("2020-01-13").withWeight("66").build();
+    public static final Day DAY5 = new DayBuilder().withDate("2020-09-12").withWeight("42").build();
+    public static final Day DAY6 = new DayBuilder().withDate("2020-03-01").withWeight("51").build();
+    public static final Day DAY7 = new DayBuilder().withDate("2019-12-25").withWeight("73").build();
 
     // Manually added
     public static final Day HOON = new DayBuilder().withDate("2020-06-09").withWeight("56")
@@ -82,6 +75,10 @@ public class TypicalDays {
 
     public static List<Day> getTypicalDays() {
         return new ArrayList<>(Arrays.asList(DAY1, DAY2, DAY3, DAY4, DAY5, DAY6, DAY7));
+    }
+
+    public static List<Day> getDuplicateDays() {
+        return new ArrayList<>(Arrays.asList(DAY1, DAY1, DAY3, DAY4, DAY1, DAY6, DAY1));
     }
 
     public static void main(String[] args) {
