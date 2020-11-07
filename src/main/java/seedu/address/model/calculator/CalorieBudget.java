@@ -29,14 +29,17 @@ public class CalorieBudget {
 
     /**
      *
-     * @param totalCalorieIn
-     * @param totalCalorieOut
-     * @param basalMetabolic
+     * @param totalCalorieIn to be used to calculate calorie budget
+     * @param totalCalorieOut to be used to calculate calorie budget
+     * @param basalMetabolic to be used to calculate calorie budget
      * @return calorie surplus that user can afford to consume
      */
     public static int calculateCalorieSurplus(int totalCalorieIn, int totalCalorieOut, int basalMetabolic) {
         requireAllNonNull(totalCalorieIn, totalCalorieOut, basalMetabolic);
         double adjustedBasal = PAL * basalMetabolic;
+        System.out.println(totalCalorieIn + "asd");
+        System.out.println(adjustedBasal + "--L");
+        System.out.println(totalCalorieIn + "asdfgh");
         return (int) (totalCalorieOut + adjustedBasal - totalCalorieIn);
     }
 }

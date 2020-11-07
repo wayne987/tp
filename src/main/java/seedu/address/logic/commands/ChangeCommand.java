@@ -138,6 +138,9 @@ public class ChangeCommand extends Command {
         Weight weight = editDay.getWeight();
         Set<Tag> tag = editDay.getTags();
         Day editedDay = new Day(date, weight, tag, cm);
+        editedDay.setHeight(editDay.getHeight());
+        editedDay.setStartingWeight(editDay.getStartingWeight());
+        editDay.setAge(editDay.getAge());
 
         model.setDay(editDay, editedDay);
         model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);

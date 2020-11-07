@@ -65,6 +65,18 @@ public class Day {
         return calorieManager;
     }
 
+    public Height getHeight() {
+        return height;
+    }
+
+    public Weight getStartingWeight() {
+        return startingWeight;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -147,7 +159,7 @@ public class Day {
             int calorieIn = calorieManager.getTotalInputCalorie();
             int calorieOut = getCalorieManager().getTotalOutputCalorie();
             //            System.out.println(bmr + " " + calorieIn + " " + calorieOut);
-            return CalorieBudget.calculateCalorieSurplus(bmr, calorieIn, calorieOut);
+            return CalorieBudget.calculateCalorieSurplus(calorieIn, calorieOut, bmr);
         }
     }
 

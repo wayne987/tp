@@ -61,6 +61,13 @@ public class AddCommand extends Command {
         Date start = model.getMyFitnessBuddy().getPerson().getDay();
         Date check = toAdd.getDate();
 
+        if (model.hasDay(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_DAY);
+        }
+        if (model.isDefaultProfile()) { //no profile
+            throw new CommandException(CreateCommand.MESSAGE_NO_PROFILE);
+        }
+
         if (isBefore(check, start)) {
             throw new CommandException(MESSAGE_PAST);
         }
@@ -69,12 +76,6 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_FUTURE);
         }
 
-        if (model.hasDay(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_DAY);
-        }
-        if (model.isDefaultProfile()) { //no profile
-            throw new CommandException(CreateCommand.MESSAGE_NO_PROFILE);
-        }
         model.addDay(toAdd);
         model.updateDay();
 

@@ -49,7 +49,7 @@ public class RemoveCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE);
         // wrong date value
         assertParseFailure(parser, " d/202020-10-10 tp/out i/1",
-                "Date should be in the form of YYYY-MM-DD.");
+                "Date should be in the form of YYYY-MM-DD");
 
         // wrong index value
         assertParseFailure(parser, " -1 tp/out i/1",

@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE_COUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE_TYPE;
@@ -33,6 +34,7 @@ public class CalorieCommandParser implements Parser<CalorieCommand> {
      */
     @Override
     public CalorieCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CALORIE_TYPE, PREFIX_DATE, PREFIX_TIME,
                         PREFIX_EXERCISE, PREFIX_FOOD, PREFIX_CALORIE_COUNT);
