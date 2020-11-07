@@ -175,8 +175,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both persons have the same ID.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -184,8 +183,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getProfile().getId().equals(getProfile().getId())
-                && otherPerson.getProfile().getName().equals(profile.getName()); // check is same id and name
+                && otherPerson.equals(this); // check is same id and name
     }
 
     /**
@@ -203,11 +201,7 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getProfile().getId().equals(getProfile().getId())
-                && otherPerson.getProfile().getName().equals(getProfile().getName())
-                && otherPerson.getProfile().getHeight().equals(getProfile().getHeight())
-                && otherPerson.getProfile().getTargetWeight().equals(getProfile().getTargetWeight())
-                && otherPerson.getDayList().equals(getDayList());
+        return otherPerson.getProfile().getId().equals(getProfile().getId());
     }
 
     @Override
