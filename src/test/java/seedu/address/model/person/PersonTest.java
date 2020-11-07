@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDays.DAY1;
 
@@ -25,7 +24,7 @@ public class PersonTest {
         assertEquals(Collections.emptyList(), person.getDayList());
         assertThrows(NullPointerException.class, () -> new Person(null));
         assertThrows(NullPointerException.class, () -> new Person(null, null));
-        assertThrows(NullPointerException.class, () -> new Person(TypicalProfiles.JON, null));
+        assertThrows(NullPointerException.class, () -> new Person(TypicalProfiles.VALID_PROFILE, null));
     }
 
     @Test
@@ -48,7 +47,7 @@ public class PersonTest {
     @Test
     public void hasDay_dayWithSameIdentityFieldsInPerson_returnsTrue() {
         person.addDay(DAY1);
-        Day editedAlice = new DayBuilder(DAY1).withTags(VALID_TAG_HUSBAND)
+        Day editedAlice = new DayBuilder(DAY1)
                 .build();
         assertTrue(person.hasDay(editedAlice));
         assertTrue(person.hasDay(editedAlice.getDate().get()));
@@ -56,7 +55,7 @@ public class PersonTest {
 
     @Test
     public void isDefaultProfile() {
-        Person personA = new PersonBuilder().withProfile(TypicalProfiles.JON).build();
+        Person personA = new PersonBuilder().withProfile(TypicalProfiles.VALID_PROFILE).build();
 
         assertTrue(person.isDefaultProfile());
         assertFalse(personA.isDefaultProfile());
@@ -70,7 +69,7 @@ public class PersonTest {
     @Test
     public void isSamePerson_returnsTrue() {
         Person personA = new PersonBuilder().build();
-        Person personB = new PersonBuilder().withProfile(TypicalProfiles.JON).build();
+        Person personB = new PersonBuilder().withProfile(TypicalProfiles.VALID_PROFILE).build();
         assertFalse(personA.isSamePerson(personB));
         assertTrue(personA.isSamePerson(personA));
     }
@@ -78,7 +77,7 @@ public class PersonTest {
     @Test
     void testEquals() {
         Person personA = new PersonBuilder().build();
-        Person personB = new PersonBuilder().withProfile(TypicalProfiles.JON).build();
+        Person personB = new PersonBuilder().withProfile(TypicalProfiles.VALID_PROFILE).build();
 
         assertTrue(personA.equals(personA));
         assertFalse(personA.equals(personB));

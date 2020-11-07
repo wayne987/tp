@@ -43,7 +43,7 @@ public class Height {
         } catch (NumberFormatException e) {
             return false;
         }
-        return (62 < testHeight) && (testHeight < 272);
+        return (50 < testHeight) && (testHeight < 272);
     }
 
     @Override

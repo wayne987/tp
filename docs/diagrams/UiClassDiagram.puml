@@ -21,6 +21,7 @@ Class CalorieInputCard
 Class CalorieInputListPanel
 Class CalorieOutputCard
 Class CalorieOutputListPanel
+Class StatusBarDaySelected
 }
 
 package Model <<Rectangle>> {
@@ -45,6 +46,7 @@ MainWindow *-down-> DayListPanel
 MainWindow *-down-> StatusBarFooter
 MainWindow *-down-> CalorieInputListPanel
 MainWindow *-down-> CalorieOutputListPanel
+MainWindow *-down-> StatusBarDaySelected
 
 DayCard *-down-> MainWindow
 
@@ -57,7 +59,7 @@ CalorieOutputListPanel -down--> CalorieOutputCard
 MainWindow --|> UiPart
 
 ResultDisplay --|> UiPart
-CommandBox --|> UiPart
+CommandBox ----|> UiPart
 DayListPanel --|> UiPart
 DayCard --|> UiPart
 CalorieInputCard --|> UiPart
@@ -66,10 +68,11 @@ StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 WeightStatsWindow --|> UiPart
 CalorieStatsWindow --|> UiPart
+StatusBarDaySelected --|> UiPart
 
 CalorieStatsWindow -down-..> Model
-WeightStatsWindow ..> Model
-DayCard ..> Model
+WeightStatsWindow ......> Model
+DayCard ...> Model
 CalorieInputCard ..> Model
 CalorieOutputCard ..> Model
 
