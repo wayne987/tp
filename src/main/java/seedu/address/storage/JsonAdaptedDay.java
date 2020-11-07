@@ -1,9 +1,5 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -29,12 +25,12 @@ class JsonAdaptedDay {
      * Constructs a {@code JsonAdaptedDay} with the given day details.
      */
     @JsonCreator
-    public JsonAdaptedDay(@JsonProperty("date") String date, @JsonProperty("weight") String weight,
-                          @JsonProperty("inputList") List<JsonAdaptedInput> inputList,
-                          @JsonProperty("outputList") List<JsonAdaptedOutput> outputList) {
+    public JsonAdaptedDay(@JsonProperty("date") String date,
+                          @JsonProperty("weight") String weight,
+                          @JsonProperty("calorie manager") JsonAdaptedCalorieManager calorieManager) {
         this.date = date;
         this.weight = weight;
-        calorieManager = new JsonAdaptedCalorieManager(inputList, outputList);
+        this.calorieManager = calorieManager;
     }
 
     /**
@@ -43,14 +39,7 @@ class JsonAdaptedDay {
     public JsonAdaptedDay(Day source) {
         date = source.getDate().value;
         weight = source.getWeight().value;
-        calorieManager = new JsonAdaptedCalorieManager(new ArrayList<>(),
-                                                       new ArrayList<>());
-        calorieManager.getInputList().addAll(source.getCalorieManager().getCalorieInputList().stream()
-                .map(JsonAdaptedInput::new)
-                .collect(Collectors.toList()));
-        calorieManager.getOutputList().addAll(source.getCalorieManager().getCalorieOutputList().stream()
-                .map(JsonAdaptedOutput::new)
-                .collect(Collectors.toList()));
+        calorieManager = new JsonAdaptedCalorieManager(source.getCalorieManager());
     }
 
     /**

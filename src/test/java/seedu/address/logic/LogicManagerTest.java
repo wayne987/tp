@@ -81,7 +81,7 @@ public class LogicManagerTest {
         String addCommand = AddCommand.COMMAND_WORD + DATE_DESC_1 + WEIGHT_DESC_1;
         Day expectedDay = new DayBuilder(MDAY1).build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.setProfile(TypicalProfiles.JON);
+        expectedModel.setProfile(TypicalProfiles.VALID_PROFILE);
         expectedModel.addDay(expectedDay);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         //assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
