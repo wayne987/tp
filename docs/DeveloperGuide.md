@@ -382,9 +382,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Edit a daily weight record**
 
 **MSS**
-1.  User requests to edit a weight record.
-2.  User inputs the index of the record and weight.
-3.  User sees the newly edited weight record of the day.
+1.  User inputs the index of the record and the new weight with the edit command.
+2.  User sees the newly edited weight record of the day.
     
     Use case ends.
 
@@ -394,7 +393,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to add calorie input using the calorie command. 
 2.  User enters the date that he/she wants to add a calorie input.
-3.  User inputs the calorie input.
+3.  User inputs the time and name of the calorie input.
 4.  User sees the newly updated total calorie input of that day.
 
     Use case ends.
@@ -462,14 +461,28 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 ### Creating a profile
+
 1. Creating a profile when the current profile list is empty
 
-    1. Test case: `create n/John id/1111 h/170 w/80`
+    1. Test case: `create n/John id/1111 h/170 w/80` <br>
        Expected: Profile gets created.
        
-    2. Test case: `create n/John id/1121 h/170 w/80`
+    2. Test case: `create n/John id/1121 h/170 w/80` <br>
        Expected: No profile gets created. Error details shown in the status message. Invalid id number. 
-    
+   
+### Adding a day
+
+1. Adding a day when the current day list is empty
+
+    1. Test case: `add d/2020-10-21 w/77` <br>
+       Expected: Day gets created. 
+       
+    2. Test case: `add d/2020-10-212 w/77` <br>
+       Expected: No Day gets created. Error details shown in the status message. Invalid date.
+       
+    3. Test case: `add d/2020-10-21 w/sd` <br>
+       Expected: No Day gets created. Error details shown in the status message. Invalid weight.
+
 ### Deleting a day
 
 1. Deleting a day while all days are being shown
@@ -482,9 +495,43 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+      
+### Adding a calorie input to a day 
+Assuming the day (2020-10-21) has already been added to the day list.
 
-2. _{ more test cases …​ }_
+1. Adding a calorie input to a day that has been added to the list already
 
+    1. Test case: `calorie d/2020-10-21 tp/in t/1200 f/chicken c/300` <br>
+       Expected: Calorie input added. Total calorie input count updated for that day. 
+       
+    2. Test case: `calorie d/2020-10-21 tp/in t/sdfds f/chicken c/300` <br>    
+       Expected: Calorie input not added. Total calorie input count remains the same for that day. Invalid time input.  
+
+### Adding a calorie output to a day 
+Assuming the day (2020-10-21) has already been added to the day list.
+
+1. Adding a calorie output to a day that has been added to the list already
+
+    1. Test case: `calorie d/2020-10-21 tp/out t/1200 e/running c/300` <br>
+       Expected: Calorie output added. Total calorie output count updated for that day. 
+       
+    2. Test case: `calorie d/2020-10-21 tp/out t/sdfds e/gym c/300` <br>    
+       Expected: Calorie input not added. Total calorie input count remains the same for that day. Invalid time input.  
+
+### Viewing the calorie lists of a day
+Assuming the day list is not empty and the day at index 1 has calorie 
+inputs and ouputs already.
+
+   1. Test case: `view 1`<br>
+      Expected: Calories will be shown on the calorie panels on the right. 
+      Status bar will update the the date of the day being shown. 
+
+   1. Test case: `view 0`<br>
+      Expected: Calorie lists does not update. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+  
 ### Saving data
 
 1. Dealing with missing/corrupted data files
