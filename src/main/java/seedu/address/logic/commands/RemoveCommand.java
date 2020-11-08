@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
@@ -55,6 +56,7 @@ public class RemoveCommand extends Command {
      * @param date of the day that the calorie belongs to
      */
     public RemoveCommand(Index targetIndex, Boolean isOut, LocalDate date) {
+        requireAllNonNull(targetIndex, isOut, date);
         this.targetIndex = targetIndex;
         this.isOut = isOut;
         this.date = date;
@@ -66,6 +68,7 @@ public class RemoveCommand extends Command {
      * @param index of the day that the calorie belongs to
      */
     public RemoveCommand(Index targetIndex, Boolean isOut, Index index) {
+        requireAllNonNull(targetIndex, isOut, index);
         this.targetIndex = targetIndex;
         this.isOut = isOut;
         this.index = index;
@@ -101,10 +104,6 @@ public class RemoveCommand extends Command {
         Calorie remove = null;
         try {
             remove = calorieManager.getCalorie(isOut, targetIndex);
-        } catch (IllegalValueException e) {
-            e.printStackTrace();
-        }
-        try {
             editDay.getCalorieManager().removeCalorie(isOut, targetIndex);
         } catch (IllegalValueException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_CALORIE_DISPLAYED_INDEX);

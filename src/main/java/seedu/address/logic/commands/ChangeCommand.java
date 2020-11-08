@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DAYS;
@@ -50,7 +51,7 @@ public class ChangeCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_EDIT_DAY_SUCCESS = "Edited Calorie: %1$s";
+    public static final String MESSAGE_EDIT_CALORIE_SUCCESS = "Edited Calorie: %1$s";
 
     public static final String MESSAGE_NOT_EDITED = "Please edit at least one of the calorie field";
 
@@ -66,8 +67,7 @@ public class ChangeCommand extends Command {
      */
     public ChangeCommand(Index index, ChangeCommand.ChangeCalorieDescriptor changeCalorieDescriptor,
                          Index calorieIndex) {
-        requireNonNull(index);
-        requireNonNull(changeCalorieDescriptor);
+        requireAllNonNull(index, changeCalorieDescriptor, calorieIndex);
 
         this.index = index;
         this.changeCalorieDescriptor = new ChangeCommand.ChangeCalorieDescriptor(changeCalorieDescriptor);
@@ -80,8 +80,7 @@ public class ChangeCommand extends Command {
      */
     public ChangeCommand(LocalDate date, ChangeCommand.ChangeCalorieDescriptor changeCalorieDescriptor,
                          Index calorieIndex) {
-        requireNonNull(date);
-        requireNonNull(changeCalorieDescriptor);
+        requireAllNonNull(date, changeCalorieDescriptor, calorieIndex);
 
         this.date = date;
         this.changeCalorieDescriptor = new ChangeCommand.ChangeCalorieDescriptor(changeCalorieDescriptor);
@@ -101,9 +100,12 @@ public class ChangeCommand extends Command {
                 editDay = lastShownList.get(index.getZeroBased());
             }
         } else {
-            editDay = model.getDay(date);
+            if (!model.hasDay(date)) {
+                throw new CommandException(Messages.MESSAGE_INVALID_DAY_DISPLAYED_INDEX);
+            } else {
+                editDay = model.getDay(date);
+            }
         }
-
         Boolean isOut = changeCalorieDescriptor.getIsOut();
         CalorieManager calorieManager = editDay.getCalorieManager();
 
@@ -111,7 +113,7 @@ public class ChangeCommand extends Command {
         try {
             calorieToEdit = calorieManager.getCalorie(isOut, calorieIndex);
         } catch (IllegalValueException e) {
-            e.printStackTrace();
+            throw new CommandException(Messages.MESSAGE_INVALID_CALORIE_DISPLAYED_INDEX);
         }
         Calorie editedCalorie = createEditedCalorie(calorieToEdit, changeCalorieDescriptor);
 
@@ -148,7 +150,7 @@ public class ChangeCommand extends Command {
         model.setDay(editDay, editedDay);
         model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
 
-        return new CommandResult(String.format(MESSAGE_EDIT_DAY_SUCCESS, editedCalorie));
+        return new CommandResult(String.format(MESSAGE_EDIT_CALORIE_SUCCESS, editedCalorie));
     }
 
     /**

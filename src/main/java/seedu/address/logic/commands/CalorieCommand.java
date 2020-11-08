@@ -27,7 +27,7 @@ import seedu.address.model.day.Day;
 public class CalorieCommand extends Command {
 
     public static final String COMMAND_WORD = "calorie";
-
+    public static final String MESSAGE_SUCCESS = "New calorie added: %1$s";
     public static final String NO_AVAILABLE_DAY =
             "Please add a new day entry for the date intended before adding calorie input/output";
     public static final String INVALID_DATE = "Please input a valid Date";
@@ -100,7 +100,7 @@ public class CalorieCommand extends Command {
         }
         model.setDay(model.getDay(date), editDay);
         model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
-        return new CommandResult(calorie.toString());
+        return new CommandResult(String.format(CalorieCommand.MESSAGE_SUCCESS, calorie));
     }
     @Override
     public boolean equals(Object other) {

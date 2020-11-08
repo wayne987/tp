@@ -90,8 +90,8 @@ public class CalorieManager {
             throw new IllegalValueException(INSANE_OUTPUT_CALORIE);
         }
         totalCalorieOut += calorieToAdd;
-        logger.info("----------update total calorie output----------");
-        logger.info(previousTotalCalorieOut + "+" + calorieOutput.toString() + "=" + totalCalorieOut);
+        //        logger.info("----------update total calorie output----------");
+        //        logger.info(previousTotalCalorieOut + "+" + calorieOutput.toString() + "=" + totalCalorieOut);
     }
 
     /**
@@ -106,8 +106,8 @@ public class CalorieManager {
             throw new IllegalValueException(INSANE_INPUT_CALORIE);
         }
         totalCalorieIn += calorieToAdd;
-        logger.info("----------update total calorie Input----------");
-        logger.info(previousTotalCalorieIn + "+" + calorieInput.toString() + "=" + totalCalorieIn);
+        //        logger.info("----------update total calorie Input----------");
+        //        logger.info(previousTotalCalorieIn + "+" + calorieInput.toString() + "=" + totalCalorieIn);
     }
 
     /**
