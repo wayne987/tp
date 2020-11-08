@@ -227,12 +227,47 @@ daily entries to My Fitness Buddy's `UniqueDayList`.
 
 _{Diagram to be added}_
 
-### Edits a profile in My Fitness Buddy
+### Updates a profile in My Fitness Buddy // to be reviewed
 
 #### Implementations
 
-This feature allows users to edit an existing `Profile`, consisting of their *Name*, *ID*, *Height* and *TargetWeight*.
-`UniqueDayList` that records the daily entries will remain unchanged.
+This feature allows users to update an existing `Profile`, consisting of their *Name*, *ID*, *Height* and *TargetWeight*. 
+The user can modify any of the profile entries while `UniqueDayList` that records the daily entries will remain unchanged.
+
+The mechanism utilises the UpdateCommandParser Class to parse the input into the index of the `Profile` to be retrieved where, 
+at least one of the entries `Name`, `ID`, `Height` or `Weight` is/are to be modified accordingly.
+
+It than utilise the UpdateCommand class to execute the actual removal of the calorie. It will call the method `getProfile` which uses `MyFitnessBuddy` to locate the Profile class
+from the uniquePersonList in which the profile resides in and returns it.
+
+A new profile will be created from the given user inputs and previous relevant profile information. This new profile details will replace the previous profile in 
+the uniquePersonList that resides in `MyFitnessBuddy`.
+
+_{Diagram to be added}_
+
+### Views another profile in My Fitness Buddy
+
+#### Implementations
+
+This feature allows users to view another existing `Profile`.
+
+The mechanism utilises the LoginCommandParser Class to parse the input into the index of the `Profile` to be retrieved.
+
+It than utilise the LoginCommand class to execute the actual retrieval of the profile. It will call the method `getPerson` which uses `MyFitnessBuddy` to locate the Person class
+from the uniquePersonList in which the person resides in and returns it.
+
+The currentPerson in `MyFitnessBuddy` will be changed to the recently retrieved Person by calling the method `setCurrentPerson`.
+
+Finally, the uniqueDayList for the person's UI component will be updated accordingly and displayed.
+
+
+_{Diagram to be added}_
+
+### Finds specific profiles in My Fitness Buddy
+
+#### Implementations
+
+This feature allows users to find all the `Profile` that matches the specified *Name* or BMI in the uniquePersonList.
 
 {More details to be added in terms of updating the profile in the next iteration}
 

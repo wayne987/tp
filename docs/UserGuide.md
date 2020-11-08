@@ -93,7 +93,7 @@ Here are some basic commands you can try:
 Commands in this section are useful for allowing multiple users to use this app. 
 Multiple users can create their own profiles and add their own records to it.  
 
-#### 4.1.1 Creating a new profile : `create`
+#### 4.1.1 Creating a new Person : `create`
 Create a new profile for a new Person.
 
 Format: `create n/NAME id/ID_NUM h/HEIGHT w/TARGET_WEIGHT`
@@ -107,7 +107,7 @@ Examples:
 
 Meaning: create a new profile with name Johnny, ID number 1220, height 170cm and target weight of 68kg.
 
-#### 4.1.2 Editing an existing profile: `update`
+#### 4.1.2 Updating an existing profile: `update`
 Updates an existing profile.
 
 Format: `update [optional] n/NAME id/ID_NUM h/HEIGHT w/TARGET_WEIGHT`
