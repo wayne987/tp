@@ -38,17 +38,113 @@ public class SampleDataUtil {
     }
 
     public static Person getSamplePerson() {
-        Profile sampleProfile = new Profile(new Name("Sample Person"),
-                new ID("2103"), new Height("170"), new Weight("60"));
-        Person samplePerson = new Person(sampleProfile, getSampleDays());
+        Profile sampleProfile = new Profile(new Name("John"),
+                new ID("2103"), new Height("177"), new Weight("80"));
+        UniqueDayList dayList = getSampleDays();
+        for (Day day : dayList) {
+            day.setAge(sampleProfile.getAge());
+            day.setHeight(sampleProfile.getHeight());
+            day.setStartingWeight(sampleProfile.getTargetWeight());
+        }
+        Person samplePerson = new Person(sampleProfile, dayList);
         samplePerson.setStartingDay(new Date("2020-09-30"));
         return samplePerson;
     }
 
     public static Person getSamplePerson2() {
-        Profile sampleProfile = new Profile(new Name("Sample Person 2"),
-                new ID("2104"), new Height("170"), new Weight("60"));
-        Person samplePerson = new Person(sampleProfile, getSampleDays());
+        Profile sampleProfile = new Profile(new Name("Daniel"),
+                new ID("2104"), new Height("170"), new Weight("75"));
+        UniqueDayList dayList = getSampleDays();
+        for (Day day : dayList) {
+            day.setAge(sampleProfile.getAge());
+            day.setHeight(sampleProfile.getHeight());
+            day.setStartingWeight(sampleProfile.getTargetWeight());
+        }
+        Person samplePerson = new Person(sampleProfile, dayList);
+        samplePerson.setStartingDay(new Date("2020-08-29"));
+        return samplePerson;
+    }
+
+    public static Person getSamplePerson3() {
+        Profile sampleProfile = new Profile(new Name("Tom"),
+                new ID("2105"), new Height("180"), new Weight("75"));
+        UniqueDayList dayList = getSampleDays();
+        for (Day day : dayList) {
+            day.setAge(sampleProfile.getAge());
+            day.setHeight(sampleProfile.getHeight());
+            day.setStartingWeight(sampleProfile.getTargetWeight());
+        }
+        Person samplePerson = new Person(sampleProfile, dayList);
+        samplePerson.setStartingDay(new Date("2020-08-29"));
+        return samplePerson;
+    }
+
+    public static Person getSamplePerson4() {
+        Profile sampleProfile = new Profile(new Name("Adam"),
+                new ID("2106"), new Height("176"), new Weight("79"));
+        UniqueDayList dayList = getSampleDays();
+        for (Day day : dayList) {
+            day.setAge(sampleProfile.getAge());
+            day.setHeight(sampleProfile.getHeight());
+            day.setStartingWeight(sampleProfile.getTargetWeight());
+        }
+        Person samplePerson = new Person(sampleProfile, dayList);
+        samplePerson.setStartingDay(new Date("2020-08-29"));
+        return samplePerson;
+    }
+
+    public static Person getSamplePerson5() {
+        Profile sampleProfile = new Profile(new Name("Harry"),
+                new ID("2107"), new Height("178"), new Weight("71"));
+        UniqueDayList dayList = getSampleDays();
+        for (Day day : dayList) {
+            day.setAge(sampleProfile.getAge());
+            day.setHeight(sampleProfile.getHeight());
+            day.setStartingWeight(sampleProfile.getTargetWeight());
+        }
+        Person samplePerson = new Person(sampleProfile, dayList);
+        samplePerson.setStartingDay(new Date("2020-08-29"));
+        return samplePerson;
+    }
+
+    public static Person getSamplePerson6() {
+        Profile sampleProfile = new Profile(new Name("Charlie"),
+                new ID("2108"), new Height("175"), new Weight("72"));
+        UniqueDayList dayList = getSampleDays();
+        for (Day day : dayList) {
+            day.setAge(sampleProfile.getAge());
+            day.setHeight(sampleProfile.getHeight());
+            day.setStartingWeight(sampleProfile.getTargetWeight());
+        }
+        Person samplePerson = new Person(sampleProfile, dayList);
+        samplePerson.setStartingDay(new Date("2020-08-29"));
+        return samplePerson;
+    }
+
+    public static Person getSamplePerson7() {
+        Profile sampleProfile = new Profile(new Name("William"),
+                new ID("2109"), new Height("172"), new Weight("68"));
+        UniqueDayList dayList = getSampleDays();
+        for (Day day : dayList) {
+            day.setAge(sampleProfile.getAge());
+            day.setHeight(sampleProfile.getHeight());
+            day.setStartingWeight(sampleProfile.getTargetWeight());
+        }
+        Person samplePerson = new Person(sampleProfile, dayList);
+        samplePerson.setStartingDay(new Date("2020-08-29"));
+        return samplePerson;
+    }
+
+    public static Person getSamplePerson8() {
+        Profile sampleProfile = new Profile(new Name("Bob"),
+                new ID("2110"), new Height("174"), new Weight("82"));
+        UniqueDayList dayList = getSampleDays();
+        for (Day day : dayList) {
+            day.setAge(sampleProfile.getAge());
+            day.setHeight(sampleProfile.getHeight());
+            day.setStartingWeight(sampleProfile.getTargetWeight());
+        }
+        Person samplePerson = new Person(sampleProfile, dayList);
         samplePerson.setStartingDay(new Date("2020-08-29"));
         return samplePerson;
     }
