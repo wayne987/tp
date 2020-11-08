@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 //import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalDays.getTypicalMyFitnessBuddy;
+import static seedu.address.testutil.TypicalPerson.getTypicalMyFitnessBuddy;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ import seedu.address.testutil.TypicalProfiles;
 
 class CreateCommandTest {
 
-    private static final Profile JON = TypicalProfiles.VALID_PROFILE;
+    private static final Profile JON = TypicalProfiles.PROFILE1;
     private static Profile defaultProfile = TypicalProfiles.DEFAULT_PROFILE;
     private Model model = new ModelManager(getTypicalMyFitnessBuddy(), new UserPrefs());
 
@@ -42,7 +42,7 @@ class CreateCommandTest {
     }
     //    @Test
     public void execute_createExistingProfileFail_throwsCommandException() throws Exception {
-        Profile validProfile = TypicalProfiles.VALID_PROFILE;
+        Profile validProfile = TypicalProfiles.PROFILE1;
         CreateCommand createCommand = new CreateCommand(validProfile);
         ModelManager expectedModel = new ModelManager(model.getMyFitnessBuddy(), new UserPrefs());
         expectedModel.setCurrentPerson(new Person(validProfile));

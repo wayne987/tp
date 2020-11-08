@@ -10,8 +10,8 @@ package seedu.address.logic.commands;
 //import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 //import static seedu.address.logic.commands.CommandTestUtil.showDayAtIndex;
-import static seedu.address.testutil.TypicalDays.getTypicalMyFitnessBuddy;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DAY;
+import static seedu.address.testutil.TypicalPerson.getTypicalMyFitnessBuddy;
 //import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_DAY;
 
 import org.junit.jupiter.api.Test;

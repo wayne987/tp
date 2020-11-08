@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCalories.INPUT_A;
 import static seedu.address.testutil.TypicalCalories.INPUT_B;
-import static seedu.address.testutil.TypicalDays.getAnotherMyFitnessBuddy;
+import static seedu.address.testutil.TypicalPerson.getAnotherMyFitnessBuddy;
 
 import java.time.LocalDate;
 
