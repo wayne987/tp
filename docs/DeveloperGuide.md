@@ -11,7 +11,10 @@ title: My Fitness Buddy Developer Guide
 
 ### 1.1 About the application
 
-My Fitness Buddy is a desktop application that helps users keep track of their weight and calorie input/output.
+My Fitness Buddy `v1.4` is a desktop application that helps you to track your overall change in fitness level by allowing you to add daily records of your weight and calorie input/output.  
+My Fitness Buddy also allows users to create a profile and can generate visual charts based on these records so that you can monitor your daily progress and help you achieve your goals.  
+This application is optimized for use through a *Command Line Interface (CLI)*, meaning that you operate the application by typing commands into a command box.
+
 
 ### 1.2 Purpose
 
@@ -142,6 +145,23 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Feature: Add a new daily record
+
+#### Implementation
+
+This feature enables the user to add a new daily record which includes the daily weight.
+Adding a new daily record allows the user to add specific calorie input/output entries into the app.
+
+The mechanism utilises the `AddCommandParser` Class to parse the input into `Date` of `day.Date` Class
+and `Weight` of `day.Weight` Class and a new `Day` object is instantiated.
+
+It then utilises the `AddCommand` Class to add the `Day` through the `Model#addDay` method which will add the `Day`
+into the `UniqueDayList`.
+
+Below is a sequence diagram when the user executes `add d/2020-11-08 w/76` into My Fitness Buddy.
+
+![Add_day_sequence](images/AddDaySequence.png)
+
 ### Remove Calorie feature
 
 #### Implementation
@@ -163,13 +183,19 @@ to remove the calorie at the specific index in the corresponding list of Calorie
 
 ![RemoveCalorieSequenceDiagram](images/RemoveCalorieSequenceDiagram.png)
 
-### View Statistics feature
+### Feature: View Daily Weight and Calorie Statistics
 
 #### Implementation
 
 This feature allows users to view their daily calorie input, 
 calorie output and weight in the form of a line chart generated using JavaFX
-`LineChart` and `XYChart`.
+`LineChart` and `XYChart`. 
+
+This feature can be executed using `stats v/calorie`, `stats v/weight`
+or `stats/vall` commands to show either the calorie, weight or all charts respectively.
+Given below is a sequence diagram when user executes `stats v/weight` command.
+
+![stats_sequence_diagram](images/StatsSequenceDiagram.png)
 
 The mechanism utilises the `Logic#getFilteredDayList` method to get all
 daily records of calorie input/output and weight to be used
@@ -181,9 +207,25 @@ instantly.
 
 This feature comprises the `CalorieStatsWindow` and `WeightStatsWindow` classes
 and have the same behaviour, with the only difference is the type of data (calorie input/output, weight)
-used to generate the chart. Given below is a diagram...
+used to generate the chart. Given below is an activity diagram shows how the weight chart is being updated
+when there is a change in `DayList`.
 
-_{Diagram to be added}_
+![weight_chart_activity_diagram](images/WeightChartActivityDiagram.png)
+
+### Feature: View Overall Progress Statistic
+
+#### Implementation
+
+This feature allows users to view the overall BMI progress of the recruits
+in the form of a pie chart generated using JavaFX `PieChart`.
+
+The mechanism utilises the `logic#getFilteredPersonList` method to get all
+the BMI values to be used as data for the pie chart.
+
+It also utilises JavaFX `ListChangeListner` to listen for any changes
+to the list when the user adds or modifies any data, and updates the chart 
+instantly.
+
 
 ### View all calorie inputs and calorie outputs of a day feature
 
@@ -237,90 +279,6 @@ This feature allows users to edit an existing `Profile`, consisting of their *Na
 {More details to be added in terms of updating the profile in the next iteration}
 
 _{Diagram to be added}_
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th day in My Fitness Buddy. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of My Fitness Buddy after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new day. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so My Fitness Buddy state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the day was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores My Fitness Buddy to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores My Fitness Buddy to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify My Fitness Buddy, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the day being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
