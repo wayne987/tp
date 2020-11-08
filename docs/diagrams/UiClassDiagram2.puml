@@ -1,0 +1,47 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package MainWindowPanels <<Rectangle>>{
+Class DayListPanel
+Class DayCard
+Class CalorieInputCard
+Class CalorieInputListPanel
+Class CalorieOutputCard
+Class CalorieOutputListPanel
+Class ProfileListPanel
+Class ProfileCardPanel
+Class ProfileCard
+Class "{abstract}\nUiPart" as UiPart
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+Class MainWindow
+
+MainWindow *-down-> ProfileCardPanel
+MainWindow *-down-> ProfileListPanel
+MainWindow *-down-> DayListPanel
+MainWindow *-down-> CalorieInputListPanel
+MainWindow *-down-> CalorieOutputListPanel
+
+ProfileListPanel *--> ProfileCard
+ProfileCardPanel *--> ProfileCard
+
+DayListPanel *-down-> DayCard
+DayCard *--> MainWindow
+
+CalorieInputListPanel *-down-> CalorieInputCard
+CalorieOutputListPanel *-down-> CalorieOutputCard
+
+
+ProfileCard ..> Model
+CalorieOutputCard ..> Model
+CalorieInputCard ..> Model
+DayCard ..> Model
+
+@enduml
