@@ -27,8 +27,7 @@ public class ProfileListPanel extends UiPart<Region> {
      */
     public ProfileListPanel(ObservableList<Person> personList) {
         super(FXML);
-        profileListView.setItems(personList);
-        profileListView.setCellFactory(listView -> new ProfileListViewCell());
+        update(personList);
         logger.info("ProfileListPanel created");
     }
 
@@ -37,6 +36,14 @@ public class ProfileListPanel extends UiPart<Region> {
      */
     public void clear() {
         profileListView.setItems(FXCollections.observableArrayList());
+        profileListView.setCellFactory(listView -> new ProfileListViewCell());
+    }
+
+    /**
+     * Updates the {@code ProfileListPanel} with the given {@code ObservableList}
+     */
+    public void update(ObservableList<Person> personList) {
+        profileListView.setItems(personList);
         profileListView.setCellFactory(listView -> new ProfileListViewCell());
     }
 
