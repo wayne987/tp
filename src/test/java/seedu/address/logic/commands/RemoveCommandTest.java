@@ -58,7 +58,7 @@ public class RemoveCommandTest {
         Model model = new ModelManager(getAnotherMyFitnessBuddy(), new UserPrefs());
         model.setCurrentPerson(model.getMyFitnessBuddy().getPersonList().get(0));
         LocalDate date = LocalDate.parse("2019-12-25");
-        Index indexC = Index.fromZeroBased(25);
+        Index indexC = Index.fromZeroBased(2000);
         RemoveCommand removeCommand = new RemoveCommand(indexC, false, date);
         RemoveCommand removeCommand1 = new RemoveCommand(indexC, true, date);
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_CALORIE_DISPLAYED_INDEX, () ->
