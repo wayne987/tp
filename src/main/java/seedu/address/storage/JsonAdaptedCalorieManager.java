@@ -49,14 +49,6 @@ class JsonAdaptedCalorieManager {
                 .map(JsonAdaptedOutput::new).collect(Collectors.toList());
     }
 
-    public List<JsonAdaptedInput> getInputList() {
-        return inputList;
-    }
-
-    public List<JsonAdaptedOutput> getOutputList() {
-        return outputList;
-    }
-
     /**
      * Converts this Jackson-friendly adapted CalorieManager
      * object into the CalorieManager {@code CalorieManager} object.

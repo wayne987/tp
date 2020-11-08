@@ -24,7 +24,7 @@ public class PersonTest {
         assertEquals(Collections.emptyList(), person.getDayList());
         assertThrows(NullPointerException.class, () -> new Person(null));
         assertThrows(NullPointerException.class, () -> new Person(null, null));
-        assertThrows(NullPointerException.class, () -> new Person(TypicalProfiles.VALID_PROFILE, null));
+        assertThrows(NullPointerException.class, () -> new Person(TypicalProfiles.PROFILE1, null));
     }
 
     @Test
@@ -55,7 +55,7 @@ public class PersonTest {
 
     @Test
     public void isDefaultProfile() {
-        Person personA = new PersonBuilder().withProfile(TypicalProfiles.VALID_PROFILE).build();
+        Person personA = new PersonBuilder().withProfile(TypicalProfiles.PROFILE1).build();
 
         assertTrue(person.isDefaultProfile());
         assertFalse(personA.isDefaultProfile());
@@ -69,7 +69,7 @@ public class PersonTest {
     @Test
     public void isSamePerson_returnsTrue() {
         Person personA = new PersonBuilder().build();
-        Person personB = new PersonBuilder().withProfile(TypicalProfiles.VALID_PROFILE).build();
+        Person personB = new PersonBuilder().withProfile(TypicalProfiles.PROFILE1).build();
         assertFalse(personA.isSamePerson(personB));
         assertTrue(personA.isSamePerson(personA));
     }
@@ -77,7 +77,7 @@ public class PersonTest {
     @Test
     void testEquals() {
         Person personA = new PersonBuilder().build();
-        Person personB = new PersonBuilder().withProfile(TypicalProfiles.VALID_PROFILE).build();
+        Person personB = new PersonBuilder().withProfile(TypicalProfiles.PROFILE1).build();
 
         assertTrue(personA.equals(personA));
         assertFalse(personA.equals(personB));

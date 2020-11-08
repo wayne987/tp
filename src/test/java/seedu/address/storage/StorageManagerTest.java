@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalDays.getTypicalMyFitnessBuddy;
+import static seedu.address.testutil.TypicalPerson.getTypicalMyFitnessBuddy;
 
 import java.nio.file.Path;
 
@@ -12,7 +12,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.MyFitnessBuddy;
-//import seedu.address.model.ReadOnlyMyFitnessBuddy;
+import seedu.address.model.ReadOnlyMyFitnessBuddy;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -46,7 +46,14 @@ public class StorageManagerTest {
         UserPrefs retrieved = storageManager.readUserPrefs().get();
         assertEquals(original, retrieved);
     }
-    //error due to refactoring
+
+    @Test
+    public void getUserPrefsFilePath() {
+        Path actual = storageManager.getUserPrefsFilePath();
+        Path expected = testFolder.resolve("prefs");
+        assertEquals(actual, expected);
+    }
+
     @Test
     public void myFitnessBuddyReadSave() throws Exception {
         /*
@@ -56,8 +63,8 @@ public class StorageManagerTest {
          */
         MyFitnessBuddy original = getTypicalMyFitnessBuddy();
         storageManager.saveFitnessBuddy(original);
-        //ReadOnlyMyFitnessBuddy retrieved = storageManager.readAddressBook().get();
-        //assertEquals(original, new MyFitnessBuddy(retrieved));
+        ReadOnlyMyFitnessBuddy retrieved = storageManager.readFitnessBuddy().get();
+        assertEquals(original, new MyFitnessBuddy(retrieved));
     }
 
     @Test
