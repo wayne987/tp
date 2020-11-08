@@ -269,5 +269,24 @@ public class CalorieManager {
         }
     }
 
+    /**
+     * Returns true if both CalorieManager have the same lists.
+     * This defines a stronger notion of equality between two calorie managers.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof CalorieManager)) {
+            return false;
+        }
+
+        CalorieManager otherCalorieManager = (CalorieManager) other;
+        return otherCalorieManager.getCalorieInputList().equals(getCalorieInputList())
+                && otherCalorieManager.getCalorieOutputList().equals(getCalorieOutputList());
+    }
+
 }
 

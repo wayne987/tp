@@ -86,10 +86,6 @@ public class TypicalDays {
     }
 
     public static List<Day> getDuplicateDays() {
-        return new ArrayList<>(Arrays.asList(DAY1, DAY1, DAY3, DAY4, DAY1, DAY6, DAY1));
-    }
-
-    public static void main(String[] args) {
-        getAnotherMyFitnessBuddy();
+        return new ArrayList<>(Arrays.asList(DAY1, DAY1, DAY1, DAY2, DAY3));
     }
 }
