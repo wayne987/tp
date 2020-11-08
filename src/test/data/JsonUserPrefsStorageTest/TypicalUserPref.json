@@ -7,5 +7,5 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "data\\myfitnessbuddy.json"
+  "myFitnessBuddyFilePath" : "data\\myfitnessbuddy.json"
 }
