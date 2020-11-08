@@ -108,26 +108,40 @@ Examples:
 Meaning: create a new profile with name Johnny, ID number 1220, height 170cm and target weight of 68kg.
 
 #### 4.1.2 Editing an existing profile: `update`
-update an existing profile.
+Updates an existing profile.
 
 Format: `update [optional] n/NAME id/ID_NUM h/HEIGHT w/TARGET_WEIGHT`
+
+:warning: must update at least one of the field and it cannot be the same as the current one
 
 Examples:
 `update n/Jonhhy`
 
 Meaning:`update the name of current profile that you are looking to Johnny`
 
-Warning:`must update at least one of the field and it cannot be the same as the current one`
+#### 4.1.3 Viewing another profile: `login`
+Changes the profile that you are currently looking at to another profile.
 
-#### 4.1.3 viewing another profile: `login`
-Changes the profile that you are currently looking at to another profile
-
-Format: `update [index]`
+Format: `login [index]`
 
 Examples:
 `login 2`
 
-Meaning:`changes the current profile that you are looking at to the profile in the profile list with an index of 2`
+Meaning:`changes the current profile that you are looking at to the profile in the profile list at index 2`
+
+#### 4.1.4 Finding specific profile(s): `find`
+Finds the profiles that matches the name or BMI specified.
+
+Format: `find KEYWORD`
+**KEYWORD** refers to bmi or name only.
+
+Examples:
+`find bmi/20`
+`find Jon`
+
+Meaning: 
+1. finds all the profiles that have BMI of less than 20
+2. finds all the profiles with name that matches Jon
 
 ### 4.2 Day commands
 Commands in this section are useful in tracking of daily weight records. You should use these commands to log your weight for 
@@ -144,7 +158,7 @@ Example:
 Meaning:
 Adds a new day, 29 October 2020, with a weight of 72kg.
 
-_TIP: Always add a day before adding a calorie information. `DATE` has to be in the YYYY-MM-DD format._
+:tip: Always add a day before adding a calorie information. `DATE` has to be in the YYYY-MM-DD format._
 
 ![AddDay](images/AddDay.png)
 
@@ -164,7 +178,7 @@ _TIP: `WEIGHT` should be in KG._
 ![EditDay](images/EditDay.png)
 
 #### 4.2.3 Deleting a daily record: `delete INDEX`
-Deletes a daily record at INDEX.
+Deletes a daily record at the index specified.
 
 Format: `delete INDEX`
 
