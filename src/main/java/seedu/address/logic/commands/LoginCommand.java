@@ -35,4 +35,11 @@ public class LoginCommand extends Command {
 
         return new CommandResult(true, toChange.toString());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof LoginCommand // instanceof handles nulls
+                && i == (((LoginCommand) other).i)); // state check
+    }
 }
