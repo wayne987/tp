@@ -5,16 +5,15 @@ skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
 package MainWindowPanels <<Rectangle>>{
-Class DayListPanel
-Class DayCard
 Class CalorieInputCard
 Class CalorieInputListPanel
 Class CalorieOutputCard
 Class CalorieOutputListPanel
+Class DayListPanel
+Class DayCard
 Class ProfileListPanel
 Class ProfileCardPanel
 Class ProfileCard
-Class "{abstract}\nUiPart" as UiPart
 }
 
 package Model <<Rectangle>> {
@@ -22,6 +21,7 @@ Class HiddenModel #FFFFFF
 }
 
 Class MainWindow
+Class "{abstract}\nUiPart" as UiPart
 
 MainWindow *-down-> ProfileCardPanel
 MainWindow *-down-> ProfileListPanel
@@ -29,19 +29,27 @@ MainWindow *-down-> DayListPanel
 MainWindow *-down-> CalorieInputListPanel
 MainWindow *-down-> CalorieOutputListPanel
 
+DayCard *-up-> MainWindow
+
+
+ProfileCardPanel -right[hidden]- ProfileListPanel
+ProfileListPanel -right[hidden]- DayListPanel
+DayListPanel -right[hidden]- CalorieInputListPanel
+CalorieInputListPanel -right[hidden]- CalorieOutputListPanel
+
 ProfileListPanel *--> ProfileCard
 ProfileCardPanel *--> ProfileCard
 
 DayListPanel *-down-> DayCard
-DayCard *--> MainWindow
 
 CalorieInputListPanel *-down-> CalorieInputCard
 CalorieOutputListPanel *-down-> CalorieOutputCard
 
-
-ProfileCard ..> Model
-CalorieOutputCard ..> Model
-CalorieInputCard ..> Model
 DayCard ..> Model
+CalorieInputCard ..> Model
+CalorieOutputCard ..> Model
+
+Model -left[hidden]- UiPart
+
 
 @enduml
