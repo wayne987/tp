@@ -18,6 +18,7 @@ import seedu.address.model.person.Profile;
 class JsonAdaptedPerson {
 
     public static final String MESSAGE_DUPLICATE_DAY = "Day list contains duplicate days(s).";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final JsonAdaptedProfile profile;
     private final List<JsonAdaptedDay> days = new ArrayList<>();
@@ -30,7 +31,9 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("profile") JsonAdaptedProfile profile,
                              @JsonProperty("days") List<JsonAdaptedDay> days) {
         this.profile = profile;
-        this.days.addAll(days);
+        if (days != null) {
+            this.days.addAll(days);
+        }
     }
 
     /**
@@ -47,9 +50,16 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted Person.
      */
     public Person toModelType() throws IllegalValueException {
+        if (profile == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Profile.class.getSimpleName()));
+        }
         Profile modelProfile = profile.toModelType();
         Person modelPerson = new Person();
         modelPerson.setProfile(modelProfile);
+
+        if (days.isEmpty()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Day.class.getSimpleName()));
+        }
         for (JsonAdaptedDay jsonAdaptedDay : days) {
             Day day = jsonAdaptedDay.toModelType();
             if (modelPerson.hasDay(day)) {

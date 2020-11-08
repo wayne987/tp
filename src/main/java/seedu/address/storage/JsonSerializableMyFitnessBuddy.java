@@ -20,7 +20,7 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "My Fitness Buddy")
 class JsonSerializableMyFitnessBuddy {
 
-    private static final String MESSAGE_DUPLICATE_PERSON = "Person list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Person list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 

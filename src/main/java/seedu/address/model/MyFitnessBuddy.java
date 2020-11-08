@@ -212,7 +212,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof MyFitnessBuddy // instanceof handles nulls
-                && getDayList().equals(((MyFitnessBuddy) other).getDayList()));
+                && getPersonList().equals(((MyFitnessBuddy) other).getPersonList()));
     }
 
     @Override

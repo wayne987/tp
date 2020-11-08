@@ -42,7 +42,6 @@ public class ViewCommand extends Command {
 
         Day dayToView = lastShownList.get(targetIndex.getZeroBased());
 
-
         return new CommandResult(String.format(MESSAGE_VIEW_DAY_SUCCESS, dayToView),
                 targetIndex.getOneBased(), true);
     }

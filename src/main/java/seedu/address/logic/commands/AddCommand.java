@@ -31,6 +31,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_DAY = "This day already exists in the records.";
     public static final String MESSAGE_PAST = "Bruh going back in time?";
     public static final String MESSAGE_FUTURE = "Bruh you travelling through time?";
+    public static final String MESSAGE_NO_LOGIN = "Please login to a profile before adding a new day.";
 
     private final Day toAdd;
 
@@ -60,6 +61,10 @@ public class AddCommand extends Command {
 
         Date start = model.getMyFitnessBuddy().getPerson().getDay();
         Date check = toAdd.getDate();
+
+        if (start == null) {
+            throw new CommandException(MESSAGE_NO_LOGIN);
+        }
 
         if (isBefore(check, start)) {
             throw new CommandException(MESSAGE_PAST);
