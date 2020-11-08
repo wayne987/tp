@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_DUPLICATE_PREFIX;
 
 import java.time.LocalDate;
 
@@ -81,11 +82,11 @@ public class CalorieCommandParserTest {
 
         // duplicate field
         assertParseFailure(parser, "tp/out e/running f/asdf c/123 t/1234 t/1234",
-                expectedMessage);
+                MESSAGE_DUPLICATE_PREFIX);
 
         // duplicate type field
-        assertParseFailure(parser, "tp/out tp/in e/running c/123 t/1234 t/1234",
-                expectedMessage);
+        assertParseFailure(parser, "tp/out tp/in e/running c/123 t/1234",
+                MESSAGE_DUPLICATE_PREFIX);
     }
 
     @Test

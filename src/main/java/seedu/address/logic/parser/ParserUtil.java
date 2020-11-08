@@ -224,7 +224,6 @@ public class ParserUtil {
         requireNonNull(bmi);
         try {
             double resultBmi = Double.parseDouble(bmi);
-            System.out.println(resultBmi < 1);
             if (resultBmi < 1 || resultBmi > 400) {
                 throw new ParseException(MESSAGE_INVALID_BMI);
             }

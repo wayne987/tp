@@ -37,9 +37,6 @@ public class CalorieBudget {
     public static int calculateCalorieSurplus(int totalCalorieIn, int totalCalorieOut, int basalMetabolic) {
         requireAllNonNull(totalCalorieIn, totalCalorieOut, basalMetabolic);
         double adjustedBasal = PAL * basalMetabolic;
-        System.out.println(totalCalorieIn + "asd");
-        System.out.println(adjustedBasal + "--L");
-        System.out.println(totalCalorieIn + "asdfgh");
         return (int) (totalCalorieOut + adjustedBasal - totalCalorieIn);
     }
 }

@@ -69,23 +69,6 @@ public class EditCommandParserTest {
 
         // invalid weight
         assertParseFailure(parser, "1" + INVALID_WEIGHT_DESC, Weight.MESSAGE_CONSTRAINTS);
-
-        // valid weight followed by invalid weight. The test case for invalid weight followed by valid weight
-        // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + WEIGHT_DESC_2 + INVALID_WEIGHT_DESC, Weight.MESSAGE_CONSTRAINTS);
-
-        /*
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Day} being edited,
-        // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-*/
-
-        // multiple invalid values, but only the first invalid value is captured
-        //        assertParseFailure(parser, "1" + INVALID_DATE_DESC
-        //        + INVALID_EMAIL_DESC + VALID_ADDRESS_1 + VALID_WEIGHT_1,
-        //                Date.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -99,7 +82,6 @@ public class EditCommandParserTest {
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
-        System.out.println(userInput);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -131,35 +113,4 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-    @Test
-    public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_DAY;
-        String userInput = targetIndex.getOneBased() + WEIGHT_DESC_1
-                + WEIGHT_DESC_1
-                + WEIGHT_DESC_2;
-
-        EditDayDescriptor descriptor = new EditDayDescriptorBuilder().withWeight(VALID_WEIGHT_2)
-                .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_invalidValueFollowedByValidValue_success() {
-        // no other valid values specified
-        Index targetIndex = INDEX_FIRST_DAY;
-        String userInput = targetIndex.getOneBased() + INVALID_WEIGHT_DESC + WEIGHT_DESC_2;
-        EditDayDescriptor descriptor = new EditDayDescriptorBuilder().withWeight(VALID_WEIGHT_2).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // other valid values specified
-        userInput = targetIndex.getOneBased() + INVALID_WEIGHT_DESC
-                + WEIGHT_DESC_2;
-        descriptor = new EditDayDescriptorBuilder().withWeight(VALID_WEIGHT_2)
-               .build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
 }

@@ -34,7 +34,13 @@ public class ChangeCommand extends Command {
 
     public static final String COMMAND_WORD = "change";
 
-    public static final String DUPLICATE_TIME = "There exist a calorie with the same time";
+    public static final String MESSAGE_NO_DAY_DETERMINANT = " Either input a date or an index to specify which "
+            + "date the calorie to be edited is present but not both ";
+
+    public static final String MESSAGE_NO_CALORIE_DETERMINANT =
+            " Index field to determine calorie to change cannot be empty ";
+
+    public static final String MESSAGE_NO_TYPE_DETERMINANT = " Calorie type field cannot be empty";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the calorie identified "
             + "by the index number used in the displayed calorie list. "
@@ -170,6 +176,32 @@ public class ChangeCommand extends Command {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ChangeCommand)) {
+            return false;
+        }
+
+        // state check
+        ChangeCommand e = (ChangeCommand) other;
+
+        boolean temp;
+        if (index != null) {
+            temp = index.equals(e.index);
+        } else {
+            temp = date.equals(e.date);
+        }
+
+        return temp
+                && calorieIndex.equals(e.calorieIndex)
+                && changeCalorieDescriptor.equals(e.changeCalorieDescriptor);
+    }
     /**
      * Stores the details to edit the calorie with. Each non-empty field value will replace the
      * corresponding field value of the calorie.
@@ -250,7 +282,7 @@ public class ChangeCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditCommand.EditDayDescriptor)) {
+            if (!(other instanceof ChangeCommand.ChangeCalorieDescriptor)) {
                 return false;
             }
 
@@ -258,7 +290,7 @@ public class ChangeCommand extends Command {
             ChangeCommand.ChangeCalorieDescriptor e = (ChangeCommand.ChangeCalorieDescriptor) other;
 
             return getTime().equals(e.getTime())
-                    && getTime().equals(e.getTime())
+                    && getIsOut().equals(e.getIsOut())
                     && getCalorieCount().equals(e.getCalorieCount())
                     && getExercise().equals(e.getExercise())
                     && getFood().equals(e.getFood());

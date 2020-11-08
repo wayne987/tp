@@ -55,6 +55,10 @@ public class RemoveCommandParserTest {
         assertParseFailure(parser, " -1 tp/out i/1",
                 expectedMessage);
 
+        // wrong index value
+        assertParseFailure(parser, " 1.2 tp/out i/1",
+                expectedMessage);
+
         //wrong type value
         assertParseFailure(parser, " 1 tp/test i/1",
                 Calorie.MESSAGE_TYPE_CONSTRAINT);
