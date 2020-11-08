@@ -134,7 +134,7 @@ public class MyFitnessBuddy implements ReadOnlyMyFitnessBuddy {
      */
     public void addDay(Day day) {
         currentPerson.addDay(day);
-        day.setStartingWeight(person.getProfile().getTargetWeight());
+        day.setStartingWeight(person.getProfile().getStartingWeight());
         day.setHeight(person.getProfile().getHeight());
     }
 

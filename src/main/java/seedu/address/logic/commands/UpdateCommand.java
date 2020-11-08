@@ -96,7 +96,7 @@ public class UpdateCommand extends Command {
         Name updatedName = editProfileDescriptor.getName().orElse(profileToEdit.getName());
         ID updatedID = editProfileDescriptor.getId().orElse(profileToEdit.getId());
         Height updatedHeight = editProfileDescriptor.getHeight().orElse(profileToEdit.getHeight());
-        Weight updatedTargetWeight = editProfileDescriptor.getWeight().orElse(profileToEdit.getTargetWeight());
+        Weight updatedTargetWeight = editProfileDescriptor.getWeight().orElse(profileToEdit.getStartingWeight());
 
         return new Profile(updatedName, updatedID, updatedHeight, updatedTargetWeight);
     }
