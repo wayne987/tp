@@ -19,11 +19,13 @@ import seedu.address.testutil.TypicalPerson;
 import seedu.address.testutil.TypicalProfiles;
 
 public class JsonAdaptedPersonTest {
-    private static final Profile VALID_PROFILE = TypicalProfiles.VALID_PROFILE;
-    private static final List<Day> VALID_DAYS = TypicalDays.getTypicalDays();
-    private static final Person VALID_PERSON = TypicalPerson.VALID_PERSON;
+    private static final Profile VALID_PROFILE = TypicalProfiles.PROFILE1;
+    private static final List<JsonAdaptedDay> VALID_DAYS = TypicalDays.getTypicalDays().stream()
+            .map(JsonAdaptedDay::new).collect(Collectors.toList());
+    private static final Person VALID_PERSON = TypicalPerson.PERSON1;
 
-    private static final List<Day> INVALID_DAYS = TypicalDays.getDuplicateDays();
+    private static final List<JsonAdaptedDay> INVALID_DAYS = TypicalDays.getDuplicateDays().stream()
+            .map(JsonAdaptedDay::new).collect(Collectors.toList());;
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -34,8 +36,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullProfile_throwsIllegalValueException() {
 
-        JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_DAYS.stream()
-                .map(JsonAdaptedDay::new).collect(Collectors.toList()));
+        JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_DAYS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Profile.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -50,7 +51,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidDays_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(new JsonAdaptedProfile(VALID_PROFILE),
-                INVALID_DAYS.stream().map(JsonAdaptedDay::new).collect(Collectors.toList()));;
+                INVALID_DAYS);
         String expectedMessage = MESSAGE_DUPLICATE_DAY;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }

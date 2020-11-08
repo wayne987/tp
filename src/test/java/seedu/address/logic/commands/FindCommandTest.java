@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 //import static seedu.address.testutil.TypicalDays.CARL;
 //import static seedu.address.testutil.TypicalDays.ELLE;
 //import static seedu.address.testutil.TypicalDays.FIONA;
-import static seedu.address.testutil.TypicalDays.getTypicalMyFitnessBuddy;
+import static seedu.address.testutil.TypicalPerson.getTypicalMyFitnessBuddy;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDays.DAY1;
 import static seedu.address.testutil.TypicalDays.DEFAULT_PROFILE;
-import static seedu.address.testutil.TypicalDays.getTypicalMyFitnessBuddy;
+import static seedu.address.testutil.TypicalPerson.getTypicalMyFitnessBuddy;
 
 import java.util.Arrays;
 import java.util.Collection;
