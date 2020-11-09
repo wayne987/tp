@@ -64,6 +64,9 @@ public class EditCommand extends Command {
         if (!dayToEdit.isSameDay(editedDay) && model.hasDay(editedDay)) {
             throw new CommandException(MESSAGE_DUPLICATE_DAY);
         }
+        editedDay.setAge(dayToEdit.getAge());
+        editedDay.setHeight(dayToEdit.getHeight());
+        editedDay.setStartingWeight(dayToEdit.getStartingWeight());
 
         model.setDay(dayToEdit, editedDay);
         model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);

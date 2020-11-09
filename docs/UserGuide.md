@@ -3,7 +3,8 @@ layout: page
 title: My Fitness Buddy User Guide
 ---
  ![logo](images/logo.png)  
-   
+(Contributed by Hope)  
+  
 Welcome to My Fitness Buddy User Guide!  
 
 Just enlisted under PES ‘B’ Pending and worried about the next few months of Basic Military Training (BMT)?  
@@ -19,14 +20,16 @@ Choose a topic from the [Table of Contents](#table-of-contents) below.
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. Introduction
+(Contributed by Hope)  
 ### 1.1 Application Overview
-My Fitness Buddy `v1.3` is a desktop application that helps you to track your overall change in fitness level by allowing you to add daily records of your weight and calorie input/output.  
+My Fitness Buddy `v1.4` is a desktop application that helps you to track your overall change in fitness level by allowing you to add daily records of your weight and calorie input/output.  
 My Fitness Buddy also allows users to create a profile and can generate visual charts based on these records so that you can monitor your daily progress and help you achieve your goals.  
 This application is optimized for use through a *Command Line Interface (CLI)*, meaning that you operate the application by typing commands into a command box.
 
 ### 1.2 Target Audience
-My Fitness Buddy is designed for PES ‘B’ Pending (BP) soldiers who have just enlisted and are starting their initial 10 weeks of fitness training in BMT. Our features revolve around providing a visual and convenient way to keep track of factors that affect weight loss.
+My Fitness Buddy is designed for PES ‘B’ Pending (BP) soldiers who have just enlisted and are starting their initial 10 weeks of fitness training in BMT. Our features revolve around providing a visual and convenient way to keep track of factors that affect weight loss.  
 
+We have also implemented a commander's version that would allow commanders to have an overview of all recruits.
 ### 1.3 Rationale
  Before this application was developed, PES BP soldiers had weekly weighing and had to record down their weights on a form kept by their commanders. This method was not only time consuming, it was also ineffective in tracking the soldiers' overall fitness levels. For instance, if a soldier's weight did not decrease over the weeks, he would be unable to pinpoint the reason why this is so.   
  My Fitness Buddy was developed so that soldiers would be able to see the fluctuations in their fitness level through factors such as calorie intake from consumption, calorie output from exercise, and daily weight records. Those records would be available by day and can even be viewed as  a graph.  
@@ -34,17 +37,21 @@ My Fitness Buddy is designed for PES ‘B’ Pending (BP) soldiers who have just
 
 --------------------------------------------------------------------------------------------------------------------
 ## 2. About
+(Contributed by Hope)  
 ### 2.1 Using this User Guide
-This User Guide has been structured such that users can easily find and understand what they need.
-[Section 2](#2-about) contains useful tips and information on reading this document.
-[Section 3](#3-getting-started) consists of instructions to set up this application
+This User Guide has been structured such that users can easily find and understand what they need.  
+[Section 2](#2-about) contains useful tips and information on reading this document.  
+[Section 3](#3-getting-started) consists of instructions to set up this application  
 [Section 4](#4-features) includes the details of the 4 main features of My Fitness Buddy which are
 * Profile page
 * List of days
 * Calorie input and output
 * Statistics
 
+[Section 5](#5-??) consists the commands and features available in the commander's mode.
+
 ### 2.2 Symbols and Syntax
+
 The table below explains the general symbols and syntax used throughout the document.
 
 Symbol/syntax | Meaning
@@ -54,6 +61,8 @@ Symbol/syntax | Meaning
 :warning: | This indicates a warning.
 
 ### 2.3 Command Format
+(Contributed by Ethan)
+
 Commands are used to tell My Fitness Buddy to perform specific tasks.  
 All commands in the following sections follow the same format.
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.
@@ -63,19 +72,25 @@ All commands in the following sections follow the same format.
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Getting Started
+(Contributed by Jun Hui)
 
 Thank you for using My Fitness Buddy! Here's a quick start guide to get you started.
 
-1. Ensure you have Java 11 or above installed in your Computer. 
-1. Download the latest *MyFitnessBuddy_`v1.3`*.jar [here](https://github.com/AY2021S1-CS2103T-W11-3/tp/releases)
-1. Copy the file to the folder you want to use as the *home folder* for My Fitness Buddy.  
+1. Ensure you have Java 11 or above installed in your Computer.
+
+1. Download the latest *MyFitnessBuddy_`v1.4`*.jar [here](https://github.com/AY2021S1-CS2103T-W11-3/tp/releases)
+
+1. Copy the file to the folder you want to use as the *home folder* for My Fitness Buddy. 
+ 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
-![GUI](images/Ui.png)                   
+![GUI](images/starting_screen.png)          
+         
 1. If the app doesn’t start right away, try opening a command terminal in the folder and enter  
-`java -jar MyFitnessBuddy_v1.3.jar`
+`java -jar MyFitnessBuddy_v1.4.jar`
+
 1. You can type a command in the command box and press <kbd>Enter</kbd> to execute it.<br>
-Here are some basic commands you can try:
-    * `create n/Johnny id/1234 h/170 w/68`: Creates a profile named `Johnny`.
+    Here are some basic commands you can try:
+    * `login 1` : Loads the first profile in the profile list.
     * `add d/2020-10-16 w/70`: Creates a daily record with the specified date and weight.
     * `calorie d/2020-10-26 tp/in t/1200 f/laksa c/290`: Adds a calorie input entry with the specified date.
     * `stats v/all`: View both calorie and weight charts in a pop-up window.
@@ -84,9 +99,18 @@ Here are some basic commands you can try:
 
 --------------------------------------------------------------------------------------------------------------------
 
-
-
 ## 4. Features
+(Contributed by Jun Hui)
+<div markdown="span" class="alert alert-primary">
+
+:warning: **WARNING:** Commands from section [#4.1.2](#411-creating-a-new-profile--create) to
+                       [#4.4.1](#441-view-all-calorie-inputs-and-outputs-of-a-day-view) REQUIRES you to `login` to a profile first.
+                       <br>You can login to a profile using `login INDEX`, where `INDEX` is the index number of the profile in the Profile List Panel.
+
+</div>
+
+![login_example](images/login_example.png)
+
 
 ### 4.1 Profile commands
 
@@ -176,7 +200,9 @@ Deletes a day at index 2.
 
 ![DeleteDay](images/DeleteDay.png)
 
-### 4.3 Calorie Commands
+### 4.3 Calorie Level Data Entry Commands
+(Contributed by Wa Wai)
+
 Commands in this section are useful in keeping track of the various calorie content.
 You can use them to log different kinds of calorie content and their relevant information.
 
@@ -230,8 +256,23 @@ Meaning:`The user ran on October 26 2020 at 12pm and has expanded 400kcal`
 
 _TIP: If the `DATE` field is left empty, the calorie output will be added to the current date entry._
 
+Examples:`remove 3 tp/out i/3` 
 #### 4.3.2 Removing Calorie
-##### 4.3.2.1 Removing a calorie input : `remove tp/in`
+##### 4.3.2.1 Removing a calorie output : `remove tp/out`
+
+Removes a wrong calorie Output entry from the calorie tracker.
+
+Format: `remove tp/out d/DATE i/INDEX`
+
+Examples:`remove tp/in d/2020-10-26 i/3` 
+
+Meaning:`Remove a calorie output from October 26 2020 calorie log, which is the 3rd calorie output in the list of
+Output calories for that day.` 
+
+_TIP: Instead of using d/DATE to specify the date of the log in which the calorie belongs too, the index of the date
+can be used instead_
+
+##### 4.3.2.2 Removing a calorie input : `remove tp/in`
 
 Removes a wrong calorie input entry from the calorie tracker.
 
@@ -247,30 +288,13 @@ can be used instead_
 
 Example:`remove 3 tp/in i/3` 
 
-##### 4.3.2.2 Removing a calorie output : `remove tp/out`
+#### 4.3.3 Change Calorie
+##### 4.3.3.1 Changing a calorie input : `change tp/in`
+Change a calorie input entry with details recorded wrongly
 
-Removes a wrong calorie Output entry from the calorie tracker.
+Format: `change d/DATE tp/in i/INDEX [Updated Details]`
 
-Format: `remove tp/out d/DATE i/INDEX`
-
-Examples:`remove tp/in d/2020-10-26 i/3` 
-
-Meaning:`Remove a calorie output from October 26 2020 calorie log, which is the 3rd calorie output in the list of
-Output calories for that day.` 
-
-_TIP: Instead of using d/DATE to specify the date of the log in which the calorie belongs too, the index of the date
-can be used instead_
-
-Examples:`remove 3 tp/out i/3` 
-
-#### 4.3.3 Modifying Calorie
-##### 4.3.3.1 Modifying a calorie input : `modify tp/in`
-
-Modify a calorie input entry with details recorded wrongly
-
-Format: `modify d/DATE tp/in i/INDEX [Updated Details]`
-
-Examples:`modify d/2020-10-26 tp/in i/2 c/123` 
+Examples:`change d/2020-10-26 tp/in i/2 c/123` 
 
 Meaning:`change the calorie count of an input calorie in the log from October 26 2020 with the index of 2 in the
 input list to 123` 
@@ -280,15 +304,15 @@ input list to 123`
 
 _TIP: Instead of using d/DATE to specify the date of the log in which the calorie belongs too, the index of the date
 can be used instead_
-Examples:`modify 3 tp/out i/3 c/123`
+Examples:`change 3 tp/out i/3 c/123`
 
-##### 4.3.3.2 Modifying a calorie output : `modify tp/out`
+##### 4.3.3.2 Change a calorie output : `change tp/out`
 
-Modify a calorie out entry with details recorded wrongly
+Change a calorie out entry with details recorded wrongly
 
-Format: `modify d/DATE tp/in i/INDEX [Updated Details]`
+Format: `change d/DATE tp/in i/INDEX [Updated Details]`
 
-Examples:`modify d/2020-10-26 tp/in i/2 c/123` 
+Examples:`change d/2020-10-26 tp/in i/2 c/123` 
 
 Meaning:`change the calorie count of an Output calorie in the October 26 2020 log ,with the index of 2 in the
 output list to 123` 
@@ -300,6 +324,7 @@ _TIP: Instead of using d/DATE to specify the date of the log in which the calori
 can be used instead_
 
 ### 4.4 Data Visualization
+(Contributed by Jun Hui)
 
 Commands in this section are useful to view the graphical representations of the
 daily weights and calorie input/output records generated by My Fitness Buddy.
@@ -308,21 +333,33 @@ These features help you to monitor your daily progress easily and allows you to 
 certain trends so that you can make better choices during your weight loss journey!
 
 #### 4.4.1 View all calorie inputs and outputs of a day: `view`
+(Contributed by Ethan)
+
 Shows a list of all entries of calorie inputs and calorie outputs of a particular day.
+Updates the status bar above to show you the date of the day you are viewing. 
 
 Format: `view INDEX`
 
-Main screen when a particular day is viewed:
+Main screen before a view command is used:
 
-![day_clicked_chart](images/day_vieweD.png)
+![day_before_view](images/dayBeforeView.png)
+
+Main screen after a view command is used:
+
+![day_after_view](images/dayAfterView.png)
+
+:warning: Calorie lists will not show anything if you have not added any calorie
+inputs or outputs for that particular day you are viewing. The status bar will still 
+update. 
 
 _:bulb:TIP: Calorie lists can be viewed alternatively by double clicking on a particular day card._
 
 #### 4.4.2 View Statistics: `stats`
+(Contributed by Jun Hui)
 
 Shows the charts generated from the daily entries of weight and calorie input/output in a pop-up window.
 
-Format: `stats v/[CHART_TO_BE_VIEWED]`
+Format: `stats v/CHART_TO_BE_VIEWED`
 
 You can select which charts to view:
 
@@ -349,6 +386,7 @@ _:bulb:TIP: Charts can be viewed alternatively by going to the menu bar, click o
 ![chart_menu_bar](images/chart_menu_bar.png)
 
 ### 4.5 General commands
+(Contributed by Jun Hui)
 
 #### 4.5.1 Viewing help : `help`
 
@@ -376,8 +414,39 @@ Exits the program.
 
 Format: `exit`
 
+### 4.6 Additional Features for BMT Commanders
+(Contributed by Jun Hui)
 
-### 4.6 Saving the data
+Commands in this section are useful for BMT commanders to view the overall progress of 
+the recruits.
+
+These features help you to keep track the overall progress of the recruits with the help of
+graphical representations, so you and other commanders can have a better insight to your training
+effectiveness.
+
+#### 4.6.1 View overall BMI progress of the recruits: `stats v/commander`
+Shows a pie chart that classifies all the recruits (with their profiles existing in the app) into different BMI categories.
+
+Format: `stats v/commander`
+
+Pie Chart:
+![overall_progress_chart](images/overall_progress_chart.png)
+
+#### 4.6.2 Find recruits that exceeded certain BMI threshold: `find bmi/`
+Filters the list in Profile List Panel to show profiles that exceeded the specified BMI threshold.
+
+Format: `find bmi/BMI_VALUE`
+
+Example: `find bmi/27`
+
+Meaning: Filters the list to show profiles that with more than or equal to BMI of 27.
+
+![find_bmi](images/find_bmi.png)
+
+_:bulb:TIP: Use `list` command to show all profiles after executing `find bmi/` command._
+
+### 4.7 Saving the data
+(Contributed by Ethan)
 
 My Fitness Buddy data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -385,14 +454,23 @@ My Fitness Buddy data are saved in the hard disk automatically after any command
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. FAQ
+(Contributed by Ethan)
+
 ### 5.1 Transferring Data
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous My Fitness Buddy home folder.  
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous My Fitness Buddy home folder. 
 
+### 5.2 Viewing calorie lists
+
+**Q**: Why is my calorie lists not showing when I use a view command?<br>
+**A**: Make sure that you have added calories for that day. If the calorie lists are empty,
+the lists will not show anything. The status bar will still update informing you that you are 
+viewing that particular day. 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Command summary
+(Contributed by Ethan)
 
 Action | Format
 --------|------------------
@@ -405,9 +483,12 @@ Action | Format
 **Add output** | `calorie tp/out t/TIME d/DURATION c/CALORIE_BURNT`
 **Remove input** | `remove tp/in d/DATE i/INDEX` 
 **Remove output** | `remove tp/out d/DATE i/INDEX` 
-**Modify input** | `modify tp/in t/TIME f/FOOD c/CALORIE_COUNT`
-**Modify output** | `modify tp/out t/TIME d/DURATION c/CALORIE_BURNT` 
+**Change input** | `change tp/in t/TIME f/FOOD c/CALORIE_COUNT`
+**Change output** | `change tp/out t/TIME d/DURATION c/CALORIE_BURNT` 
 **View calories of a day** | `view INDEX`
+**View statistics** | `stats v/CHART_TO_BE_VIEWED`
+**View overall BMI progress of recruits for commanders** | `stats v/commander`
+**Find specific recruits that exceeded BMI threshold** | `find bmi/BMI_VALUE`
 **Clear entries** | `clear`
 **Help** | `help`
 **Exit** | `exit`
