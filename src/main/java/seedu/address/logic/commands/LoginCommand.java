@@ -7,17 +7,15 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
-<<<<<<< HEAD
  * Login to a specific profile
-=======
  * command to switch between the users that is currently being referenced
  * Allows users to login to their profile
->>>>>>> master
  */
 public class LoginCommand extends Command {
 
     public static final String COMMAND_WORD = "login";
     private final int i;
+
     /**
      * Constructor for login command
      * @param i index of the profile to switch t
