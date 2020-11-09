@@ -200,7 +200,9 @@ Deletes a day at index 2.
 
 ![DeleteDay](images/DeleteDay.png)
 
-### 4.3 Calorie Commands
+### 4.3 Calorie Level Data Entry Commands
+(Contributed by Wa Wai)
+
 Commands in this section are useful in keeping track of the various calorie content.
 You can use them to log different kinds of calorie content and their relevant information.
 
@@ -254,24 +256,9 @@ Meaning:`The user ran on October 26 2020 at 12pm and has expanded 400kcal`
 
 _TIP: If the `DATE` field is left empty, the calorie output will be added to the current date entry._
 
+Examples:`remove 3 tp/out i/3` 
 #### 4.3.2 Removing Calorie
-##### 4.3.2.1 Removing a calorie input : `remove tp/in`
-
-Removes a wrong calorie input entry from the calorie tracker.
-
-Format: `remove tp/in d/DATE i/INDEX`
-
-Examples:`remove tp/in d/2020-10-26 i/3` 
-
-Meaning:`Remove a calorie input from October 26 2020 calorie log, which is the 3rd calorie input in the list of
-Input calories for that day.` 
-
-_TIP: Instead of using d/DATE to specify the date of the log in which the calorie belongs too, the index of the date
-can be used instead_
-
-Example:`remove 3 tp/in i/3` 
-
-##### 4.3.2.2 Removing a calorie output : `remove tp/out`
+##### 4.3.2.1 Removing a calorie output : `remove tp/out`
 
 Removes a wrong calorie Output entry from the calorie tracker.
 
@@ -285,16 +272,37 @@ Output calories for that day.`
 _TIP: Instead of using d/DATE to specify the date of the log in which the calorie belongs too, the index of the date
 can be used instead_
 
+##### 4.3.2.2 Removing a calorie input : `remove tp/in`
+
+Removes a wrong calorie input entry from the calorie tracker.
+
+Format: `remove tp/in d/DATE i/INDEX`
+
+Examples:`remove tp/in d/2020-10-26 i/3` 
+
+Meaning:`Remove a calorie input from October 26 2020 calorie log, which is the 3rd calorie input in the list of
+Input calories for that day.` 
+
+_TIP: Instead of using d/DATE to specify the date of the log in which the calorie belongs too, the index of the date
+can be used instead_
+
+<<<<<<< HEAD
 Examples:`remove 3 tp/out i/3` 
 
-#### 4.3.3 Modifying Calorie
-##### 4.3.3.1 Modifying a calorie input : `modify tp/in`
+#### 4.3.3 Changing Calorie
+##### 4.3.3.1 Changing a calorie input : `changing tp/in`
 
-Modify a calorie input entry with details recorded wrongly
+=======
+Example:`remove 3 tp/in i/3` 
 
-Format: `modify d/DATE tp/in i/INDEX [Updated Details]`
+#### 4.3.3 Change Calorie
+##### 4.3.3.1 Changing a calorie input : `change tp/in`
+>>>>>>> 4b131488bf6edb1334deb36b9f8da2e15f9ec28f
+Change a calorie input entry with details recorded wrongly
 
-Examples:`modify d/2020-10-26 tp/in i/2 c/123` 
+Format: `change d/DATE tp/in i/INDEX [Updated Details]`
+
+Examples:`change d/2020-10-26 tp/in i/2 c/123` 
 
 Meaning:`change the calorie count of an input calorie in the log from October 26 2020 with the index of 2 in the
 input list to 123` 
@@ -304,15 +312,19 @@ input list to 123`
 
 _TIP: Instead of using d/DATE to specify the date of the log in which the calorie belongs too, the index of the date
 can be used instead_
-Examples:`modify 3 tp/out i/3 c/123`
+Examples:`change 3 tp/out i/3 c/123`
 
-##### 4.3.3.2 Modifying a calorie output : `modify tp/out`
+<<<<<<< HEAD
+##### 4.3.3.2 Changing a calorie output : `change tp/out`
+=======
+##### 4.3.3.2 Change a calorie output : `change tp/out`
+>>>>>>> 4b131488bf6edb1334deb36b9f8da2e15f9ec28f
 
-Modify a calorie out entry with details recorded wrongly
+Change a calorie out entry with details recorded wrongly
 
-Format: `modify d/DATE tp/in i/INDEX [Updated Details]`
+Format: `change d/DATE tp/in i/INDEX [Updated Details]`
 
-Examples:`modify d/2020-10-26 tp/in i/2 c/123` 
+Examples:`change d/2020-10-26 tp/in i/2 c/123` 
 
 Meaning:`change the calorie count of an Output calorie in the October 26 2020 log ,with the index of 2 in the
 output list to 123` 
@@ -483,8 +495,8 @@ Action | Format
 **Add output** | `calorie tp/out t/TIME d/DURATION c/CALORIE_BURNT`
 **Remove input** | `remove tp/in d/DATE i/INDEX` 
 **Remove output** | `remove tp/out d/DATE i/INDEX` 
-**Modify input** | `modify tp/in t/TIME f/FOOD c/CALORIE_COUNT`
-**Modify output** | `modify tp/out t/TIME d/DURATION c/CALORIE_BURNT` 
+**Change input** | `change tp/in t/TIME f/FOOD c/CALORIE_COUNT`
+**Change output** | `change tp/out t/TIME d/DURATION c/CALORIE_BURNT` 
 **View calories of a day** | `view INDEX`
 **View statistics** | `stats v/CHART_TO_BE_VIEWED`
 **View overall BMI progress of recruits for commanders** | `stats v/commander`
