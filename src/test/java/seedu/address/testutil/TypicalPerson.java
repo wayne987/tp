@@ -113,7 +113,7 @@ public class TypicalPerson {
                 new Profile(new Name("test"), new ID("1111"), new Height("180"), new Weight("100")));
         person.setStartingDay(new Date("2020-10-10"));
         Day day = new Day(new Date("2020-10-10"), new Weight("100"));
-        day.setStartingWeight(person.getProfile().getTargetWeight());
+        day.setStartingWeight(person.getProfile().getStartingWeight());
         day.setAge(person.getProfile().getAge());
         day.setHeight(person.getProfile().getHeight());
         person.addDay(day);
@@ -127,12 +127,12 @@ public class TypicalPerson {
                 new Profile(new Name("test"), new ID("1111"), new Height("180"), new Weight("100")));
         person.setStartingDay(new Date("2020-10-10"));
         Day day = new Day(new Date("2020-10-10"), new Weight("100"));
-        day.setStartingWeight(person.getProfile().getTargetWeight());
+        day.setStartingWeight(person.getProfile().getStartingWeight());
         day.setAge(person.getProfile().getAge());
         day.setHeight(person.getProfile().getHeight());
         person.addDay(day);
         Day day2 = new Day(new Date("2020-10-11"), new Weight("123"));
-        day2.setStartingWeight(person.getProfile().getTargetWeight());
+        day2.setStartingWeight(person.getProfile().getStartingWeight());
         day2.setAge(person.getProfile().getAge());
         day2.setHeight(person.getProfile().getHeight());
         person.addDay(day2);
