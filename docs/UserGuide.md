@@ -26,7 +26,7 @@ My Fitness Buddy `v1.4` is a desktop application that helps you to track your ov
 My Fitness Buddy also allows users to create a profile and can generate visual charts based on these records so that you can monitor your daily progress and help you achieve your goals.  
 This application is optimized for use through a *Command Line Interface (CLI)*, meaning that you operate the application by typing commands into a command box.
 
-### 1.2 STARTING Audience
+### 1.2 Target Audience
 My Fitness Buddy is designed for PES ‘B’ Pending (BP) soldiers who have just enlisted and are starting their initial 10 weeks of fitness training in BMT. Our features revolve around providing a visual and convenient way to keep track of factors that affect weight loss.  
 
 We have also implemented a commander's version that would allow commanders to have an overview of all recruits.
@@ -47,8 +47,7 @@ This User Guide has been structured such that users can easily find and understa
 * List of days
 * Calorie input and output
 * Statistics
-
-[Section 5](#5-??) consists the commands and features available in the commander's mode.
+* Features for commanders
 
 ### 2.2 Symbols and Syntax
 
@@ -98,15 +97,15 @@ When you open our application for the first time, the application starts up with
 are some general usage scenarios of our application that you can try when getting started
 * From sample data :
 1. `login 1` : Login to the first profile in the list
-1. `add d/2020-10-16 w/70` : Create a daily record with the specified date and weight.
+1. `add d/2020-10-26 w/70` : Create a daily record with the specified date and weight.
 1. `calorie d/2020-10-26 tp/in t/1200 f/laksa c/290` : Adds a calorie input entry with the specified date.
 1. `stats v/all` : View both calorie and weight charts in a pop-up window.
 1. `login 2` : Login to the second profile in the list  
 
 * After `clear` command :
 1. `create n/John id/1201 h/170 w/68` : Create a new profile with the specified information
-1. `add d/2020-10-16 w/70` : Create a daily record with the specified date and weight.
-1. `calorie d/2020-10-26 tp/out t/1200 e/Run c/290` : Adds a calorie input entry with the specified date.
+1. `add d/2020-10-26 w/70` : Create a daily record with the specified date and weight.
+1. `calorie d/2020-10-26 tp/out t/1230 e/Run c/100` : Adds a calorie input entry with the specified date.
 1. `stats v/all` View both calorie and weight charts in a pop-up window.
 
 Head to [Features](#4-features) below to learn more details of each command. 
