@@ -195,6 +195,54 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Feature: Creates a new Person to My Fitness Buddy
+
+#### Implementations
+
+This feature allows users to create a new `Profile`, consisting of their `Name`, `ID`, `Height` and starting `Weight`,
+and a new `UniqueDayList` for daily calorie entries. Upon initialising an empty My Fitness Buddy application, users have to create a new person with a new profile. 
+Once the profile has been set for `Person`, the user can now add
+daily entries to My Fitness Buddy's `UniqueDayList`.
+
+![CreateProfileSequenceDiagram](images/CreateProfileSequenceDiagram.png)
+
+### Feature: Updates a profile in My Fitness Buddy 
+
+#### Implementations
+
+This feature allows users to update an existing `Profile`, consisting of their *Name*, *ID*, *Height* and *TargetWeight*. 
+The user can modify any of the profile entries while `UniqueDayList` that records the daily entries will remain unchanged.
+
+The mechanism utilises the UpdateCommandParser Class to parse the input into the index of the `Profile` to be retrieved where, 
+at least one of the entries `Name`, `ID`, `Height` or `Weight` will be modified accordingly.
+
+It than utilise the UpdateCommand class to execute the actual removal of the calorie. It will call the method `getProfile` which uses `MyFitnessBuddy` to locate the Profile class
+from the uniquePersonList in which the profile resides in and returns it.
+
+A new profile will be created from the given user inputs and previous relevant profile information. This new profile details will replace the previous profile in 
+the uniquePersonList that resides in `MyFitnessBuddy`.
+
+![UpdateProfileSequenceDiagram](images/UpdateProfileSequenceDiagram.png)
+
+### Feature: Views another profile in My Fitness Buddy
+
+#### Implementations
+
+This feature allows users to view another existing `Profile`.
+
+The mechanism utilises the LoginCommandParser Class to parse the input into the index of the `Profile` to be retrieved.
+
+It than utilise the LoginCommand class to execute the actual retrieval of the profile. It will call the method `getPerson` which uses `MyFitnessBuddy` to locate the Person class
+from the uniquePersonList in which the person resides in and returns it.
+
+The currentPerson in `MyFitnessBuddy` will be changed to the recently retrieved Person by calling the method `setCurrentPerson`.
+
+Finally, the uniqueDayList for the person's UI component will be updated accordingly and displayed.
+
+
+![LoginActivityDiagram](images/LoginActivityDiagram.png)
+
+
 ### Feature: Add a new daily record
 
 #### Implementation
@@ -310,7 +358,7 @@ to the list when the user adds or modifies any data, and updates the chart
 instantly.
 
 
-### View all calorie inputs and calorie outputs of a day feature
+### Feature: View all calorie inputs and calorie outputs of a day feature
 
 #### Implementation
 
@@ -340,84 +388,6 @@ status bar gets updated similarly.
 Given below is the sequence diagram when a view command is used.
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
-
-### Creates a new Person to My Fitness Buddy
-
-#### Implementations
-
-This feature allows users to create a new `Profile`, consisting of their *Name*, *ID*, *Height* and *TargetWeight*,
-and a new `UniqueDayList` for daily calorie entries. Upon initialising My Fitness Buddy application, a default `Person` object 
-will be created and its `Profile` will be recreated by users. Once the profile has been set for `Person`, the user can now add
-daily entries to My Fitness Buddy's `UniqueDayList`. 
-
-_{Diagram to be added}_
-
-### Edits a profile in My Fitness Buddy
-
-#### Implementations
-
-This feature allows users to edit an existing `Profile`, consisting of their *Name*, *ID*, *Height* and *TargetWeight*.
-`UniqueDayList` that records the daily entries will remain unchanged.
-
-{More details to be added in terms of updating the profile in the next iteration}
-
-_{Diagram to be added}_
-
-### Updated BMI
-
-#### Implementations
-
-![BMI](images/calorieImages/BMI.png)
-
-This feature allows users to see their most updated BMI at their profile card
-
-The mechanism requires a method in the person class "getCurrentBmi()". The chunk of code is shown in the diagram below.
-![getCurrentBmi()](images/calorieImages/getCurrentBmi().png)
-
-The method will take the latest weight record to calculate the most updated Bmi to be displayed. If there are no days being
-added into the class, the method will take the starting weight of the person to calculate the latest Bmi. The person card
-will detect any changes to the most current weight of the person and update the person card respectively.
-
-The method invoke the static calculateBmi method from the Bmi class in the calculator package with the most current weight
-and height as the parameter. The bmi calculator will use the following formula (m/h^2) to calculate the bmi.
-
-### Progress Bar
-
-#### Implementations
-
-![progress_bar](images/calorieImages/progress_bar.png)
-
-This feature allows users to see their progress towards the healthy bmi range of 23.
-
-The mechanism requires a method in the person class "getProgress()". The chunk of code is shown in the diagram below.
-![getProgress()](images/calorieImages/getProgress().png)
-
-The method will take the starting bmi and the healthy bmi range of 23 as a bench mark. The method will take the weight
-entry of each day and get the user's bmi for the particular day. It will than use it too measure how close or far is it away
-from the healthy bmi of 23 and and returns the percentage. The profile card contains a fxml progress bar which will than take
-the percentage to update the progress bar respectively. If the bmi is lower than 23, the progress will be 1 and any bmi larger
-than the starting bmi will be 0.
-
-### Calorie Budget
-
-#### Implementations
-
-![progress_bar](images/calorieImages/calorie_budget.png)
-
-This feature allows users to see how much calorie they can afford to consume while still ensuring that they are losing
-weight for that day.
-
-The mechanism requires a method "calculateCalorieSurplus". The chunk of code is shown in the diagram below.
-![getProgress()](images/calorieImages/CalorieBudget.png)
-
-The day card will call this static method from the CalorieBudget class in the calculator package. They day card will pass in 
-the total calorie input and total calorie output of the user for that particular day and the age of the user. The method will
-first calculate the basal metabolic rate of the user using their weight, age and height for the day using the revised Harris-Benedict equation.
-Since age does not play a significant role in the calculation and most of the recruits will be around 20, we assumed all users
-age to be 20. the basal metabolic rate determines how much calorie the user will burn naturally. To get the total calorie budget,
-the following formula is used. (totalCalorieOut + adjustedBasal - totalCalorieIn) This value will than be displayed to the user
-in the various day card.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -633,6 +603,6 @@ inputs and ouputs already.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
