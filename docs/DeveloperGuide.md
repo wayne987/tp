@@ -288,21 +288,26 @@ Below is a sequence diagram when the user executes `edit 1 d/2020-10-22 w/90` in
 This feature allows users to add a calorie to the calorie manager of the day with the specified date.   
 If no date is specified, calorie command takes the system date and adds it to the day with the date.
 
-This is an activity diagram to demostrate what happens when the user uses the calorie command
+This is an activity diagram to demonstrate what happens when the user uses the calorie command
 
 ![AddCalorieActivity](images/AddCalorieActivity.png)
 
 #### Implementation
-Step 1: CalorieCommand.execute(model) is called by Logic Manager which gives a Model object as argument.  
-Step 2:  CalorieCommand will first check whether the Model object has a day with the date. If false, it throws an error.  
-Step 3: CalorieCommand will try to get the Day object. First, it calls model.getDay(date), which calls the MyFitnessBuddy object getDay(date) which calls the Person object getDay(date) which finally calls UniqueDayList object getDate(date) and returns a Day object.  
-Step 4: It will then assign the Day object to two Day objects, editDay and targetDay.  
+Step 1: The command CalorieCommand.execute(model) is called by Logic Manager which provides a Model object as argument.  
+
+Step 2: CalorieCommand will first check whether the Model object has a day with the date. If false, it throws an error.  
+
+Step 3: Next, the CalorieCommand will try to get the Day object. First, it calls model.getDay(date), which calls the MyFitnessBuddy object getDay(date) which calls the Person object getDay(date) which finally calls UniqueDayList object getDate(date) and returns a Day object.  
+
+Step 4: It will then assign the Day object to two new Day objects, editDay and targetDay.  
+
 Step 5: CalorieCommand will then edit the Day by changing the Day object’s CalorieManager object. First, it calls editDay.getCalorieManager() to get the Day object’s CalorieManager object.  
+
 Step 6: Depending on whether the boolean isOut is true, it adds the appropriate calorie to the CalorieManager object. If isOut is true, it calls addCalorieOutput(calorie), else it calls addCalorieInput(calorie)  
+
 Step 7: After changing editDay, CalorieCommand will call model.setDay(editDay, targetDay) to replace the targetDay with the edited Day object which contains the new Calorie.  
 
-Sequence diagram when CalorieCommand is executed
-
+Sequence diagram when CalorieCommand is executed:
 ![AddCalorieSequenceDiagram](images/AddCalorieSequence.png)
 
 #### Design Considerations
@@ -662,8 +667,21 @@ inputs and ouputs already.
   
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+#### 1. Missing data file
 
-1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+If the file does not exist, the application will launch with sample data. 
+This is usually the case for first time users and it is to help them familiarise themselves
+with the application and features before starting on a clean application.
 
-1. _{ more test cases …​ }_
+Logger will log: "Data file not found. Will be starting with a sample MyFitnessBuddy"  
+
+Users can simulate this by going into the data folder of the JAR file and deleting the file named myfitnessbuddy.
+
+####2. Corrupted data file
+
+If the data inside the JSON file is corrupted, the application will launch as a clean application with no data.
+An empty data file will be created.
+
+Logger will log: "Data file not in the correct format. Will be starting with a new MyFitnessBuddy"
+
+Users can simulate this by going into the data folder, opening the myfitnessbuddy file and editing the contents inside the file.
