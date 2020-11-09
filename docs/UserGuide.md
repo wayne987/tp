@@ -245,6 +245,11 @@ Meaning:`The user ate laksa with the calorie count of 290kcal at 12pm on the dat
 
 _TIP: If the `DATE` field is left empty, the calorie input will be added to the current date entry._
 
+:warning: The calorie count for the input calorie and the total input calorie for a particular day cannot 
+exceed 2,147,483,647.
+
+![Add_input](images/calorieImages/Add_input.png)
+
 ##### 4.3.1.2 Adding a calorie output : `calorie tp/out`
 Add calorie output to the calorie tracker.
 
@@ -255,6 +260,11 @@ Examples:`calorie d/2020-10-26 tp/in t/1200 e/running c/400`
 Meaning:`The user ran on October 26 2020 at 12pm and has expanded 400kcal` 
 
 _TIP: If the `DATE` field is left empty, the calorie output will be added to the current date entry._
+
+:warning: The calorie count for the output calorie and the total output calorie for a particular day cannot 
+exceed 2,147,483,647.
+
+![Add_input](images/calorieImages/Add_output.png)
 
 Examples:`remove 3 tp/out i/3` 
 #### 4.3.2 Removing Calorie
@@ -272,6 +282,14 @@ Output calories for that day.`
 _TIP: Instead of using d/DATE to specify the date of the log in which the calorie belongs too, the index of the date
 can be used instead_
 
+:warning: The index to indicate both the day and calorie must be a positive integer and it cannot exceed the respective 
+number of records for each category
+
+`Before removing`
+![remove_output_before](images/calorieImages/remove_output_before.png)
+`After removing`
+![remove_output_after](images/calorieImages/remove_output_after.png)
+
 ##### 4.3.2.2 Removing a calorie input : `remove tp/in`
 
 Removes a wrong calorie input entry from the calorie tracker.
@@ -286,11 +304,13 @@ Input calories for that day.`
 _TIP: Instead of using d/DATE to specify the date of the log in which the calorie belongs too, the index of the date
 can be used instead_
 
+:warning: The index to indicate both the day and calorie must be a positive integer and it cannot exceed the respective 
+number of records for each category
+
+The process of removing a calorie input is similar to removing calorie output. Refer to section 4.3.2.1 for a pictorial
+representation.
+
 Examples:`remove 3 tp/out i/3` 
-
-#### 4.3.3 Changing Calorie
-##### 4.3.3.1 Changing a calorie input : `changing tp/in`
-
 
 #### 4.3.3 Change Calorie
 ##### 4.3.3.1 Changing a calorie input : `change tp/in`
@@ -303,11 +323,20 @@ Examples:`change d/2020-10-26 tp/in i/2 c/123`
 Meaning:`change the calorie count of an input calorie in the log from October 26 2020 with the index of 2 in the
 input list to 123` 
 
+`Before changing`
+![change_before](images/calorieImages/change_before.png)
+`After changing`
+![change_after](images/calorieImages/change_after.png)
 
-`Input[ Time:... Food:... CalorieCount: 9000` ]--after modification-->  `Input:[ Time:... Food:... CalorieCount: 123 ]`
 
 _TIP: Instead of using d/DATE to specify the date of the log in which the calorie belongs too, the index of the date
 can be used instead_
+
+:warning: The index to indicate both the day and calorie must be a positive integer and it cannot exceed the respective 
+number of records for each category
+
+:warning: Calorie Count must be a positive integer and cannot exceed 2,147,483,647.
+
 Examples:`change 3 tp/out i/3 c/123`
 
 ##### 4.3.3.2 Changing a calorie output : `change tp/out`
@@ -321,11 +350,16 @@ Examples:`change d/2020-10-26 tp/in i/2 c/123`
 Meaning:`change the calorie count of an Output calorie in the October 26 2020 log ,with the index of 2 in the
 output list to 123` 
 
-
-`Input[ Time:... Exercise:... CalorieCount: 9000` ]--after modification-->  `Input:[ Time:... Exercise:... CalorieCount: 123 ]`
+The process of changing a calorie output is similar to changing a calorie input. Refer to section 4.3.23.1 for a pictorial
+representation.
 
 _TIP: Instead of using d/DATE to specify the date of the log in which the calorie belongs too, the index of the date
 can be used instead_
+
+:warning: The index to indicate both the day and calorie must be a positive integer and it cannot exceed the respective 
+number of records for each category
+
+:warning: Calorie Count must be a positive integer and cannot exceed 2,147,483,647.
 
 ### 4.4 Data Visualization
 (Contributed by Jun Hui)
@@ -388,6 +422,46 @@ _:bulb:TIP: Charts can be viewed alternatively by going to the menu bar, click o
  chart that you want to view._
 
 ![chart_menu_bar](images/chart_menu_bar.png)
+
+#### 4.4.3 Personal related data visualisation:
+(Contributed by Wa Wai)
+
+On top of the various data analytical tools to visualize the various statistic over the training period, we also
+have a number of indicators and diagrams to help the user get a better grasp on their current fitness level
+##### 4.4.3.1 Current BMI
+![BMI](images/calorieImages/BMI.png)
+
+In the current profile, we have a small BMI label which will indicate the current BMI level of the user. 
+It will update accordingly to the user's latest weight entry and give them their most updated BMI reading.
+
+##### 4.4.3.1 Calorie Budget
+![calorie_budget](images/calorieImages/calorie_budget.png)
+
+As shown in the diagram , each day entry will indicate the calorie budget for the day. (The amount of calorie the
+users can consume before gaining weight) It will update accordingly when various calorie entries are recorded to remind
+the users how much calorie they can afford to eat for that particular day.
+
+![positive_calorie_budget](images/calorieImages/positive_calorie_budget.png)
+
+When there is calorie budget surplus, which means that the users can still afford to consume calorie without gaining
+weight, a green tick will be shown at the top right corner of the day entry.
+
+![negative_calorie_budget](images/calorieImages/negative_calorie_budget.png)
+
+However when there is negative calorie budget, the users cannot afford to consume calorie as they are gaining
+weight, a red cross will be shown at the top right corner of the day entry.
+
+
+##### 4.4.3.1 Progress Bar
+
+The progress bar indicates how close the users are towards the healthy Bmi range. When the user lose weight and
+have a healthier bmi, the blue bar will move towards the right. When the progress bar is completely filled,it
+indicates that the user has reached the healthy BMI range.
+
+![progress_bar](images/calorieImages/progress_bar.png)
+
+As shown from the diagram, the progress bar changes accordingly when the user's weight changes.
+
 
 ### 4.5 General commands
 (Contributed by Jun Hui)
