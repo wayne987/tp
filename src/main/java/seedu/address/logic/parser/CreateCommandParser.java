@@ -47,7 +47,7 @@ public class CreateCommandParser implements Parser<CreateCommand> {
         Date start = new Date(LocalDate.now().toString());
         profile.setStartingDay(start);
         /*set the created day to be 1999-06-06 for testing*/
-//        profile.setStartingDay(new Date(LocalDate.parse("1999-12-31").toString()));
+        //profile.setStartingDay(new Date(LocalDate.parse("1999-12-31").toString()));
         return new CreateCommand(profile);
     }
 
