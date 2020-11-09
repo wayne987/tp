@@ -286,18 +286,14 @@ Input calories for that day.`
 _TIP: Instead of using d/DATE to specify the date of the log in which the calorie belongs too, the index of the date
 can be used instead_
 
-<<<<<<< HEAD
 Examples:`remove 3 tp/out i/3` 
 
 #### 4.3.3 Changing Calorie
 ##### 4.3.3.1 Changing a calorie input : `changing tp/in`
 
-=======
-Example:`remove 3 tp/in i/3` 
 
 #### 4.3.3 Change Calorie
 ##### 4.3.3.1 Changing a calorie input : `change tp/in`
->>>>>>> 4b131488bf6edb1334deb36b9f8da2e15f9ec28f
 Change a calorie input entry with details recorded wrongly
 
 Format: `change d/DATE tp/in i/INDEX [Updated Details]`
@@ -314,11 +310,7 @@ _TIP: Instead of using d/DATE to specify the date of the log in which the calori
 can be used instead_
 Examples:`change 3 tp/out i/3 c/123`
 
-<<<<<<< HEAD
 ##### 4.3.3.2 Changing a calorie output : `change tp/out`
-=======
-##### 4.3.3.2 Change a calorie output : `change tp/out`
->>>>>>> 4b131488bf6edb1334deb36b9f8da2e15f9ec28f
 
 Change a calorie out entry with details recorded wrongly
 
