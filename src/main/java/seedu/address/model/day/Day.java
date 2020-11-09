@@ -131,6 +131,9 @@ public class Day {
         return builder.toString();
     }
 
+    /**
+     * Returns the amount of calorie budget for a particular day
+     */
     public int getBalance() {
         if (height == null || weight == null) {
             return -1;
@@ -142,10 +145,16 @@ public class Day {
         }
     }
 
+    /**
+     * is the the person currently losing weight calorie budget > 0
+     */
     public boolean isLosing() {
         return getBalance() >= 0;
     }
 
+    /**
+     * returns the progress of the person towards the idea bmi
+     */
     public double getProgress() {
         double currentBmi = Bmi.calculateBmi(height, weight);
         double startBmi = Bmi.calculateBmi(height, startingWeight);

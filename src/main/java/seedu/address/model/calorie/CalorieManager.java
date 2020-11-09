@@ -112,6 +112,7 @@ public class CalorieManager {
 
     /**
      * delete calorie output from the calorieOutputList and update the total calorie output.
+     * @param index of the output calorie to be deleted
      */
     public void deleteTotalCalorieOutput(int index) throws IllegalValueException {
         requireNonNull(index);
@@ -125,6 +126,7 @@ public class CalorieManager {
 
     /**
      * delete calorie input from the calorieInputList and update the total calorie input.
+     * @param index of the input calorie to be deleted
      */
     public void deleteTotalCalorieInput(int index) throws IllegalValueException {
         requireNonNull(index);
@@ -146,6 +148,7 @@ public class CalorieManager {
 
     /**
      * add a calorie input into an already sorted calorieInputList and update the total calorie input
+     * @paran calorieInput to be added
      */
     public void addCalorieInput(Input calorieInput) throws IllegalValueException {
         requireNonNull(calorieInput);
@@ -166,6 +169,7 @@ public class CalorieManager {
 
     /**
      * add a calorie output into an already sorted calorieOutputList and update the total calorie output
+     * @param calorieOutput to be added
      */
     public void addCalorieOutput(Output calorieOutput) throws IllegalValueException {
         requireNonNull(calorieOutput);
@@ -185,6 +189,8 @@ public class CalorieManager {
 
     /**
      * removes a calorie from the List and update the total calorie input
+     * @param isOut to determine which type of calorie to be removed
+     * @param targetIndex of the calorie to be removed
      */
     public void removeCalorie(Boolean isOut, Index targetIndex) throws IllegalValueException {
         requireAllNonNull(isOut, targetIndex);

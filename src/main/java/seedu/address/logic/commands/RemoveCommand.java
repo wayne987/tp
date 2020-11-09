@@ -97,10 +97,6 @@ public class RemoveCommand extends Command {
 
         CalorieManager calorieManager = editDay.getCalorieManager();
 
-        //        if (targetIndex.getZeroBased() >= calorieManager.getListSize(isOut)) {
-        //            throw new CommandException(Messages.MESSAGE_INVALID_CALORIE_DISPLAYED_INDEX);
-        //        }
-
         Calorie remove = null;
         try {
             remove = calorieManager.getCalorie(isOut, targetIndex);

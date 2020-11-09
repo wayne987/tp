@@ -52,9 +52,6 @@ public class ParserUtil {
      */
     public static Date parseDate(String date) throws ParseException {
         requireNonNull(date);
-        //        if (!isCorrectRegrex(trimmedDate)) {
-        //            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
-        //        }
         try {
             String trimmedDate = date.trim();
             LocalDate.parse(trimmedDate);
