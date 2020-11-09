@@ -25,9 +25,8 @@ class JsonAdaptedProfile {
     private final String startingWeight;
     private final String startingDate;
 
-
     /**
-     * Constructs a {@code JsonAdaptedProfile} with the given day details.
+     * Constructs a {@code JsonAdaptedProfile} with the given profile details.
      */
     @JsonCreator
     public JsonAdaptedProfile(@JsonProperty("name") String name, @JsonProperty("id") String id,
@@ -54,7 +53,7 @@ class JsonAdaptedProfile {
     /**
      * Converts this Jackson-friendly adapted profile object into the model's {@code Profile} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted day.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted Profile.
      */
     public Profile toModelType() throws IllegalValueException {
         if (name == null) {
