@@ -272,7 +272,7 @@ _:bulb:TIP: If the `DATE` field is left empty, the calorie input will be added t
 _:warning: The calorie count for the input calorie and the total input calorie for a particular day cannot 
 exceed 2,147,483,647._
 
-![Add_input](images/calorieImages/Add_input.png)
+![Add_input](images/calorieImages/Add_Input.png)
 
 ##### 4.3.1.2 Adding a calorie output : `calorie tp/out`
 Add calorie output to the calorie tracker.
@@ -288,7 +288,7 @@ _:bulb:TIP: If the `DATE` field is left empty, the calorie output will be added 
 _:warning: The calorie count for the output calorie and the total output calorie for a particular day cannot 
 exceed 2,147,483,647._
 
-![Add_input](images/calorieImages/Add_output.png)
+![Add_input](images/calorieImages/Add_Output.png)
 
 Examples:`remove 3 tp/out i/3` 
 #### 4.3.2 Removing Calorie
