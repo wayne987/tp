@@ -202,8 +202,11 @@ _:warning: Always add a day before adding a calorie information._
 #### 4.2.2 Editing a daily weight record : `edit INDEX w/WEIGHT`
 Edits a daily weight record.
 
-Format: `edit INDEX w/WEIGHT`
+Format: `edit INDEX [optional] w/WEIGHT d/DATE`
 - `WEIGHT` should be in KG
+- `DATE` should be in the YYYY-MM-DD format
+
+_:tip:TIP You can choose to update both `DATE` and `WEIGHT` in any order but at least one field needs to be filled_
 
 Example:  
 `edit 3 w/77` 
