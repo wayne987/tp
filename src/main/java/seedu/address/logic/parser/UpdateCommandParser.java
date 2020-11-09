@@ -40,7 +40,6 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             updateProfileDescriptor.setWeight(ParserUtil.parseWeight(argMultimap.getValue(PREFIX_WEIGHT).get()));
         }
         if (!updateProfileDescriptor.isAnyFieldEdited()) {
-            System.out.println(updateProfileDescriptor.getId());
             throw new ParseException(UpdateCommand.MESSAGE_NOT_EDITED);
         }
 
