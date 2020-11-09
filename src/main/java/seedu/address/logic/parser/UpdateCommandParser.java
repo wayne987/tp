@@ -25,24 +25,25 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         ArgumentMultimap argMultimap =
                     ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_ID, PREFIX_HEIGHT, PREFIX_WEIGHT);
 
-        UpdateCommand.EditProfileDescriptor editProfileDescriptor = new UpdateCommand.EditProfileDescriptor();
+        UpdateCommand.UpdateProfileDescriptor updateProfileDescriptor = new UpdateCommand.UpdateProfileDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editProfileDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            updateProfileDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_ID).isPresent()) {
-            editProfileDescriptor.setId(ParserUtil.parseID(argMultimap.getValue(PREFIX_ID).get()));
+            updateProfileDescriptor.setId(ParserUtil.parseID(argMultimap.getValue(PREFIX_ID).get()));
         }
         if (argMultimap.getValue(PREFIX_HEIGHT).isPresent()) {
-            editProfileDescriptor.setHeight(ParserUtil.parseHeight(argMultimap.getValue(PREFIX_HEIGHT).get()));
+            updateProfileDescriptor.setHeight(ParserUtil.parseHeight(argMultimap.getValue(PREFIX_HEIGHT).get()));
         }
         if (argMultimap.getValue(PREFIX_WEIGHT).isPresent()) {
-            editProfileDescriptor.setWeight(ParserUtil.parseWeight(argMultimap.getValue(PREFIX_WEIGHT).get()));
+            updateProfileDescriptor.setWeight(ParserUtil.parseWeight(argMultimap.getValue(PREFIX_WEIGHT).get()));
         }
-        if (!editProfileDescriptor.isAnyFieldEdited()) {
+
+        if (!updateProfileDescriptor.isAnyFieldEdited()) {
             throw new ParseException(UpdateCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new UpdateCommand(editProfileDescriptor);
+        return new UpdateCommand(updateProfileDescriptor);
     }
 }
 
