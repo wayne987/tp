@@ -43,13 +43,19 @@ public class AddCommand extends Command {
         toAdd = day;
     }
 
-    private boolean isBefore(Date toAdd, Date start) {
+    /**
+     * Checks if the toAdd date is before the starting date
+     */
+    public boolean isBefore(Date toAdd, Date start) {
         LocalDate add = LocalDate.parse(toAdd.value);
         LocalDate compareTo = LocalDate.parse(start.value);
         return add.isBefore(compareTo);
     }
 
-    private boolean isAfter(Date toAdd) {
+    /**
+     * Checks if the toAdd date is after the current date
+     */
+    public boolean isAfter(Date toAdd) {
         LocalDate add = LocalDate.parse(toAdd.value);
         LocalDate compareTo = LocalDate.now();
         return add.isAfter(compareTo);
@@ -62,14 +68,12 @@ public class AddCommand extends Command {
         Date start = model.getMyFitnessBuddy().getPerson().getDay();
         Date check = toAdd.getDate();
 
+        if (model.isDefaultProfile()) { //no profile
+            throw new CommandException(MESSAGE_NO_LOGIN);
+        }
+
         if (model.hasDay(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_DAY);
-        }
-        if (model.isDefaultProfile()) { //no profile
-            throw new CommandException(CreateCommand.MESSAGE_NO_PROFILE);
-        }
-        if (start == null) {
-            throw new CommandException(MESSAGE_NO_LOGIN);
         }
 
         if (isBefore(check, start)) {
