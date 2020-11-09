@@ -281,7 +281,7 @@ Below is a sequence diagram when the user executes `edit 1 d/2020-10-22 w/90` in
 ![Edit_day_sequence](images/EditDaySequence.png)
 
 
-### Add Calorie feature
+### Feature: Add Calorie feature
 
 #### Overview
 
@@ -322,7 +322,7 @@ Directly editing the CalorieManager of the Day object instead of using setDay()
 Pros: Less confusing code  
 Cons: More bugs will occur, not defensive coding  
 
-### Remove Calorie feature
+### Feature: Remove Calorie feature
 
 #### Implementation
 
