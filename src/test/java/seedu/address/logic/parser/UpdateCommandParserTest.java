@@ -89,13 +89,13 @@ public class UpdateCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         String userInput = " n/test id/1111 h/123 w/123";
-        UpdateCommand.EditProfileDescriptor editProfileDescriptor = new UpdateCommand.EditProfileDescriptor();
-        editProfileDescriptor.setHeight(new Height("123"));
-        editProfileDescriptor.setId(new ID("1111"));
-        editProfileDescriptor.setName(new Name("test"));
-        editProfileDescriptor.setWeight(new Weight("123"));
+        UpdateCommand.UpdateProfileDescriptor updateProfileDescriptor = new UpdateCommand.UpdateProfileDescriptor();
+        updateProfileDescriptor.setHeight(new Height("123"));
+        updateProfileDescriptor.setId(new ID("1111"));
+        updateProfileDescriptor.setName(new Name("test"));
+        updateProfileDescriptor.setWeight(new Weight("123"));
 
-        UpdateCommand expectedCommand = new UpdateCommand(editProfileDescriptor);
+        UpdateCommand expectedCommand = new UpdateCommand(updateProfileDescriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -103,11 +103,11 @@ public class UpdateCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         String userInput = " id/1111 h/123";
-        UpdateCommand.EditProfileDescriptor editProfileDescriptor = new UpdateCommand.EditProfileDescriptor();
-        editProfileDescriptor.setHeight(new Height("123"));
-        editProfileDescriptor.setId(new ID("1111"));
+        UpdateCommand.UpdateProfileDescriptor updateProfileDescriptor = new UpdateCommand.UpdateProfileDescriptor();
+        updateProfileDescriptor.setHeight(new Height("123"));
+        updateProfileDescriptor.setId(new ID("1111"));
 
-        UpdateCommand expectedCommand = new UpdateCommand(editProfileDescriptor);
+        UpdateCommand expectedCommand = new UpdateCommand(updateProfileDescriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -115,7 +115,7 @@ public class UpdateCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         String userInput = " id/1111";
-        UpdateCommand.EditProfileDescriptor editProfileDescriptor = new UpdateCommand.EditProfileDescriptor();
+        UpdateCommand.UpdateProfileDescriptor editProfileDescriptor = new UpdateCommand.UpdateProfileDescriptor();
         editProfileDescriptor.setId(new ID("1111"));
 
         UpdateCommand expectedCommand = new UpdateCommand(editProfileDescriptor);
