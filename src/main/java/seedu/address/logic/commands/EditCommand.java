@@ -70,6 +70,7 @@ public class EditCommand extends Command {
 
         model.setDay(dayToEdit, editedDay);
         model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
+
         return new CommandResult(String.format(MESSAGE_EDIT_DAY_SUCCESS, editedDay));
     }
 
@@ -77,7 +78,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Day} with the details of {@code dayToEdit}
      * edited with {@code editDayDescriptor}.
      */
-    private static Day createEditedDay(Day dayToEdit, EditDayDescriptor editDayDescriptor) {
+    public static Day createEditedDay(Day dayToEdit, EditDayDescriptor editDayDescriptor) {
         assert dayToEdit != null;
 
         Date updatedDate = editDayDescriptor.getDate().orElse(dayToEdit.getDate());

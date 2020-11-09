@@ -158,6 +158,9 @@ public class Day {
     public double getProgress() {
         double currentBmi = Bmi.calculateBmi(height, weight);
         double startBmi = Bmi.calculateBmi(height, startingWeight);
+        if (startBmi < 22.5) {
+            return 1;
+        }
         double endBmi = 22.5;
         double totalBmiToChange = startBmi - endBmi;
         double differenceWithEnd = currentBmi - endBmi;
