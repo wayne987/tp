@@ -200,7 +200,7 @@ Below is a sequence diagram when the user executes `add d/2020-11-08 w/76` into 
 
 ![Add_day_sequence](images/AddDaySequence.png)
 
-### Remove Calorie feature
+### Feature: Remove Calorie feature
 
 #### Implementation
 
@@ -265,7 +265,7 @@ to the list when the user adds or modifies any data, and updates the chart
 instantly.
 
 
-### View all calorie inputs and calorie outputs of a day feature
+### Feature: View all calorie inputs and calorie outputs of a day feature
 
 #### Implementation
 
@@ -296,18 +296,18 @@ Given below is the sequence diagram when a view command is used.
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
-### Creates a new Person to My Fitness Buddy
+### Feature: Creates a new Person to My Fitness Buddy
 
 #### Implementations
 
-This feature allows users to create a new `Profile`, consisting of their *Name*, *ID*, *Height* and *TargetWeight*,
-and a new `UniqueDayList` for daily calorie entries. Upon initialising My Fitness Buddy application, a default `Person` object 
-will be created and its `Profile` will be recreated by users. Once the profile has been set for `Person`, the user can now add
-daily entries to My Fitness Buddy's `UniqueDayList`. 
+This feature allows users to create a new `Profile`, consisting of their `Name`, `ID`, `Height` and starting `Weight`,
+and a new `UniqueDayList` for daily calorie entries. Upon initialising an empty My Fitness Buddy application, users have to create a new person with a new profile. 
+Once the profile has been set for `Person`, the user can now add
+daily entries to My Fitness Buddy's `UniqueDayList`.
 
-_{Diagram to be added}_
+![CreateProfileSequenceDiagram](images/CreateProfileSequenceDiagram.png)
 
-### Updates a profile in My Fitness Buddy // to be reviewed
+### Feature: Updates a profile in My Fitness Buddy 
 
 #### Implementations
 
@@ -323,9 +323,9 @@ from the uniquePersonList in which the profile resides in and returns it.
 A new profile will be created from the given user inputs and previous relevant profile information. This new profile details will replace the previous profile in 
 the uniquePersonList that resides in `MyFitnessBuddy`.
 
-_{Diagram to be added}_
+![UpdateProfileSequenceDiagram](images/UpdateProfileSequenceDiagram.png)
 
-### Views another profile in My Fitness Buddy
+### Feature: Views another profile in My Fitness Buddy
 
 #### Implementations
 
@@ -341,17 +341,7 @@ The currentPerson in `MyFitnessBuddy` will be changed to the recently retrieved 
 Finally, the uniqueDayList for the person's UI component will be updated accordingly and displayed.
 
 
-_{Diagram to be added}_
-
-### Finds specific profiles in My Fitness Buddy
-
-#### Implementations
-
-This feature allows users to find all the `Profile` that matches the specified *Name* or BMI in the uniquePersonList.
-
-{More details to be added in terms of updating the profile in the next iteration}
-
-_{Diagram to be added}_
+![LoginActivityDiagram](images/LoginActivityDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
