@@ -192,7 +192,8 @@ public class CommandResult {
                 && indexDelete == otherCommandResult.indexDelete
                 && profileHasChanged == otherCommandResult.profileHasChanged
                 && view == otherCommandResult.view
-                && indexView == otherCommandResult.indexView;
+                && indexView == otherCommandResult.indexView
+                && showCommanderStats == otherCommandResult.showCommanderStats;
     }
 
     @Override
