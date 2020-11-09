@@ -4,52 +4,29 @@ skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
-package MainWindowPanels <<Rectangle>>{
-Class CalorieInputCard
-Class CalorieInputListPanel
-Class CalorieOutputCard
-Class CalorieOutputListPanel
-Class DayListPanel
-Class DayCard
-Class ProfileListPanel
-Class ProfileCardPanel
-Class ProfileCard
-}
-
-package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
-}
-
-Class MainWindow
+package UI <<Rectangle>>{
 Class "{abstract}\nUiPart" as UiPart
-
-MainWindow *-down-> ProfileCardPanel
-MainWindow *-down-> ProfileListPanel
-MainWindow *-down-> DayListPanel
-MainWindow *-down-> CalorieInputListPanel
-MainWindow *-down-> CalorieOutputListPanel
-
-DayCard *-up-> MainWindow
-
-
-ProfileCardPanel -right[hidden]- ProfileListPanel
-ProfileListPanel -right[hidden]- DayListPanel
-DayListPanel -right[hidden]- CalorieInputListPanel
-CalorieInputListPanel -right[hidden]- CalorieOutputListPanel
-
-ProfileListPanel *--> ProfileCard
-ProfileCardPanel *--> ProfileCard
-
-DayListPanel *-down-> DayCard
-
-CalorieInputListPanel *-down-> CalorieInputCard
-CalorieOutputListPanel *-down-> CalorieOutputCard
-
-DayCard ..> Model
-CalorieInputCard ..> Model
-CalorieOutputCard ..> Model
-
-Model -left[hidden]- UiPart
+Class MainWindow
+Class ResultDisplay
+Class StatusBarFooter
+Class CommandBox
+Class StatusBarDaySelected
+}
+MainWindow *-down-> CommandBox
+MainWindow *-down-> ResultDisplay
+MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> StatusBarDaySelected
 
 
+MainWindow --|> UiPart
+ResultDisplay --|> UiPart
+CommandBox ----|> UiPart
+StatusBarFooter --|> UiPart
+StatusBarDaySelected --|> UiPart
+
+StatusBarFooter -[hidden]right- ResultDisplay
+ResultDisplay -[hidden]right- CommandBox
+CommandBox -[hidden]right- StatusBarDaySelected
+
+MainWindow -[hidden]-|> UiPart
 @enduml

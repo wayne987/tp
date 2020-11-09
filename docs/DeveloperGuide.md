@@ -74,19 +74,62 @@ The sections below give more details of each component.
 
 ### 2.2 UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
-
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-W11-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `DayListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
-
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. 
+For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W11-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) 
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+The UI consists of a `MainWindow` that is made up of these parts as described below with the respective class diagrams.
+All these UI parts, including `MainWindow`, inherit from the abstract `UiPart` class. 
+
+The overall UI structure is decomposed from `MainWindow` into different class diagrams for better clarity.
+* `MainWindow`
+
+![Ui_Class_Diagram1](images/UiClassDiagram1.png)
+
+* Profile Panels:
+    * `ProfileCardPanel`
+    * `ProfileListPanel`
+    * `ProfileCard`
+    
+![Ui_Class_Diagram4](images/UiClassDiagram4.png)
+
+* Day Panel:
+    * `DayListPanel`
+    * `DayCard`
+    
+![Ui_Class_Diagram3](images/UiClassDiagram3.png)
+
+* Calorie Panels:
+    * `CalorieInputListPanel`
+    * `CalorieInputCard`
+    * `CalorieOutputListPanel`
+    * `CalorieOutputCard`
+    
+![Ui_Class_Diagram5](images/UiClassDiagram5.png)
+
+* Pop-Out Windows:
+    * `CalorieStatsWindow`
+    * `WeightStatsWindow`
+    * `CommanderBmiStatsWindow`
+    * `HelpWindow`
+    
+![Ui_Class_Diagram6](images/UiClassDiagram6.png)
+
+* Other UI elements:
+    * `CommandBox`
+    * `ResultDisplay`
+    * `StatusBarDaySelected`
+    * `StatusBarFooter`
+    
+![Ui_Class_Diagram2](images/UiClassDiagram2.png)
 
 ### 2.3 Logic component
 
