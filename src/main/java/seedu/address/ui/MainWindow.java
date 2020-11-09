@@ -343,6 +343,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Opens both stats window or focuses on it if it's already opened.
      */
+    @FXML
     public void handleAllStats() {
         handleWeightStats();
         handleCalorieStats();
@@ -351,11 +352,20 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Removes the items shown in the calorie lists if any.
      */
-    @FXML
     public void handleClear() {
         clearDateLabel();
         clearCaloriePanels();
         clearProfilePanels();
+    }
+
+    /**
+     * Updates the Profile Panels and clear the date selected label and Calorie Panels
+     * when there is a profile change.
+     */
+    public void handleProfileChanged() {
+        updateProfilePanels();
+        clearDateLabel();
+        clearCaloriePanels();
     }
 
     /**
@@ -443,9 +453,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isProfileChanged()) {
-                updateProfilePanels();
-                clearDateLabel();
-                clearCaloriePanels();
+                handleProfileChanged();
             }
 
             if (commandResult.isView()) {

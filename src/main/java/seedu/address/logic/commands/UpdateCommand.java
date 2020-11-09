@@ -46,15 +46,15 @@ public class UpdateCommand extends Command {
     public static final String MESSAGE_ERROR = "No profile found. ";
     public static final String MESSAGE_NOT_EDITED = "At least one valid field to edit must be provided.";
     public static final String MESSAGE_SAME_ID = "The ID you intending to change to belongs to someone else";
-    private final EditProfileDescriptor editProfileDescriptor;
+    private final UpdateProfileDescriptor updateProfileDescriptor;
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     /**
-     * Creates a new {@code EditProfileDescriptor}.
+     * Creates a new {@code UpdateProfileDescriptor}.
      */
-    public UpdateCommand(EditProfileDescriptor editProfileDescriptor) {
-        requireNonNull(editProfileDescriptor);
-        this.editProfileDescriptor = new EditProfileDescriptor(editProfileDescriptor);
+    public UpdateCommand(UpdateProfileDescriptor updateProfileDescriptor) {
+        requireNonNull(updateProfileDescriptor);
+        this.updateProfileDescriptor = new UpdateProfileDescriptor(updateProfileDescriptor);
     }
 
     /**
@@ -72,13 +72,13 @@ public class UpdateCommand extends Command {
             throw new CommandException(MESSAGE_ERROR);
         }
 
-
-        if (editProfileDescriptor.id != null && !isUnique(editProfileDescriptor.id, model.getFilteredPersonList())) {
+        if (updateProfileDescriptor.id != null
+                && !isUnique(updateProfileDescriptor.id, model.getFilteredPersonList())) {
             throw new CommandException(MESSAGE_SAME_ID);
         }
 
         Profile toEdit = model.getMyFitnessBuddy().getProfile();
-        Profile editedProfile = createEditedProfile(toEdit, editProfileDescriptor);
+        Profile editedProfile = createEditedProfile(toEdit, updateProfileDescriptor);
         editedProfile.setStartingDay(toEdit.getStartDate());
         model.setProfile(editedProfile);
         logger.info("---------------[USER COMMAND][Profile updated]");
@@ -87,15 +87,15 @@ public class UpdateCommand extends Command {
 
     /**
      * Creates and returns a {@code Profile} with the details of {@code profileToEdit}
-     * edited with {@code editProfileDescriptor}.
+     * edited with {@code updateProfileDescriptor}.
      */
-    private static Profile createEditedProfile(Profile profileToEdit, EditProfileDescriptor editProfileDescriptor) {
+    private static Profile createEditedProfile(Profile profileToEdit, UpdateProfileDescriptor updateProfileDescriptor) {
         assert profileToEdit != null;
 
-        Name updatedName = editProfileDescriptor.getName().orElse(profileToEdit.getName());
-        ID updatedID = editProfileDescriptor.getId().orElse(profileToEdit.getId());
-        Height updatedHeight = editProfileDescriptor.getHeight().orElse(profileToEdit.getHeight());
-        Weight updatedTargetWeight = editProfileDescriptor.getWeight().orElse(profileToEdit.getStartingWeight());
+        Name updatedName = updateProfileDescriptor.getName().orElse(profileToEdit.getName());
+        ID updatedID = updateProfileDescriptor.getId().orElse(profileToEdit.getId());
+        Height updatedHeight = updateProfileDescriptor.getHeight().orElse(profileToEdit.getHeight());
+        Weight updatedTargetWeight = updateProfileDescriptor.getWeight().orElse(profileToEdit.getStartingWeight());
 
         return new Profile(updatedName, updatedID, updatedHeight, updatedTargetWeight);
     }
@@ -104,7 +104,7 @@ public class UpdateCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UpdateCommand
-                && editProfileDescriptor.equals(((UpdateCommand) other).editProfileDescriptor));
+                && updateProfileDescriptor.equals(((UpdateCommand) other).updateProfileDescriptor));
     }
 
 
@@ -112,18 +112,18 @@ public class UpdateCommand extends Command {
      * Stores the details to edit the profile with. Each non-empty field value will replace the
      * corresponding field value of the profile.
      */
-    public static class EditProfileDescriptor {
+    public static class UpdateProfileDescriptor {
         private Name name;
         private ID id;
         private Height height;
         private Weight weight;
 
-        public EditProfileDescriptor() {}
+        public UpdateProfileDescriptor() {}
 
         /**
          * Copy constructor.
          */
-        public EditProfileDescriptor(EditProfileDescriptor toCopy) {
+        public UpdateProfileDescriptor(UpdateProfileDescriptor toCopy) {
             setName(toCopy.name);
             setId(toCopy.id);
             setHeight(toCopy.height);
@@ -177,12 +177,12 @@ public class UpdateCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditProfileDescriptor)) {
+            if (!(other instanceof UpdateProfileDescriptor)) {
                 return false;
             }
 
             // state check
-            EditProfileDescriptor e = (EditProfileDescriptor) other;
+            UpdateProfileDescriptor e = (UpdateProfileDescriptor) other;
 
             return getName().equals(e.getName())
                     && getId().equals(e.getId())

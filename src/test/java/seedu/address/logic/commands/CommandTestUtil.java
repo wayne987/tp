@@ -16,11 +16,19 @@ import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.day.Day;
 //import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditDayDescriptorBuilder;
+import seedu.address.testutil.UpdateProfileDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+
+    public static final String VALID_NAME_1 = "First";
+    public static final String VALID_NAME_2 = "Second";
+    public static final String VALID_ID_1 = "1101";
+    public static final String VALID_ID_2 = "2202";
+    public static final String VALID_HEIGHT_1 = "170";
+    public static final String VALID_HEIGHT_2 = "180";
 
     public static final String VALID_DATE_1 = "2019-12-23";
     public static final String VALID_DATE_2 = "2020-10-11";
@@ -41,6 +49,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditDayDescriptor DESC_1;
     public static final EditCommand.EditDayDescriptor DESC_2;
 
+    public static final UpdateCommand.UpdateProfileDescriptor UPDESC_1;
+    public static final UpdateCommand.UpdateProfileDescriptor UPDESC_2;
+
     static {
         DESC_1 = new EditDayDescriptorBuilder().withDate(VALID_DATE_1)
                 .withWeight(VALID_WEIGHT_1)
@@ -48,6 +59,10 @@ public class CommandTestUtil {
         DESC_2 = new EditDayDescriptorBuilder().withDate(VALID_DATE_2)
                 .withWeight(VALID_WEIGHT_2)
                 .build();
+        UPDESC_1 = new UpdateProfileDescriptorBuilder().withName(VALID_NAME_1).withId(VALID_ID_1)
+                .withHeight(VALID_HEIGHT_1).withWeight(VALID_WEIGHT_1).build();
+        UPDESC_2 = new UpdateProfileDescriptorBuilder().withName(VALID_NAME_2).withId(VALID_ID_2)
+                .withHeight(VALID_HEIGHT_2).withWeight(VALID_WEIGHT_2).build();
     }
 
     /**
