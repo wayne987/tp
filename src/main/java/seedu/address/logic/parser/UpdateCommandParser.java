@@ -30,7 +30,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             updateProfileDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_ID).isPresent()) {
-            editProfileDescriptor.setId(ParserUtil.parseID(argMultimap.getValue(PREFIX_ID).get()));
+            updateProfileDescriptor.setId(ParserUtil.parseID(argMultimap.getValue(PREFIX_ID).get()));
         }
         if (argMultimap.getValue(PREFIX_HEIGHT).isPresent()) {
             updateProfileDescriptor.setHeight(ParserUtil.parseHeight(argMultimap.getValue(PREFIX_HEIGHT).get()));
