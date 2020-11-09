@@ -8,12 +8,12 @@ import seedu.address.model.person.Person;
 
 /**
  * command to switch between the users that is currently being referenced
+ * Allows users to login to their profile
  */
 public class LoginCommand extends Command {
 
     public static final String COMMAND_WORD = "login";
     private final int i;
-
     /**
      * Switch profile
      * @param i the index of the profile being changed to
