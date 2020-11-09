@@ -143,11 +143,12 @@ Format: `create n/NAME id/ID_NUM h/HEIGHT w/STARTING_WEIGHT`
 _:warning: For valid ID_NUM, the first two digits must be from 1 - 4, 
 while the last two digits must be from 1 - 20. A valid ID_NUM has only four digits._
 
-
 Examples:  
 `create n/Johnny id/1220 h/170 w/68` 
 
 Meaning: `create a new profile with name Johnny, ID number 1220, height 170cm and starting weight of 68kg`
+
+![CreateProfile](images/CreateProfile.png)
 
 #### 4.1.2 Updating an existing profile: `update`
 Updates the currently selected profile.
@@ -155,11 +156,14 @@ Updates the currently selected profile.
 Format: `update [optional] n/NAME id/ID_NUM h/HEIGHT w/STARTING_WEIGHT`
 
 _:warning: Must update at least one of the field and it cannot be the same as the current one._
+_:warning: While there can be 2 persons of the same name, ID changed should be unique and not the same as any other person's ID_
 
 Examples:
-`update n/Jonhhy`
+`update n/Johnny`
 
 Meaning:`update the name of current profile that you are looking to Johnny`
+
+![UpdateProfile](images/UpdateProfile.png)
 
 #### 4.1.3 Viewing another profile: `login`
 Changes the profile that you are currently looking at to another profile.
@@ -167,9 +171,11 @@ Changes the profile that you are currently looking at to another profile.
 Format: `login INDEX`
 
 Examples:
-`login 2`
+`login 3`
 
-Meaning:`changes the current profile that you are looking at to the profile in the profile list at index 2`
+Meaning:`changes the current profile that you are looking at to the profile in the profile list at index 3`
+
+![LoginProfile](images/LoginProfile.png)
 
 ### 4.2 Day commands
 (Contributed by Jia Xin)
