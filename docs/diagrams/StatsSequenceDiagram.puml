@@ -10,7 +10,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MyFitnessBuddyParser" as MyFitnessBuddyParser LOGIC_COLOR
 participant ":StatsCommandParser" as StatsCommandParser LOGIC_COLOR
-participant ":StatsCommand" as StatsCommand LOGIC_COLOR
+participant "s:StatsCommand" as StatsCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -35,10 +35,10 @@ activate StatsCommand
 deactivate StatsCommandParser
 destroy StatsCommandParser
 
-StatsCommand --> MyFitnessBuddyParser
+StatsCommand --> MyFitnessBuddyParser : s
 deactivate StatsCommand
 
-MyFitnessBuddyParser --> LogicManager
+MyFitnessBuddyParser --> LogicManager : s
 deactivate MyFitnessBuddyParser
 
 LogicManager -> StatsCommand : execute()
@@ -56,6 +56,8 @@ deactivate StatsCommand
 
 MainWindow<--LogicManager
 deactivate LogicManager
+destroy CommandResult
+destroy StatsCommand
 
 MainWindow -> MainWindow : handleWeightStats()
 activate MainWindow UI_COLOR
@@ -72,8 +74,5 @@ deactivate WeightStatsWindow
 end
 MainWindow --> MainWindow
 deactivate MainWindow
-
-destroy CommandResult
-destroy StatsCommand
 
 @enduml
