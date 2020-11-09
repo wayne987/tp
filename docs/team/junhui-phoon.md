@@ -15,9 +15,6 @@ Given below are my contributions to the project.
   charts will appear.
   * Justification: Initially the charts are implemented in such a way that to access the charts, the user must select it
   from the menu bar. This feature targets the CLI-focused aspect.
-  * Highlights: This enhancement affects the existing behaviour between UI and Logic components of the app.
-  It requires in-depth analysis and testing to make sure it does not create unusual behaviours and affecting other
-   commands after integrating this enhancement.  
 
 * **New Feature**: Data visualization of daily weight and calorie input/output
   * What it does: Allows the user to see the daily weight, calorie input/output trends
@@ -36,9 +33,6 @@ Given below are my contributions to the project.
   * Justification: This feature is an add-on for commanders for them to see the overall progress of the recruits,
   which they have their profiles saved in the app. It generates a pie chart where recruits are classified into different
   BMI categories according to the BMI values on their profiles.
-  * Highlights: This enhancement requires analysis on how the required data is handled in the Model component and the
-  implementation was challenging as it required further knowledge on how to implement charts using JavaFX by referring
-  to the JavaFX documentation. It also has to make sure the chart is updated simultaneously whenever there is data modification.
 
 * **New Feature**: Added Profile Panels in the GUI that allows the user the see the details of
 their profile such as weight, height, BMI and ID.
@@ -69,22 +63,7 @@ their profile such as weight, height, BMI and ID.
   * Changed the GUI icon (Pull request: [\#154](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/154))
   * Removed unused parameters for `add` command (Pull request: [\#73](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/73))
   * Modified Sample Data Util (Pull Request: [\#246](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/246))
-
-* **Documentation**:
-  * User Guide:
-    * Edited sections: (Pull Requests: [\#99](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/99),
-                         [\#148](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/148) , [\#152](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/152),
-                         [\#158](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/158), [\#240](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/240))
-        * Getting Started
-        * Data Visualisation
-        * General Commands
-  * Developer Guide:
-    * Edited sections: (Pull Requests: [\#99](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/99/files), [\#240](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/240)) 
-        * UI Components
-        * Feature: Add a new daily record
-        * Feature: View Daily Weight and Calorie Statistics
   
-
 * **Community**:
   * Assisted with team members' problems pertaining to Git and GitHub 
   * PRs reviewed (with non-trivial comments): 
@@ -107,3 +86,17 @@ their profile such as weight, height, BMI and ID.
   [\#94](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/94),
   [\#47](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/47),
   [\#38](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/38)
+  
+* **Documentation**:
+  * User Guide:
+    * Edited sections: (Pull Requests: [\#99](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/99),
+                         [\#148](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/148) , [\#152](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/152),
+                         [\#158](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/158), [\#240](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/240))
+        * Getting Started
+        * Data Visualisation
+        * General Commands
+  * Developer Guide:
+    * Edited sections: (Pull Requests: [\#99](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/99/files), [\#240](https://github.com/AY2021S1-CS2103T-W11-3/tp/pull/240)) 
+        * UI Components
+        * Feature: Add a new daily record
+        * Feature: View Daily Weight and Calorie Statistics
