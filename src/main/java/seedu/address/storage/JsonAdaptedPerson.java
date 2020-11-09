@@ -25,7 +25,7 @@ class JsonAdaptedPerson {
 
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given day details.
+     * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("profile") JsonAdaptedProfile profile,
@@ -57,9 +57,6 @@ class JsonAdaptedPerson {
         Person modelPerson = new Person();
         modelPerson.setProfile(modelProfile);
 
-        if (days.isEmpty()) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Day.class.getSimpleName()));
-        }
         for (JsonAdaptedDay jsonAdaptedDay : days) {
             Day day = jsonAdaptedDay.toModelType();
             if (modelPerson.hasDay(day)) {

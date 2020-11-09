@@ -79,6 +79,11 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
                 false, false, false, false, false, 0,
                 false, false, 1, false)));
+
+        //different showCommanderStats value -> return false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
+                false, false, false, false, false, 0,
+                false, false, 0, true)));
     }
 
     @Test

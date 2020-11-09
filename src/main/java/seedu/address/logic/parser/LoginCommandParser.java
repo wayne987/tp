@@ -6,6 +6,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parse user input for login command
+ * Parse user input to determine which index to change to
  */
 public class LoginCommandParser implements Parser<LoginCommand> {
 
