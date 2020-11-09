@@ -58,22 +58,26 @@ class JsonAdaptedProfile {
      */
     public Profile toModelType() throws IllegalValueException {
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        if (!Name.isValidName(name)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
+
         if (id == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ID.class.getSimpleName()));
         }
         if (!ID.isValidId(id)) {
-            throw new IllegalValueException(Weight.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(ID.MESSAGE_CONSTRAINTS);
         }
         final ID modelID = new ID(id);
 
-        if (id == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName()));
+        if (height == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Height.class.getSimpleName()));
         }
         if (!Height.isValidHeight(height)) {
-            throw new IllegalValueException(Weight.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Height.MESSAGE_CONSTRAINTS);
         }
         final Height modelHeight = new Height(height);
 
@@ -87,6 +91,9 @@ class JsonAdaptedProfile {
 
         if (startingDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+        }
+        if (!Date.isValidDate(startingDate)) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
         final Date startDate = new Date(startingDate);
 

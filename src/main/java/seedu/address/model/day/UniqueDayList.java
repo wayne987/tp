@@ -123,7 +123,6 @@ public class UniqueDayList implements Iterable<Day> {
         if (!daysAreUnique(days)) {
             throw new DuplicateDayException();
         }
-
         internalList.setAll(days);
     }
 

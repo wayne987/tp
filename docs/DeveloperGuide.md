@@ -11,7 +11,10 @@ title: My Fitness Buddy Developer Guide
 
 ### 1.1 About the application
 
-My Fitness Buddy is a desktop application that helps users keep track of their weight and calorie input/output.
+My Fitness Buddy `v1.4` is a desktop application that helps you to track your overall change in fitness level by allowing you to add daily records of your weight and calorie input/output.  
+My Fitness Buddy also allows users to create a profile and can generate visual charts based on these records so that you can monitor your daily progress and help you achieve your goals.  
+This application is optimized for use through a *Command Line Interface (CLI)*, meaning that you operate the application by typing commands into a command box.
+
 
 ### 1.2 Purpose
 
@@ -31,15 +34,10 @@ as well as future developers that are interested in further developing of our ap
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The ***Architecture Diagram*** given above explains the high-level design of My Fitness Buddy. Given below is a quick overview of each component.
 
-<div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
-</div>
-
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W11-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W11-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -47,9 +45,9 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The UI of My Fitness Buddy.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Model`**](#model-component): Holds the data of My Fitness Buddy in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
@@ -71,19 +69,62 @@ The sections below give more details of each component.
 
 ### 2.2 UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
-
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-W11-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `DayListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
-
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. 
+For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W11-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) 
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+The UI consists of a `MainWindow` that is made up of these parts as described below with the respective class diagrams.
+All these UI parts, including `MainWindow`, inherit from the abstract `UiPart` class. 
+
+The overall UI structure is decomposed from `MainWindow` into different class diagrams for better clarity.
+* `MainWindow`
+
+![Ui_Class_Diagram1](images/UiClassDiagram1.png)
+
+* Profile Panels:
+    * `ProfileCardPanel`
+    * `ProfileListPanel`
+    * `ProfileCard`
+    
+![Ui_Class_Diagram4](images/UiClassDiagram4.png)
+
+* Day Panel:
+    * `DayListPanel`
+    * `DayCard`
+    
+![Ui_Class_Diagram3](images/UiClassDiagram3.png)
+
+* Calorie Panels:
+    * `CalorieInputListPanel`
+    * `CalorieInputCard`
+    * `CalorieOutputListPanel`
+    * `CalorieOutputCard`
+    
+![Ui_Class_Diagram5](images/UiClassDiagram5.png)
+
+* Pop-Out Windows:
+    * `CalorieStatsWindow`
+    * `WeightStatsWindow`
+    * `CommanderBmiStatsWindow`
+    * `HelpWindow`
+    
+![Ui_Class_Diagram6](images/UiClassDiagram6.png)
+
+* Other UI elements:
+    * `CommandBox`
+    * `ResultDisplay`
+    * `StatusBarDaySelected`
+    * `StatusBarFooter`
+    
+![Ui_Class_Diagram2](images/UiClassDiagram2.png)
 
 ### 2.3 Logic component
 
@@ -142,6 +183,23 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Feature: Add a new daily record
+
+#### Implementation
+
+This feature enables the user to add a new daily record which includes the daily weight.
+Adding a new daily record allows the user to add specific calorie input/output entries into the app.
+
+The mechanism utilises the `AddCommandParser` Class to parse the input into `Date` of `day.Date` Class
+and `Weight` of `day.Weight` Class and a new `Day` object is instantiated.
+
+It then utilises the `AddCommand` Class to add the `Day` through the `Model#addDay` method which will add the `Day`
+into the `UniqueDayList`.
+
+Below is a sequence diagram when the user executes `add d/2020-11-08 w/76` into My Fitness Buddy.
+
+![Add_day_sequence](images/AddDaySequence.png)
+
 ### Remove Calorie feature
 
 #### Implementation
@@ -163,13 +221,19 @@ to remove the calorie at the specific index in the corresponding list of Calorie
 
 ![RemoveCalorieSequenceDiagram](images/RemoveCalorieSequenceDiagram.png)
 
-### View Statistics feature
+### Feature: View Daily Weight and Calorie Statistics
 
 #### Implementation
 
 This feature allows users to view their daily calorie input, 
 calorie output and weight in the form of a line chart generated using JavaFX
-`LineChart` and `XYChart`.
+`LineChart` and `XYChart`. 
+
+This feature can be executed using `stats v/calorie`, `stats v/weight`
+or `stats/vall` commands to show either the calorie, weight or all charts respectively.
+Given below is a sequence diagram when user executes `stats v/weight` command.
+
+![stats_sequence_diagram](images/StatsSequenceDiagram.png)
 
 The mechanism utilises the `Logic#getFilteredDayList` method to get all
 daily records of calorie input/output and weight to be used
@@ -181,28 +245,56 @@ instantly.
 
 This feature comprises the `CalorieStatsWindow` and `WeightStatsWindow` classes
 and have the same behaviour, with the only difference is the type of data (calorie input/output, weight)
-used to generate the chart. Given below is a diagram...
+used to generate the chart. Given below is an activity diagram shows how the weight chart is being updated
+when there is a change in `DayList`.
 
-_{Diagram to be added}_
+![weight_chart_activity_diagram](images/WeightChartActivityDiagram.png)
+
+### Feature: View Overall Progress Statistic
+
+#### Implementation
+
+This feature allows users to view the overall BMI progress of the recruits
+in the form of a pie chart generated using JavaFX `PieChart`.
+
+The mechanism utilises the `logic#getFilteredPersonList` method to get all
+the BMI values to be used as data for the pie chart.
+
+It also utilises JavaFX `ListChangeListner` to listen for any changes
+to the list when the user adds or modifies any data, and updates the chart 
+instantly.
+
 
 ### View all calorie inputs and calorie outputs of a day feature
 
 #### Implementation
 
 This feature allows users to view each of their calorie inputs and calorie 
-outputs for a particular day when a `view` command is used. 
+outputs for a particular day in a `ListView` when a view command is used.
+The mechanism utilises the ViewCommandParser class to parse the input and get the 
+`Index` of the particular day to be viewed.
 
+It then utilises the ViewCommand class to display the correct message to the user,
+depending on the validity of the `Index`. If the `Index` is valid, a CommandResult 
+gets returned and the `MainWindow#handleView` gets called with the now zero-based 
+`Index`. The `Index` is then used to get the `Day` from the `Logic#getFilteredDayList` 
+method. The list of calorie inputs and calorie outputs of that `Day` would be then used 
+to fill up the JavaFX `ListView`. The `ListView` is then used to replace the placeholders 
+on the right side of the app in `MainWindow`. 
 
+The JavaFx `StatusBar` will also get updated with the date of the `Day` viewed, using
+the `MainWindow#setDateLabel` method. 
 
-Alternatively, the user can view the calorie lists by double clicking on a particular
-`DayCard`. When a `DayCard` gets double clicked, the `MainWindow#fillCaloriePlaceHolders` method gets called. The 
-list of calorie inputs and calorie outputs of that day would be then used to fill up 
-the JavaFX `ListView`. The `ListView` is then used to replace the placeholders on the 
-right side of the app in `MainWindow`. 
+Whenever a new calorie gets added, the calorie lists will get automatically updated
+using the `DayListViewCell#updateItem` method in `DayListPanel`.
 
-{More details to be added in terms of updating the list when a new calorie is added}
+The calorie lists can also be viewed by double clicking on a `DayCard`. When a `DayCard`
+gets double clicked, the `Hbox#setOnMouseClicked` gets called and the lists and 
+status bar gets updated similarly. 
 
-_{Diagram to be added}_
+Given below is the sequence diagram when a view command is used.
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
 ### Creates a new Person to My Fitness Buddy
 
@@ -225,90 +317,6 @@ This feature allows users to edit an existing `Profile`, consisting of their *Na
 {More details to be added in terms of updating the profile in the next iteration}
 
 _{Diagram to be added}_
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th day in My Fitness Buddy. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of My Fitness Buddy after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new day. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so My Fitness Buddy state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the day was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores My Fitness Buddy to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores My Fitness Buddy to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify My Fitness Buddy, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the day being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -362,8 +370,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Add a daily weight record**
 
 **MSS**
-1.  User requests to add a weight record
-2.  User inputs the date and weight
+1.  User inputs the date and weight using the add command.
 3.  User sees the newly added weight record of the day.
     
     Use case ends.
@@ -371,9 +378,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Edit a daily weight record**
 
 **MSS**
-1.  User requests to edit a weight record
-2.  User inputs the index of the record and weight
-3.  User sees the newly edited weight record of the day.
+1.  User inputs the index of the record and the new weight with the edit command.
+2.  User sees the newly edited weight record of the day.
     
     Use case ends.
 
@@ -381,25 +387,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add calorie input
-2.  User selects the date that he/she wants to add a calorie input
-3.  User inputs the calorie input
-4.  User sees the newly updated calorie input of the day
+1.  User requests to add calorie input using the calorie command. 
+2.  User enters the date that he/she wants to add a calorie input.
+3.  User inputs the time and name of the calorie input.
+4.  User sees the newly updated total calorie input of that day.
 
     Use case ends.
     
-**Use case: View calorie history**
+**Use case: View calorie's of a particular day recorded**
 
 **MSS**
 
-1.  User requests to view calorie history
-2.  User sees his/her calorie history
+1.  User requests to view the calorie history of a particular day using the view 
+command. 
+2.  User sees his/her calories of that day.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The history is empty.
+* 2a. The calorie lists are empty.
 
   Use case ends.
 
@@ -449,13 +456,32 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Creating a profile
+
+1. Creating a profile when the current profile list is empty
+
+    1. Test case: `create n/John id/1111 h/170 w/80` <br>
+       Expected: Profile gets created.
+       
+    2. Test case: `create n/John id/1121 h/170 w/80` <br>
+       Expected: No profile gets created. Error details shown in the status message. Invalid id number. 
+   
+### Adding a day
+
+1. Adding a day when the current day list is empty
+
+    1. Test case: `add d/2020-10-21 w/77` <br>
+       Expected: Day gets created. 
+       
+    2. Test case: `add d/2020-10-212 w/77` <br>
+       Expected: No Day gets created. Error details shown in the status message. Invalid date.
+       
+    3. Test case: `add d/2020-10-21 w/sd` <br>
+       Expected: No Day gets created. Error details shown in the status message. Invalid weight.
 
 ### Deleting a day
 
 1. Deleting a day while all days are being shown
-
-   1. Prerequisites: List all days using the `list` command. Multiple days in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
@@ -465,9 +491,43 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+      
+### Adding a calorie input to a day 
+Assuming the day (2020-10-21) has already been added to the day list.
 
-1. _{ more test cases …​ }_
+1. Adding a calorie input to a day that has been added to the list already
 
+    1. Test case: `calorie d/2020-10-21 tp/in t/1200 f/chicken c/300` <br>
+       Expected: Calorie input added. Total calorie input count updated for that day. 
+       
+    2. Test case: `calorie d/2020-10-21 tp/in t/sdfds f/chicken c/300` <br>    
+       Expected: Calorie input not added. Total calorie input count remains the same for that day. Invalid time input.  
+
+### Adding a calorie output to a day 
+Assuming the day (2020-10-21) has already been added to the day list.
+
+1. Adding a calorie output to a day that has been added to the list already
+
+    1. Test case: `calorie d/2020-10-21 tp/out t/1200 e/running c/300` <br>
+       Expected: Calorie output added. Total calorie output count updated for that day. 
+       
+    2. Test case: `calorie d/2020-10-21 tp/out t/sdfds e/gym c/300` <br>    
+       Expected: Calorie input not added. Total calorie input count remains the same for that day. Invalid time input.  
+
+### Viewing the calorie lists of a day
+Assuming the day list is not empty and the day at index 1 has calorie 
+inputs and ouputs already.
+
+   1. Test case: `view 1`<br>
+      Expected: Calories will be shown on the calorie panels on the right. 
+      Status bar will update the the date of the day being shown. 
+
+   1. Test case: `view 0`<br>
+      Expected: Calorie lists does not update. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+  
 ### Saving data
 
 1. Dealing with missing/corrupted data files
