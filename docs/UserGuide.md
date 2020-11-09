@@ -73,7 +73,6 @@ All commands in the following sections follow the same format.
 
 ## 3. Getting Started
 ### 3.1 Downloading and opening the application
-=======
 (Contributed by Jun Hui)
 
 Thank you for using My Fitness Buddy! Here's a quick start guide to get you started.
@@ -597,9 +596,10 @@ viewing that particular day.
 Action | Format
 --------|------------------
 **Create profile** | `create n/NAME id/ID_NUM h/HEIGHT w/STARTING_WEIGHT` 
-**Edit profile** | `profile edit n/NAME id/ID_NUM h/HEIGHT w/STARTING_WEIGHT`
+**Update profile** | `update n/NAME id/ID_NUM h/HEIGHT w/STARTING_WEIGHT`
+**Login into a profile** | `login INDEX`
 **Add day record** | `add d/DATE w/WEIGHT` 
-**Edit day record** | `edit INDEX w/WEIGHT`
+**Edit day record** | `edit INDEX w/WEIGHT d/DATE`
 **Delete day record** | `delete INDEX`
 **Add input** | `calorie tp/in t/TIME f/FOOD c/CALORIE_COUNT`
 **Add output** | `calorie tp/out t/TIME d/DURATION c/CALORIE_BURNT`
