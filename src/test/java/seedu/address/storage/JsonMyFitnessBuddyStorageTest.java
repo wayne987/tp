@@ -1,12 +1,12 @@
 package seedu.address.storage;
 
 //import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-//import static seedu.address.testutil.TypicalDays.ALICE;
-//import static seedu.address.testutil.TypicalDays.HOON;
-//import static seedu.address.testutil.TypicalDays.IDA;
-//import static seedu.address.testutil.TypicalDays.getTypicalMyFitnessBuddy;
+import static seedu.address.testutil.TypicalPerson.PERSON7;
+import static seedu.address.testutil.TypicalPerson.PERSON8;
+import static seedu.address.testutil.TypicalPerson.getTypicalMyFitnessBuddy;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-//import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.ReadOnlyMyFitnessBuddy;
 
@@ -45,46 +45,45 @@ public class JsonMyFitnessBuddyStorageTest {
     public void read_missingFile_emptyResult() throws Exception {
         assertFalse(readMyFitnessBuddy("NonExistentFile.json").isPresent());
     }
-    /*
+
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readMyFitnessBuddy("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readMyFitnessBuddy("notJsonFormatMyFitnessBuddy.json"));
     }
 
     @Test
     public void readMyFitnessBuddy_invalidDayMyFitnessBuddy_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readMyFitnessBuddy("invalidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readMyFitnessBuddy("invalidPersonMyFitnessBuddy.json"));
     }
 
     @Test
     public void readMyFitnessBuddy_invalidAndValidDayMyFitnessBuddy_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readMyFitnessBuddy("invalidAndValidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () ->
+                readMyFitnessBuddy("invalidAndValidPersonMyFitnessBuddy.json"));
     }
-*/
-    //error due to refactoring
+
     @Test
     public void readAndSaveMyFitnessBuddy_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
-        //MyFitnessBuddy original = getTypicalMyFitnessBuddy();
-        JsonMyFitnessBuddyStorage jsonAddressBookStorage = new JsonMyFitnessBuddyStorage(filePath);
+        Path filePath = testFolder.resolve("TempMyFitnessBuddy.json");
+        MyFitnessBuddy original = getTypicalMyFitnessBuddy();
+        JsonMyFitnessBuddyStorage jsonMyFitnessBuddyStorage = new JsonMyFitnessBuddyStorage(filePath);
 
         // Save in new file and read back
-        //jsonAddressBookStorage.saveAddressBook(original, filePath);
-        //ReadOnlyMyFitnessBuddy readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-        //assertEquals(original, new MyFitnessBuddy(readBack));
+        jsonMyFitnessBuddyStorage.saveFitnessBuddy(original, filePath);
+        ReadOnlyMyFitnessBuddy readBack = jsonMyFitnessBuddyStorage.readFitnessBuddy(filePath).get();
+        assertEquals(original, new MyFitnessBuddy(readBack));
 
-        // Modify data, overwrite exiting file, and read back
-        //original.addDay(HOON);
-        //original.removeDay(ALICE);
-        //jsonAddressBookStorage.saveAddressBook(original, filePath);
-        //readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-        //assertEquals(original, new MyFitnessBuddy(readBack));
+        //Modify data, overwrite exiting file, and read back
+        original.addPerson(PERSON7);
+        jsonMyFitnessBuddyStorage.saveFitnessBuddy(original, filePath);
+        readBack = jsonMyFitnessBuddyStorage.readFitnessBuddy(filePath).get();
+        assertEquals(original, new MyFitnessBuddy(readBack));
 
         // Save and read without specifying file path
-        //original.addDay(IDA);
-        //jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        //readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
-        //assertEquals(original, new MyFitnessBuddy(readBack));
+        original.addPerson(PERSON8);
+        jsonMyFitnessBuddyStorage.saveFitnessBuddy(original); // file path not specified
+        readBack = jsonMyFitnessBuddyStorage.readFitnessBuddy().get(); // file path not specified
+        assertEquals(original, new MyFitnessBuddy(readBack));
 
     }
 

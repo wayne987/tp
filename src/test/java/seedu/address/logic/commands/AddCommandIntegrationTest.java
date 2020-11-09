@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.testutil.TypicalDays.getTypicalMyFitnessBuddy;
+import static seedu.address.testutil.TypicalPerson.getTypicalMyFitnessBuddy;
 
 import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;

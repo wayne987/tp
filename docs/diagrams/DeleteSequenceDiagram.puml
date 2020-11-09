@@ -48,7 +48,7 @@ deactivate MyFitnessBuddyParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> Model : deleteDay(1)
 activate Model
 
 Model --> DeleteCommand
