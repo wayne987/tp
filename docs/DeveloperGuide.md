@@ -260,6 +260,27 @@ Below is a sequence diagram when the user executes `add d/2020-11-08 w/76` into 
 
 ![Add_day_sequence](images/AddDaySequence.png)
 
+
+### Feature: Edit the weight and/or date of a day
+
+#### Implementation
+
+This feature allows the user to edit the weight record and/or date record of a particular day that has already been 
+added in the day list. 
+
+The mechanism utilises the `EditCommandParser` Class to parse the input into `Index`. An `editDayDescriptor` 
+gets created with the  `Date` of `day.Date` Class and `Weight` of `day.Weight` Class if they are included
+in the input.  
+
+It then utilises the `EditCommand` Class to create a new `Day` with the `editDayDescriptor` using 
+`EditCommand#createEditedDay`. The new `Day` would then replace the old `Day` in the `Model` using the 
+`Model#setDay` method. 
+
+Below is a sequence diagram when the user executes `edit 1 d/2020-10-22 w/90` into My Fitness Buddy.
+
+![Edit_day_sequence](images/EditDaySequence.png)
+
+
 ### Add Calorie feature
 
 #### Overview
@@ -268,6 +289,7 @@ This feature allows users to add a calorie to the calorie manager of the day wit
 If no date is specified, calorie command takes the system date and adds it to the day with the date.
 
 This is an activity diagram to demostrate what happens when the user uses the calorie command
+
 ![AddCalorieActivity](images/AddCalorieActivity.png)
 
 #### Implementation
@@ -280,9 +302,11 @@ Step 6: Depending on whether the boolean isOut is true, it adds the appropriate 
 Step 7: After changing editDay, CalorieCommand will call model.setDay(editDay, targetDay) to replace the targetDay with the edited Day object which contains the new Calorie.  
 
 Sequence diagram when CalorieCommand is executed
+
 ![AddCalorieSequenceDiagram](images/AddCalorieSequence.png)
 
 #### Design Considerations
+
 Alternative 1:  
 Instead of having a single CalorieCommand class, have an OutputCommand and InputCommand class  
 Pros: Less confusing code  
@@ -423,37 +447,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | create a new profile         | set up the application |
-| `* * *`  | user                                       | record my daily weight         | keep track of them   |
-| `* * *`  | user                                       | record meals and the amount of calorie eaten  | keep track of them |
-| `* * *`  | user                                       | record exercises and the amount of calories lost | keep track of them |
-| `* * *`  | user                                       | view my calorie history   | see if I am hitting my calorie targets |
-| `* * *`  | user                                       | view all my daily weights | see if I am hitting my weight targets | 
-| `* * *`  | user                                       | delete a specified calorie output | remove a wrong input |
-|  `* * *` | user                                       | delete a specified calorie input | remove a wrong output |
+| `* * *`  | user (recruit)                             | record my daily weight         | keep track of them   |
+| `* * *`  | user (recruit)                             | record meals and the amount of calorie eaten  | keep track of them |
+| `* * *`  | user (recruit)                             | record exercises and the amount of calories lost | keep track of them |
+| `* * *`  | user (recruit)                              | view my calorie history   | see if I am hitting my calorie targets |
+| `* * *`  | user (recruit)                                | view all my daily weights | see if I am hitting my weight targets | 
+| `* * *`  | user (recruit)                                | delete a specified calorie output | remove a wrong input |
+|  `* * *` | user  (recruit)                                 | delete a specified calorie input | remove a wrong output |
+| `* *`   | user (recruit)                                 | see the progress of my weight and calories | keep track of them |
+| `*`      | user (commander)                              | see overall progress of my recruits | manage my recruits better |
 
-*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `MyFitnessBuddy` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a daily weight record**
+**Use case: UC1 - Create a new profile**
+
+**Preconditions** : Profile list has no profile with the same ID
+
+**MSS**
+1. User inputs the create command with the necessary fields (name, ID, height, target weight). 
+2. User sees the newly created profile on the profile panel.  
+
+**Use case: UC2 - Add a daily weight record**
+
+**Preconditions** : User is logged in
 
 **MSS**
 1.  User inputs the date and weight using the add command.
-3.  User sees the newly added weight record of the day.
+2.  User sees the newly added weight record of the day.
     
     Use case ends.
     
-**Use case: Edit a daily weight record**
+**Use case: UC3 - Edit a daily weight record**
+
+**Preconditions** : User is logged in 
 
 **MSS**
-1.  User inputs the index of the record and the new weight with the edit command.
+1.  User inputs the index of the day record and the new weight with the edit command.
 2.  User sees the newly edited weight record of the day.
     
     Use case ends.
+    
+**Extensions**
+* 1a. The index of the day record does not exists
+* 1b. Error message is shown
 
-**Use case: Add a calorie input**
+Use case resumes at 1.
+
+**Use case: UC4 - Add a calorie input**
+
+**Preconditions** : User is logged in and a day has already been added
 
 **MSS**
 
@@ -464,7 +509,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
     
-**Use case: View calorie's of a particular day recorded**
+**Use case: UC5 - View calorie's of a particular day recorded**
+
+**Preconditions** : User is logged in, a day has already been added and calories have been 
+added for that day
 
 **MSS**
 
@@ -480,7 +528,21 @@ command.
 
   Use case ends.
 
-*{More to be added}*
+**Use case: UC6 - View weight statistics**
+
+**Preconditions** : User is logged in
+
+**MSS**
+
+1. User requests to view statistics of their weight history
+2. Users sees the line chart of their weight history
+
+   Use case ends.
+   
+**Extensions**
+* 1a. The day list is empty so an empty chart gets shown.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
@@ -488,7 +550,6 @@ command.
 2.  Should be able to hold up to 100 days of calorie input/output without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
 
 ### Glossary
 
