@@ -171,20 +171,6 @@ Examples:
 
 Meaning:`changes the current profile that you are looking at to the profile in the profile list at index 2`
 
-#### 4.1.4 Finding specific profile(s): `find`
-Finds the profiles that matches the name or BMI specified.
-
-Format: `find KEYWORD`
-- **KEYWORD** refers to bmi or name only.
-
-Examples:
-`find bmi/20`
-`find Jon`
-
-Meaning: 
-- `finds all the profiles that have BMI of no more than 20`
-- `finds all the profiles with name that matches Jon`
-
 ### 4.2 Day commands
 (Contributed by Jia Xin)
 

@@ -183,6 +183,54 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Feature: Creates a new Person to My Fitness Buddy
+
+#### Implementations
+
+This feature allows users to create a new `Profile`, consisting of their `Name`, `ID`, `Height` and starting `Weight`,
+and a new `UniqueDayList` for daily calorie entries. Upon initialising an empty My Fitness Buddy application, users have to create a new person with a new profile. 
+Once the profile has been set for `Person`, the user can now add
+daily entries to My Fitness Buddy's `UniqueDayList`.
+
+![CreateProfileSequenceDiagram](images/CreateProfileSequenceDiagram.png)
+
+### Feature: Updates a profile in My Fitness Buddy 
+
+#### Implementations
+
+This feature allows users to update an existing `Profile`, consisting of their *Name*, *ID*, *Height* and *TargetWeight*. 
+The user can modify any of the profile entries while `UniqueDayList` that records the daily entries will remain unchanged.
+
+The mechanism utilises the UpdateCommandParser Class to parse the input into the index of the `Profile` to be retrieved where, 
+at least one of the entries `Name`, `ID`, `Height` or `Weight` will be modified accordingly.
+
+It than utilise the UpdateCommand class to execute the actual removal of the calorie. It will call the method `getProfile` which uses `MyFitnessBuddy` to locate the Profile class
+from the uniquePersonList in which the profile resides in and returns it.
+
+A new profile will be created from the given user inputs and previous relevant profile information. This new profile details will replace the previous profile in 
+the uniquePersonList that resides in `MyFitnessBuddy`.
+
+![UpdateProfileSequenceDiagram](images/UpdateProfileSequenceDiagram.png)
+
+### Feature: Views another profile in My Fitness Buddy
+
+#### Implementations
+
+This feature allows users to view another existing `Profile`.
+
+The mechanism utilises the LoginCommandParser Class to parse the input into the index of the `Profile` to be retrieved.
+
+It than utilise the LoginCommand class to execute the actual retrieval of the profile. It will call the method `getPerson` which uses `MyFitnessBuddy` to locate the Person class
+from the uniquePersonList in which the person resides in and returns it.
+
+The currentPerson in `MyFitnessBuddy` will be changed to the recently retrieved Person by calling the method `setCurrentPerson`.
+
+Finally, the uniqueDayList for the person's UI component will be updated accordingly and displayed.
+
+
+![LoginActivityDiagram](images/LoginActivityDiagram.png)
+
+
 ### Feature: Add a new daily record
 
 #### Implementation
@@ -295,54 +343,6 @@ status bar gets updated similarly.
 Given below is the sequence diagram when a view command is used.
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
-
-### Feature: Creates a new Person to My Fitness Buddy
-
-#### Implementations
-
-This feature allows users to create a new `Profile`, consisting of their `Name`, `ID`, `Height` and starting `Weight`,
-and a new `UniqueDayList` for daily calorie entries. Upon initialising an empty My Fitness Buddy application, users have to create a new person with a new profile. 
-Once the profile has been set for `Person`, the user can now add
-daily entries to My Fitness Buddy's `UniqueDayList`.
-
-![CreateProfileSequenceDiagram](images/CreateProfileSequenceDiagram.png)
-
-### Feature: Updates a profile in My Fitness Buddy 
-
-#### Implementations
-
-This feature allows users to update an existing `Profile`, consisting of their *Name*, *ID*, *Height* and *TargetWeight*. 
-The user can modify any of the profile entries while `UniqueDayList` that records the daily entries will remain unchanged.
-
-The mechanism utilises the UpdateCommandParser Class to parse the input into the index of the `Profile` to be retrieved where, 
-at least one of the entries `Name`, `ID`, `Height` or `Weight` is/are to be modified accordingly.
-
-It than utilise the UpdateCommand class to execute the actual removal of the calorie. It will call the method `getProfile` which uses `MyFitnessBuddy` to locate the Profile class
-from the uniquePersonList in which the profile resides in and returns it.
-
-A new profile will be created from the given user inputs and previous relevant profile information. This new profile details will replace the previous profile in 
-the uniquePersonList that resides in `MyFitnessBuddy`.
-
-![UpdateProfileSequenceDiagram](images/UpdateProfileSequenceDiagram.png)
-
-### Feature: Views another profile in My Fitness Buddy
-
-#### Implementations
-
-This feature allows users to view another existing `Profile`.
-
-The mechanism utilises the LoginCommandParser Class to parse the input into the index of the `Profile` to be retrieved.
-
-It than utilise the LoginCommand class to execute the actual retrieval of the profile. It will call the method `getPerson` which uses `MyFitnessBuddy` to locate the Person class
-from the uniquePersonList in which the person resides in and returns it.
-
-The currentPerson in `MyFitnessBuddy` will be changed to the recently retrieved Person by calling the method `setCurrentPerson`.
-
-Finally, the uniqueDayList for the person's UI component will be updated accordingly and displayed.
-
-
-![LoginActivityDiagram](images/LoginActivityDiagram.png)
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -557,6 +557,6 @@ inputs and ouputs already.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
