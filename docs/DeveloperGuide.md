@@ -677,7 +677,7 @@ Logger will log: "Data file not found. Will be starting with a sample MyFitnessB
 
 Users can simulate this by going into the data folder of the JAR file and deleting the file named myfitnessbuddy.
 
-####2. Corrupted data file
+#### 2. Corrupted data file
 
 If the data inside the JSON file is corrupted, the application will launch as a clean application with no data.
 An empty data file will be created.
