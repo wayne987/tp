@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
  */
 public class CommanderBmiStatsWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(CommanderBmiStatsWindow.class);
-    private static final String FXML = "CommanderBmiStatsWindow.fxml";
+    private static final String FXML = "CommanderBMIStatsWindow.fxml";
 
     private ObservableList<Person> personList;
 
