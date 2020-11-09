@@ -52,4 +52,3 @@ Given below are my contributions to the project.
   * Reminded the team to test and conduct regression test
   * Merged numerous PRS
   * Documented bugs for other teams during PE
-  
