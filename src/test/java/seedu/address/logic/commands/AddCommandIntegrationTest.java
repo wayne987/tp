@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.testutil.TypicalDays.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPerson.getTypicalMyFitnessBuddy;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -20,7 +20,7 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalMyFitnessBuddy(), new UserPrefs());
     }
 
     /*
@@ -36,9 +36,9 @@ public class AddCommandIntegrationTest {
     }
 */
 
-    @Test
+    //    @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Day dayInList = model.getAddressBook().getDayList().get(0);
+        Day dayInList = model.getMyFitnessBuddy().getPerson().getDayList().get(0);
         assertCommandFailure(new AddCommand(dayInList), model, AddCommand.MESSAGE_DUPLICATE_DAY);
     }
 

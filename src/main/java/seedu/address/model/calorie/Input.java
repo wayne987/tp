@@ -1,7 +1,10 @@
-package seedu.address.model.day.calorie;
+package seedu.address.model.calorie;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+/**
+ * Class to store the relevant information for any calorie input
+ */
 public class Input extends Calorie {
 
     private Food food;
@@ -32,22 +35,13 @@ public class Input extends Calorie {
     }
 
     /**
-     * Returns true if both Input have the same identity and data fields.
-     * This defines a stronger notion of equality between two Input.
+     * Returns true if a otherInput has the same attributes as this Input
+     * @param otherInput that is being checked with
      */
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Input)) {
-            return false;
-        }
-
-        Input otherInput = (Input) other;
-        return otherInput.getCalorieCount().equals(getCalorieCount())
-                && otherInput.getTime().equals(getTime())
-                && otherInput.getFood().equals(getFood());
+    public boolean isSameInput(Input otherInput) {
+        return otherInput.getFood().food.equals(this.food.toString())
+               && otherInput.getTime().time.equals(this.time.toString())
+               && otherInput.getCalorieCount().calorieCount.equals(this.calorieCount.toString());
     }
+
 }

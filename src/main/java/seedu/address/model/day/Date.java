@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Person's weight in the record.
@@ -14,6 +15,8 @@ public class Date {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in the form of YYYY-MM-DD.";
+
+    public static final String VALIDATION_REGEX = "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]";
 
     public final String value;
 
@@ -26,9 +29,18 @@ public class Date {
      */
     public Date(String date) {
         requireNonNull(date);
-        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isCorrectRegrex(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDate(date), getErrorMessage(date));
         this.value = date;
         this.date = LocalDate.parse(date);
+    }
+
+    /**
+     * checks if test matches validation regrex
+     * @param test to be checked
+     */
+    public static boolean isCorrectRegrex(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**
@@ -41,6 +53,28 @@ public class Date {
         } catch (java.time.format.DateTimeParseException e) {
             return false;
         }
+    }
+    /**
+     * Returns error message
+     * @param date
+     */
+    private String getErrorMessage(String date) {
+        String result = "";
+        try {
+            LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            result = e.getMessage();
+        }
+        return result;
+    }
+
+
+
+    /**
+     * Returns true if a date is after the other date
+     */
+    public boolean dateAfter(Date otherDate) {
+        return this.get().isAfter(otherDate.get());
     }
 
     @Override

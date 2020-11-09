@@ -1,14 +1,10 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.calorie.CalorieManager;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Weight;
-import seedu.address.model.day.calorie.CalorieManager;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Day objects.
@@ -22,7 +18,6 @@ public class DayBuilder {
     private Date date;
     private Weight weight;
     private CalorieManager calorieManager;
-    private Set<Tag> tags;
 
     /**
      * Creates a {@code DayBuilder} with the default details.
@@ -31,7 +26,6 @@ public class DayBuilder {
         date = new Date(DEFAULT_DATE);
         weight = new Weight(DEFAULT_WEIGHT);
         calorieManager = new CalorieManager();
-        tags = new HashSet<>();
     }
 
     /**
@@ -41,9 +35,12 @@ public class DayBuilder {
         date = dayToCopy.getDate();
         weight = dayToCopy.getWeight();
         calorieManager = dayToCopy.getCalorieManager();
-        calorieManager.addCalorieOutput(new CalorieBuilder().buildOutput());
-        calorieManager.addCalorieInput(new CalorieBuilder().buildInput());
-        tags = new HashSet<>(dayToCopy.getTags());
+        try {
+            calorieManager.addCalorieOutput(new CalorieBuilder().buildOutput());
+            calorieManager.addCalorieInput(new CalorieBuilder().buildInput());
+        } catch (IllegalValueException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -55,15 +52,6 @@ public class DayBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Day} that we are building.
-     */
-    public DayBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-
-    /**
      * Sets the {@code Weight} of the {@code Day} that we are building.
      */
     public DayBuilder withWeight(String weight) {
@@ -73,7 +61,7 @@ public class DayBuilder {
 
 
     public Day build() {
-        return new Day(date, weight, tags, calorieManager);
+        return new Day(date, weight, calorieManager);
     }
 
 }

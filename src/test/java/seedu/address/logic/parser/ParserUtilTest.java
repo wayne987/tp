@@ -1,34 +1,29 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DAY;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.calorie.Exercise;
+import seedu.address.model.calorie.Food;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Weight;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Height;
+import seedu.address.model.person.ID;
+import seedu.address.model.person.Name;
+
 
 public class ParserUtilTest {
     private static final String INVALID_DATE = "";
     private static final String INVALID_WEIGHT = "4a5";
-    private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_DATE = "2019-10-13";
     private static final String VALID_WEIGHT = "45";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -86,12 +81,18 @@ public class ParserUtilTest {
     @Test
     public void parseWeight_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseWeight(INVALID_WEIGHT));
+        assertThrows(ParseException.class, () -> ParserUtil.parseWeight("0")); //lower limit
+        assertThrows(ParseException.class, () -> ParserUtil.parseWeight("1000")); //upper limit
+        assertThrows(ParseException.class, () -> ParserUtil.parseWeight("65.1234")); //>2dp
+
     }
 
     @Test
     public void parseWeight_validValueWithoutWhitespace_returnsWeight() throws Exception {
         Weight expectedWeight = new Weight(VALID_WEIGHT);
+        Weight expectedWeight2 = new Weight("60.35");
         assertEquals(expectedWeight, ParserUtil.parseWeight(VALID_WEIGHT));
+        assertEquals(expectedWeight2, ParserUtil.parseWeight("60.35"));
     }
 
     @Test
@@ -103,48 +104,116 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    public void parseExercise_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseExercise((String) null, null));
     }
 
     @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    public void parseExercise_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseExercise(" ", true));
+        assertThrows(ParseException.class, () -> ParserUtil.parseExercise("running", false));
     }
 
     @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
+    public void parseExercise_validValueWithoutWhitespace_returnsWeight() throws Exception {
+        Exercise expectedExercise = new Exercise("running");
+        assertEquals(expectedExercise, ParserUtil.parseExercise("running", true));
     }
 
     @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+    public void parseFood_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFood((String) null, null));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+    public void parseFood_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFood(" ", false));
+        assertThrows(ParseException.class, () -> ParserUtil.parseFood("food", true));
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    public void parseFood_validValueWithoutWhitespace_returnsWeight() throws Exception {
+        Food expectedFood = new Food("food");
+        assertEquals(expectedFood, ParserUtil.parseFood("food", false));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+    public void parseName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
-
-        assertEquals(expectedTagSet, actualTagSet);
+    public void parseName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(" "));
+        assertThrows(ParseException.class, () -> ParserUtil.parseName("abc@"));
     }
+
+    @Test
+    public void parseName_validValueWithoutWhitespace_returnsWeight() throws Exception {
+        Name expectedName = new Name("John");
+        Name expectedName2 = new Name("John1");
+        assertEquals(expectedName, ParserUtil.parseName("John"));
+        assertEquals(expectedName2, ParserUtil.parseName("John1"));
+    }
+
+    @Test
+    public void parseHeight_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseHeight((String) null));
+    }
+
+    @Test
+    public void parseHeight_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseHeight(" "));
+        assertThrows(ParseException.class, () -> ParserUtil.parseHeight("20")); // lower limit
+        assertThrows(ParseException.class, () -> ParserUtil.parseHeight("300")); // upper limit
+        assertThrows(ParseException.class, () -> ParserUtil.parseHeight("165.1")); // decimal
+        assertThrows(ParseException.class, () -> ParserUtil.parseHeight("-165.1")); // decimal
+    }
+
+    @Test
+    public void parseHeight_validValueWithoutWhitespace_returnsWeight() throws Exception {
+        Height expectedHeight = new Height("123");
+        assertEquals(expectedHeight, ParserUtil.parseHeight("123"));
+    }
+
+    @Test
+    public void parseID_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseID((String) null));
+    }
+
+    @Test
+    public void parseID_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseID(" "));
+        assertThrows(ParseException.class, () -> ParserUtil.parseID("5111")); // first digit out of range
+        assertThrows(ParseException.class, () -> ParserUtil.parseID("0111"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseID("1511")); // second digit out of range
+        assertThrows(ParseException.class, () -> ParserUtil.parseID("1011"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseID("1100")); // last 2 digit out of range
+        assertThrows(ParseException.class, () -> ParserUtil.parseID("1121"));
+    }
+
+    @Test
+    public void parseID_validValueWithoutWhitespace_returnsWeight() throws Exception {
+        ID expectedID = new ID("1111");
+        assertEquals(expectedID, ParserUtil.parseID("1111"));
+    }
+
+    @Test
+    public void parseBmi_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseBmi((String) null));
+    }
+
+    @Test
+    public void parseBmi_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseBmi(" "));
+        assertThrows(ParseException.class, () -> ParserUtil.parseBmi("401")); // out of range
+        assertThrows(ParseException.class, () -> ParserUtil.parseBmi("0")); // out of range
+    }
+
+    @Test
+    public void parseBmi_validValueWithoutWhitespace_returnsWeight() throws Exception {
+        assertEquals(23.10, ParserUtil.parseBmi("23.10"));
+        assertEquals(23, ParserUtil.parseBmi("23"));
+    }
+
 }

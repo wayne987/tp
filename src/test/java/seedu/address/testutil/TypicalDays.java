@@ -2,8 +2,6 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_2;
 
@@ -11,28 +9,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.day.Day;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Profile;
 
 /**
  * A utility class containing a list of {@code Day} objects to be used in tests.
  */
 public class TypicalDays {
 
-    public static final Day ALICE = new DayBuilder().withDate("2020-11-23")
-            .withWeight("45")
-            .withTags("friends").build();
-    public static final Day BENSON = new DayBuilder().withDate("2020-05-12")
-            .withTags("owesMoney", "friends").build();
-    public static final Day CARL = new DayBuilder().withDate("2020-01-23").withWeight("75").build();
-    public static final Day DANIEL = new DayBuilder().withDate("2020-01-13").withWeight("66")
-           .withTags("friends").build();
-    public static final Day ELLE = new DayBuilder().withDate("2020-09-12").withWeight("42")
-          .build();
-    public static final Day FIONA = new DayBuilder().withDate("2020-03-01").withWeight("51")
-           .build();
-    public static final Day GEORGE = new DayBuilder().withDate("2019-12-25").withWeight("73")
-           .build();
+    public static final Day DAY1 = new DayBuilder().withDate("2020-11-23").withWeight("45").build();
+    public static final Day DAY2 = new DayBuilder().withDate("2020-05-12").build();
+    public static final Day DAY3 = new DayBuilder().withDate("2020-01-23").withWeight("75").build();
+    public static final Day DAY4 = new DayBuilder().withDate("2020-01-13").withWeight("66").build();
+    public static final Day DAY5 = new DayBuilder().withDate("2020-09-12").withWeight("42").build();
+    public static final Day DAY6 = new DayBuilder().withDate("2020-03-01").withWeight("51").build();
+    public static final Day DAY7 = new DayBuilder().withDate("2019-12-25").withWeight("73").build();
 
     // Manually added
     public static final Day HOON = new DayBuilder().withDate("2020-06-09").withWeight("56")
@@ -41,28 +35,57 @@ public class TypicalDays {
           .build();
 
     // Manually added - Day's details found in {@code CommandTestUtil}
-    public static final Day AMY = new DayBuilder().withDate(VALID_DATE_1).withWeight(VALID_WEIGHT_1)
-           .withTags(VALID_TAG_FRIEND).build();
-    public static final Day BOB = new DayBuilder().withDate(VALID_DATE_2).withWeight(VALID_WEIGHT_2)
-           .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+    // MDAY stands for manually added day
+    public static final Day MDAY1 = new DayBuilder().withDate(VALID_DATE_1).withWeight(VALID_WEIGHT_1)
+         .build();
+    public static final Day MDAY2 = new DayBuilder().withDate(VALID_DATE_2).withWeight(VALID_WEIGHT_2)
             .build();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    public static final Profile DEFAULT_PROFILE = TypicalProfiles.DEFAULT_PROFILE;
 
     private TypicalDays() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical days.
+     * Returns an {@code MyFitnessBuddy} with all the typical days.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static MyFitnessBuddy getTypicalMyFitnessBuddy() {
+        MyFitnessBuddy myFitnessBuddy = new MyFitnessBuddy();
+        myFitnessBuddy.setPerson(new Person(DEFAULT_PROFILE)); // sets to default profile
+        for (Day day : getTypicalDays()) {
+            myFitnessBuddy.addDay(day);
+        }
+        return myFitnessBuddy;
+    }
+
+    /**
+     * Returns an {@code getAnotherFitnessBuddy} with all the typical days and calories in them.
+     */
+    public static MyFitnessBuddy getAnotherMyFitnessBuddy() {
+        MyFitnessBuddy ab = new MyFitnessBuddy();
+        ab.setPerson(new Person(DEFAULT_PROFILE));
         for (Day day : getTypicalDays()) {
             ab.addDay(day);
         }
+        try {
+            for (Day d : ab.getDayList()) {
+                d.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_A);
+                d.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_B);
+                d.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_C);
+                d.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_A);
+                d.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_B);
+                d.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_C);
+            }
+        } catch (IllegalValueException e) {
+            e.printStackTrace();
+        }
+
         return ab;
     }
 
     public static List<Day> getTypicalDays() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(DAY1, DAY2, DAY3, DAY4, DAY5, DAY6, DAY7));
+    }
+
+    public static List<Day> getDuplicateDays() {
+        return new ArrayList<>(Arrays.asList(DAY1, DAY1, DAY1, DAY2, DAY3));
     }
 }

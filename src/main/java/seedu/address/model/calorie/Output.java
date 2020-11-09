@@ -1,7 +1,10 @@
-package seedu.address.model.day.calorie;
+package seedu.address.model.calorie;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+/**
+ * Class to store the relevant information for any calorie output
+ */
 public class Output extends Calorie {
 
     private Exercise exercise;
@@ -31,19 +34,13 @@ public class Output extends Calorie {
         return builder.toString();
     }
 
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Output)) {
-            return false;
-        }
-
-        Output otherInput = (Output) other;
-        return otherInput.getCalorieCount().equals(getCalorieCount())
-                && otherInput.getTime().equals(getTime())
-                && otherInput.getExercise().equals(getExercise());
+    /**
+     * Returns true if a otherOutput has the same attributes as this Output
+     * @param otherOutput that is being checked with
+     */
+    public boolean isSameOutput(Output otherOutput) {
+        return otherOutput.getExercise().exercise.equals(this.exercise.toString())
+                && otherOutput.getTime().time.equals(this.time.toString())
+                && otherOutput.getCalorieCount().calorieCount.equals(this.calorieCount.toString());
     }
 }
