@@ -69,7 +69,7 @@ All commands in the following sections follow the same format.
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Getting Started
-
+### 3.1 Downloading and opening the application
 Thank you for using My Fitness Buddy! Here's a quick start guide to get you started.
 
 1. Ensure you have Java 11 or above installed in your Computer. 
@@ -80,13 +80,26 @@ Thank you for using My Fitness Buddy! Here's a quick start guide to get you star
 1. If the app doesn’t start right away, try opening a command terminal in the folder and enter  
 `java -jar MyFitnessBuddy_v1.3.jar`
 1. You can type a command in the command box and press <kbd>Enter</kbd> to execute it.<br>
-Here are some basic commands you can try:
-    * `create n/Johnny id/1234 h/170 w/68`: Creates a profile named `Johnny`.
-    * `add d/2020-10-16 w/70`: Creates a daily record with the specified date and weight.
-    * `calorie d/2020-10-26 tp/in t/1200 f/laksa c/290`: Adds a calorie input entry with the specified date.
-    * `stats v/all`: View both calorie and weight charts in a pop-up window.
 
-1. Head to [Features](#4-features) below to learn more details of each command. 
+    
+### 3.2 General Usage
+(Contributed by Hope)  
+When you open our application for the first time, the application starts up with some sample data that allows users to test the features. Here
+are some general usage scenarios of our application that you can try when getting started
+* From sample data :
+1. `login 1` : Login to the first profile in the list
+1. `add d/2020-10-16 w/70` : Create a daily record with the specified date and weight.
+1. `calorie d/2020-10-26 tp/in t/1200 f/laksa c/290` : Adds a calorie input entry with the specified date.
+1. `stats v/all` : View both calorie and weight charts in a pop-up window.
+1. `login 2` : Login to the second profile in the list  
+
+* After `clear` command :
+1. `create n/John id/1201 h/170 w/68` : Create a new profile with the specified information
+1. `add d/2020-10-16 w/70` : Create a daily record with the specified date and weight.
+1. `calorie d/2020-10-26 tp/out t/1200 e/Run c/290` : Adds a calorie input entry with the specified date.
+1. `stats v/all` View both calorie and weight charts in a pop-up window.
+
+Head to [Features](#4-features) below to learn more details of each command. 
 
 --------------------------------------------------------------------------------------------------------------------
 
