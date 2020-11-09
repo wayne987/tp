@@ -58,7 +58,7 @@ public class UpdateCommand extends Command {
     }
 
     /**
-     * checks if the id intended to be change is taken
+     * checks if the id intended to be changed is taken
      */
     public boolean isUnique(ID id, ObservableList<Person> ul) {
         return ul.size() == 0 || ul.stream().noneMatch(x -> x.getProfile().getId().value.equals(id.value));
