@@ -8,9 +8,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_2;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 //import static seedu.address.logic.commands.CommandTestUtil.showDayAtIndex;
-import static seedu.address.testutil.TypicalDays.getTypicalMyFitnessBuddy;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DAY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_DAY;
+import static seedu.address.testutil.TypicalPerson.getTypicalMyFitnessBuddy;
 
 import org.junit.jupiter.api.Test;
 

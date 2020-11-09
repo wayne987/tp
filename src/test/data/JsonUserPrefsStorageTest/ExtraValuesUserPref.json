@@ -9,5 +9,5 @@
       "z" : 99
     }
   },
-  "addressBookFilePath" : "myfitnessbuddy.json"
+  "myFitnessBuddyFilePath" : "data\\myfitnessbuddy.json"
 }

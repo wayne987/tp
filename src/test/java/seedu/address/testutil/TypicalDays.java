@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.MyFitnessBuddy;
 import seedu.address.model.day.Day;
 import seedu.address.model.person.Person;
@@ -19,20 +20,13 @@ import seedu.address.model.person.Profile;
  */
 public class TypicalDays {
 
-    public static final Day DAY1 = new DayBuilder().withDate("2020-11-23")
-            .withWeight("45")
-          .build();
-    public static final Day DAY2 = new DayBuilder().withDate("2020-05-12")
-           .build();
+    public static final Day DAY1 = new DayBuilder().withDate("2020-11-23").withWeight("45").build();
+    public static final Day DAY2 = new DayBuilder().withDate("2020-05-12").build();
     public static final Day DAY3 = new DayBuilder().withDate("2020-01-23").withWeight("75").build();
-    public static final Day DAY4 = new DayBuilder().withDate("2020-01-13").withWeight("66")
-          .build();
-    public static final Day DAY5 = new DayBuilder().withDate("2020-09-12").withWeight("42")
-          .build();
-    public static final Day DAY6 = new DayBuilder().withDate("2020-03-01").withWeight("51")
-           .build();
-    public static final Day DAY7 = new DayBuilder().withDate("2019-12-25").withWeight("73")
-           .build();
+    public static final Day DAY4 = new DayBuilder().withDate("2020-01-13").withWeight("66").build();
+    public static final Day DAY5 = new DayBuilder().withDate("2020-09-12").withWeight("42").build();
+    public static final Day DAY6 = new DayBuilder().withDate("2020-03-01").withWeight("51").build();
+    public static final Day DAY7 = new DayBuilder().withDate("2019-12-25").withWeight("73").build();
 
     // Manually added
     public static final Day HOON = new DayBuilder().withDate("2020-06-09").withWeight("56")
@@ -71,12 +65,19 @@ public class TypicalDays {
         for (Day day : getTypicalDays()) {
             ab.addDay(day);
         }
-        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_A));
-        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_B));
-        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_C));
-        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_A));
-        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_B));
-        ab.getDayList().stream().forEach(x->x.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_C));
+        try {
+            for (Day d : ab.getDayList()) {
+                d.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_A);
+                d.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_B);
+                d.getCalorieManager().addCalorieInput(TypicalCalories.INPUT_C);
+                d.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_A);
+                d.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_B);
+                d.getCalorieManager().addCalorieOutput(TypicalCalories.OUTPUT_C);
+            }
+        } catch (IllegalValueException e) {
+            e.printStackTrace();
+        }
+
         return ab;
     }
 
@@ -84,7 +85,7 @@ public class TypicalDays {
         return new ArrayList<>(Arrays.asList(DAY1, DAY2, DAY3, DAY4, DAY5, DAY6, DAY7));
     }
 
-    public static void main(String[] args) {
-        getAnotherMyFitnessBuddy();
+    public static List<Day> getDuplicateDays() {
+        return new ArrayList<>(Arrays.asList(DAY1, DAY1, DAY1, DAY2, DAY3));
     }
 }

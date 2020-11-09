@@ -36,14 +36,14 @@ public class Height {
      * Returns true if a given string is a valid height number.
      */
     public static boolean isValidHeight(String test) {
+        requireNonNull(test);
         int testHeight;
-        assert test.length() > 0;
         try {
             testHeight = Integer.parseInt(test);
         } catch (NumberFormatException e) {
             return false;
         }
-        return (62 < testHeight) && (testHeight < 272);
+        return (50 < testHeight) && (testHeight < 272);
     }
 
     @Override
