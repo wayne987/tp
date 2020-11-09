@@ -6,7 +6,7 @@ title: My Fitness Buddy Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## **1. Introduction**
 
 ### 1.1 About the application
@@ -27,6 +27,7 @@ This Developer Guide is for anyone who are interested in the implementation of M
 as well as future developers that are interested in further developing of our application.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **2. Design**
 
@@ -168,8 +169,6 @@ The `Calorie` class contains a `Time` and `CalorieCount` which `Input` and `Outp
 
 ### 2.5 Storage component
 
-### 2.5 Storage component
-
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
@@ -190,6 +189,7 @@ JsonAdaptedOutput are JSON adapted classes to convert the specified object into 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **3. Implementation**
 
@@ -419,6 +419,7 @@ Given below is the sequence diagram when a view command is used.
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **4. Documentation, logging, testing, configuration, dev-ops**
 
@@ -429,6 +430,7 @@ Given below is the sequence diagram when a view command is used.
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **5. Appendix: Requirements**
 
@@ -568,6 +570,7 @@ command.
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **6. Appendix: Instructions for manual testing**
 
