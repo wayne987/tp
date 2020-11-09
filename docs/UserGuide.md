@@ -190,9 +190,9 @@ Format: `add d/DATE w/WEIGHT`
 - `WEIGHT` should be in KG
 
 Example:  
-`add d/2020-10-29 w/72` 
+`add d/2020-11-09 w/78` 
 
-Meaning:`adds a new day, 29 October 2020, with a weight of 72kg`
+Meaning:`adds a new day, 09 November 2020, with a weight of 78kg`
 
 _:warning: Always add a day before adding a calorie information._
 
@@ -201,13 +201,16 @@ _:warning: Always add a day before adding a calorie information._
 #### 4.2.2 Editing a daily weight record : `edit INDEX w/WEIGHT`
 Edits a daily weight record.
 
-Format: `edit INDEX w/WEIGHT`
+Format: `edit INDEX [optional] w/WEIGHT d/DATE`
 - `WEIGHT` should be in KG
+- `DATE` should be in the YYYY-MM-DD format
+
+_:tip:TIP You can choose to update both `DATE` and `WEIGHT` in any order but at least one field needs to be filled_
 
 Example:  
-`edit 3 w/70` 
+`edit 3 w/77` 
 
-Meaning: `edits a day at index 3 with a new weight of 70kg`
+Meaning: `edits a day at index 3 with a new weight of 77kg`
 
 ![EditDay](images/EditDay.png)
 
