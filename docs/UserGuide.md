@@ -51,6 +51,7 @@ This User Guide has been structured such that users can easily find and understa
 [Section 5](#5-??) consists the commands and features available in the commander's mode.
 
 ### 2.2 Symbols and Syntax
+
 The table below explains the general symbols and syntax used throughout the document.
 
 Symbol/syntax | Meaning
@@ -60,6 +61,8 @@ Symbol/syntax | Meaning
 :warning: | This indicates a warning.
 
 ### 2.3 Command Format
+(Contributed by Ethan)
+
 Commands are used to tell My Fitness Buddy to perform specific tasks.  
 All commands in the following sections follow the same format.
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.
@@ -330,14 +333,24 @@ These features help you to monitor your daily progress easily and allows you to 
 certain trends so that you can make better choices during your weight loss journey!
 
 #### 4.4.1 View all calorie inputs and outputs of a day: `view`
+(Contributed by Ethan)
 
 Shows a list of all entries of calorie inputs and calorie outputs of a particular day.
+Updates the status bar above to show you the date of the day you are viewing. 
 
 Format: `view INDEX`
 
-Main screen when a particular day is viewed:
+Main screen before a view command is used:
 
-![day_clicked_chart](images/day_vieweD.png)
+![day_before_view](images/dayBeforeView.png)
+
+Main screen after a view command is used:
+
+![day_after_view](images/dayAfterView.png)
+
+:warning: Calorie lists will not show anything if you have not added any calorie
+inputs or outputs for that particular day you are viewing. The status bar will still 
+update. 
 
 _:bulb:TIP: Calorie lists can be viewed alternatively by double clicking on a particular day card._
 
@@ -433,6 +446,7 @@ Meaning: Filters the list to show profiles that with more than or equal to BMI o
 _:bulb:TIP: Use `list` command to show all profiles after executing `find bmi/` command._
 
 ### 4.7 Saving the data
+(Contributed by Ethan)
 
 My Fitness Buddy data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -440,14 +454,23 @@ My Fitness Buddy data are saved in the hard disk automatically after any command
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. FAQ
+(Contributed by Ethan)
+
 ### 5.1 Transferring Data
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous My Fitness Buddy home folder.  
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous My Fitness Buddy home folder. 
 
+### 5.2 Viewing calorie lists
+
+**Q**: Why is my calorie lists not showing when I use a view command?<br>
+**A**: Make sure that you have added calories for that day. If the calorie lists are empty,
+the lists will not show anything. The status bar will still update informing you that you are 
+viewing that particular day. 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Command summary
+(Contributed by Ethan)
 
 Action | Format
 --------|------------------
