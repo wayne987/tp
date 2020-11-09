@@ -51,6 +51,7 @@ This User Guide has been structured such that users can easily find and understa
 [Section 5](#5-??) consists the commands and features available in the commander's mode.
 
 ### 2.2 Symbols and Syntax
+
 The table below explains the general symbols and syntax used throughout the document.
 
 Symbol/syntax | Meaning
@@ -60,6 +61,8 @@ Symbol/syntax | Meaning
 :warning: | This indicates a warning.
 
 ### 2.3 Command Format
+(Contributed by Ethan)
+
 Commands are used to tell My Fitness Buddy to perform specific tasks.  
 All commands in the following sections follow the same format.
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.
@@ -197,7 +200,9 @@ Deletes a day at index 2.
 
 ![DeleteDay](images/DeleteDay.png)
 
-### 4.3 Calorie Commands
+### 4.3 Calorie Level Data Entry Commands
+(Contributed by Wa Wai)
+
 Commands in this section are useful in keeping track of the various calorie content.
 You can use them to log different kinds of calorie content and their relevant information.
 
@@ -251,8 +256,23 @@ Meaning:`The user ran on October 26 2020 at 12pm and has expanded 400kcal`
 
 _TIP: If the `DATE` field is left empty, the calorie output will be added to the current date entry._
 
+Examples:`remove 3 tp/out i/3` 
 #### 4.3.2 Removing Calorie
-##### 4.3.2.1 Removing a calorie input : `remove tp/in`
+##### 4.3.2.1 Removing a calorie output : `remove tp/out`
+
+Removes a wrong calorie Output entry from the calorie tracker.
+
+Format: `remove tp/out d/DATE i/INDEX`
+
+Examples:`remove tp/in d/2020-10-26 i/3` 
+
+Meaning:`Remove a calorie output from October 26 2020 calorie log, which is the 3rd calorie output in the list of
+Output calories for that day.` 
+
+_TIP: Instead of using d/DATE to specify the date of the log in which the calorie belongs too, the index of the date
+can be used instead_
+
+##### 4.3.2.2 Removing a calorie input : `remove tp/in`
 
 Removes a wrong calorie input entry from the calorie tracker.
 
@@ -268,30 +288,13 @@ can be used instead_
 
 Example:`remove 3 tp/in i/3` 
 
-##### 4.3.2.2 Removing a calorie output : `remove tp/out`
+#### 4.3.3 Change Calorie
+##### 4.3.3.1 Changing a calorie input : `change tp/in`
+Change a calorie input entry with details recorded wrongly
 
-Removes a wrong calorie Output entry from the calorie tracker.
+Format: `change d/DATE tp/in i/INDEX [Updated Details]`
 
-Format: `remove tp/out d/DATE i/INDEX`
-
-Examples:`remove tp/in d/2020-10-26 i/3` 
-
-Meaning:`Remove a calorie output from October 26 2020 calorie log, which is the 3rd calorie output in the list of
-Output calories for that day.` 
-
-_TIP: Instead of using d/DATE to specify the date of the log in which the calorie belongs too, the index of the date
-can be used instead_
-
-Examples:`remove 3 tp/out i/3` 
-
-#### 4.3.3 Modifying Calorie
-##### 4.3.3.1 Modifying a calorie input : `modify tp/in`
-
-Modify a calorie input entry with details recorded wrongly
-
-Format: `modify d/DATE tp/in i/INDEX [Updated Details]`
-
-Examples:`modify d/2020-10-26 tp/in i/2 c/123` 
+Examples:`change d/2020-10-26 tp/in i/2 c/123` 
 
 Meaning:`change the calorie count of an input calorie in the log from October 26 2020 with the index of 2 in the
 input list to 123` 
@@ -301,15 +304,15 @@ input list to 123`
 
 _TIP: Instead of using d/DATE to specify the date of the log in which the calorie belongs too, the index of the date
 can be used instead_
-Examples:`modify 3 tp/out i/3 c/123`
+Examples:`change 3 tp/out i/3 c/123`
 
-##### 4.3.3.2 Modifying a calorie output : `modify tp/out`
+##### 4.3.3.2 Change a calorie output : `change tp/out`
 
-Modify a calorie out entry with details recorded wrongly
+Change a calorie out entry with details recorded wrongly
 
-Format: `modify d/DATE tp/in i/INDEX [Updated Details]`
+Format: `change d/DATE tp/in i/INDEX [Updated Details]`
 
-Examples:`modify d/2020-10-26 tp/in i/2 c/123` 
+Examples:`change d/2020-10-26 tp/in i/2 c/123` 
 
 Meaning:`change the calorie count of an Output calorie in the October 26 2020 log ,with the index of 2 in the
 output list to 123` 
@@ -330,14 +333,24 @@ These features help you to monitor your daily progress easily and allows you to 
 certain trends so that you can make better choices during your weight loss journey!
 
 #### 4.4.1 View all calorie inputs and outputs of a day: `view`
+(Contributed by Ethan)
 
 Shows a list of all entries of calorie inputs and calorie outputs of a particular day.
+Updates the status bar above to show you the date of the day you are viewing. 
 
 Format: `view INDEX`
 
-Main screen when a particular day is viewed:
+Main screen before a view command is used:
 
-![day_clicked_chart](images/day_vieweD.png)
+![day_before_view](images/dayBeforeView.png)
+
+Main screen after a view command is used:
+
+![day_after_view](images/dayAfterView.png)
+
+:warning: Calorie lists will not show anything if you have not added any calorie
+inputs or outputs for that particular day you are viewing. The status bar will still 
+update. 
 
 _:bulb:TIP: Calorie lists can be viewed alternatively by double clicking on a particular day card._
 
@@ -433,6 +446,7 @@ Meaning: Filters the list to show profiles that with more than or equal to BMI o
 _:bulb:TIP: Use `list` command to show all profiles after executing `find bmi/` command._
 
 ### 4.7 Saving the data
+(Contributed by Ethan)
 
 My Fitness Buddy data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -440,14 +454,23 @@ My Fitness Buddy data are saved in the hard disk automatically after any command
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. FAQ
+(Contributed by Ethan)
+
 ### 5.1 Transferring Data
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous My Fitness Buddy home folder.  
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous My Fitness Buddy home folder. 
 
+### 5.2 Viewing calorie lists
+
+**Q**: Why is my calorie lists not showing when I use a view command?<br>
+**A**: Make sure that you have added calories for that day. If the calorie lists are empty,
+the lists will not show anything. The status bar will still update informing you that you are 
+viewing that particular day. 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Command summary
+(Contributed by Ethan)
 
 Action | Format
 --------|------------------
@@ -460,8 +483,8 @@ Action | Format
 **Add output** | `calorie tp/out t/TIME d/DURATION c/CALORIE_BURNT`
 **Remove input** | `remove tp/in d/DATE i/INDEX` 
 **Remove output** | `remove tp/out d/DATE i/INDEX` 
-**Modify input** | `modify tp/in t/TIME f/FOOD c/CALORIE_COUNT`
-**Modify output** | `modify tp/out t/TIME d/DURATION c/CALORIE_BURNT` 
+**Change input** | `change tp/in t/TIME f/FOOD c/CALORIE_COUNT`
+**Change output** | `change tp/out t/TIME d/DURATION c/CALORIE_BURNT` 
 **View calories of a day** | `view INDEX`
 **View statistics** | `stats v/CHART_TO_BE_VIEWED`
 **View overall BMI progress of recruits for commanders** | `stats v/commander`
