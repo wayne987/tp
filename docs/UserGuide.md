@@ -191,9 +191,9 @@ Format: `add d/DATE w/WEIGHT`
 - `WEIGHT` should be in KG
 
 Example:  
-`add d/2020-10-29 w/72` 
+`add d/2020-11-09 w/78` 
 
-Meaning:`adds a new day, 29 October 2020, with a weight of 72kg`
+Meaning:`adds a new day, 09 November 2020, with a weight of 78kg`
 
 _:warning: Always add a day before adding a calorie information._
 
@@ -206,9 +206,9 @@ Format: `edit INDEX w/WEIGHT`
 - `WEIGHT` should be in KG
 
 Example:  
-`edit 3 w/70` 
+`edit 3 w/77` 
 
-Meaning: `edits a day at index 3 with a new weight of 70kg`
+Meaning: `edits a day at index 3 with a new weight of 77kg`
 
 ![EditDay](images/EditDay.png)
 
