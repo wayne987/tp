@@ -157,7 +157,10 @@ The `Model`,
 The model stores a `UserPref` object that represents the user’s preferences and stores My Fitness Buddy data.
 The model also exposes an unmodifiable `ObservableList<Day>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.  
 
-`MyFitnessBuddy` is made up of a `UniqueDayList` which contains a list of `Day` objects. The `Day` class contains a `Date` and uses `CalorieManager` class as a data structure to store calorie `Input` and `Output`. `CalorieManager` also keeps track and can return the total calorie input and output. 
+`MyFitnessBuddy` is made up of a `Person` and `UniquePersonList`. The `Person` stores the current Person object that is being referenced in the application. The `UniquePersonList` contains list of
+`Person` objects which stores all the relevant information of the different person that uses MyFitnessBuddy.
+
+Each person contains a `UniqueDayList` which contains a list of `Day` objects. The `Day` class contains a `Date` and uses `CalorieManager` class as a data structure to store calorie `Input` and `Output`. `CalorieManager` also keeps track and can return the total calorie input and output. 
 
 The `Calorie` class contains a `Time` and `CalorieCount` which `Input` and `Output` inherits from.  `Input` contains an additional `Food` while `Output` contains an addition `Exercise`.
 
@@ -494,6 +497,7 @@ command.
 * **Calorie Output**: The amount of energy used by the user from exercises
 * **Calorie History**: A collection of calorie input and output for the past months
 * **Daily Weight**: The weight of the user for a specific day
+* **Profile**: The personal details of the user
 
 
 
