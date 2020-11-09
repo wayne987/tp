@@ -79,8 +79,7 @@ Thank you for using My Fitness Buddy! Here's a quick start guide to get you star
 `java -jar MyFitnessBuddy_v1.4.jar`
 
 1. You can type a command in the command box and press <kbd>Enter</kbd> to execute it.<br>
-
-Here are some basic commands you can try:
+    Here are some basic commands you can try:
     * `login 1` : Loads the first profile in the profile list.
     * `add d/2020-10-16 w/70`: Creates a daily record with the specified date and weight.
     * `calorie d/2020-10-26 tp/in t/1200 f/laksa c/290`: Adds a calorie input entry with the specified date.
@@ -92,11 +91,14 @@ Here are some basic commands you can try:
 
 ## 4. Features
 
-|              :warning: :warning: BEFORE YOU PROCEED :warning: :warning:              |
-|:-------------------------------------------------------------------------------------:|
-| Commands from section [#4.1.2](#411-creating-a-new-profile--create) to
-[#4.4.1](#441-view-all-calorie-inputs-and-outputs-of-a-day-view) REQUIRES you to `login` to a profile first|
-| You can login to a profile using `login INDEX`, where `INDEX` is the index number of the profile in the Profile List Panel|
+<div markdown="span" class="alert alert-primary">
+
+:warning: **WARNING:** Commands from section [#4.1.2](#411-creating-a-new-profile--create) to
+                       [#4.4.1](#441-view-all-calorie-inputs-and-outputs-of-a-day-view) REQUIRES you to `login` to a profile first.
+                       <br>You can login to a profile using `login INDEX`, where `INDEX` is the index number of the profile in the Profile List Panel.
+
+</div>
+
 ![login_example](images/login_example.png)
 
 
