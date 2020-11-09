@@ -57,9 +57,6 @@ class JsonAdaptedPerson {
         Person modelPerson = new Person();
         modelPerson.setProfile(modelProfile);
 
-        if (days.isEmpty()) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Day.class.getSimpleName()));
-        }
         for (JsonAdaptedDay jsonAdaptedDay : days) {
             Day day = jsonAdaptedDay.toModelType();
             if (modelPerson.hasDay(day)) {
