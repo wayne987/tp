@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.day.Day;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Profile;
 import seedu.address.testutil.TypicalDays;
@@ -38,13 +37,6 @@ public class JsonAdaptedPersonTest {
 
         JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_DAYS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Profile.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullDays_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(new JsonAdaptedProfile(VALID_PROFILE), null);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Day.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

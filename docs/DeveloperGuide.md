@@ -157,7 +157,10 @@ The `Model`,
 The model stores a `UserPref` object that represents the user’s preferences and stores My Fitness Buddy data.
 The model also exposes an unmodifiable `ObservableList<Day>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.  
 
-`MyFitnessBuddy` is made up of a `UniqueDayList` which contains a list of `Day` objects. The `Day` class contains a `Date` and uses `CalorieManager` class as a data structure to store calorie `Input` and `Output`. `CalorieManager` also keeps track and can return the total calorie input and output. 
+`MyFitnessBuddy` is made up of a `Person` and `UniquePersonList`. The `Person` stores the current Person object that is being referenced in the application. The `UniquePersonList` contains list of
+`Person` objects which stores all the relevant information of the different person that uses MyFitnessBuddy.
+
+Each person contains a `UniqueDayList` which contains a list of `Day` objects. The `Day` class contains a `Date` and uses `CalorieManager` class as a data structure to store calorie `Input` and `Output`. `CalorieManager` also keeps track and can return the total calorie input and output. 
 
 The `Calorie` class contains a `Time` and `CalorieCount` which `Input` and `Output` inherits from.  `Input` contains an additional `Food` while `Output` contains an addition `Exercise`.
 
@@ -165,13 +168,22 @@ The `Calorie` class contains a `Time` and `CalorieCount` which `Input` and `Outp
 
 ### 2.5 Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagramNew.png)
+### 2.5 Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save My Fitness Buddy data in json format and read it back.
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+
+The `Storage` component,  
+* can save a MyFitnessBuddy object in JSON format   
+* can save a UserPref object in JSON format  
+* can parse a JSON file of MyFitnessBuddy data to construct a MyFitnessBuddy object  
+* can parse a JSON file of UserPref data to construct a UserPref object  
+
+JsonMyFitnessBuddyStorage is the implementation of MyFitnessBuddyStorage interface and supports the storage of all data in the application.  
+
+JsonAdaptedPerson, JsonAdaptedProfile, JsonAdaptedDay, JsonAdaptedCalorieManager, JsonAdaptedInput, 
+JsonAdaptedOutput are JSON adapted classes to convert the specified object into a JSON file and read a JSON file to create the object.
 
 ### 2.6 Common classes
 
@@ -182,6 +194,54 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **3. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Feature: Creates a new Person to My Fitness Buddy
+
+#### Implementations
+
+This feature allows users to create a new `Profile`, consisting of their `Name`, `ID`, `Height` and starting `Weight`,
+and a new `UniqueDayList` for daily calorie entries. Upon initialising an empty My Fitness Buddy application, users have to create a new person with a new profile. 
+Once the profile has been set for `Person`, the user can now add
+daily entries to My Fitness Buddy's `UniqueDayList`.
+
+![CreateProfileSequenceDiagram](images/CreateProfileSequenceDiagram.png)
+
+### Feature: Updates a profile in My Fitness Buddy 
+
+#### Implementations
+
+This feature allows users to update an existing `Profile`, consisting of their *Name*, *ID*, *Height* and *TargetWeight*. 
+The user can modify any of the profile entries while `UniqueDayList` that records the daily entries will remain unchanged.
+
+The mechanism utilises the UpdateCommandParser Class to parse the input into the index of the `Profile` to be retrieved where, 
+at least one of the entries `Name`, `ID`, `Height` or `Weight` will be modified accordingly.
+
+It than utilise the UpdateCommand class to execute the actual removal of the calorie. It will call the method `getProfile` which uses `MyFitnessBuddy` to locate the Profile class
+from the uniquePersonList in which the profile resides in and returns it.
+
+A new profile will be created from the given user inputs and previous relevant profile information. This new profile details will replace the previous profile in 
+the uniquePersonList that resides in `MyFitnessBuddy`.
+
+![UpdateProfileSequenceDiagram](images/UpdateProfileSequenceDiagram.png)
+
+### Feature: Views another profile in My Fitness Buddy
+
+#### Implementations
+
+This feature allows users to view another existing `Profile`.
+
+The mechanism utilises the LoginCommandParser Class to parse the input into the index of the `Profile` to be retrieved.
+
+It than utilise the LoginCommand class to execute the actual retrieval of the profile. It will call the method `getPerson` which uses `MyFitnessBuddy` to locate the Person class
+from the uniquePersonList in which the person resides in and returns it.
+
+The currentPerson in `MyFitnessBuddy` will be changed to the recently retrieved Person by calling the method `setCurrentPerson`.
+
+Finally, the uniqueDayList for the person's UI component will be updated accordingly and displayed.
+
+
+![LoginActivityDiagram](images/LoginActivityDiagram.png)
+
 
 ### Feature: Add a new daily record
 
@@ -199,6 +259,68 @@ into the `UniqueDayList`.
 Below is a sequence diagram when the user executes `add d/2020-11-08 w/76` into My Fitness Buddy.
 
 ![Add_day_sequence](images/AddDaySequence.png)
+
+
+### Feature: Edit the weight and/or date of a day
+
+#### Implementation
+
+This feature allows the user to edit the weight record and/or date record of a particular day that has already been 
+added in the day list. 
+
+The mechanism utilises the `EditCommandParser` Class to parse the input into `Index`. An `editDayDescriptor` 
+gets created with the  `Date` of `day.Date` Class and `Weight` of `day.Weight` Class if they are included
+in the input.  
+
+It then utilises the `EditCommand` Class to create a new `Day` with the `editDayDescriptor` using 
+`EditCommand#createEditedDay`. The new `Day` would then replace the old `Day` in the `Model` using the 
+`Model#setDay` method. 
+
+Below is a sequence diagram when the user executes `edit 1 d/2020-10-22 w/90` into My Fitness Buddy.
+
+![Edit_day_sequence](images/EditDaySequence.png)
+
+
+### Add Calorie feature
+
+#### Overview
+
+This feature allows users to add a calorie to the calorie manager of the day with the specified date.   
+If no date is specified, calorie command takes the system date and adds it to the day with the date.
+
+This is an activity diagram to demonstrate what happens when the user uses the calorie command
+
+![AddCalorieActivity](images/AddCalorieActivity.png)
+
+#### Implementation
+Step 1: The command CalorieCommand.execute(model) is called by Logic Manager which provides a Model object as argument.  
+
+Step 2: CalorieCommand will first check whether the Model object has a day with the date. If false, it throws an error.  
+
+Step 3: Next, the CalorieCommand will try to get the Day object. First, it calls model.getDay(date), which calls the MyFitnessBuddy object getDay(date) which calls the Person object getDay(date) which finally calls UniqueDayList object getDate(date) and returns a Day object.  
+
+Step 4: It will then assign the Day object to two new Day objects, editDay and targetDay.  
+
+Step 5: CalorieCommand will then edit the Day by changing the Day object’s CalorieManager object. First, it calls editDay.getCalorieManager() to get the Day object’s CalorieManager object.  
+
+Step 6: Depending on whether the boolean isOut is true, it adds the appropriate calorie to the CalorieManager object. If isOut is true, it calls addCalorieOutput(calorie), else it calls addCalorieInput(calorie)  
+
+Step 7: After changing editDay, CalorieCommand will call model.setDay(editDay, targetDay) to replace the targetDay with the edited Day object which contains the new Calorie.  
+
+Sequence diagram when CalorieCommand is executed:
+![AddCalorieSequenceDiagram](images/AddCalorieSequence.png)
+
+#### Design Considerations
+
+Alternative 1:  
+Instead of having a single CalorieCommand class, have an OutputCommand and InputCommand class  
+Pros: Less confusing code  
+Cons: Duplicate code as the two commands have very similar functions  
+
+Alternative 2:  
+Directly editing the CalorieManager of the Day object instead of using setDay()  
+Pros: Less confusing code  
+Cons: More bugs will occur, not defensive coding  
 
 ### Remove Calorie feature
 
@@ -265,7 +387,7 @@ to the list when the user adds or modifies any data, and updates the chart
 instantly.
 
 
-### View all calorie inputs and calorie outputs of a day feature
+### Feature: View all calorie inputs and calorie outputs of a day feature
 
 #### Implementation
 
@@ -295,29 +417,6 @@ status bar gets updated similarly.
 Given below is the sequence diagram when a view command is used.
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
-
-### Creates a new Person to My Fitness Buddy
-
-#### Implementations
-
-This feature allows users to create a new `Profile`, consisting of their *Name*, *ID*, *Height* and *TargetWeight*,
-and a new `UniqueDayList` for daily calorie entries. Upon initialising My Fitness Buddy application, a default `Person` object 
-will be created and its `Profile` will be recreated by users. Once the profile has been set for `Person`, the user can now add
-daily entries to My Fitness Buddy's `UniqueDayList`. 
-
-_{Diagram to be added}_
-
-### Edits a profile in My Fitness Buddy
-
-#### Implementations
-
-This feature allows users to edit an existing `Profile`, consisting of their *Name*, *ID*, *Height* and *TargetWeight*.
-`UniqueDayList` that records the daily entries will remain unchanged.
-
-{More details to be added in terms of updating the profile in the next iteration}
-
-_{Diagram to be added}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -353,37 +452,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | create a new profile         | set up the application |
-| `* * *`  | user                                       | record my daily weight         | keep track of them   |
-| `* * *`  | user                                       | record meals and the amount of calorie eaten  | keep track of them |
-| `* * *`  | user                                       | record exercises and the amount of calories lost | keep track of them |
-| `* * *`  | user                                       | view my calorie history   | see if I am hitting my calorie targets |
-| `* * *`  | user                                       | view all my daily weights | see if I am hitting my weight targets | 
-| `* * *`  | user                                       | delete a specified calorie output | remove a wrong input |
-|  `* * *` | user                                       | delete a specified calorie input | remove a wrong output |
+| `* * *`  | user (recruit)                             | record my daily weight         | keep track of them   |
+| `* * *`  | user (recruit)                             | record meals and the amount of calorie eaten  | keep track of them |
+| `* * *`  | user (recruit)                             | record exercises and the amount of calories lost | keep track of them |
+| `* * *`  | user (recruit)                              | view my calorie history   | see if I am hitting my calorie targets |
+| `* * *`  | user (recruit)                                | view all my daily weights | see if I am hitting my weight targets | 
+| `* * *`  | user (recruit)                                | delete a specified calorie output | remove a wrong input |
+|  `* * *` | user  (recruit)                                 | delete a specified calorie input | remove a wrong output |
+| `* *`   | user (recruit)                                 | see the progress of my weight and calories | keep track of them |
+| `*`      | user (commander)                              | see overall progress of my recruits | manage my recruits better |
 
-*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `MyFitnessBuddy` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a daily weight record**
+**Use case: UC1 - Create a new profile**
+
+**Preconditions** : Profile list has no profile with the same ID
+
+**MSS**
+1. User inputs the create command with the necessary fields (name, ID, height, target weight). 
+2. User sees the newly created profile on the profile panel.  
+
+**Use case: UC2 - Add a daily weight record**
+
+**Preconditions** : User is logged in
 
 **MSS**
 1.  User inputs the date and weight using the add command.
-3.  User sees the newly added weight record of the day.
+2.  User sees the newly added weight record of the day.
     
     Use case ends.
     
-**Use case: Edit a daily weight record**
+**Use case: UC3 - Edit a daily weight record**
+
+**Preconditions** : User is logged in 
 
 **MSS**
-1.  User inputs the index of the record and the new weight with the edit command.
+1.  User inputs the index of the day record and the new weight with the edit command.
 2.  User sees the newly edited weight record of the day.
     
     Use case ends.
+    
+**Extensions**
+* 1a. The index of the day record does not exists
+* 1b. Error message is shown
 
-**Use case: Add a calorie input**
+Use case resumes at 1.
+
+**Use case: UC4 - Add a calorie input**
+
+**Preconditions** : User is logged in and a day has already been added
 
 **MSS**
 
@@ -394,7 +514,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
     
-**Use case: View calorie's of a particular day recorded**
+**Use case: UC5 - View calorie's of a particular day recorded**
+
+**Preconditions** : User is logged in, a day has already been added and calories have been 
+added for that day
 
 **MSS**
 
@@ -410,7 +533,21 @@ command.
 
   Use case ends.
 
-*{More to be added}*
+**Use case: UC6 - View weight statistics**
+
+**Preconditions** : User is logged in
+
+**MSS**
+
+1. User requests to view statistics of their weight history
+2. Users sees the line chart of their weight history
+
+   Use case ends.
+   
+**Extensions**
+* 1a. The day list is empty so an empty chart gets shown.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
@@ -418,7 +555,6 @@ command.
 2.  Should be able to hold up to 100 days of calorie input/output without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
 
 ### Glossary
 
@@ -427,6 +563,7 @@ command.
 * **Calorie Output**: The amount of energy used by the user from exercises
 * **Calorie History**: A collection of calorie input and output for the past months
 * **Daily Weight**: The weight of the user for a specific day
+* **Profile**: The personal details of the user
 
 
 
@@ -530,8 +667,21 @@ inputs and ouputs already.
   
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+#### 1. Missing data file
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+If the file does not exist, the application will launch with sample data. 
+This is usually the case for first time users and it is to help them familiarise themselves
+with the application and features before starting on a clean application.
 
-1. _{ more test cases …​ }_
+Logger will log: "Data file not found. Will be starting with a sample MyFitnessBuddy"  
+
+Users can simulate this by going into the data folder of the JAR file and deleting the file named myfitnessbuddy.
+
+####2. Corrupted data file
+
+If the data inside the JSON file is corrupted, the application will launch as a clean application with no data.
+An empty data file will be created.
+
+Logger will log: "Data file not in the correct format. Will be starting with a new MyFitnessBuddy"
+
+Users can simulate this by going into the data folder, opening the myfitnessbuddy file and editing the contents inside the file.
