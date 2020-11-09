@@ -72,7 +72,6 @@ public class ProfileCard extends UiPart<Region> {
         profilePicture.setImage(user);
         circleClip(profilePicture);
         if (!person.isDefaultProfile()) {
-//            System.out.println(person.getProfile().getTargetWeight());
             progress.setProgress(person.getProgress());
             bmi.setText("BMI: "
                     + Math.round(person.getCurrentBmi() * 100.0) / 100.0);
