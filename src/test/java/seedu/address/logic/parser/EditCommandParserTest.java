@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_2;
 import static seedu.address.logic.commands.CommandTestUtil.WEIGHT_DESC_1;
 import static seedu.address.logic.commands.CommandTestUtil.WEIGHT_DESC_2;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DAY;
@@ -26,8 +25,6 @@ import seedu.address.model.day.Weight;
 import seedu.address.testutil.EditDayDescriptorBuilder;
 
 public class EditCommandParserTest {
-
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -63,9 +60,8 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        //        assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS);
         // invalid date
-        assertParseFailure(parser, "1" + INVALID_WEIGHT_DESC, Weight.MESSAGE_CONSTRAINTS); // invalid weight
+        //        assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS);
 
         // invalid weight
         assertParseFailure(parser, "1" + INVALID_WEIGHT_DESC, Weight.MESSAGE_CONSTRAINTS);
