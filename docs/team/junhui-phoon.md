@@ -5,7 +5,7 @@ title: Jun Hui's Project Portfolio Page
 
 ## Project: My Fitness Buddy
 
-My Fitness Buddy is My Fitness Buddy is a desktop application that helps PES B pending recruits keep track of their
+My Fitness Buddy is a desktop application that helps PES B pending recruits keep track of their
 overall change in fitness level by allowing them to add daily records of their weight and calorie input/output.  
 
 Given below are my contributions to the project.
