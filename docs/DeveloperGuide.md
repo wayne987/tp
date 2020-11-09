@@ -200,6 +200,26 @@ Below is a sequence diagram when the user executes `add d/2020-11-08 w/76` into 
 
 ![Add_day_sequence](images/AddDaySequence.png)
 
+### Feature: Edit the weight of a day
+
+#### Implementation
+
+This feature allows the user to edit the weight record of a particular day that has already been 
+added in the day list. 
+
+The mechanism utilises the `EditCommandParser` Class to parse the input into `Index`. An `editDayDescriptor` 
+gets created with the  `Date` of `day.Date` Class and `Weight` of `day.Weight` Class if they are included
+in the input.  
+
+It then utilises the `EditCommand` Class to create a new `Day` with the `editDayDescriptor` using 
+`EditCommand#createEditedDay`. The new `Day` would then replace the old `Day` in the `Model` using the 
+`Model#setDay` method. 
+
+Below is a sequence diagram when the user executes `edit 1 d/2020-10-22` into My Fitness Buddy.
+
+
+
+
 ### Remove Calorie feature
 
 #### Implementation
