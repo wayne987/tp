@@ -534,12 +534,29 @@ My Fitness Buddy data are saved in the hard disk automatically after any command
 ## 5. FAQ
 (Contributed by Ethan)
 
-### 5.1 Transferring Data
+### 5.1 General
+
+**Q**: Why is the app not running?<br>
+**A**: Ensure JDK 11 or above is installed. 
+
+**Q**: I forgot how to use the app. Where can I find help?<br>
+**A**: Enter help into the command box and a link to the user guide will be provided.
+
+**Q**: Where is my data stored?<br>
+**A**: Your data is stored locally in your computer. It will be in the My Fitness Buddy JSON file
+that will be created when you first launch the app. 
+
+**Q**: Do I have to use a save command for my data to be safely backed up in my computer?<br>
+**A**: No, all your data is automatically backed up in your computer. There is no need to manually save 
+your data.
+
+### 5.2 Transferring Data
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous My Fitness Buddy home folder. 
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the
+ data of your previous My Fitness Buddy home folder. 
 
-### 5.2 Viewing calorie lists
+### 5.3 Viewing calorie lists
 
 **Q**: Why is my calorie lists not showing when I use a view command?<br>
 **A**: Make sure that you have added calories for that day. If the calorie lists are empty,
